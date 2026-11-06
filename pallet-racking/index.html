@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pallet Racking Capacity & Forklift Aisle Width Calculator | RackSpec Pro™</title>
+  <meta name="description" content="Free warehouse pallet racking capacity and forklift aisle width calculator. Calculate pallet storage positions, upright frame height, beam capacity, and steel installation cost.">
+  <meta name="keywords" content="pallet racking calculator, warehouse capacity calculator, forklift aisle width calculator, reach truck aisle width, pallet rack beam capacity, warehouse storage density">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/pallet-racking/">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Pallet Racking Capacity & Aisle Width Calculator | RackSpec Pro">
+  <meta property="og:description" content="Free engineering calculator for warehouse pallet racking layouts, forklift turning clearances, and storage density.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/pallet-racking/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RackSpec Pro Warehouse Pallet Racking & Aisle Sizing Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/pallet-racking/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates warehouse pallet storage capacity, forklift aisle width clearances, teardrop beam levels, and steel installation costs under OSHA and NFPA standards.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum aisle width required for a forklift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Forklift aisle width depends directly on the mast and chassis design. Standard sit-down counterbalanced forklifts require 12.0 to 13.5 feet of clear aisle space to turn 90 degrees with a 48-inch pallet. Stand-up Narrow Aisle (NA) Reach Trucks require 8.5 to 9.5 feet, while Very Narrow Aisle (VNA) Turret Trucks or order pickers operate in 5.0 to 5.5-foot wire or rail-guided aisles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the NFPA sprinkler clearance requirement for pallet racks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under NFPA 13 (Standard for the Installation of Sprinkler Systems), there must be a minimum of 36 inches (3 feet) of clear vertical space between the top of the highest stored pallet load and the sprinkler deflectors for standard early-suppression fast-response (ESFR) sprinkler heads. High-density storage exceeding 25 feet often requires in-rack sprinkler lines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is longitudinal flue space in warehouse racking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Longitudinal flue space is the clear vertical space between back-to-back rows of pallet racks. Fire codes require a minimum of 6 inches of longitudinal flue space to allow upward venting of heat during a fire so sprinkler heads activate quickly, while transverse flue spaces (between pallets on a beam) must maintain 3 inches of clearance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does commercial pallet racking cost per pallet position?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard selective teardrop pallet racking typically costs between $65 and $110 per pallet position installed. This includes heavy-duty roll-formed upright frames (42-inch depth), 96 or 108-inch step beams, wire mesh decking, seismic floor anchoring, column guards, and professional installation labor."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>📦 <strong>OSHA 1910.176 &amp; RMI (Rack Manufacturers Institute) Planning Engine:</strong> Warehouse storage density &amp; forklift clearance calculator.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🏢</div>
+        <div>
+          <h1 class="brand-title">RackSpec Pro<span class="badge-tag">LOGISTICS ENGINE</span></h1>
+          <p class="brand-tagline">Industrial Warehouse Pallet Racking, Forklift Aisle &amp; Capacity Estimator</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn tradespec-suite-pill" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-secondary header-btn">Get Racking Quotes</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-layout">
+
+    <!-- Quick Presets -->
+    <section class="presets-card card" aria-label="Quick Warehouse Presets">
+      <div class="presets-header">
+        <span class="label-title">⚡ QUICK WAREHOUSE PRESETS:</span>
+        <span class="presets-sub">Select common commercial facility profiles</span>
+      </div>
+      <div class="presets-buttons">
+        <button type="button" class="preset-btn active" data-preset="flexSpace">10,000 SF Flex Space (Reach Truck / 24 ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="standard3pl">25,000 SF 3PL Center (Counterbalance / 28 ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="vnaHighDensity">High-Density Distribution (VNA Turret / 36 ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="smallShop">Small 4,000 SF Workshop / Staging Bay</button>
+      </div>
+    </section>
+
+    <div class="calculator-grid">
+      
+      <!-- Inputs Column -->
+      <section class="inputs-column card" aria-labelledby="inputs-heading">
+        <div class="card-header">
+          <h2 id="inputs-heading" class="card-title">1. Building &amp; Equipment Dimensions</h2>
+          <span class="card-subtitle">Define clear heights, forklift fleet, and load weights</span>
+        </div>
+
+        <form id="rackForm" class="form-body" onsubmit="event.preventDefault()">
+          
+          <!-- Warehouse Dimensions -->
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="buildingLength">Building Length</label>
+              <div class="field-label-row">
+                <input type="number" id="buildingLength" min="30" max="800" value="120" class="form-input">
+                <span class="unit-tag">ft</span>
+              </div>
+            </div>
+            <div class="form-group half">
+              <label for="buildingWidth">Building Width</label>
+              <div class="field-label-row">
+                <input type="number" id="buildingWidth" min="20" max="600" value="80" class="form-input">
+                <span class="unit-tag">ft</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clear Ceiling Height -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="clearHeight">Clear Ceiling Height (Under Sprinklers)</label>
+              <span class="unit-badge"><span id="clearHeightVal">24</span> ft</span>
+            </div>
+            <input type="range" id="clearHeight" min="14" max="45" step="1" value="24" class="range-slider">
+            <div class="slider-ticks">
+              <span>14 ft (Low)</span>
+              <span>24 ft (Modern Flex)</span>
+              <span>32 ft (3PL)</span>
+              <span>45 ft</span>
+            </div>
+            <small class="field-help">Elevation to lowest roof steel truss, lights, or NFPA 13 sprinkler heads.</small>
+          </div>
+
+          <!-- Forklift Fleet Selection -->
+          <div class="form-group">
+            <label for="forkliftType">Forklift Equipment &amp; Required Aisle Width</label>
+            <select id="forkliftType" class="form-select">
+              <option value="counterbalance">Standard Sit-Down Counterbalance (12.5 ft Aisle Clearance)</option>
+              <option value="reach" selected>Narrow Aisle Stand-Up Reach Truck (9.5 ft Aisle Clearance)</option>
+              <option value="vna">Very Narrow Aisle (VNA) Turret / Order Picker (5.5 ft Wire-Guided)</option>
+            </select>
+            <small class="field-help">Switching from Sit-down to Reach Truck increases total storage density by 30% to 45%!</small>
+          </div>
+
+          <!-- Pallet Load Height -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="palletHeight">Typical Loaded Pallet Height</label>
+              <span class="unit-badge"><span id="palletHeightVal">54</span> inches</span>
+            </div>
+            <input type="range" id="palletHeight" min="36" max="84" step="2" value="54" class="range-slider">
+            <div class="slider-ticks">
+              <span>36"</span>
+              <span>54" (Standard GMA)</span>
+              <span>72"</span>
+              <span>84"</span>
+            </div>
+            <small class="field-help">Height of wooden pallet + merchandise + shrink-wrap.</small>
+          </div>
+
+          <!-- Pallet Unit Weight -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="palletWeight">Pallet Unit Weight</label>
+              <span class="unit-badge"><span id="palletWeightVal">2,000</span> lbs</span>
+            </div>
+            <input type="range" id="palletWeight" min="500" max="4500" step="250" value="2000" class="range-slider">
+            <div class="slider-ticks">
+              <span>500 lbs</span>
+              <span>2,000 lbs</span>
+              <span>3,500 lbs</span>
+              <span>4,500 lbs</span>
+            </div>
+            <small class="field-help">Dictates steel beam thickness and gauge rating (e.g., 5,000 lb capacity per beam pair).</small>
+          </div>
+
+          <!-- Racking Configuration -->
+          <div class="form-group">
+            <label for="bayConfig">Racking Beam Length</label>
+            <select id="bayConfig" class="form-select">
+              <option value="96" selected>96-Inch Beams (2 Standard 40" Pallets per Level)</option>
+              <option value="108">108-Inch Beams (2 Extra-Wide / Overhang Pallets)</option>
+              <option value="144">144-Inch Beams (3 Standard 40" Pallets per Level)</option>
+            </select>
+          </div>
+
+          <!-- Safety Accessories -->
+          <div class="form-group">
+            <label for="deckingType">Decking &amp; Safety Accessories</label>
+            <select id="deckingType" class="form-select">
+              <option value="wireMesh" selected>Flanged Wire Mesh Decking (OSHA &amp; Fire Standard)</option>
+              <option value="palletSupports">Drop-In Steel Pallet Support Bars Only</option>
+              <option value="heavyDuty">Heavy-Duty Mesh + Heavy End-of-Aisle Column Protectors</option>
+            </select>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Results & Visualization Column -->
+      <section class="results-column" aria-label="Calculation Results & Diagram">
+        
+        <!-- Live Layout Blueprint Canvas -->
+        <div class="card visual-card">
+          <div class="card-header flex-header">
+            <div>
+              <h2 class="card-title">2. Warehouse Floor Plan &amp; Rack Elevation</h2>
+              <span class="card-subtitle">Scale top-down aisle layout and vertical tier elevation</span>
+            </div>
+            <span id="densityBadge" class="utilization-badge green">UTILIZATION: 78%</span>
+          </div>
+
+          <div class="canvas-container">
+            <svg id="rackSvg" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet" aria-label="Racking Layout Diagram">
+              <defs>
+                <pattern id="aisleGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1e293b" stroke-width="0.5" />
+                </pattern>
+              </defs>
+
+              <!-- Floor Background -->
+              <rect width="100%" height="100%" fill="#0a0f1d" />
+              <rect width="100%" height="100%" fill="url(#aisleGrid)" />
+
+              <!-- Top-down Layout View (Left Half) -->
+              <g id="floorplanGroup"></g>
+
+              <!-- Elevation Cross-Section (Right Half) -->
+              <g id="elevationGroup"></g>
+
+              <!-- Dimension & Legend Overlays -->
+              <g id="annotationGroup"></g>
+            </svg>
+          </div>
+
+          <div class="diagram-legend">
+            <span class="legend-item"><span class="legend-color rack-col"></span> Racking Runs</span>
+            <span class="legend-item"><span class="legend-color aisle-col"></span> Forklift Aisle</span>
+            <span class="legend-item"><span class="legend-color pallet-col"></span> Pallet Tiers</span>
+            <span class="legend-item"><span class="legend-color flue-col"></span> 6" Fire Flue Space</span>
+          </div>
+        </div>
+
+        <!-- Primary Sizing Recommendation -->
+        <div class="card recommendation-card">
+          <div class="rec-top">
+            <div class="rec-label">CALCULATED STORAGE CAPACITY</div>
+            <div class="rec-rating" id="totalPalletPositions">648 PALLETS</div>
+            <div class="rec-class" id="rackingSummaryText">4 Tier Levels High • 6 Back-to-Back Rack Runs</div>
+          </div>
+          
+          <div class="rec-explanation" id="densityExplanation">
+            In a 9,600 sq ft facility with 24 ft clear height, using a Narrow Aisle Reach Truck (9.5 ft aisles) yields 648 pallet positions across 54 total bays. Switching to a standard sit-down forklift (13 ft aisles) would reduce capacity to 480 pallets (a 26% loss in revenue potential).
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-title">Beam Levels High</span>
+              <span class="metric-val" id="metricLevels">4 Levels</span>
+              <span class="metric-sub">Including floor level</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Upright Frame Height</span>
+              <span class="metric-val" id="metricUprightHeight">20 ft</span>
+              <span class="metric-sub">42" Depth teardrop frame</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Beam Pair Capacity</span>
+              <span class="metric-val" id="metricBeamCap">5,000 lbs</span>
+              <span class="metric-sub">Rated for 2 × 2,000 lb pallets</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Storage Aisle Width</span>
+              <span class="metric-val" id="metricAisleWidth">9.5 ft</span>
+              <span class="metric-sub">Reach truck aisle corridor</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Total Racking Bays</span>
+              <span class="metric-val" id="metricTotalBays">54 Bays</span>
+              <span class="metric-sub">8 ft beam clear span</span>
+            </div>
+            <div class="metric-box highlight">
+              <span class="metric-title">Estimated Steel Investment</span>
+              <span class="metric-val" id="metricSteelBudget">$51,800 – $64,800</span>
+              <span class="metric-sub">$80–$100 / pallet position</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead Gen Call to Action -->
+        <div class="card lead-cta-card" id="lead-section">
+          <div class="cta-inner">
+            <div class="cta-badge">DISTRIBUTOR NETWORK READY</div>
+            <h3 class="cta-title">Need a Stamped Warehouse CAD Layout &amp; Steel Quote?</h3>
+            <p class="cta-desc">Avoid costly space design blunders. Connect with 2 certified material handling and racking distributors servicing your region for verified CAD floorplans.</p>
+            
+            <div class="cta-actions">
+              <button type="button" id="openRfqBtn" class="btn btn-primary btn-large">
+                Request Free CAD Layout &amp; Steel Bids
+              </button>
+              <button type="button" id="printSummaryBtn" class="btn btn-outline">
+                🖨️ Print / Save Racking Specification
+              </button>
+            </div>
+            <div class="cta-guarantee">
+              🔒 100% Free Facility Planning • Stamped PE Engineering • No Obligation
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Educational / SEO FAQ Section -->
+    <section class="card faq-section" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="section-title">Essential Warehouse Pallet Racking &amp; Layout Guide</h2>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Why Does Forklift Selection Dictate Warehouse Storage Density?</h3>
+          <p>Forklift selection is the single largest variable in warehouse capacity. A standard sit-down counterbalance forklift requires a 12.5 to 13.5-foot turning aisle. Upgrading to a narrow-aisle stand-up reach truck shrinks that required corridor to 9.0 to 9.5 feet, saving 3 to 4 feet of floor width per aisle. Over a 100-foot-wide warehouse, that allows inserting 2 additional double-sided rack runs—instantly increasing storage capacity by 25% to 40% without leasing additional real estate.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What Are the OSHA Anchoring &amp; Column Guard Mandates?</h3>
+          <p>Under OSHA 1910.176(b) and ANSI/RMI MH16.1 specifications, all racking upright baseplates must be securely anchored into the concrete floor slab with concrete wedge anchors (typically 1/2" $\times$ 4" anchors). Heavy-duty yellow steel column protectors are mandatory on high-traffic end-row corners where forklifts turn to prevent structural collapse from impact damage.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What is the Difference Between Roll-Formed and Structural Steel?</h3>
+          <p>Roll-formed teardrop racking is manufactured from roll-formed sheet steel and features teardrop punch-holes for fast, boltless clip-in installation. It is cost-effective ($65–$95/position) and ideal for 90% of dry consumer warehouses. Structural steel racking is hot-rolled C-channel steel bolted with heavy bolts, designed for harsh freezers, outdoor yards, and high-impact heavy manufacturing.</p>
+        </article>
+        <article class="faq-item">
+          <h3>How Does Flue Space Compliance Work with Fire Marshals?</h3>
+          <p>Fire inspectors and insurance underwriters (FM Global) strictly inspect longitudinal flue space (the 6-inch gap between back-to-back rack rows) and transverse flue space (the 3-inch gap between pallets side-by-side). If pallets are pushed together with no gap, heat is trapped under the shelves, delaying roof sprinkler activation and resulting in failed fire inspections.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lead Capture Modal (Modern Native Dialog) -->
+  <dialog id="rfqModal" closedby="any" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="modal-kicker">FREE WAREHOUSE DESIGN &amp; PRICING</span>
+          <h2 id="modalTitle" class="modal-heading">Request Stamped CAD Floorplan &amp; Steel Bids</h2>
+        </div>
+        <form method="dialog">
+          <button type="submit" class="modal-close" aria-label="Close dialog">&times;</button>
+        </form>
+      </div>
+
+      <div class="modal-summary-box">
+        <div class="summary-chip"><strong>Capacity:</strong> <span id="modalCapacity">648 Pallets</span></div>
+        <div class="summary-chip"><strong>Clear Height:</strong> <span id="modalHeight">24 ft</span></div>
+        <div class="summary-chip"><strong>Aisle Width:</strong> <span id="modalAisle">9.5 ft Reach</span></div>
+        <div class="summary-chip highlight"><strong>Budget Est:</strong> <span id="modalBudget">$51k–$64k</span></div>
+      </div>
+
+      <form id="leadForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadZip">Facility Zip Code <span class="req">*</span></label>
+            <input type="text" id="leadZip" name="zip" placeholder="e.g. 60601" required pattern="[0-9]{5}" maxlength="5" class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadTimeline">Project Timeline <span class="req">*</span></label>
+            <select id="leadTimeline" name="timeline" class="form-select" required>
+              <option value="immediate">Immediate (Lease Signed / Relocating)</option>
+              <option value="30days">Next 30–60 Days</option>
+              <option value="budgeting">Budgeting / Planning Phase</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadCompany">Company / 3PL Name <span class="req">*</span></label>
+            <input type="text" id="leadCompany" name="company" placeholder="e.g. Midwest Logistics LLC" required class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadName">Contact Name <span class="req">*</span></label>
+            <input type="text" id="leadName" name="name" placeholder="Robert Vance" required class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadPhone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="leadPhone" name="phone" placeholder="(555) 000-0000" required class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadEmail">Business Email <span class="req">*</span></label>
+            <input type="email" id="leadEmail" name="email" placeholder="robert@midwestlogistics.com" required class="form-input">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit RFQ for CAD Layout &amp; Competitive Steel Bids
+          </button>
+        </div>
+
+        <div class="privacy-notice">
+          🛡️ Your request will be routed directly to certified material handling distributors servicing your facility's location.
+        </div>
+      </form>
+
+      <!-- Confirmation State -->
+      <div id="leadSuccess" class="lead-success hidden">
+        <div class="success-icon">✅</div>
+        <h3>Warehouse Design RFQ Dispatched!</h3>
+        <p>Reference Ticket: <strong id="rfqTrackingId">RACK-2026-9281</strong></p>
+        <p class="success-desc">We have connected your facility parameters with certified pallet racking distributors in your region. A layout engineer will review your dimensions and provide a formal CAD floorplan.</p>
+        <div class="success-actions">
+          <button type="button" id="downloadPrintBtn" class="btn btn-secondary">Print Layout Specification</button>
+          <form method="dialog" style="display:inline;">
+            <button type="submit" class="btn btn-outline">Close Window</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Printable Worksheet -->
+  <section id="printableSheet" class="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>WAREHOUSE PALLET RACKING &amp; AISLE LAYOUT WORKSHEET</h2>
+      <p>Standard Reference: ANSI/RMI MH16.1 &amp; OSHA 1910.176 Standards</p>
+      <div class="print-meta">
+        <span>Date: <strong id="printDate"></strong></span>
+        <span>RFQ Tracking: <strong id="printTracking">PENDING-CAD</strong></span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <tr><th colspan="2">1. FACILITY &amp; EQUIPMENT DIMENSIONS</th></tr>
+      <tr><td>Building Dimensions:</td><td><strong id="printBuilding">120 ft L × 80 ft W (9,600 Sq Ft)</strong></td></tr>
+      <tr><td>Clear Ceiling Height:</td><td><strong id="printClear">24 ft Clear</strong></td></tr>
+      <tr><td>Forklift Specification:</td><td><strong id="printForklift">Narrow Aisle Reach Truck (9.5 ft Aisle)</strong></td></tr>
+      <tr><td>Pallet Load Dimensions &amp; Weight:</td><td><strong id="printPallet">48"×40"×54" H @ 2,000 lbs</strong></td></tr>
+      <tr><th colspan="2">2. STORAGE CAPACITY &amp; STEEL SPECIFICATION</th></tr>
+      <tr><td>Total Pallet Position Capacity:</td><td><strong id="printCapacity">648 Pallet Positions</strong></td></tr>
+      <tr><td>Beam Levels High:</td><td><strong id="printLevels">4 Tier Levels (20 ft Upright Frame)</strong></td></tr>
+      <tr><td>Beam Size &amp; Minimum Rating:</td><td><strong id="printBeams">96" Step Beams (5,000 lbs / pair)</strong></td></tr>
+      <tr><td>Total Storage Bays:</td><td><strong id="printBays">54 Bays (6 Double-Sided Runs)</strong></td></tr>
+      <tr><th colspan="2">3. ESTIMATED COMMERCIAL BUDGET</th></tr>
+      <tr><td>Estimated Installed Steel Budget:</td><td><strong id="printBudget">$51,800 – $64,800 ($80–$100 / position)</strong></td></tr>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <span>Facility Operations Manager:</span>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-box">
+        <span>Certified Racking Distributor / PE:</span>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p><strong>RackSpec Pro™</strong> — Industrial Racking Capacity &amp; Warehouse Lead Network.</p>
+        <p>Formulas grounded in ANSI/RMI MH16.1 and NFPA 13 Fire Sprinkler Storage Standards.</p>
+      </div>
+      <div class="footer-links">
+        <span>Standards: ANSI / RMI MH16.1 Specification for Industrial Steel Storage Racks</span>
+        <span>OSHA 1910.176 Materials Handling</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

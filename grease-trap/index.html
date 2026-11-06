@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Grease Trap &amp; Kitchen Hood CFM Sizing Calculator | FOGSpec Pro™</title>
+  <meta name="description" content="Free commercial kitchen grease trap and exhaust hood CFM sizing calculator. Calculate UPC plumbing GPM, grease interceptor capacity in lbs, NFPA 96 airflow CFM, and installation costs.">
+  <meta name="keywords" content="grease trap sizing calculator, commercial kitchen hood cfm calculator, grease interceptor gpm, restaurant plumbing calculator, nfpa 96 exhaust hood, grease trap cost">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/grease-trap/">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Commercial Grease Trap &amp; Hood CFM Calculator | FOGSpec Pro">
+  <meta property="og:description" content="Free engineering calculator for restaurant grease interceptors, kitchen hood CFM, and plumbing compliance.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/grease-trap/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FOGSpec Pro Commercial Grease Trap & Kitchen Hood Sizing Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates commercial kitchen grease trap flow rate (GPM), grease retention capacity (lbs), NFPA 96 exhaust hood CFM, and plumbing permit installation budgets.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate grease trap size for a commercial kitchen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the Uniform Plumbing Code (UPC), hydromechanical grease interceptors are sized by calculating the total volume of all connected kitchen sink compartments (Length × Width × Depth in inches divided by 231 to convert to gallons). Multiplying by a 75% load factor and dividing by a 1-to-2 minute drain time gives the required Gallons Per Minute (GPM) rating. The grease retention capacity in pounds is rated at twice the GPM (e.g., a 25 GPM trap holds 50 lbs of grease; a 50 GPM trap holds 100 lbs)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between hydromechanical and gravity grease interceptors?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hydromechanical grease interceptors (HGI) are compact, point-of-use units (20 to 100 GPM) installed indoors under sinks or recessed into the floor. They use engineered internal baffles and flow control vents. Gravity grease interceptors (GGI) are massive underground precast concrete or fiberglass vaults (750 to 2,000+ gallons) installed outdoors in parking lots, required by municipal sewer authorities for full-service, high-volume restaurants."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many CFM do I need for a commercial kitchen exhaust hood?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under NFPA 96 and International Mechanical Code (IMC) Chapter 5, kitchen exhaust hood CFM is determined by appliance cooking duty and linear foot of hood canopy. Light-duty (ovens/steamers) requires 200–250 CFM/ft; Medium-duty (fryers/griddles) requires 300–350 CFM/ft; Heavy-duty (charbroilers/woks) requires 400–450 CFM/ft; and Solid fuel (wood/charcoal) requires 550+ CFM/ft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a Make-Up Air (MUA) unit mandatory with commercial kitchen hoods?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A commercial exhaust hood pulling 3,000 to 5,000 CFM creates massive negative air pressure inside a restaurant building, causing doors to slam shut, backdrafting carbon monoxide from water heaters, and pulling dirty air from restrooms into dining rooms. Building codes mandate a Make-Up Air (MUA) fan to supply 80% to 90% of the exhausted air back into the kitchen, tempered with heating/cooling."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>🍳 <strong>UPC Chapter 10 &amp; NFPA 96 Sizing Utility:</strong> Restaurant grease interceptor &amp; kitchen exhaust airflow calculator.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🍳</div>
+        <div>
+          <h1 class="brand-title">FOGSpec Pro<span class="badge-tag">HOSPITALITY PLUMBING</span></h1>
+          <p class="brand-tagline">Commercial Grease Interceptor, Hood Airflow (CFM) &amp; Code Sizing Estimator</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn tradespec-suite-pill" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-secondary header-btn">Get Plumber Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-layout">
+
+    <!-- Quick Presets -->
+    <section class="presets-card card" aria-label="Quick Kitchen Presets">
+      <div class="presets-header">
+        <span class="label-title">⚡ QUICK KITCHEN PRESETS:</span>
+        <span class="presets-sub">Select common food service business models</span>
+      </div>
+      <div class="presets-buttons">
+        <button type="button" class="preset-btn active" data-preset="casualDine">Casual Burger/Fryer Diner (50 GPM / 10 ft Heavy Hood)</button>
+        <button type="button" class="preset-btn" data-preset="coffeeShop">Artisan Coffee / Bakery (20 GPM / Light Duty Hood)</button>
+        <button type="button" class="preset-btn" data-preset="fullService">Full-Service Restaurant (1,000 Gal Underground Vault)</button>
+        <button type="button" class="preset-btn" data-preset="ghostKitchen">Ghost Kitchen / Catering Hub (12 ft Multi-Wok Line)</button>
+      </div>
+    </section>
+
+    <div class="calculator-grid">
+      
+      <!-- Inputs Column -->
+      <section class="inputs-column card" aria-labelledby="inputs-heading">
+        <div class="card-header">
+          <h2 id="inputs-heading" class="card-title">1. Kitchen Fixtures &amp; Cooking Line</h2>
+          <span class="card-subtitle">Define sink bowl dimensions, appliance heat duty &amp; hood span</span>
+        </div>
+
+        <form id="fogForm" class="form-body" onsubmit="event.preventDefault()">
+          
+          <!-- 3-Compartment Sink Bowl Sizing -->
+          <div class="form-group">
+            <label for="sinkBowlSize">3-Compartment Pot Sink Bowl Dimensions</label>
+            <select id="sinkBowlSize" class="form-select">
+              <option value="16">Small Bowls: 16" L × 20" W × 12" D (~50 Gal total)</option>
+              <option value="18" selected>Standard Commercial: 18" L × 18" W × 14" D (~59 Gal total)</option>
+              <option value="24">Heavy Pot Wash: 24" L × 24" W × 14" D (~105 Gal total)</option>
+            </select>
+            <small class="field-help">3-compartment pot wash sinks represent the single largest liquid surge to the interceptor.</small>
+          </div>
+
+          <!-- Secondary Fixtures (Dishwasher, Mop Sink, Prep) -->
+          <div class="form-row">
+            <div class="form-group half">
+              <label for="prepSinks">Prep &amp; Hand Sinks</label>
+              <input type="number" id="prepSinks" min="1" max="10" value="2" class="form-input">
+            </div>
+            <div class="form-group half">
+              <label for="dishwasherType">Dishmachine Type</label>
+              <select id="dishwasherType" class="form-select">
+                <option value="door" selected>Door-Type (15 GPM discharge)</option>
+                <option value="conveyor">Conveyor Flight (25 GPM)</option>
+                <option value="undercounter">Undercounter (8 GPM)</option>
+                <option value="none">None (Hand Wash Only)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Cooking Appliance Duty (NFPA 96 & IMC) -->
+          <div class="form-group">
+            <label for="applianceDuty">Cooking Equipment Heat &amp; Grease Classification</label>
+            <select id="applianceDuty" class="form-select">
+              <option value="light">Light-Duty: Ovens, Steamers, Kettles (200 CFM/ft)</option>
+              <option value="medium">Medium-Duty: Electric/Gas Fryers, Griddles (300 CFM/ft)</option>
+              <option value="heavy" selected>Heavy-Duty: Gas Charbroiler, Wok, Open Flame (400 CFM/ft)</option>
+              <option value="extraHeavy">Extra Heavy-Duty: Solid Fuel Wood / Mesquite (550 CFM/ft)</option>
+            </select>
+            <small class="field-help">Dictates mandatory Type I commercial grease hood exhaust velocity per NFPA 96.</small>
+          </div>
+
+          <!-- Hood Length -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="hoodLength">Exhaust Hood Canopy Length</label>
+              <span class="unit-badge"><span id="hoodLengthVal">10</span> ft</span>
+            </div>
+            <input type="range" id="hoodLength" min="4" max="24" step="1" value="10" class="range-slider">
+            <div class="slider-ticks">
+              <span>4 ft</span>
+              <span>10 ft (Standard)</span>
+              <span>16 ft</span>
+              <span>24 ft</span>
+            </div>
+            <small class="field-help">Hood must overhang cooking equipment by at least 6 inches on all exposed sides.</small>
+          </div>
+
+          <!-- Interceptor Installation Location -->
+          <div class="form-group">
+            <label for="trapLocation">Grease Interceptor Installation Location</label>
+            <select id="trapLocation" class="form-select">
+              <option value="indoorFloor" selected>Indoor Floor-Mount / Under-Sink (Hydromechanical 20–50 GPM)</option>
+              <option value="indoorRecessed">Indoor In-Floor Recessed Core Pit (50–100 GPM)</option>
+              <option value="outdoorVault">Outdoor In-Ground Gravity Vault (750–1,500 Gallons)</option>
+            </select>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Results & Visualization Column -->
+      <section class="results-column" aria-label="Calculation Results & Diagram">
+        
+        <!-- Live Kitchen Cutaway Diagram -->
+        <div class="card visual-card">
+          <div class="card-header flex-header">
+            <div>
+              <h2 class="card-title">2. Commercial Kitchen &amp; FOG Plumbing Schematic</h2>
+              <span class="card-subtitle">Scale illustration of sink drain, grease interceptor &amp; rooftop hood exhaust</span>
+            </div>
+            <span id="complianceBadge" class="utilization-badge green">UPC &amp; NFPA 96 VERIFIED</span>
+          </div>
+
+          <div class="canvas-container">
+            <svg id="fogSvg" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet" aria-label="Commercial Kitchen Plumbing Schematic">
+              <!-- Background Floor & Wall -->
+              <rect width="100%" height="270" fill="#0c121e" />
+              <rect y="270" width="100%" height="90" fill="#1b2436" />
+              <line x1="0" y1="270" x2="600" y2="270" stroke="#334155" stroke-width="2" />
+              <text x="15" y="295" fill="#64748b" font-size="10" font-family="monospace">KITCHEN FLOOR TILE &amp; SLAB (0.00 FT)</text>
+
+              <!-- Dynamic Kitchen Equipment & Hood -->
+              <g id="equipmentGroup"></g>
+
+              <!-- Dynamic Grease Trap Cutaway -->
+              <g id="trapGroup"></g>
+
+              <!-- Airflow & Exhaust Ductwork -->
+              <g id="ductworkGroup"></g>
+            </svg>
+          </div>
+
+          <div class="diagram-legend">
+            <span class="legend-item"><span class="legend-color hood-col"></span> Type I Canopy Hood</span>
+            <span class="legend-item"><span class="legend-color air-col"></span> Make-Up Air Flow</span>
+            <span class="legend-item"><span class="legend-color trap-col"></span> Grease Trap Interceptor</span>
+            <span class="legend-item"><span class="legend-color fog-col"></span> FOG Separation Layer</span>
+          </div>
+        </div>
+
+        <!-- Primary Sizing Recommendation -->
+        <div class="card recommendation-card">
+          <div class="rec-top">
+            <div class="rec-label">CALCULATED EQUIPMENT SIZING</div>
+            <div class="rec-rating" id="recommendedTrapRating">50 GPM / 100 LBS</div>
+            <div class="rec-class" id="systemSummaryText">Hydromechanical Interceptor • 4,000 CFM Type I Exhaust Hood</div>
+          </div>
+          
+          <div class="rec-explanation" id="systemExplanation">
+            A 3-compartment pot sink paired with a door-type dishmachine produces a peak discharge surge of 44 GPM. Under Uniform Plumbing Code (UPC), a 50 GPM hydromechanical grease trap with 100 lbs retention capacity is required. The 10-ft heavy-duty charbroiler cooking line mandates a 4,000 CFM exhaust fan with a 3,400 CFM tempered make-up air supply.
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-title">Required Trap GPM</span>
+              <span class="metric-val" id="metricTrapGPM">50 GPM</span>
+              <span class="metric-sub">UPC 1-minute surge sizing</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Grease Capacity</span>
+              <span class="metric-val" id="metricGreaseCap">100 lbs</span>
+              <span class="metric-sub">Certified grease retention</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Hood Exhaust Airflow</span>
+              <span class="metric-val" id="metricHoodCFM">4,000 CFM</span>
+              <span class="metric-sub">400 CFM/ft Heavy Duty</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Make-Up Air Supply</span>
+              <span class="metric-val" id="metricMUA">3,400 CFM</span>
+              <span class="metric-sub">85% tempered supply air</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Pump-Out Schedule</span>
+              <span class="metric-val" id="metricPumpFreq">Every 60 Days</span>
+              <span class="metric-sub">25% grease rule compliance</span>
+            </div>
+            <div class="metric-box highlight">
+              <span class="metric-title">Installed Turnkey Budget</span>
+              <span class="metric-val" id="metricTurnkeyBudget">$14,200 – $18,500</span>
+              <span class="metric-sub">Trap + Hood + MUA + Permits</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead Gen Call to Action -->
+        <div class="card lead-cta-card" id="lead-section">
+          <div class="cta-inner">
+            <div class="cta-badge">COMMERCIAL PLUMBERS READY</div>
+            <h3 class="cta-title">Opening or Renovating a Commercial Kitchen?</h3>
+            <p class="cta-desc">Avoid failed health department inspections and red-tagged hoods. Connect with 2 state-licensed commercial plumbing &amp; mechanical contractors servicing your zip code.</p>
+            
+            <div class="cta-actions">
+              <button type="button" id="openRfqBtn" class="btn btn-primary btn-large">
+                Request Free Plumber &amp; Hood Bids
+              </button>
+              <button type="button" id="printSummaryBtn" class="btn btn-outline">
+                🖨️ Print / Save Kitchen FOG Worksheet
+              </button>
+            </div>
+            <div class="cta-guarantee">
+              🔒 100% Free Health Code Review • Stamped Engineering Plans • No Obligation
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Educational / SEO FAQ Section -->
+    <section class="card faq-section" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="section-title">Commercial Kitchen Plumbing &amp; Health Code Guide</h2>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>What is the "25% Rule" in Commercial Grease Interceptor Compliance?</h3>
+          <p>Under municipal wastewater Fats, Oils, and Grease (FOG) ordinances, an interceptor must be pumped whenever the accumulated floating grease cap and settled food solids equal 25% of the total liquid depth of the trap. Beyond 25%, grease bypasses the internal baffles, discharging directly into the public sewer system, which triggers municipal fines and wastewater shut-off orders.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Why Can't Dishwashers Drain into Small Grease Traps in Some Cities?</h3>
+          <p>Commercial dishwashers sanitize dishes with 160°F to 180°F rinse water and chemical detergents. This high heat emulsifies grease into liquid form, allowing it to pass straight through small hydromechanical traps without solidifying. Many cities require dishwashers to either connect to large outdoor gravity vaults (where water has time to cool below 100°F) or install an approved automatic grease removal device (AGRD).</p>
+        </article>
+        <article class="faq-item">
+          <h3>What Fire Suppression is Required Inside a Commercial Hood?</h3>
+          <p>Under NFPA 96 and UL 300 standards, all commercial Type I exhaust hoods over grease-producing appliances must be equipped with a pre-engineered wet-chemical fire suppression system (such as Ansul R-102). Upon fire detection, it releases potassium acetate chemical agent that smothers grease flames and creates a saponified cooling foam blanket while automatically shutting off the kitchen gas supply.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What Are the Minimum Distance Requirements for Underground Traps?</h3>
+          <p>Outdoor gravity interceptors must be located accessible for large vacuum pumper trucks, situated at least 5 feet from building foundations, 10 feet from water property lines, and equipped with traffic-rated H-20 cast iron manhole covers if installed in driveways or parking lanes.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lead Capture Modal (Modern Native Dialog) -->
+  <dialog id="rfqModal" closedby="any" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="modal-kicker">FREE HEALTH CODE ESTIMATE REVIEW</span>
+          <h2 id="modalTitle" class="modal-heading">Request Commercial Plumber &amp; Hood Bids</h2>
+        </div>
+        <form method="dialog">
+          <button type="submit" class="modal-close" aria-label="Close dialog">&times;</button>
+        </form>
+      </div>
+
+      <div class="modal-summary-box">
+        <div class="summary-chip"><strong>Trap Rating:</strong> <span id="modalTrap">50 GPM / 100 Lbs</span></div>
+        <div class="summary-chip"><strong>Airflow:</strong> <span id="modalCFM">4,000 CFM</span></div>
+        <div class="summary-chip"><strong>Duty:</strong> <span id="modalDuty">Heavy (Charbroiler)</span></div>
+        <div class="summary-chip highlight"><strong>Budget Est:</strong> <span id="modalBudget">$14.2k–$18.5k</span></div>
+      </div>
+
+      <form id="leadForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadZip">Restaurant Zip Code <span class="req">*</span></label>
+            <input type="text" id="leadZip" name="zip" placeholder="e.g. 77002" required pattern="[0-9]{5}" maxlength="5" class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadConcept">Food Service Concept <span class="req">*</span></label>
+            <select id="leadConcept" name="concept" class="form-select" required>
+              <option value="restaurant">Full Service Restaurant / Bar</option>
+              <option value="fastCasual">Fast Casual / Burger / Fryer</option>
+              <option value="ghostKitchen">Ghost Kitchen / Cloud Commissary</option>
+              <option value="cafe">Cafe / Bakery / Coffee Shop</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadBusiness">Business Name <span class="req">*</span></label>
+            <input type="text" id="leadBusiness" name="business" placeholder="e.g. Smokey Oak BBQ" required class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadName">Contact Name <span class="req">*</span></label>
+            <input type="text" id="leadName" name="name" placeholder="Sarah Jenkins" required class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadPhone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="leadPhone" name="phone" placeholder="(555) 000-0000" required class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadEmail">Business Email <span class="req">*</span></label>
+            <input type="email" id="leadEmail" name="email" placeholder="sarah@smokeyoak.com" required class="form-input">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit RFQ for Commercial Plumber &amp; Hood Bids
+          </button>
+        </div>
+
+        <div class="privacy-notice">
+          🛡️ Your request will be routed directly to licensed commercial mechanical &amp; plumbing contractors servicing your jurisdiction.
+        </div>
+      </form>
+
+      <!-- Confirmation State -->
+      <div id="leadSuccess" class="lead-success hidden">
+        <div class="success-icon">✅</div>
+        <h3>Kitchen Plumbing RFQ Dispatched!</h3>
+        <p>Reference Ticket: <strong id="rfqTrackingId">FOG-2026-3195</strong></p>
+        <p class="success-desc">We have connected your kitchen equipment specifications with certified commercial plumbing and mechanical contractors in your city. An engineer will review your permit requirements shortly.</p>
+        <div class="success-actions">
+          <button type="button" id="downloadPrintBtn" class="btn btn-secondary">Print Stamped FOG Sheet</button>
+          <form method="dialog" style="display:inline;">
+            <button type="submit" class="btn btn-outline">Close Window</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Printable Worksheet -->
+  <section id="printableSheet" class="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>COMMERCIAL KITCHEN GREASE TRAP &amp; HOOD SPECIFICATION WORKSHEET</h2>
+      <p>Standard Reference: Uniform Plumbing Code (UPC) Chapter 10 &amp; NFPA 96 Fire Standards</p>
+      <div class="print-meta">
+        <span>Date: <strong id="printDate"></strong></span>
+        <span>Ticket ID: <strong id="printTracking">PENDING-RFP</strong></span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <tr><th colspan="2">1. PLUMBING FIXTURES &amp; GREASE INTERCEPTOR</th></tr>
+      <tr><td>3-Compartment Sink Specification:</td><td><strong id="printSink">Standard Commercial (18"×18"×14" D)</strong></td></tr>
+      <tr><td>Dishwasher &amp; Prep Discharges:</td><td><strong id="printDischarge">Door-Type Dishwasher + 2 Prep Sinks</strong></td></tr>
+      <tr><td>Required Grease Trap Rating:</td><td><strong id="printTrapRating">50 GPM / 100 Lbs Grease Retention</strong></td></tr>
+      <tr><td>Interceptor Location:</td><td><strong id="printTrapLoc">Indoor Floor-Mount (Hydromechanical)</strong></td></tr>
+      <tr><th colspan="2">2. HOOD AIRFLOW &amp; MAKE-UP AIR SPECIFICATION</th></tr>
+      <tr><td>Appliance Heat Duty:</td><td><strong id="printDuty">Heavy-Duty Gas Charbroiler / Open Flame</strong></td></tr>
+      <tr><td>Exhaust Hood Length:</td><td><strong id="printHoodLen">10 Ft Canopy Type I</strong></td></tr>
+      <tr><td>Exhaust Airflow Requirement:</td><td><strong id="printCFM">4,000 CFM (400 CFM/linear ft)</strong></td></tr>
+      <tr><td>Tempered Make-Up Air (MUA):</td><td><strong id="printMUA">3,400 CFM (85% Supply)</strong></td></tr>
+      <tr><th colspan="2">3. ESTIMATED COMMERCIAL BUDGET</th></tr>
+      <tr><td>Estimated Turnkey Installation:</td><td><strong id="printBudget">$14,200 – $18,500 (Equipment + Mechanical Labor)</strong></td></tr>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <span>Restaurateur / General Contractor:</span>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-box">
+        <span>Licensed Master Plumber / Mechanical PE:</span>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p><strong>FOGSpec Pro™</strong> — Commercial Kitchen Plumbing &amp; Hood Lead Marketplace.</p>
+        <p>Formulas grounded in Uniform Plumbing Code (UPC Chapter 10) and NFPA 96 Commercial Cooking Operations.</p>
+      </div>
+      <div class="footer-links">
+        <span>Standards: IAPMO / UPC Chapter 10 Traps &amp; Interceptors</span>
+        <span>NFPA 96 Ventilation Control &amp; Fire Protection</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

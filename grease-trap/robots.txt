@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prabhnoor12.github.io/tradespec-pro/grease-trap/sitemap.xml

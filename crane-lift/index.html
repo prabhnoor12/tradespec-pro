@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crane Sizing & Radius Calculator | Mobile Crane Capacity & Rental Estimator</title>
+  <meta name="description" content="Free mobile crane sizing calculator for general contractors, HVAC installers, and riggers. Calculate required crane tonnage, boom length, outrigger mat sizing, and commercial rental costs under ASME B30.5 standards.">
+  <meta name="keywords" content="crane size calculator, mobile crane capacity calculator, crane radius calculator, crane rental cost, outrigger mat calculator, hvac crane lift">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/crane-lift/">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Crane Sizing & Radius Calculator | RigCheck Pro">
+  <meta property="og:description" content="Free engineering calculator for mobile crane tonnage, boom clearance, and outrigger ground bearing pressure.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/crane-lift/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RigCheck Pro Mobile Crane Sizing Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates mobile crane tonnage, boom length, operating angle, outrigger cribbing size, and rental budgets according to ASME B30.5 standards.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema (For Rich Snippets on Google SERP) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why can't a 30-ton crane lift 3 tons at a 60-foot radius?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A crane's manufacturer nameplate rating is calculated at minimum radius (usually 8 to 10 feet from the centerpin). As the boom extends horizontally to reach a 60-foot setback, leverage creates massive overturning moment. At a 60-foot radius, a 50-ton hydraulic crane often has a safe chart capacity of only 6,000 to 9,000 lbs. Attempting to pick 6,000 lbs with a 30-ton crane at 60 ft will trigger the crane's Load Moment Indicator (LMI) lock-out or risk structural failure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What outrigger mats are required by OSHA for mobile cranes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under OSHA 29 CFR 1926.1402, the controlling entity must ensure ground conditions are adequate to support the crane. Because up to 80% of the total crane weight plus suspended load transfers onto a single corner outrigger during a swing, operators must place heavy hardwood timber cribbing mats or engineered synthetic mats under each outrigger float to distribute the force over a wide enough square footage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What permits are required for crane placement on a public street?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If any part of the crane chassis, outriggers, or counterweight swing radius encroaches on a public road or sidewalk, you must obtain a Municipal Right-of-Way / Street Obstruction Permit. Many cities require a certified Traffic Control Plan (TCP), certified flaggers, or off-duty police details with a 3 to 14 business day lead time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does a lift become an ASME B30.5 critical lift?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under ASME B30.5 standards, a lift is classified as a Critical Lift when the load exceeds 75% to 85% of rated capacity on the load chart, requires tandem (multi-crane) picks, hoists hazardous materials, or hoists over occupied structures. Critical lifts mandate a formal written lift plan, rigging calculation sheets, and an on-site Lift Director."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>⚠️ <strong>OSHA 1926.1400 & ASME B30.5 Sizing Utility:</strong> Preliminary equipment estimator. Final lift plans require stamped approval by a certified rigging engineer.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🏗️</div>
+        <div>
+          <h1 class="brand-title">RigCheck Pro<span class="badge-tag">ENGINEERING UTILITY</span></h1>
+          <p class="brand-tagline">Heavy Lift Geometry, Capacity & Ground Bearing Pressure Estimator</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn tradespec-suite-pill" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-secondary header-btn">Get Local Crane Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-layout">
+
+    <!-- Quick Presets -->
+    <section class="presets-card card" aria-label="Quick Lift Presets">
+      <div class="presets-header">
+        <span class="label-title">⚡ QUICK JOB PRESETS:</span>
+        <span class="presets-sub">Select a common commercial pick to prefill engineering inputs</span>
+      </div>
+      <div class="presets-buttons">
+        <button type="button" class="preset-btn active" data-preset="hvac">4-Story Rooftop RTU (6,000 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="generator">Commercial Generator (9,500 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="steel">Steel Truss Assembly (14,000 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="pool">Fiberglass Pool Shell (4,200 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="transformer">Padmount Transformer (18,000 lbs)</button>
+      </div>
+    </section>
+
+    <div class="calculator-grid">
+      
+      <!-- Inputs Column -->
+      <section class="inputs-column card" aria-labelledby="inputs-heading">
+        <div class="card-header">
+          <h2 id="inputs-heading" class="card-title">1. Jobsite & Lift Parameters</h2>
+          <span class="card-subtitle">Adjust parameters to simulate physical pick requirements</span>
+        </div>
+
+        <form id="craneForm" class="form-body" onsubmit="event.preventDefault()">
+          
+          <!-- Net Load Weight -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="loadWeight">Net Object Weight</label>
+              <span class="unit-badge"><span id="loadWeightVal">6,000</span> lbs</span>
+            </div>
+            <input type="range" id="loadWeight" min="500" max="60000" step="500" value="6000" class="range-slider" aria-describedby="loadWeightHelp">
+            <div class="slider-ticks">
+              <span>500 lbs</span>
+              <span>20k lbs</span>
+              <span>40k lbs</span>
+              <span>60k lbs</span>
+            </div>
+            <small id="loadWeightHelp" class="field-help">Equipment weight from manufacturer spec plate (excluding rigging).</small>
+          </div>
+
+          <!-- Rigging Deduction -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="riggingDeduction">Rigging & Hook Block Deduction</label>
+              <span class="unit-badge">+<span id="riggingVal">1,000</span> lbs</span>
+            </div>
+            <select id="riggingDeduction" class="form-select">
+              <option value="600">Light Rigging (Slings + 5-ton overhaul ball ~600 lbs)</option>
+              <option value="1000" selected>Standard Rigging (Spreader bar + 30-ton block ~1,000 lbs)</option>
+              <option value="2000">Heavy Rigging (Heavy beams + 75-ton block ~2,000 lbs)</option>
+              <option value="3500">Complex Rigging (Lifting cage + 100t block ~3,500 lbs)</option>
+            </select>
+            <div class="calculated-gross">
+              Total Gross Pick Weight: <strong id="grossWeightVal">7,000 lbs (3.5 Tons)</strong>
+            </div>
+          </div>
+
+          <!-- Lift Height -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="liftHeight">Target Landing Height</label>
+              <span class="unit-badge"><span id="liftHeightVal">48</span> ft</span>
+            </div>
+            <input type="range" id="liftHeight" min="10" max="180" step="2" value="48" class="range-slider">
+            <div class="slider-ticks">
+              <span>10 ft (1-story)</span>
+              <span>60 ft (5-story)</span>
+              <span>120 ft (10-story)</span>
+              <span>180 ft</span>
+            </div>
+            <small class="field-help">Elevation from ground level to rooftop parapet or final landing deck.</small>
+          </div>
+
+          <!-- Operating Radius (Setback) -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="setbackRadius">Operating Radius (Setback from Centerpin)</label>
+              <span class="unit-badge"><span id="setbackRadiusVal">60</span> ft</span>
+            </div>
+            <input type="range" id="setbackRadius" min="15" max="180" step="5" value="60" class="range-slider">
+            <div class="slider-ticks">
+              <span>15 ft</span>
+              <span>60 ft</span>
+              <span>120 ft</span>
+              <span>180 ft</span>
+            </div>
+            <small class="field-help">Horizontal distance from crane center of rotation to center of landing pad.</small>
+          </div>
+
+          <!-- Hook Clearance Headroom -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="clearanceBuffer">Hook Headroom & Parapet Clearance</label>
+              <span class="unit-badge">+<span id="clearanceBufferVal">12</span> ft</span>
+            </div>
+            <input type="range" id="clearanceBuffer" min="6" max="30" step="2" value="12" class="range-slider">
+            <small class="field-help">Safety buffer between load bottom and building parapet edge plus sling length.</small>
+          </div>
+
+          <!-- Ground Surface Condition -->
+          <div class="form-group">
+            <label for="soilType">Setup Ground Condition (Outrigger Support)</label>
+            <select id="soilType" class="form-select">
+              <option value="4000">Cured Concrete Slab / Highway Grade (>4,000 PSF)</option>
+              <option value="2500" selected>Compacted Gravel / Dense Dry Clay (~2,500 PSF)</option>
+              <option value="1500">Asphalt Pavement (Summer Sun / Subgrade ~1,500 PSF)</option>
+              <option value="900">Soft Clay / Wet Sand / Uncompacted Loam (~900 PSF)</option>
+            </select>
+            <small class="field-help">Determines timber outrigger mat area to prevent ground punch-through.</small>
+          </div>
+
+          <!-- Setup Location / Right of Way -->
+          <div class="form-group">
+            <label for="setupLocation">Crane Placement Site</label>
+            <select id="setupLocation" class="form-select">
+              <option value="private" selected>Private Property / Closed Jobsite Parking Lot</option>
+              <option value="street">Public City Street / Lane Closure (Right-of-Way)</option>
+              <option value="powerlines">Adjacent to Overhead Power Lines (<50 ft)</option>
+            </select>
+          </div>
+
+          <!-- Wind Speed Allowance -->
+          <div class="form-group">
+            <div class="field-label-row">
+              <label for="windSpeed">Forecasted Wind Speed</label>
+              <span class="unit-badge"><span id="windSpeedVal">10</span> mph</span>
+            </div>
+            <input type="range" id="windSpeed" min="0" max="40" step="2" value="10" class="range-slider">
+            <div class="slider-ticks">
+              <span>Calm</span>
+              <span>15 mph (Caution)</span>
+              <span>25+ mph (OSHA Halt)</span>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- Results & Visualization Column -->
+      <section class="results-column" aria-label="Calculation Results & Diagram">
+        
+        <!-- Live Visual Geometry Diagram -->
+        <div class="card visual-card">
+          <div class="card-header flex-header">
+            <div>
+              <h2 class="card-title">2. Real-Time Lift Geometry</h2>
+              <span class="card-subtitle">Scale schematic of boom angle, building clearance & radius</span>
+            </div>
+            <span id="chartUtilizationBadge" class="utilization-badge green">CAPACITY OK (62%)</span>
+          </div>
+
+          <div class="canvas-container">
+            <svg id="craneSvg" viewBox="0 0 600 360" preserveAspectRatio="xMidYMid meet" aria-label="Interactive Crane Lift Diagram">
+              <!-- Grid Background -->
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#253248" stroke-width="0.5" />
+                </pattern>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#facc15" />
+                </marker>
+              </defs>
+              <rect width="100%" height="100%" fill="#0f172a" />
+              <rect width="100%" height="100%" fill="url(#grid)" />
+
+              <!-- Ground Horizon -->
+              <line x1="0" y1="310" x2="600" y2="310" stroke="#475569" stroke-width="3" />
+              <rect x="0" y="310" width="600" height="50" fill="#1e293b" />
+              <text x="15" y="330" fill="#64748b" font-size="11" font-family="monospace">GROUND GRADE (0.00 FT)</text>
+
+              <!-- Dynamic Building Element -->
+              <g id="buildingGroup"></g>
+
+              <!-- Dynamic Dimension Annotations -->
+              <g id="dimensionsGroup"></g>
+
+              <!-- Dynamic Crane Element -->
+              <g id="craneGroup"></g>
+
+              <!-- Dynamic Boom Element -->
+              <g id="boomGroup"></g>
+
+              <!-- Dynamic Load & Rigging Element -->
+              <g id="loadGroup"></g>
+            </svg>
+          </div>
+
+          <div class="diagram-legend">
+            <span class="legend-item"><span class="legend-color boom-col"></span> Crane Boom</span>
+            <span class="legend-item"><span class="legend-color load-col"></span> Suspended Load</span>
+            <span class="legend-item"><span class="legend-color bldg-col"></span> Target Structure</span>
+            <span class="legend-item"><span class="legend-color arc-col"></span> Clearance Radius</span>
+          </div>
+        </div>
+
+        <!-- Primary Sizing Recommendation -->
+        <div class="card recommendation-card">
+          <div class="rec-top">
+            <div class="rec-label">RECOMMENDED MINIMUM CRANE RATING</div>
+            <div class="rec-rating" id="recommendedTonnage">75-TON</div>
+            <div class="rec-class" id="craneClassTitle">Hydraulic Truck Crane / All-Terrain (4-Axle)</div>
+          </div>
+          
+          <div class="rec-explanation" id="tonnageExplanation">
+            A 7,000 lb gross pick at a 60 ft radius requires an extended 95 ft boom. At this operating radius, a 75-ton crane operates at ~68% of maximum net chart capacity, satisfying ASME B30.5 safety margins.
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-box">
+              <span class="metric-title">Min Boom Length</span>
+              <span class="metric-val" id="metricBoomLength">92 ft</span>
+              <span class="metric-sub">Including tip allowance</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Operating Boom Angle</span>
+              <span class="metric-val" id="metricBoomAngle">45.0°</span>
+              <span class="metric-sub">From horizontal</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Tip Sheave Height</span>
+              <span class="metric-val" id="metricTipHeight">60 ft</span>
+              <span class="metric-sub">Above ground elevation</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Max Outrigger Force</span>
+              <span class="metric-val" id="metricOutriggerLoad">74,200 lbs</span>
+              <span class="metric-sub">Corner reaction force</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-title">Min Mat Surface</span>
+              <span class="metric-val" id="metricMatSize">5.5 ft × 5.5 ft</span>
+              <span class="metric-sub" id="metricMatSub">Per outrigger float (29.7 sq ft)</span>
+            </div>
+            <div class="metric-box highlight">
+              <span class="metric-title">Estimated Rental Budget</span>
+              <span class="metric-val" id="metricBudgetRange">$2,800 – $4,200</span>
+              <span class="metric-sub">With operator + 8hr min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warnings & Regulatory Compliance Section -->
+        <div class="card warnings-card" id="regulatoryWarnings">
+          <h3 class="warnings-title">⚠️ Mandatory Jobsite & Permit Check</h3>
+          <ul class="warnings-list" id="warningsList">
+            <!-- Injected via JavaScript -->
+          </ul>
+        </div>
+
+        <!-- Lead Gen Call to Action -->
+        <div class="card lead-cta-card" id="lead-section">
+          <div class="cta-inner">
+            <div class="cta-badge">DISPATCH READY</div>
+            <h3 class="cta-title">Need NCCCO-Certified Crane Service in Your Area?</h3>
+            <p class="cta-desc">Avoid getting gouged or delayed by booking the wrong equipment. Connect with 2 vetted local crane yards who service your exact zip code.</p>
+            
+            <div class="cta-actions">
+              <button type="button" id="openRfqBtn" class="btn btn-primary btn-large">
+                Request 2 Competitive Crane Bids
+              </button>
+              <button type="button" id="printSummaryBtn" class="btn btn-outline">
+                🖨️ Print / Save Lift Plan Sheet
+              </button>
+            </div>
+            <div class="cta-guarantee">
+              🔒 100% Free Contractor Service • Vetted Local Operators • No Obligation
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Educational / SEO Value Section -->
+    <section class="card faq-section" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="section-title">Essential Mobile Crane Lift Planning Guide</h2>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Why Can't a 30-Ton Crane Lift 3 Tons at a 60-Foot Radius?</h3>
+          <p>This is the most expensive mistake contractors make. A crane's manufacturer nameplate rating (e.g., "50-Ton Crane") is calculated at <strong>minimum radius</strong>—usually 8 to 10 feet from the centerpin with the boom nearly vertical. As the boom extends horizontally to reach a 60-foot setback, leverage creates massive overturning moment. At a 60-foot radius, a 50-ton hydraulic crane often has a safe chart capacity of only 6,000 to 9,000 lbs. An amateur attempting to pick 6,000 lbs with a 30-ton crane at 60 ft will trigger the crane's Load Moment Indicator (LMI) lock-out or risk structural failure.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What Outrigger Mats Are Required by OSHA?</h3>
+          <p>Under OSHA 29 CFR 1926.1402, the controlling entity must ensure ground conditions are firm and adequate to support the crane. Because up to 80% of the total crane weight plus suspended load transfers onto a single corner outrigger during a swing, small steel outrigger floats will punch straight through standard asphalt or dry clay. Operators must place heavy hardwood timber cribbing mats or engineered synthetic mats under each outrigger to distribute the force over a wide enough square footage.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What Permits Are Required for Street Placement?</h3>
+          <p>If any part of the crane chassis, outriggers, or counterweight swing radius encroaches on a public road or sidewalk, you must obtain a <strong>Municipal Right-of-Way / Street Obstruction Permit</strong>. Many cities require a certified Traffic Control Plan (TCP), certified flaggers, or off-duty police details. Permit processing times range from 3 to 14 business days.</p>
+        </article>
+        <article class="faq-item">
+          <h3>When Does a Lift Become an ASME "Critical Lift"?</h3>
+          <p>Under ASME B30.5 standards, a lift is classified as a "Critical Lift" when the load exceeds 75% to 85% of rated capacity on the load chart, requires tandem (multi-crane) picks, hoists hazardous materials, or hoists over occupied structures. Critical lifts mandate a formal written lift plan, rigging calculation sheets, and an on-site Lift Director.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lead Capture Modal (Modern Native Dialog) -->
+  <dialog id="rfqModal" closedby="any" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="modal-kicker">FREE CONTRACTOR ESTIMATE MATCHING</span>
+          <h2 id="modalTitle" class="modal-heading">Request Competitive Crane Bids</h2>
+        </div>
+        <form method="dialog">
+          <button type="submit" class="modal-close" aria-label="Close dialog">&times;</button>
+        </form>
+      </div>
+
+      <div class="modal-summary-box">
+        <div class="summary-chip"><strong>Gross Pick:</strong> <span id="modalGross">7,000 lbs</span></div>
+        <div class="summary-chip"><strong>Radius:</strong> <span id="modalRadius">60 ft</span></div>
+        <div class="summary-chip"><strong>Height:</strong> <span id="modalHeight">48 ft</span></div>
+        <div class="summary-chip highlight"><strong>Crane Class:</strong> <span id="modalClass">75-Ton Hydraulic</span></div>
+      </div>
+
+      <form id="leadForm" class="modal-form">
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadZip">Jobsite Zip Code <span class="req">*</span></label>
+            <input type="text" id="leadZip" name="zip" placeholder="e.g. 75001" required pattern="[0-9]{5}" maxlength="5" class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadDate">Target Lift Date <span class="req">*</span></label>
+            <input type="date" id="leadDate" name="date" required class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadCompany">Company / Contractor Name</label>
+            <input type="text" id="leadCompany" name="company" placeholder="e.g. Apex Mechanical LLC" class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadName">Contact Person Name <span class="req">*</span></label>
+            <input type="text" id="leadName" name="name" placeholder="John Miller" required class="form-input">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label for="leadPhone">Phone Number (For Dispatch) <span class="req">*</span></label>
+            <input type="tel" id="leadPhone" name="phone" placeholder="(555) 000-0000" required class="form-input">
+          </div>
+          <div class="form-group half">
+            <label for="leadEmail">Business Email <span class="req">*</span></label>
+            <input type="email" id="leadEmail" name="email" placeholder="john@apexmech.com" required class="form-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="leadNotes">Specific Lift Details / Obstacles</label>
+          <textarea id="leadNotes" name="notes" rows="2" placeholder="e.g. 4-story commercial building, pick over front parapet, street parking available for outriggers" class="form-input"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit RFQ for Competitive Bids &amp; Download Lift Plan
+          </button>
+        </div>
+
+        <div class="privacy-notice">
+          🛡️ Your request will be routed directly to qualified NCCCO-certified crane providers servicing your zip code. No spam, ever.
+        </div>
+      </form>
+
+      <!-- Confirmation State -->
+      <div id="leadSuccess" class="lead-success hidden">
+        <div class="success-icon">✅</div>
+        <h3>Lift RFQ Dispatched Successfully!</h3>
+        <p>Reference Ticket: <strong id="rfqTrackingId">LIFT-2026-8942</strong></p>
+        <p class="success-desc">We have routed your pick parameters to vetted crane dispatchers in your zip code area. You should receive direct pricing within 1-2 business hours.</p>
+        <div class="success-actions">
+          <button type="button" id="downloadPrintBtn" class="btn btn-secondary">Download Stamped Summary Sheet</button>
+          <form method="dialog" style="display:inline;">
+            <button type="submit" class="btn btn-outline">Close Window</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Printable Lift Plan Sheet (Hidden on screen, visible during Print) -->
+  <section id="printableSheet" class="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>PRE-LIFT CRANE SIZING &amp; RIGGING WORKSHEET</h2>
+      <p>Standard Reference: ASME B30.5 / OSHA 29 CFR 1926.1400</p>
+      <div class="print-meta">
+        <span>Date: <strong id="printDate"></strong></span>
+        <span>Tracking #: <strong id="printTracking">PENDING-RFP</strong></span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <tr>
+        <th colspan="2">1. LOAD &amp; GEOMETRY SPECIFICATIONS</th>
+      </tr>
+      <tr>
+        <td>Net Equipment Weight:</td>
+        <td><strong id="printNetWeight">6,000 lbs</strong></td>
+      </tr>
+      <tr>
+        <td>Rigging &amp; Hook Block Deduction:</td>
+        <td><strong id="printRigging">1,000 lbs</strong></td>
+      </tr>
+      <tr>
+        <td>Total Gross Pick Weight:</td>
+        <td><strong id="printGrossWeight">7,000 lbs (3.50 Tons)</strong></td>
+      </tr>
+      <tr>
+        <td>Landing Elevation / Parapet:</td>
+        <td><strong id="printHeight">48 ft</strong></td>
+      </tr>
+      <tr>
+        <td>Setback Radius from Centerpin:</td>
+        <td><strong id="printRadius">60 ft</strong></td>
+      </tr>
+      <tr>
+        <td>Calculated Minimum Boom Length:</td>
+        <td><strong id="printBoomLength">92 ft</strong></td>
+      </tr>
+      <tr>
+        <td>Calculated Boom Operating Angle:</td>
+        <td><strong id="printBoomAngle">45.0°</strong></td>
+      </tr>
+      <tr>
+        <th colspan="2">2. EQUIPMENT SIZING &amp; CAPACITY</th>
+      </tr>
+      <tr>
+        <td>Recommended Crane Class:</td>
+        <td><strong id="printCraneClass">75-Ton Hydraulic Truck Crane</strong></td>
+      </tr>
+      <tr>
+        <td>Calculated Chart Utilization:</td>
+        <td><strong id="printUtilization">68% (Safe Margin)</strong></td>
+      </tr>
+      <tr>
+        <td>Ground Soil Type:</td>
+        <td><strong id="printSoil">Compacted Gravel / Clay (~2,500 PSF)</strong></td>
+      </tr>
+      <tr>
+        <td>Max Outrigger Corner Reaction Force:</td>
+        <td><strong id="printOutriggerForce">74,200 lbs</strong></td>
+      </tr>
+      <tr>
+        <td>Required Outrigger Mat Size:</td>
+        <td><strong id="printMatSize">5.5 ft × 5.5 ft (29.7 sq ft per float)</strong></td>
+      </tr>
+      <tr>
+        <th colspan="2">3. ESTIMATED COMMERCIAL BUDGET</th>
+      </tr>
+      <tr>
+        <td>Estimated Budget Range:</td>
+        <td><strong id="printBudget">$2,800 – $4,200 (8-hour standard minimum)</strong></td>
+      </tr>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <span>Prepared By (Contractor):</span>
+        <div class="sig-line"></div>
+      </div>
+      <div class="sig-box">
+        <span>Verified By (Crane Dispatcher / PE):</span>
+        <div class="sig-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p><strong>RigCheck Pro™</strong> — The Heavy Equipment Sizing &amp; Lead Marketplace.</p>
+        <p>Built for general contractors, mechanical/HVAC installers, steel erectors, and rigging professionals.</p>
+      </div>
+      <div class="footer-links">
+        <span>Standard: ASME B30.5 Mobile and Locomotive Cranes</span>
+        <span>OSHA 29 CFR 1926 Subpart CC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
