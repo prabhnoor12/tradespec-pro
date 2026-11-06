@@ -145,3 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+  // Pro Shortcut: Press Ctrl + Shift + P or ~ key to open Partner Lead Console directly
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'p') || e.key === '~') {
+      window.location.href = './partner/#portal';
+    }
+  });
+
+  // Check URL hash for direct partner redirect
+  if (window.location.hash === '#partner' || window.location.hash === '#portal') {
+    window.location.href = './partner/#portal';
+  }
