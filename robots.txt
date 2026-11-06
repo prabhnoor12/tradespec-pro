@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /partner/
 Allow: /
 
 Sitemap: https://prabhnoor12.github.io/tradespec-pro/sitemap.xml

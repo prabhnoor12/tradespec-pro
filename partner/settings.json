@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "contractorProfile": {
+    "companyName": "Apex Heavy Equipment & Industrial Services LLC",
+    "contactPerson": "Marcus Vance",
+    "dispatchEmail": "dispatch@apexindustrial.com",
+    "dispatchPhone": "(555) 849-2041",
+    "licenseNumber": "TX-CR-894102-A",
+    "pin": "1234"
+  },
+  "territoryRules": {
+    "primaryZip": "77002",
+    "serviceRadiusMiles": 60,
+    "activeZips": ["77001", "77002", "77003", "77004", "77005", "77006", "77007", "77008", "77019", "77024", "77056"],
+    "maxLeadsPerDay": 8,
+    "minimumJobValueUSD": 2500
+  },
+  "tradeSpecialties": {
+    "crane": {
+      "enabled": true,
+      "minTonnage": 40,
+      "maxRadiusFt": 160,
+      "leadCostUSD": 110
+    },
+    "well": {
+      "enabled": true,
+      "minDepthFt": 150,
+      "leadCostUSD": 125
+    },
+    "racking": {
+      "enabled": true,
+      "minPalletPositions": 200,
+      "leadCostUSD": 150
+    },
+    "foam": {
+      "enabled": false,
+      "minBoardFeet": 3000,
+      "leadCostUSD": 95
+    },
+    "grease": {
+      "enabled": false,
+      "minGallons": 500,
+      "leadCostUSD": 110
+    }
+  },
+  "notificationPreferences": {
+    "smsInstantAlert": true,
+    "emailDispatch": true,
+    "quietHoursStart": "21:00",
+    "quietHoursEnd": "06:00"
+  }
+}

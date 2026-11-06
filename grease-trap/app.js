@@ -354,6 +354,28 @@ function init() {
     e.preventDefault();
     const trackingCode = `FOG-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
     dom.rfqTrackingId.textContent = trackingCode;
+
+    // Persist lead to shared TradeSpec Partner Network
+    try {
+      const leadItem = {
+        id: trackingCode,
+        timestamp: new Date().toISOString(),
+        trade: "grease",
+        tradeTitle: "Commercial Grease Interceptor",
+        name: document.getElementById("leadName")?.value || "Commercial Client",
+        company: document.getElementById("leadCompany")?.value || document.getElementById("leadBusiness")?.value || "Contractor / Facility Owner",
+        phone: document.getElementById("leadPhone")?.value || "(555) 000-0000",
+        email: document.getElementById("leadEmail")?.value || "",
+        zip: document.getElementById("leadZip")?.value || "77002",
+        specSummary: `${currentCalc?.trapRatingText || '50 GPM Trap'}, ${currentCalc?.hoodLen || 10}ft Type I Hood (${currentCalc?.exhaustCFM?.toLocaleString() || '4,000'} CFM)`,
+        budgetEst: `$${currentCalc?.totalLow?.toLocaleString()} – $${currentCalc?.totalHigh?.toLocaleString()}`,
+        status: "new"
+      };
+      const existingLeads = JSON.parse(localStorage.getItem("tradespec_leads") || "[]");
+      existingLeads.unshift(leadItem);
+      localStorage.setItem("tradespec_leads", JSON.stringify(existingLeads));
+    } catch(err) {}
+
     dom.printTracking.textContent = trackingCode;
 
     dom.leadForm.style.display = "none";
