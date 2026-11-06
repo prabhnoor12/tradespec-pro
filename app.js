@@ -129,6 +129,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Project Finder Chips smooth scroll & highlight
+  document.querySelectorAll('.finder-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      const targetId = chip.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        const el = document.querySelector(targetId);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight-pulse');
+          setTimeout(() => {
+            el.classList.remove('highlight-pulse');
+          }, 1800);
+        }
+      }
+    });
+  });
+
   // Coordinate-boundary click fallback for closing backdrop
   if (networkDialog) {
     networkDialog.addEventListener('click', (event) => {
