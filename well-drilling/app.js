@@ -260,6 +260,22 @@ function updateUI() {
   dom.metricCasingRate.textContent = `${CASING_RATES[c.casing].name} ($${CASING_RATES[c.casing].rate}/ft)`;
   dom.metricTurnkeyBudget.textContent = `$${c.lowTurnkey.toLocaleString()} – $${c.highTurnkey.toLocaleString()}`;
 
+  // Update Price Health Gauge
+  const gaugeLow = document.getElementById('gaugeLowLabel');
+  const gaugeAvg = document.getElementById('gaugeAvgLabel');
+  const gaugeHigh = document.getElementById('gaugeHighLabel');
+  const gaugeNote = document.getElementById('gaugeExplanation');
+  if (gaugeLow) {
+    const avgBudget = Math.round((c.lowTurnkey + c.highTurnkey) / 2);
+    const highThreshold = Math.round(c.highTurnkey * 1.25);
+    gaugeLow.textContent = `$${c.lowTurnkey.toLocaleString()} (Competitive)`;
+    gaugeAvg.textContent = `$${avgBudget.toLocaleString()} (Market Avg)`;
+    gaugeHigh.textContent = `$${highThreshold.toLocaleString()}+ (High / Hard Rock)`;
+    if (gaugeNote) {
+      gaugeNote.innerHTML = `Fair market estimates for a ${c.depth}-ft well (${c.gpm} GPM) typically fall between <strong>$${c.lowTurnkey.toLocaleString()} and $${c.highTurnkey.toLocaleString()}</strong>. Quotes over $${highThreshold.toLocaleString()} are considered premium unless deep hard rock or extended trenching applies.`;
+    }
+  }
+
   // Cost Table
   const items = [
     { label: `Borehole Rotary Drilling (${c.depth} ft @ $${GEOLOGY_RATES[c.geology].rate}/ft)`, cost: c.drillCost },
@@ -448,6 +464,7 @@ function init() {
   dom.downloadPrintBtn.addEventListener("click", triggerPrint);
 
   calculateWell();
+    autoDetectLocation();
 }
 
 function triggerPrint() {
@@ -470,3 +487,30 @@ function triggerPrint() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+
+// Auto-detect searcher location for faster lead form fill
+async function autoDetectLocation() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(2500) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.postal) {
+        const zipField = document.getElementById('leadZip');
+        if (zipField && !zipField.value) {
+          zipField.value = data.postal;
+          const label = document.querySelector('label[for="leadZip"]');
+          if (label && !document.getElementById('locDetectedPill')) {
+            const pill = document.createElement('span');
+            pill.id = 'locDetectedPill';
+            pill.className = 'location-detected-pill';
+            pill.innerHTML = `📍 Detected: ${data.city || ''}, ${data.region_code || ''} ${data.postal}`;
+            label.parentNode.appendChild(pill);
+          }
+        }
+      }
+    }
+  } catch (e) {
+    // Graceful silent fallback
+  }
+}

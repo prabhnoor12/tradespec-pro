@@ -109,10 +109,10 @@
         <span class="presets-sub">Select common residential and agricultural scenarios</span>
       </div>
       <div class="presets-buttons">
-        <button type="button" class="preset-btn active" data-preset="suburban">Suburban 3-Bed Home (180 ft Depth)</button>
-        <button type="button" class="preset-btn" data-preset="deepRock">Deep Mountain Bedrock (350 ft Depth)</button>
-        <button type="button" class="preset-btn" data-preset="homestead">5-Acre Homestead & Livestock (220 ft / 15 GPM)</button>
-        <button type="button" class="preset-btn" data-preset="replacement">Shallow Replacement Well (110 ft / Sand Aquifer)</button>
+        <button type="button" class="preset-btn active" data-preset="suburban">🏡 3-Bed Suburban Home (180 ft Depth)</button>
+        <button type="button" class="preset-btn" data-preset="deepRock">⛰️ Mountain Bedrock Well (350 ft Depth)</button>
+        <button type="button" class="preset-btn" data-preset="homestead">🌾 5-Acre Farm & Livestock (220 ft / 15 GPM)</button>
+        <button type="button" class="preset-btn" data-preset="replacement">🚿 Shallow Sand Replacement (110 ft)</button>
       </div>
     </section>
 
@@ -130,7 +130,7 @@
           <!-- Well Depth Slider -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="wellDepth">Total Well Depth</label>
+              <label for="wellDepth">Total Well Depth <span class="info-tip" tabindex="0" data-tip="Estimated borehole depth to reach clean water-bearing aquifers in your county.">?</span></label>
               <span class="unit-badge"><span id="wellDepthVal">200</span> ft</span>
             </div>
             <input type="range" id="wellDepth" min="50" max="600" step="10" value="200" class="range-slider">
@@ -146,7 +146,7 @@
           <!-- Static Water Level -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="staticWaterLevel">Static Water Level (Aquifer Rest Depth)</label>
+              <label for="staticWaterLevel">Static Water Level (Aquifer Rest Depth) <span class="info-tip" tabindex="0" data-tip="The depth where water rests naturally inside the casing when no faucets or pumps are running.">?</span></label>
               <span class="unit-badge"><span id="staticLevelVal">60</span> ft</span>
             </div>
             <input type="range" id="staticWaterLevel" min="10" max="300" step="5" value="60" class="range-slider">
@@ -156,7 +156,7 @@
           <!-- Target Flow Rate (GPM) -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="targetGPM">Household Flow Rate Demand</label>
+              <label for="targetGPM">Household Flow Rate Demand <span class="info-tip" tabindex="0" data-tip="Water demand in Gallons Per Minute. 8-12 GPM handles 2-3 simultaneous showers and laundry.">?</span></label>
               <span class="unit-badge"><span id="targetGPMVal">10</span> GPM</span>
             </div>
             <input type="range" id="targetGPM" min="5" max="30" step="1" value="10" class="range-slider">
@@ -170,7 +170,7 @@
 
           <!-- Geological Ground Strata -->
           <div class="form-group">
-            <label for="geologyType">Geological Ground Strata (Drill Difficulty)</label>
+            <label for="geologyType">Geological Ground Strata (Drill Difficulty) <span class="info-tip" tabindex="0" data-tip="The rock composition. Dense granite requires slower air-hammer rotary drilling and heavy steel casing.">?</span></label>
             <select id="geologyType" class="form-select">
               <option value="soft">Soft Sand, Silt &amp; Alluvial Soil (~$28/ft)</option>
               <option value="clay" selected>Dense Clay, Gravel &amp; Shale (~$38/ft)</option>
@@ -181,7 +181,7 @@
 
           <!-- Casing Diameter & Material -->
           <div class="form-group">
-            <label for="casingType">Well Casing Diameter &amp; Material</label>
+            <label for="casingType">Well Casing Diameter &amp; Material <span class="info-tip" tabindex="0" data-tip="Heavy-gauge pipe lining the well to prevent cave-ins and stop surface runoff from entering drinking water.">?</span></label>
             <select id="casingType" class="form-select">
               <option value="pvc5">5-Inch SDR-17 Heavy Wall PVC (~$14/ft)</option>
               <option value="pvc6" selected>6-Inch Schedule 40 PVC (Standard ~$18/ft)</option>
@@ -192,7 +192,7 @@
           <!-- House Setback Distance -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="setbackDist">Distance from Wellhead to House</label>
+              <label for="setbackDist">Distance from Wellhead to House <span class="info-tip" tabindex="0" data-tip="Trenching distance for underground water pipe and electrical cable from the wellhead to your utility room.">?</span></label>
               <span class="unit-badge"><span id="setbackDistVal">75</span> ft</span>
             </div>
             <input type="range" id="setbackDist" min="15" max="300" step="5" value="75" class="range-slider">
@@ -307,6 +307,28 @@
           </div>
         </div>
 
+        <!-- Price Health Gauge ("Am I Getting Ripped Off?") -->
+        <div class="price-gauge-card" id="priceGaugeCard">
+          <div class="gauge-header">
+            <span class="gauge-title">Fair Market Turnkey Price Check</span>
+            <span class="gauge-status" id="gaugeStatus">🟢 Fair Market</span>
+          </div>
+          <div class="gauge-track">
+            <div class="gauge-seg fair" title="Competitive / Standard Aquifer Rate"></div>
+            <div class="gauge-seg avg" title="Standard Regional Average"></div>
+            <div class="gauge-seg high" title="Deep Hard Rock / Extended Trenching Rate"></div>
+          </div>
+          <div class="gauge-labels">
+            <span id="gaugeLowLabel">$11,500 (Competitive)</span>
+            <span id="gaugeAvgLabel">$14,200 (Market Avg)</span>
+            <span id="gaugeHighLabel">$18,500+ (High / Deep Rock)</span>
+          </div>
+          <p class="gauge-note" id="gaugeExplanation">
+            Quotes within this range cover complete turnkey drilling, certified 6" casing, submersible pump, pressure tank, and sanitary pitless adapter. Watch out for estimates above market average unless deep granite bedrock (>350 ft) or complex filtration is involved.
+          </p>
+        </div>
+
+
         <!-- Itemized Cost Breakdown Card -->
         <div class="card cost-breakdown-card">
           <h3 class="breakdown-title">📋 Turnkey Line-Item Cost Breakdown</h3>
@@ -338,6 +360,12 @@
                 🖨️ Print / Save Well Worksheet
               </button>
             </div>
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>Zero-Spam Promise:</strong> Capped at exactly 2 state-licensed well drillers. Your contact info is never shared with robocallers, brokers, or marketing lists.
+              </div>
+            </div>
             <div class="cta-guarantee">
               🔒 100% Free Property Service • Verified Aquifer Depth Records • No Obligation
             </div>
@@ -347,6 +375,47 @@
       </section>
 
     </div>
+
+    <!-- 4 Red-Flag Questions to Ask Before You Hire Checklist -->
+    <section class="questions-card card" aria-labelledby="questions-heading">
+      <div class="questions-header">
+        <span style="font-size: 1.5rem;">📋</span>
+        <div>
+          <h2 id="questions-heading" class="questions-title">4 Red Flags to Ask Before You Sign Any Well Drilling Agreement</h2>
+          <p style="font-size: 0.8125rem; color: #94a3b8;">Protect your drinking water and avoid thousands in surprise footage bills.</p>
+        </div>
+      </div>
+      <ul class="questions-list">
+        <li>
+          <span class="q-icon">💧</span>
+          <div>
+            <strong>1. "What happens if you hit a dry hole, and what is your dry borehole footage fee?"</strong>
+            <p>Under standard drilling contracts, property owners pay per foot drilled even if no water is hit. Verify their dry hole policy and check if nearby DNR well logs confirm water table depth.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">⚙️</span>
+          <div>
+            <strong>2. "Does your quote include the complete pump, pressure tank, and sanitary pitless adapter?"</strong>
+            <p>Lowball quotes often quote 'drilling only' ($30/ft), leaving you with a $6,000+ surprise bill later for the submersible pump, motor control box, pressure tank, and frost-line plumbing hookup.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">📜</span>
+          <div>
+            <strong>3. "Who pulls the county sanitary health permit and submits the state well completion report?"</strong>
+            <p>Legitimate drillers handle the municipal/county well permit and must file an official Well Log with state geological authorities documenting depth, casing length, and GPM yield.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🧪</span>
+          <div>
+            <strong>4. "Do you perform a 4-hour certified pump yield test and state drinking water laboratory test?"</strong>
+            <p>Before paying the final balance, ensure the driller conducts a continuous pump yield test to prove sustained GPM and draws a lab sample tested for coliform bacteria, nitrates, and turbidity.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <!-- Educational / SEO FAQ Section -->
     <section class="card faq-section" aria-labelledby="faq-heading">
@@ -386,6 +455,12 @@
         </form>
       </div>
 
+            <div class="no-spam-box" style="margin-bottom: 12px;">
+        <span style="font-size: 1.25rem;">🛡️</span>
+        <div>
+          <strong>Privacy Protected:</strong> Your information is only sent to up to 2 local licensed drilling contractors to check local county well depth logs and soil records.
+        </div>
+      </div>
       <div class="modal-summary-box">
         <div class="summary-chip"><strong>Estimated Depth:</strong> <span id="modalDepth">200 ft</span></div>
         <div class="summary-chip"><strong>Flow Rate:</strong> <span id="modalGPM">10 GPM</span></div>

@@ -129,6 +129,16 @@ const CRANE_CLASSES = [
 
 // Presets Configurations
 const PRESETS = {
+  container: {
+    loadWeight: 8500,
+    rigging: 1000,
+    liftHeight: 14,
+    setbackRadius: 45,
+    clearanceBuffer: 10,
+    soilType: "2500",
+    setupLocation: "private",
+    windSpeed: 10
+  },
   hvac: {
     loadWeight: 6000,
     rigging: 1000,
@@ -406,6 +416,22 @@ function updateUI() {
   dom.metricMatSize.textContent = `${c.matSideFt} ft × ${c.matSideFt} ft`;
   dom.metricMatSub.textContent = `Per outrigger float (${c.actualMatArea} sq ft)`;
   dom.metricBudgetRange.textContent = `$${c.lowBudget.toLocaleString()} – $${c.highBudget.toLocaleString()}`;
+
+  // Update Price Health Gauge
+  const gaugeLow = document.getElementById('gaugeLowLabel');
+  const gaugeAvg = document.getElementById('gaugeAvgLabel');
+  const gaugeHigh = document.getElementById('gaugeHighLabel');
+  const gaugeNote = document.getElementById('gaugeExplanation');
+  if (gaugeLow) {
+    const avgBudget = Math.round((c.lowBudget + c.highBudget) / 2);
+    const highThreshold = Math.round(c.highBudget * 1.25);
+    gaugeLow.textContent = `$${c.lowBudget.toLocaleString()} (Competitive)`;
+    gaugeAvg.textContent = `$${avgBudget.toLocaleString()} (Market Avg)`;
+    gaugeHigh.textContent = `$${highThreshold.toLocaleString()}+ (High / Rush)`;
+    if (gaugeNote) {
+      gaugeNote.innerHTML = `Fair market estimates for a ${c.selectedCrane.ratingTons}-Ton crane with certified operator typically fall between <strong>$${c.lowBudget.toLocaleString()} and $${c.highBudget.toLocaleString()}</strong>. Quotes over $${highThreshold.toLocaleString()} are considered premium unless night shifts, street lane closures, or long-distance counterweight haul trucks apply.`;
+    }
+  }
 
   // Warnings Engine
   renderWarnings(c);
@@ -705,4 +731,32 @@ function triggerPrintWorksheet() {
 document.addEventListener("DOMContentLoaded", () => {
   initEventListeners();
   calculateLift();
+    autoDetectLocation();
 });
+
+
+// Auto-detect searcher location for faster lead form fill
+async function autoDetectLocation() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(2500) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.postal) {
+        const zipField = document.getElementById('leadZip');
+        if (zipField && !zipField.value) {
+          zipField.value = data.postal;
+          const label = document.querySelector('label[for="leadZip"]');
+          if (label && !document.getElementById('locDetectedPill')) {
+            const pill = document.createElement('span');
+            pill.id = 'locDetectedPill';
+            pill.className = 'location-detected-pill';
+            pill.innerHTML = `📍 Detected: ${data.city || ''}, ${data.region_code || ''} ${data.postal}`;
+            label.parentNode.appendChild(pill);
+          }
+        }
+      }
+    }
+  } catch (e) {
+    // Graceful silent fallback
+  }
+}

@@ -109,10 +109,10 @@
         <span class="presets-sub">Select common agricultural and residential structures</span>
       </div>
       <div class="presets-buttons">
-        <button type="button" class="preset-btn active" data-preset="poleBarn">30' × 40' Pole Barn / Metal Shop (2" Closed-Cell)</button>
-        <button type="button" class="preset-btn" data-preset="barndominium">40' × 60' Barndominium Shell (Roof + Walls)</button>
-        <button type="button" class="preset-btn" data-preset="atticCathedral">Residential Attic Roof Deck (6" Open-Cell R-38)</button>
-        <button type="button" class="preset-btn" data-preset="crawlspace">Crawlspace / Rim Joist Moisture Seal (2" Closed-Cell)</button>
+        <button type="button" class="preset-btn active" data-preset="poleBarn">🏭 30'×40' Pole Barn / Shop (2" Closed-Cell)</button>
+        <button type="button" class="preset-btn" data-preset="barndominium">🏡 40'×60' Barndominium Shell (Roof + Walls)</button>
+        <button type="button" class="preset-btn" data-preset="atticCathedral">🏠 Attic Roof Deck (6" Open-Cell R-38)</button>
+        <button type="button" class="preset-btn" data-preset="crawlspace">📦 Crawlspace &amp; Rim Joists (2" Closed-Cell)</button>
       </div>
     </section>
 
@@ -129,7 +129,7 @@
           
           <!-- Application Type -->
           <div class="form-group">
-            <label for="applicationType">Application Surface Type</label>
+            <label for="applicationType">Application Surface Type <span class="info-tip" tabindex="0" data-tip="The building envelope zone. Spraying roof deck undersides encloses HVAC ducts inside conditioned space.">?</span></label>
             <select id="applicationType" class="form-select">
               <option value="metalBuilding" selected>Metal Building / Pole Barn (Walls + Underside of Roof Deck)</option>
               <option value="roofOnly">Roof Deck Underside Only (Conditioned Attic)</option>
@@ -159,7 +159,7 @@
           <!-- Eave Height -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="eaveHeight">Eave / Wall Height</label>
+              <label for="eaveHeight">Eave / Wall Height <span class="info-tip" tabindex="0" data-tip="Height from concrete slab or ground to the roof eave line.">?</span></label>
               <span class="unit-badge"><span id="eaveHeightVal">14</span> ft</span>
             </div>
             <input type="range" id="eaveHeight" min="8" max="24" step="1" value="14" class="range-slider">
@@ -168,7 +168,7 @@
 
           <!-- Roof Pitch -->
           <div class="form-group">
-            <label for="roofPitch">Roof Slope / Pitch</label>
+            <label for="roofPitch">Roof Slope / Pitch <span class="info-tip" tabindex="0" data-tip="Steeper roof pitch increases overall surface square footage and required chemical board feet.">?</span></label>
             <select id="roofPitch" class="form-select">
               <option value="2">2:12 Pitch (Low Slope Commercial ~1.01 multiplier)</option>
               <option value="4" selected>4:12 Pitch (Standard Pole Barn ~1.05 multiplier)</option>
@@ -179,7 +179,7 @@
 
           <!-- Foam Chemistry Type -->
           <div class="form-group">
-            <label for="foamType">Foam Chemistry &amp; Density</label>
+            <label for="foamType">Foam Chemistry &amp; Density <span class="info-tip" tabindex="0" data-tip="Closed-cell (2.0 lb) is rigid and moisture-impermeable (stops metal building sweating). Open-cell (0.5 lb) is economical and sound-absorbent.">?</span></label>
             <select id="foamType" class="form-select">
               <option value="closed" selected>Closed-Cell 2.0 lb (R-6.8/in • Vapor Barrier • 250% Shear Rigidity)</option>
               <option value="open">Open-Cell 0.5 lb (R-3.7/in • High Expansion • Sound Dampening)</option>
@@ -190,7 +190,7 @@
           <!-- Spray Thickness -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="sprayThickness">Target Foam Thickness</label>
+              <label for="sprayThickness">Target Foam Thickness <span class="info-tip" tabindex="0" data-tip="Thickness in inches. Each 1 inch of closed-cell delivers R-6.8 and acts as a moisture vapor barrier.">?</span></label>
               <span class="unit-badge"><span id="thicknessVal">2.0</span> inches</span>
             </div>
             <input type="range" id="sprayThickness" min="1.0" max="8.0" step="0.5" value="2.0" class="range-slider">
@@ -304,6 +304,28 @@
           </div>
         </div>
 
+        <!-- Price Health Gauge ("Am I Getting Ripped Off?") -->
+        <div class="price-gauge-card" id="priceGaugeCard">
+          <div class="gauge-header">
+            <span class="gauge-title">Fair Market Spray Rig Price Check</span>
+            <span class="gauge-status" id="gaugeStatus">🟢 Fair Market</span>
+          </div>
+          <div class="gauge-track">
+            <div class="gauge-seg fair" title="Competitive / High-Yield Rig Rate"></div>
+            <div class="gauge-seg avg" title="Standard Turnkey Rig + Labor Rate"></div>
+            <div class="gauge-seg high" title="High Scaffolding / Fire Barrier Rate"></div>
+          </div>
+          <div class="gauge-labels">
+            <span id="gaugeLowLabel">$1.35 / bd-ft (Competitive)</span>
+            <span id="gaugeAvgLabel">$1.65 / bd-ft (Market Avg)</span>
+            <span id="gaugeHighLabel">$2.15+ / bd-ft (High / Scaffolding)</span>
+          </div>
+          <p class="gauge-note" id="gaugeExplanation">
+            Quotes within this range cover virgin chemical drum sets, heated mobile rig mobilization, professional poly masking, and certified installation. Watch out for estimates above market average unless 20ft+ scissor lifts or fire-retardant intumescent paint coating is included.
+          </p>
+        </div>
+
+
         <!-- Lead Gen Call to Action -->
         <div class="card lead-cta-card" id="lead-section">
           <div class="cta-inner">
@@ -319,6 +341,12 @@
                 🖨️ Print / Save Thermal Specification
               </button>
             </div>
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>Zero-Spam Promise:</strong> Capped at exactly 2 certified local spray foam rig operators. We never share your phone number with robocallers, lead brokers, or marketing lists.
+              </div>
+            </div>
             <div class="cta-guarantee">
               🔒 100% Free Contractor Matching • SPFA Certified Rigs • No Obligation
             </div>
@@ -328,6 +356,47 @@
       </section>
 
     </div>
+
+    <!-- 4 Red-Flag Questions to Ask Before You Hire Checklist -->
+    <section class="questions-card card" aria-labelledby="questions-heading">
+      <div class="questions-header">
+        <span style="font-size: 1.5rem;">📋</span>
+        <div>
+          <h2 id="questions-heading" class="questions-title">4 Red Flags to Ask Your Spray Foam Contractor Before Spray Day</h2>
+          <p style="font-size: 0.8125rem; color: #94a3b8;">Protect your indoor air quality and prevent catastrophic off-ratio chemical reactions.</p>
+        </div>
+      </div>
+      <ul class="questions-list">
+        <li>
+          <span class="q-icon">🔬</span>
+          <div>
+            <strong>1. "Are your spray gun applicators SPFA-certified, and how do you calibrate 1:1 ratio?"</strong>
+            <p>If Side A (Isocyanate) and Side B (Resin) are sprayed off-ratio or at the wrong temperature, foam will remain tacky, emit a fishy chemical odor indefinitely, and require complete gutting.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🛡️</span>
+          <div>
+            <strong>2. "Does your quote include complete poly masking of concrete floors, windows, and framing?"</strong>
+            <p>Aerosolized overspray drifts onto concrete, glass, and tools and cannot be washed off without scraping. Professional applicators spend half their time masking before firing the gun.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">📜</span>
+          <div>
+            <strong>3. "Does my local building code inspector require an intumescent fire-ignition paint barrier?"</strong>
+            <p>Under IBC 2603, exposed foam in workshops and garages must be covered by 1/2" gypsum board or an approved fire-rated paint (like DC315). Many cheap bids omit this $1,500+ code requirement.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🌡️</span>
+          <div>
+            <strong>4. "What chemical drum manufacturer are you spraying, and will you leave drum lot numbers on site?"</strong>
+            <p>Reputable installers use prime virgin chemical sets (e.g., Huntsman, Carlisle, BASF) and leave drum batch lot stickers on your electrical panel for warranty documentation.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <!-- Educational / SEO FAQ Section -->
     <section class="card faq-section" aria-labelledby="faq-heading">
@@ -367,6 +436,12 @@
         </form>
       </div>
 
+            <div class="no-spam-box" style="margin-bottom: 12px;">
+        <span style="font-size: 1.25rem;">🛡️</span>
+        <div>
+          <strong>Privacy Protected:</strong> Your job dimensions are only shared with up to 2 local SPFA-certified rig crews to verify drum set yields and equipment clearance.
+        </div>
+      </div>
       <div class="modal-summary-box">
         <div class="summary-chip"><strong>Volume:</strong> <span id="modalVolume">6,440 Bd Ft</span></div>
         <div class="summary-chip"><strong>Surface Area:</strong> <span id="modalArea">3,220 Sq Ft</span></div>

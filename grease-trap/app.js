@@ -364,6 +364,7 @@ function init() {
   dom.downloadPrintBtn.addEventListener("click", triggerPrint);
 
   calculateFOG();
+    autoDetectLocation();
 }
 
 function triggerPrint() {
@@ -385,3 +386,30 @@ function triggerPrint() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+
+// Auto-detect searcher location for faster lead form fill
+async function autoDetectLocation() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(2500) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.postal) {
+        const zipField = document.getElementById('leadZip');
+        if (zipField && !zipField.value) {
+          zipField.value = data.postal;
+          const label = document.querySelector('label[for="leadZip"]');
+          if (label && !document.getElementById('locDetectedPill')) {
+            const pill = document.createElement('span');
+            pill.id = 'locDetectedPill';
+            pill.className = 'location-detected-pill';
+            pill.innerHTML = `📍 Detected: ${data.city || ''}, ${data.region_code || ''} ${data.postal}`;
+            label.parentNode.appendChild(pill);
+          }
+        }
+      }
+    }
+  } catch (e) {
+    // Graceful silent fallback
+  }
+}

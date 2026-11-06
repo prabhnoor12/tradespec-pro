@@ -109,10 +109,10 @@
         <span class="presets-sub">Select common commercial facility profiles</span>
       </div>
       <div class="presets-buttons">
-        <button type="button" class="preset-btn active" data-preset="flexSpace">10,000 SF Flex Space (Reach Truck / 24 ft Clear)</button>
-        <button type="button" class="preset-btn" data-preset="standard3pl">25,000 SF 3PL Center (Counterbalance / 28 ft Clear)</button>
-        <button type="button" class="preset-btn" data-preset="vnaHighDensity">High-Density Distribution (VNA Turret / 36 ft Clear)</button>
-        <button type="button" class="preset-btn" data-preset="smallShop">Small 4,000 SF Workshop / Staging Bay</button>
+        <button type="button" class="preset-btn active" data-preset="flexSpace">📦 10k SF E-Commerce (Reach Truck, 24ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="standard3pl">🚜 25k SF 3PL Hub (Counterbalance, 28ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="vnaHighDensity">🥫 High-Density Food &amp; Bev (Turret, 36ft Clear)</button>
+        <button type="button" class="preset-btn" data-preset="smallShop">🏪 4k SF Retail / Parts Bay (Compact Setup)</button>
       </div>
     </section>
 
@@ -130,14 +130,14 @@
           <!-- Warehouse Dimensions -->
           <div class="form-row">
             <div class="form-group half">
-              <label for="buildingLength">Building Length</label>
+              <label for="buildingLength">Building Length <span class="info-tip" tabindex="0" data-tip="Interior length of the storage space in feet.">?</span></label>
               <div class="field-label-row">
                 <input type="number" id="buildingLength" min="30" max="800" value="120" class="form-input">
                 <span class="unit-tag">ft</span>
               </div>
             </div>
             <div class="form-group half">
-              <label for="buildingWidth">Building Width</label>
+              <label for="buildingWidth">Building Width <span class="info-tip" tabindex="0" data-tip="Interior width of the storage space in feet.">?</span></label>
               <div class="field-label-row">
                 <input type="number" id="buildingWidth" min="20" max="600" value="80" class="form-input">
                 <span class="unit-tag">ft</span>
@@ -148,7 +148,7 @@
           <!-- Clear Ceiling Height -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="clearHeight">Clear Ceiling Height (Under Sprinklers)</label>
+              <label for="clearHeight">Clear Ceiling Height (Under Sprinklers) <span class="info-tip" tabindex="0" data-tip="Distance from slab to lowest obstacle (sprinklers or roof beams). NFPA 13 mandates 18 inch clearance below sprinklers.">?</span></label>
               <span class="unit-badge"><span id="clearHeightVal">24</span> ft</span>
             </div>
             <input type="range" id="clearHeight" min="14" max="45" step="1" value="24" class="range-slider">
@@ -163,7 +163,7 @@
 
           <!-- Forklift Fleet Selection -->
           <div class="form-group">
-            <label for="forkliftType">Forklift Equipment &amp; Required Aisle Width</label>
+            <label for="forkliftType">Forklift Equipment &amp; Required Aisle Width <span class="info-tip" tabindex="0" data-tip="Your forklift turning radius dictates aisle width. Reach trucks save 3–4 feet per aisle compared to sit-down forklifts!">?</span></label>
             <select id="forkliftType" class="form-select">
               <option value="counterbalance">Standard Sit-Down Counterbalance (12.5 ft Aisle Clearance)</option>
               <option value="reach" selected>Narrow Aisle Stand-Up Reach Truck (9.5 ft Aisle Clearance)</option>
@@ -175,7 +175,7 @@
           <!-- Pallet Load Height -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="palletHeight">Typical Loaded Pallet Height</label>
+              <label for="palletHeight">Typical Loaded Pallet Height <span class="info-tip" tabindex="0" data-tip="Height of wooden pallet + product + shrink-wrap. Standard GMA pallet is 48 x 40 x 54 inches.">?</span></label>
               <span class="unit-badge"><span id="palletHeightVal">54</span> inches</span>
             </div>
             <input type="range" id="palletHeight" min="36" max="84" step="2" value="54" class="range-slider">
@@ -191,7 +191,7 @@
           <!-- Pallet Unit Weight -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="palletWeight">Pallet Unit Weight</label>
+              <label for="palletWeight">Pallet Unit Weight <span class="info-tip" tabindex="0" data-tip="Weight per pallet. Dictates required beam steel thickness (e.g., 5,000 lb pair capacity).">?</span></label>
               <span class="unit-badge"><span id="palletWeightVal">2,000</span> lbs</span>
             </div>
             <input type="range" id="palletWeight" min="500" max="4500" step="250" value="2000" class="range-slider">
@@ -317,6 +317,28 @@
           </div>
         </div>
 
+        <!-- Price Health Gauge ("Am I Getting Ripped Off?") -->
+        <div class="price-gauge-card" id="priceGaugeCard">
+          <div class="gauge-header">
+            <span class="gauge-title">Fair Market Steel Price Check</span>
+            <span class="gauge-status" id="gaugeStatus">🟢 Fair Market</span>
+          </div>
+          <div class="gauge-track">
+            <div class="gauge-seg fair" title="Competitive / Roll-Formed Teardrop Rate"></div>
+            <div class="gauge-seg avg" title="Standard Turnkey with Wire Decks"></div>
+            <div class="gauge-seg high" title="Structural Heavy-Duty / High Seismic Rate"></div>
+          </div>
+          <div class="gauge-labels">
+            <span id="gaugeLowLabel">$75 / pallet (Competitive)</span>
+            <span id="gaugeAvgLabel">$95 / pallet (Market Avg)</span>
+            <span id="gaugeHighLabel">$125+ / pallet (High / Structural)</span>
+          </div>
+          <p class="gauge-note" id="gaugeExplanation">
+            Quotes within this range cover industrial teardrop upright frames, 8ft step beams, galvanized wire mesh decks, and seismic floor anchors. Watch out for estimates above market average unless heavy structural C-channel steel or in-rack fire sprinkler piping is required.
+          </p>
+        </div>
+
+
         <!-- Lead Gen Call to Action -->
         <div class="card lead-cta-card" id="lead-section">
           <div class="cta-inner">
@@ -332,6 +354,12 @@
                 🖨️ Print / Save Racking Specification
               </button>
             </div>
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>Zero-Spam Promise:</strong> Capped at exactly 2 certified material handling distributors. We never share your contact info with robocallers, lead brokers, or marketing lists.
+              </div>
+            </div>
             <div class="cta-guarantee">
               🔒 100% Free Facility Planning • Stamped PE Engineering • No Obligation
             </div>
@@ -341,6 +369,47 @@
       </section>
 
     </div>
+
+    <!-- 4 Red-Flag Questions to Ask Before You Hire Checklist -->
+    <section class="questions-card card" aria-labelledby="questions-heading">
+      <div class="questions-header">
+        <span style="font-size: 1.5rem;">📋</span>
+        <div>
+          <h2 id="questions-heading" class="questions-title">4 Red Flags to Ask Your Racking Supplier Before Ordering Steel</h2>
+          <p style="font-size: 0.8125rem; color: #94a3b8;">Protect your facility capacity and avoid failing municipal fire &amp; seismic inspections.</p>
+        </div>
+      </div>
+      <ul class="questions-list">
+        <li>
+          <span class="q-icon">🏗️</span>
+          <div>
+            <strong>1. "Does your quote include wire mesh decks, floor anchor bolts, and row spacers?"</strong>
+            <p>Lowball quotes often quote bare steel frames and beams only. Adding heavy-duty wire mesh decks and required floor anchors later can add $20 to $30 per pallet position.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">📐</span>
+          <div>
+            <strong>2. "Will you supply a stamped PE (Professional Engineer) structural drawing package for city permits?"</strong>
+            <p>Almost all commercial municipalities require stamped architectural and seismic drawings before issuing a racking occupancy permit. Make sure this engineering packet is included.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🚜</span>
+          <div>
+            <strong>3. "Do the aisle corridor dimensions match my exact forklift's Right-Angle Stacking (AST) radius?"</strong>
+            <p>If the supplier designs 9-foot aisles but your reach truck requires 9.5 feet, forklift operators will constantly clip rack uprights, damaging structural steel and risking warehouse collapse.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🛡️</span>
+          <div>
+            <strong>4. "Are heavy yellow steel end-of-row column crash guards included in the bill of materials?"</strong>
+            <p>OSHA 1910.176 mandates physical protection on high-traffic aisle corner uprights. Unprotected corners are the #1 cause of catastrophic progressive warehouse rack collapses.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <!-- Educational / SEO FAQ Section -->
     <section class="card faq-section" aria-labelledby="faq-heading">
@@ -380,6 +449,12 @@
         </form>
       </div>
 
+            <div class="no-spam-box" style="margin-bottom: 12px;">
+        <span style="font-size: 1.25rem;">🛡️</span>
+        <div>
+          <strong>Privacy Protected:</strong> Your layout specs are dispatched only to up to 2 local material handling distributors for verified CAD floorplan drafting.
+        </div>
+      </div>
       <div class="modal-summary-box">
         <div class="summary-chip"><strong>Capacity:</strong> <span id="modalCapacity">648 Pallets</span></div>
         <div class="summary-chip"><strong>Clear Height:</strong> <span id="modalHeight">24 ft</span></div>

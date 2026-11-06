@@ -109,11 +109,11 @@
         <span class="presets-sub">Select a common commercial pick to prefill engineering inputs</span>
       </div>
       <div class="presets-buttons">
-        <button type="button" class="preset-btn active" data-preset="hvac">4-Story Rooftop RTU (6,000 lbs)</button>
-        <button type="button" class="preset-btn" data-preset="generator">Commercial Generator (9,500 lbs)</button>
-        <button type="button" class="preset-btn" data-preset="steel">Steel Truss Assembly (14,000 lbs)</button>
-        <button type="button" class="preset-btn" data-preset="pool">Fiberglass Pool Shell (4,200 lbs)</button>
-        <button type="button" class="preset-btn" data-preset="transformer">Padmount Transformer (18,000 lbs)</button>
+        <button type="button" class="preset-btn active" data-preset="hvac">🏡 Rooftop AC Unit (6,000 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="container">📦 40ft Shipping Container (8,500 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="pool">🏊 Pool Shell Over House (4,200 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="generator">⚡ Commercial Generator (9,500 lbs)</button>
+        <button type="button" class="preset-btn" data-preset="steel">🏗️ Steel Truss Assembly (14,000 lbs)</button>
       </div>
     </section>
 
@@ -131,7 +131,7 @@
           <!-- Net Load Weight -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="loadWeight">Net Object Weight</label>
+              <label for="loadWeight">Net Object Weight <span class="info-tip" tabindex="0" data-tip="The spec plate weight of the item being lifted, before adding hooks, cables, or rigging beams.">?</span></label>
               <span class="unit-badge"><span id="loadWeightVal">6,000</span> lbs</span>
             </div>
             <input type="range" id="loadWeight" min="500" max="60000" step="500" value="6000" class="range-slider" aria-describedby="loadWeightHelp">
@@ -147,7 +147,7 @@
           <!-- Rigging Deduction -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="riggingDeduction">Rigging & Hook Block Deduction</label>
+              <label for="riggingDeduction">Rigging & Hook Block Deduction <span class="info-tip" tabindex="0" data-tip="The weight of the crane hook block, overhaul ball, cables, and spreader beams. Under OSHA rules, this counts against total load capacity.">?</span></label>
               <span class="unit-badge">+<span id="riggingVal">1,000</span> lbs</span>
             </div>
             <select id="riggingDeduction" class="form-select">
@@ -164,7 +164,7 @@
           <!-- Lift Height -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="liftHeight">Target Landing Height</label>
+              <label for="liftHeight">Target Landing Height <span class="info-tip" tabindex="0" data-tip="Vertical distance from ground grade to final rooftop deck or landing spot.">?</span></label>
               <span class="unit-badge"><span id="liftHeightVal">48</span> ft</span>
             </div>
             <input type="range" id="liftHeight" min="10" max="180" step="2" value="48" class="range-slider">
@@ -180,7 +180,7 @@
           <!-- Operating Radius (Setback) -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="setbackRadius">Operating Radius (Setback from Centerpin)</label>
+              <label for="setbackRadius">Operating Radius (Setback from Centerpin) <span class="info-tip" tabindex="0" data-tip="Horizontal distance from crane centerpin to center of landing pad. The farther the setback, the larger the crane required!">?</span></label>
               <span class="unit-badge"><span id="setbackRadiusVal">60</span> ft</span>
             </div>
             <input type="range" id="setbackRadius" min="15" max="180" step="5" value="60" class="range-slider">
@@ -196,7 +196,7 @@
           <!-- Hook Clearance Headroom -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="clearanceBuffer">Hook Headroom & Parapet Clearance</label>
+              <label for="clearanceBuffer">Hook Headroom & Parapet Clearance <span class="info-tip" tabindex="0" data-tip="Safety buffer between load bottom and building parapet edge plus sling length.">?</span></label>
               <span class="unit-badge">+<span id="clearanceBufferVal">12</span> ft</span>
             </div>
             <input type="range" id="clearanceBuffer" min="6" max="30" step="2" value="12" class="range-slider">
@@ -205,7 +205,7 @@
 
           <!-- Ground Surface Condition -->
           <div class="form-group">
-            <label for="soilType">Setup Ground Condition (Outrigger Support)</label>
+            <label for="soilType">Setup Ground Condition (Outrigger Support) <span class="info-tip" tabindex="0" data-tip="Softer soil requires larger hardwood timber mats to prevent outrigger punch-through.">?</span></label>
             <select id="soilType" class="form-select">
               <option value="4000">Cured Concrete Slab / Highway Grade (>4,000 PSF)</option>
               <option value="2500" selected>Compacted Gravel / Dense Dry Clay (~2,500 PSF)</option>
@@ -217,7 +217,7 @@
 
           <!-- Setup Location / Right of Way -->
           <div class="form-group">
-            <label for="setupLocation">Crane Placement Site</label>
+            <label for="setupLocation">Crane Placement Site <span class="info-tip" tabindex="0" data-tip="Public roads require municipal street closure permits and police traffic detail.">?</span></label>
             <select id="setupLocation" class="form-select">
               <option value="private" selected>Private Property / Closed Jobsite Parking Lot</option>
               <option value="street">Public City Street / Lane Closure (Right-of-Way)</option>
@@ -228,7 +228,7 @@
           <!-- Wind Speed Allowance -->
           <div class="form-group">
             <div class="field-label-row">
-              <label for="windSpeed">Forecasted Wind Speed</label>
+              <label for="windSpeed">Forecasted Wind Speed <span class="info-tip" tabindex="0" data-tip="High winds act like a sail on suspended loads. Most crane charts require derating or shutdown at 20-25+ mph.">?</span></label>
               <span class="unit-badge"><span id="windSpeedVal">10</span> mph</span>
             </div>
             <input type="range" id="windSpeed" min="0" max="40" step="2" value="10" class="range-slider">
@@ -345,6 +345,28 @@
           </div>
         </div>
 
+        <!-- Price Health Gauge ("Am I Getting Ripped Off?") -->
+        <div class="price-gauge-card" id="priceGaugeCard">
+          <div class="gauge-header">
+            <span class="gauge-title">Fair Market Price Check</span>
+            <span class="gauge-status" id="gaugeStatus">🟢 Fair Market</span>
+          </div>
+          <div class="gauge-track">
+            <div class="gauge-seg fair" title="Competitive / Direct Yard Rate"></div>
+            <div class="gauge-seg avg" title="Standard Market Average"></div>
+            <div class="gauge-seg high" title="Rush Dispatch / Tight Permit Rate"></div>
+          </div>
+          <div class="gauge-labels">
+            <span id="gaugeLowLabel">$2,400 (Competitive)</span>
+            <span id="gaugeAvgLabel">$3,200 (Market Avg)</span>
+            <span id="gaugeHighLabel">$4,500+ (High / Rush)</span>
+          </div>
+          <p class="gauge-note" id="gaugeExplanation">
+            Quotes within this range reflect standard working-hour commercial picks. Watch out for quotes above market average unless night shifts, street lane closures, or long-distance counterweight haul trucks are involved.
+          </p>
+        </div>
+
+
         <!-- Warnings & Regulatory Compliance Section -->
         <div class="card warnings-card" id="regulatoryWarnings">
           <h3 class="warnings-title">⚠️ Mandatory Jobsite & Permit Check</h3>
@@ -368,6 +390,12 @@
                 🖨️ Print / Save Lift Plan Sheet
               </button>
             </div>
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>Zero-Spam Promise:</strong> Capped at exactly 2 local NCCCO-certified crane yards. We never sell your phone number to robocallers, lead brokers, or marketing lists.
+              </div>
+            </div>
             <div class="cta-guarantee">
               🔒 100% Free Contractor Service • Vetted Local Operators • No Obligation
             </div>
@@ -377,6 +405,47 @@
       </section>
 
     </div>
+
+    <!-- 4 Red-Flag Questions to Ask Before You Hire Checklist -->
+    <section class="questions-card card" aria-labelledby="questions-heading">
+      <div class="questions-header">
+        <span style="font-size: 1.5rem;">📋</span>
+        <div>
+          <h2 id="questions-heading" class="questions-title">4 Red Flags to Ask Before You Sign Any Crane Agreement</h2>
+          <p style="font-size: 0.8125rem; color: #94a3b8;">Protect your budget and site safety before equipment rolls onto your property.</p>
+        </div>
+      </div>
+      <ul class="questions-list">
+        <li>
+          <span class="q-icon">⚠️</span>
+          <div>
+            <strong>1. "Does your hourly rate include portal-to-portal travel and fuel?"</strong>
+            <p>Unscrupulous yards advertise cheap $250/hr rates, then charge 2 hours each way of yard-to-site travel plus 15% fuel surcharges, adding $1,000+ unexpected fees to your final bill.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">📜</span>
+          <div>
+            <strong>2. "Who is pulling the municipal street obstruction permit?"</strong>
+            <p>If any outrigger or the counterweight tail-swing enters a public lane or sidewalk, an unpermitted crane will be shut down and fined by city code enforcement on job morning.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">🛡️</span>
+          <div>
+            <strong>3. "Can you provide a Certificate of Insurance (COI) with $5M Rigging Coverage?"</strong>
+            <p>Standard commercial general liability often excludes 'care, custody, and control' of the lifted item. If the cable snaps or drops your $30,000 AC unit, uninsured loss is on you.</p>
+          </div>
+        </li>
+        <li>
+          <span class="q-icon">📐</span>
+          <div>
+            <strong>4. "Will your operator inspect ground bearing capacity before extending outriggers?"</strong>
+            <p>Under OSHA 1926.1402, outriggers must never be placed directly onto bare asphalt or wet clay without engineered timber cribbing mats to prevent asphalt punch-through.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
 
     <!-- Educational / SEO Value Section -->
     <section class="card faq-section" aria-labelledby="faq-heading">
@@ -416,6 +485,12 @@
         </form>
       </div>
 
+            <div class="no-spam-box" style="margin-bottom: 12px;">
+        <span style="font-size: 1.25rem;">🛡️</span>
+        <div>
+          <strong>Privacy Protected:</strong> Your information is only dispatched to up to 2 local licensed crane yards to calculate exact mobilization and permit fees.
+        </div>
+      </div>
       <div class="modal-summary-box">
         <div class="summary-chip"><strong>Gross Pick:</strong> <span id="modalGross">7,000 lbs</span></div>
         <div class="summary-chip"><strong>Radius:</strong> <span id="modalRadius">60 ft</span></div>
