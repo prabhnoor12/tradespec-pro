@@ -176,8 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
     webhookAutoSync: true,
     transactions: [
       { date: "2026-11-05", desc: "Initial Dispatch Credit Allocation", amount: 500.00, balance: 500.00, type: "pos" },
-      { date: "2026-11-06", desc: "Dispatched Lead EV-2026-7812 (ChargeSpec)", amount: -135.00, balance: 365.00, type: "neg" },
-      { date: "2026-11-06", desc: "Partner Pilot Bonus Credit ($85)", amount: 85.00, balance: 450.00, type: "pos" }
+      { date: "2026-11-06", desc: "Dispatched Lead EV-2026-7812 (ChargeSpec)", amount: -225.00, balance: 275.00, type: "neg" },
+      { date: "2026-11-06", desc: "Pilot Fast-Start Bonus Credit ($175)", amount: 175.00, balance: 450.00, type: "pos" }
     ]
   };
 
@@ -198,12 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch(e) {}
 
   // --- 3. TRADE METADATA & CODE SPECS DICTIONARY ---
+  // Value-Scaled Lead Fees proportional to subcontractor contract size and profit margin
   const TRADE_META = {
     charge: {
       title: "Commercial EV Fleet Infrastructure",
       short: "EV Charging",
       ticket: 85000,
-      leadCost: 135,
+      leadCost: 225,
       codeBreakdown: [
         { param: "Continuous Duty Circuit Load", code: "NEC 625.41 / 625.42 (125% Rule)", val: "361 Amps Coincident Peak" },
         { param: "Service Voltage & Feed Phase", code: "NFPA 70 Commercial Service Standard", val: "480V 3-Phase Padmount" },
@@ -216,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Commercial Tenant Improvement",
       short: "Tenant TI",
       ticket: 140000,
-      leadCost: 140,
+      leadCost: 275,
       codeBreakdown: [
         { param: "Design Occupant Load", code: "IBC Table 1004.5 (15 SF/person)", val: "160 Persons Maximum" },
         { param: "Mandatory Remote Exit Doors", code: "IBC 1006.2.1 Remote Egress Pair", val: "2 Remote Doors (≥ 1/3 diagonal)" },
@@ -229,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Civil Earthwork & Stormwater",
       short: "Civil Site",
       ticket: 65000,
-      leadCost: 125,
+      leadCost: 185,
       codeBreakdown: [
         { param: "Peak Stormwater Runoff (Q)", code: "Rational Method Q=CiA (10-Yr Event)", val: "3.23 CFS Peak Discharge" },
         { param: "Retention Basin Storage Volume", code: "ASCE MOP 28 Water Quality Standard", val: "0.26 Acre-Feet (11,325 cu ft)" },
@@ -242,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Commercial Walk-In Refrigeration",
       short: "Walk-In Cold",
       ticket: 18500,
-      leadCost: 115,
+      leadCost: 95,
       codeBreakdown: [
         { param: "24-Hour Design Heat Load", code: "ASHRAE Refrigeration Ch. 23 & 24", val: "11,850 BTU/hr (Safety Factor 1.1)" },
         { param: "Condensing Run-Time Basis", code: "16-Hr Medium Temp Defrost Cycle", val: "Off-Cycle Air Defrost Scheduled" },
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Mobile Crane & Heavy Rigging",
       short: "Crane Rigging",
       ticket: 3500,
-      leadCost: 110,
+      leadCost: 45,
       codeBreakdown: [
         { param: "Gross Hoisted Load Weight", code: "OSHA 1926.1400 Rigging Factor (800 lb tackle)", val: "6,000 lbs Total Pick Weight" },
         { param: "Operating Setback Radius", code: "Center-of-Rotation Setback Standard", val: "60 ft Horizontal Radius" },
@@ -268,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Water Well Drilling & Pumps",
       short: "Water Well",
       ticket: 16000,
-      leadCost: 125,
+      leadCost: 85,
       codeBreakdown: [
         { param: "Target Formation Depth", code: "NGWA Commercial Bedrock Drilling", val: "350 ft Consolidated Limestone" },
         { param: "Continuous Production Yield", code: "Pumping Flow Test Standard", val: "25 GPM Commercial Capacity" },
@@ -281,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Warehouse Pallet Racking",
       short: "Pallet Racking",
       ticket: 32000,
-      leadCost: 150,
+      leadCost: 135,
       codeBreakdown: [
         { param: "Total High-Bay Pallet Positions", code: "40\" x 48\" GMA Standard Pallets", val: "648 Positions (3-High Tiers)" },
         { param: "Facility Clear Height", code: "Structural Eave Clear Allowance", val: "24 ft Clear Eave Elevation" },
@@ -294,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Commercial Spray Foam Insulation",
       short: "Spray Foam",
       ticket: 9500,
-      leadCost: 95,
+      leadCost: 60,
       codeBreakdown: [
         { param: "Total Insulated Board Footage", code: "Roof Deck & Perimeter Wall Gross", val: "6,440 Board Feet" },
         { param: "Foam Chemistry & Core Density", code: "ASTM C1029 Type II Closed-Cell", val: "2.0 lb/cu ft Closed-Cell Foam" },
@@ -307,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Commercial Kitchen MEP & Hoods",
       short: "Grease & Hood",
       ticket: 14000,
-      leadCost: 110,
+      leadCost: 75,
       codeBreakdown: [
         { param: "Design Drainage Fixture Units", code: "UPC / IPC Kitchen Fixture Rating", val: "32 DFUs (Scullery + Dishwasher)" },
         { param: "Gravity Interceptor Capacity", code: "IAPMO / PDI-G101 Sizing Equation", val: "1,000 Gallon Two-Chamber Vault" },
@@ -633,6 +634,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashCompanyName = document.getElementById('dashCompanyName');
   const dashTerritoryZips = document.getElementById('dashTerritoryZips');
 
+  function getAvgLeadCostForContractor() {
+    const activeStreams = Array.isArray(settings.activeSources) && settings.activeSources.length > 0
+      ? settings.activeSources
+      : ALL_TRADE_KEYS;
+    let sum = 0;
+    activeStreams.forEach(t => {
+      sum += (TRADE_META[t] ? TRADE_META[t].leadCost : 100);
+    });
+    return Math.max(45, Math.round(sum / activeStreams.length));
+  }
+
   function renderDashboard() {
     if (dashCompanyName) dashCompanyName.textContent = settings.companyName;
     if (dashTerritoryZips) dashTerritoryZips.textContent = `${settings.baseZip} + ${settings.radius} Mile Radius`;
@@ -642,8 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (kpiWalletBalance) kpiWalletBalance.textContent = balStr;
     if (topBarWalletBal) topBarWalletBal.textContent = balStr;
     if (kpiWalletLeadsLeft) {
-      const leadsLeft = Math.max(0, Math.floor(settings.walletBalance / 125));
-      kpiWalletLeadsLeft.textContent = `~${leadsLeft} leads available`;
+      const avgCost = getAvgLeadCostForContractor();
+      const leadsLeft = Math.max(0, Math.floor(settings.walletBalance / avgCost));
+      kpiWalletLeadsLeft.textContent = `~${leadsLeft} leads (avg $${avgCost}/lead)`;
     }
     if (walletAutoReloadBadge) {
       walletAutoReloadBadge.textContent = settings.autoReload ? "Auto-Reload: ON" : "Auto-Reload: OFF";
@@ -1183,8 +1196,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openWalletModal() {
     if (modalWalletBalNumber) modalWalletBalNumber.textContent = `$${settings.walletBalance.toFixed(2)}`;
     if (modalWalletLeadsRemaining) {
-      const leadsLeft = Math.max(0, Math.floor(settings.walletBalance / 125));
-      modalWalletLeadsRemaining.textContent = `Sufficient for ~${leadsLeft} Code-Stamped Commercial Leads in your territory.`;
+      const avgCost = getAvgLeadCostForContractor();
+      const leadsLeft = Math.max(0, Math.floor(settings.walletBalance / avgCost));
+      modalWalletLeadsRemaining.textContent = `Sufficient for ~${leadsLeft} Code-Stamped Leads based on your active rate card (avg $${avgCost}/lead).`;
     }
     if (chkAutoReload) chkAutoReload.checked = settings.autoReload;
     renderWalletLedger();

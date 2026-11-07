@@ -280,15 +280,15 @@
             <div class="form-group">
               <label for="roiTrade">Your Trade Specialty</label>
               <select id="roiTrade" class="form-select">
-                <option value="charge">Commercial EV Fleet Infrastructure ($85,000 avg job)</option>
-                <option value="permit">Commercial Tenant Improvement ($140,000 avg job)</option>
-                <option value="site">Civil Earthwork &amp; Stormwater ($65,000 avg job)</option>
-                <option value="cold">Commercial Walk-In Refrigeration ($18,500 avg job)</option>
-                <option value="crane" selected>Mobile Crane &amp; Heavy Rigging ($3,500 avg job)</option>
-                <option value="well">Water Well Drilling &amp; Pumps ($16,000 avg job)</option>
-                <option value="racking">Pallet Racking &amp; Material Handling ($32,000 avg job)</option>
-                <option value="foam">Commercial Spray Foam Insulation ($9,500 avg job)</option>
-                <option value="grease">Commercial Kitchen Plumbing &amp; Hoods ($14,000 avg job)</option>
+                <option value="permit">🏛️ Commercial Tenant Improvement ($140k avg job • $275 lead)</option>
+                <option value="charge" selected>⚡ Commercial EV Fleet Infrastructure ($85k avg job • $225 lead)</option>
+                <option value="site">🚜 Civil Earthwork &amp; Stormwater ($65k avg job • $185 lead)</option>
+                <option value="racking">📦 Warehouse Pallet Racking ($32k avg job • $135 lead)</option>
+                <option value="cold">❄️ Commercial Walk-In Cold Box ($18.5k avg job • $95 lead)</option>
+                <option value="well">💧 Water Well Drilling &amp; Pumps ($16k avg job • $85 lead)</option>
+                <option value="grease">🍳 Commercial Kitchen MEP &amp; Hoods ($14k avg job • $75 lead)</option>
+                <option value="foam">🧱 Commercial Spray Foam ($9.5k avg job • $60 lead)</option>
+                <option value="crane">🏗️ Mobile Crane &amp; Heavy Rigging ($3.5k avg job • $45 lead)</option>
               </select>
             </div>
 
@@ -339,8 +339,9 @@
     <section class="section pricing-section" id="pricing">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Transparent Contractor Pricing</h2>
-          <p class="section-subtitle">No bidding wars. No long-term lockups. Scale up or pause whenever your schedule is full.</p>
+          <span class="badge-partner">VALUE-SCALED CONTRACTOR PRICING</span>
+          <h2 class="section-title">Fair, Value-Scaled Contractor Pricing</h2>
+          <p class="section-subtitle">No flat-rate gouging. A crane operator doing a $3,500 single-day pick shouldn't pay the same lead fee as an electrical GC landing a $140,000 tenant buildout. Our fees scale proportionally with what you actually earn.</p>
         </div>
 
         <div class="pricing-grid">
@@ -349,12 +350,15 @@
             <div class="plan-badge">PAY-AS-YOU-GO</div>
             <h3 class="plan-title">Flex Dispatch</h3>
             <p class="plan-desc">Perfect for independent operators testing territory demand.</p>
-            <div class="plan-price">$85 – $150 <span>/ qualified lead</span></div>
+            <div class="plan-price">$45 – $275 <span>/ qualified lead</span></div>
+            <p style="font-size: 0.75rem; color: #38bdf8; margin-top: -0.5rem; margin-bottom: 1rem;">
+              Scales by trade ticket (0.2% – 1.28% of contract value)
+            </p>
             <ul class="plan-features">
               <li>✓ Receive real-time SMS &amp; Email lead notifications</li>
-              <li>✓ Review full project specs before accepting</li>
-              <li>✓ Zero monthly fees or recurring commitments</li>
-              <li>✓ Full refund on bogus contact info or unserviced zips</li>
+              <li>✓ Review full code calculations &amp; specs before accepting</li>
+              <li>✓ Zero monthly fees, memberships, or recurring commitments</li>
+              <li>✓ <strong>100% instant refund</strong> on bad numbers or out-of-territory leads</li>
             </ul>
             <a href="#apply" class="btn btn-secondary plan-btn">Get Started &rarr;</a>
           </div>
@@ -368,11 +372,120 @@
             <ul class="plan-features">
               <li>✓ <strong>100% Exclusive First Right of Refusal</strong> in your zip codes</li>
               <li>✓ Direct dispatch to your estimator's phone in &lt; 30 seconds</li>
-              <li>✓ Includes first 5 leads free each month ($1,000+ value)</li>
-              <li>✓ Discounted \$65 flat rate on additional monthly leads</li>
+              <li>✓ <strong>Includes $500 monthly dispatch credits</strong> ($500+ value)</li>
+              <li>✓ <strong>30% discount</strong> on all additional value-scaled trade leads</li>
               <li>✓ Dedicated Contractor Directory Profile on TradeSpec Pro</li>
             </ul>
             <a href="#apply" class="btn btn-primary plan-btn">Lock Your County &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Trade-by-Trade Value Rate Card Table -->
+        <div class="table-card" style="margin-top: 2.5rem;">
+          <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); background: var(--bg-tertiary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: #fff; margin: 0;">TradeSpec Pro™ Value-Scaled Trade Rate Card</h3>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0.2rem 0 0 0;">Transparent pricing scaled directly to subcontractor contract values and profit margins</p>
+            </div>
+            <span class="dossier-code-stamp" style="font-size: 0.6875rem;">Fair Value Guarantee</span>
+          </div>
+          <div style="overflow-x: auto;">
+            <table class="comparison-table" style="font-size: 0.8125rem;">
+              <thead>
+                <tr>
+                  <th scope="col">Specialty Trade Module</th>
+                  <th scope="col">Calculator Engine</th>
+                  <th scope="col">Avg Commercial Contract</th>
+                  <th scope="col">Subcontractor Gross Margin</th>
+                  <th scope="col" style="color: #38bdf8;">Verified Lead Fee</th>
+                  <th scope="col" style="color: #34d399;">Lead Fee as % of Job</th>
+                  <th scope="col" style="text-align: right; color: #fbbf24;">Projected ROI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Commercial Tenant Improvement</strong></td>
+                  <td>PermitSpec Pro™</td>
+                  <td><strong>$140,000+</strong></td>
+                  <td>$40,000 – $65,000</td>
+                  <td><span class="rate-badge high">$275</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.20%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">509x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial EV Fleet Infrastructure</strong></td>
+                  <td>ChargeSpec Pro™</td>
+                  <td><strong>$85,000</strong></td>
+                  <td>$28,000 – $42,000</td>
+                  <td><span class="rate-badge high">$225</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.26%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">377x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Civil Earthwork &amp; Stormwater</strong></td>
+                  <td>SiteSpec Pro™</td>
+                  <td><strong>$65,000</strong></td>
+                  <td>$20,000 – $32,000</td>
+                  <td><span class="rate-badge mid-high">$185</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.28%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">351x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Warehouse Pallet Racking</strong></td>
+                  <td>RackSpec Pro™</td>
+                  <td><strong>$32,000</strong></td>
+                  <td>$10,000 – $16,000</td>
+                  <td><span class="rate-badge mid">$135</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.42%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">237x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Walk-In Refrigeration</strong></td>
+                  <td>ColdSpec Pro™</td>
+                  <td><strong>$18,500</strong></td>
+                  <td>$6,500 – $9,500</td>
+                  <td><span class="rate-badge mid">$95</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.51%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">194x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Water Well Drilling &amp; Pumps</strong></td>
+                  <td>WellSpec Pro™</td>
+                  <td><strong>$16,000</strong></td>
+                  <td>$5,500 – $8,000</td>
+                  <td><span class="rate-badge low">$85</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.53%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">188x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Kitchen MEP &amp; Hoods</strong></td>
+                  <td>FOGSpec Pro™</td>
+                  <td><strong>$14,000</strong></td>
+                  <td>$5,000 – $7,200</td>
+                  <td><span class="rate-badge low">$75</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.54%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">186x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Commercial Spray Foam Insulation</strong></td>
+                  <td>FoamSpec Pro™</td>
+                  <td><strong>$9,500</strong></td>
+                  <td>$3,500 – $5,000</td>
+                  <td><span class="rate-badge low">$60</span></td>
+                  <td style="color: #34d399; font-weight: 700;">0.63%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">158x ROI</td>
+                </tr>
+                <tr>
+                  <td><strong>Mobile Crane &amp; Heavy Rigging</strong></td>
+                  <td>RigCheck Pro™</td>
+                  <td><strong>$3,500</strong></td>
+                  <td>$1,400 – $2,200</td>
+                  <td><span class="rate-badge low">$45</span></td>
+                  <td style="color: #34d399; font-weight: 700;">1.28%</td>
+                  <td style="text-align: right; font-weight: 800; color: #fbbf24;">77x ROI</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
