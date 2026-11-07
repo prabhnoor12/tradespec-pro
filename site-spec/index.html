@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil Earthwork, Stormwater &amp; Site Development Sizer | SiteSpec Pro™</title>
+  <meta name="description" content="Free civil engineering calculator for site development. Sizes peak stormwater runoff (Rational Method Q=CiA), detention pond volume, cut/fill dump truck loads, and NCMA retaining walls.">
+  <meta name="keywords" content="stormwater runoff calculator rational method, retention pond volume calculator, cut and fill dump truck calculator, retaining wall geogrid sizing ncma, civil site excavation cost estimator">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/site-spec/">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Civil Earthwork, Stormwater &amp; Site Development Sizer | SiteSpec Pro™">
+  <meta property="og:description" content="Calculate Rational Method runoff CFS, detention basin volume, cut/fill dump truck cycles, and NCMA retaining walls before breaking ground.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/site-spec/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SiteSpec Pro Civil Earthwork & Stormwater Sizer",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/site-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates peak stormwater runoff under the Rational Method (Q=CiA), required detention pond storage volume, earthwork cut/fill haul cycles with soil swell, and segmental retaining wall geogrid layers under NCMA design standards.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the Rational Method (Q = CiA) calculate peak stormwater runoff?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Rational Method calculates peak runoff flow in cubic feet per second (CFS) where Q = C × I × A. 'C' is the dimensionless composite runoff coefficient (0.90 for asphalt/roofs vs 0.25 for grass), 'I' is rainfall intensity in inches per hour from NOAA Atlas 14 for a 25-year design storm, and 'A' is drainage basin area in acres. Because 1 acre-inch/hour almost exactly equals 1.008 CFS, the formula converts directly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Bank Cubic Yards (BCY) and Loose Cubic Yards (LCY)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bank Cubic Yards (BCY) measures undisturbed in-situ soil in the ground. When heavy equipment excavates soil, air voids are introduced, causing the volume to swell by 20% to 35% into Loose Cubic Yards (LCY). A 1,000 BCY cut requires trucking away 1,250 LCY of loose dirt, representing approximately 78 tri-axle dump truck loads rather than 62."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does a concrete segmental retaining wall require geogrid soil reinforcement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under National Concrete Masonry Association (NCMA) standards, gravity block walls are generally stable without geogrid only up to 4 feet in total height with level backfill. Any wall exceeding 4 feet, or any wall carrying a parking lot/driveway surcharge load, mandates horizontal layers of high-tenacity polyester geogrid placed every two block courses extending back into the slope at least 70% of the total wall height."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do local municipalities mandate on-site stormwater detention ponds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Replacing natural absorption soil with impermeable parking asphalt causes post-development stormwater to surge downstream at 3 to 5 times natural velocity, causing erosion and urban flash flooding. Municipal stormwater ordinances require site developers to detain the difference between pre- and post-development peak runoff, releasing water through an engineered orifice plate at pre-development rates."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>🚜 <strong>EPA NPDES &amp; NCMA Civil Site Development Utility:</strong> Preliminary engineering estimator for civil grading, stormwater retention basin volume, earthwork hauling, and retaining wall reinforcement.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🚜</div>
+        <div>
+          <h1 class="brand-title">SiteSpec Pro<span class="badge-tag">RATIONAL Q=CiA &bull; CIVIL GRADING</span></h1>
+          <p class="brand-tagline">Civil Earthwork, Stormwater Detention &amp; Retaining Wall Sizing</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-primary header-btn">Get Civil Contractor Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <h2 class="hero-title">Civil Earthwork, Stormwater Runoff &amp; Retaining Wall Sizer</h2>
+      <p class="hero-subtitle">
+        Prevent catastrophic site development overruns. Size 25-year peak stormwater runoff (CFS), required retention pond storage volume, loose haul dump truck cycles, and NCMA geogrid reinforcement layers for commercial pads and subdivisions.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item"><span>📋</span> Standard: <strong>Rational Method (ASCE MOP 28)</strong></div>
+        <div class="meta-item"><span>🧱</span> Retaining Walls: <strong>NCMA SRW Design Standard</strong></div>
+        <div class="meta-item"><span>🚛</span> Hauling: <strong>CAT Handbook Swell Factors</strong></div>
+        <div class="meta-item"><span>🔒</span> Privacy: <strong>100% Client-Side Engine</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-Click Preset Profiles -->
+  <div class="container">
+    <div class="presets-card">
+      <div class="presets-header">
+        <span>🚜 Quick Presets (1-Click Real-World Civil Site Profiles)</span>
+      </div>
+      <div class="presets-grid">
+        <button type="button" class="preset-btn" id="preset-commercial">
+          <span class="preset-title">🏢 Commercial Retail Pad &bull; 1.5 Acres</span>
+          <span class="preset-desc">65% Impervious Asphalt &bull; 3.2 in/hr Rain &bull; 800 CY Cut &bull; 6-ft Retaining Wall</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-subdivision">
+          <span class="preset-title">🏡 Residential Subdivision &bull; 3.5 Acres</span>
+          <span class="preset-desc">35% Impervious &bull; Heavy Clay Soil &bull; 2,400 CY Cut/Fill Balance &bull; Large Basin</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-retaining">
+          <span class="preset-title">🧱 Hillside Retaining Wall &bull; 120 Ft Run</span>
+          <span class="preset-desc">8-ft Exposed Height &bull; Commercial Parking Surcharge &bull; 4 Geogrid Tiers</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-industrial">
+          <span class="preset-title">🚛 Truck Terminal Yard &bull; 5.0 Acres</span>
+          <span class="preset-desc">85% Heavy Duty Pavement &bull; 4.0 in/hr Rain &bull; High Runoff &bull; Oil/Water Inlet</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Calculator Workspace -->
+  <main class="container calculator-workspace">
+    <div class="workspace-grid">
+
+      <!-- Left Column: Inputs Form -->
+      <div class="inputs-column">
+        <div class="card">
+          <h2 class="card-title">
+            <span>Site Area &amp; Earthwork Parameters</span>
+            <span class="badge-tag" style="font-size: 0.7rem;">STEP 1 OF 2</span>
+          </h2>
+
+          <form id="site-form" novalidate>
+
+            <!-- Site Area & Impervious Cover -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="site-acres" class="form-label">
+                  <span>Total Drainage Area (Acres)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Total disturbed parcel or drainage basin area (1 Acre = 43,560 sq ft).">?</span>
+                </label>
+                <input type="number" id="site-acres" class="form-control" value="1.5" min="0.1" max="100" step="0.1" required>
+              </div>
+
+              <div class="form-group">
+                <label for="impervious-pct" class="form-label">
+                  <span>Impervious Surface Cover (%)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Percentage of site covered by non-absorbing surfaces (asphalt parking, concrete walks, rooftops).">?</span>
+                </label>
+                <input type="number" id="impervious-pct" class="form-control" value="65" min="5" max="100" step="5" required>
+              </div>
+            </div>
+
+            <!-- Soil Subgrade & Design Rainfall Intensity -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="soil-type" class="form-label">
+                  <span>Pervious Soil Subgrade</span>
+                  <span class="info-tip" tabindex="0" data-tip="Runoff coefficient of natural grass: Sand (C=0.15), Loam (C=0.25), Compacted Clay (C=0.40).">?</span>
+                </label>
+                <select id="soil-type" class="form-control">
+                  <option value="sand">Sandy Porous Soil (C = 0.15)</option>
+                  <option value="loam" selected>Typical Loam / Turf (C = 0.25)</option>
+                  <option value="clay">Heavy Compacted Clay (C = 0.40)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="rain-intensity" class="form-label">
+                  <span>25-Yr Rainfall Intensity (In/Hr)</span>
+                  <span class="info-tip" tabindex="0" data-tip="NOAA Atlas 14 peak 1-hour rainfall rate for a 25-year design storm (typically 2.0 to 4.0 in/hr).">?</span>
+                </label>
+                <input type="number" id="rain-intensity" class="form-control" value="3.2" min="1.0" max="6.0" step="0.1" required>
+              </div>
+            </div>
+
+            <!-- Earthwork Cut & Fill Volume -->
+            <div class="form-group">
+              <label for="earthwork-bcy" class="form-label">
+                <span>Total Earthwork Cut / Export (Bank CY)</span>
+                <span class="info-tip" tabindex="0" data-tip="In-situ volume of soil to be excavated or leveled (1 Bank Cubic Yard = 27 cubic feet of solid ground).">?</span>
+              </label>
+              <input type="number" id="earthwork-bcy" class="form-control" value="800" min="0" max="50000" step="50">
+            </div>
+
+            <!-- Retaining Wall Length & Height -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="wall-length" class="form-label">
+                  <span>Retaining Wall Length (Feet)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Total linear run of segmental concrete retaining wall (enter 0 if no wall required).">?</span>
+                </label>
+                <input type="number" id="wall-length" class="form-control" value="60" min="0" max="1000" step="5">
+              </div>
+
+              <div class="form-group">
+                <label for="wall-height" class="form-label">
+                  <span>Max Exposed Wall Height (Feet)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Visible height from finished grade to top of cap (NCMA mandates geogrid if height > 4 ft).">?</span>
+                </label>
+                <input type="number" id="wall-height" class="form-control" value="6.0" min="2.0" max="25.0" step="0.5">
+              </div>
+            </div>
+
+            <!-- Retaining Wall Surcharge Loading -->
+            <div class="form-group">
+              <label for="wall-surcharge" class="form-label">
+                <span>Retaining Wall Surcharge Condition</span>
+                <span class="info-tip" tabindex="0" data-tip="Weight pushing horizontally against top of wall: Level grass vs 3:1 slope vs commercial parking lot traffic.">?</span>
+              </label>
+              <select id="wall-surcharge" class="form-control">
+                <option value="traffic" selected>Commercial Parking Lot / Drive Aisle (250 PSF live load)</option>
+                <option value="slope">Sloped Backfill (3:1 Slope above wall)</option>
+                <option value="level">Level Grass / Landscaping (No traffic surcharge)</option>
+              </select>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <button type="button" id="btn-recalculate" class="btn btn-primary btn-block">
+                🚜 Calculate Stormwater, Haul Cycles &amp; Wall Specs
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5 Questions to Ask Civil Excavation & Site Contractors -->
+        <div class="questions-card">
+          <div class="questions-header">
+            <span class="q-icon">👷</span>
+            <h3 class="questions-title">5 Questions to Ask Your Civil Site Contractor</h3>
+          </div>
+          <ul class="questions-list">
+            <li>
+              <span class="q-icon">1.</span>
+              <div>
+                <strong>"Is your dirt bid based on Bank Cubic Yards (in ground) or Truck Measure (loose)?"</strong>
+                <p>Excavated soil swells 20% to 30%. If they bill per loose truck load without establishing a compaction factor, expect a 25% price surprise.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">2.</span>
+              <div>
+                <strong>"Did you budget for high-tenacity geogrid every 2 courses on walls over 4 feet?"</strong>
+                <p>Unreinforced gravity walls over 4 feet holding a parking lot surcharge will bow, crack, and fail inspection under NCMA standards.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">3.</span>
+              <div>
+                <strong>"What is the storm sewer outfall elevation relative to our detention basin invert?"</strong>
+                <p>If the city storm sewer main is higher than your pond bottom, gravity drainage is impossible and you will be forced to install an expensive stormwater lift station.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">4.</span>
+              <div>
+                <strong>"Who is responsible for SWPPP silt fence inspections and NPDES erosion reporting?"</strong>
+                <p>Failing to log weekly EPA silt fence inspections carries municipal fines of $2,500 to $10,000 per rain event.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">5.</span>
+              <div>
+                <strong>"Is proof-rolling and geotechnical compaction testing (95% Modified Proctor) included?"</strong>
+                <p>Asphalt parking lots poured over poorly compacted fill will develop wheel ruts and sinkholes within 12 months.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Engineering Specification & Bids -->
+      <div class="results-column">
+        <div class="spec-card">
+          <div class="spec-header">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 0.25rem;">CIVIL SPECIFICATION</span>
+              <h3 class="spec-headline">Stormwater, Haul &amp; Wall Sizing</h3>
+            </div>
+            <button type="button" id="btn-print" class="btn btn-secondary btn-sm" title="Print 8.5x11 Submittal Sheet">
+              🖨️ Print Submittal Sheet
+            </button>
+          </div>
+
+          <!-- Primary Metric: Peak Stormwater Discharge Flow -->
+          <div class="primary-stat-box">
+            <div class="primary-stat-label">Rational Method Peak 25-Yr Runoff (Q = CiA)</div>
+            <div class="primary-stat-value" id="out-peak-cfs">3.23 CFS</div>
+            <div class="primary-stat-sub" id="out-peak-sub">Composite C = 0.67 &bull; 1.50 Acres &bull; 3.2 in/hr Rain</div>
+          </div>
+
+          <!-- Secondary Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Required Detention Pond Volume</div>
+              <div class="metric-value" id="out-pond-volume">0.26 Acre-Ft</div>
+              <div class="metric-note" id="out-pond-gallons">~84,700 Gallons storage capacity</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Earthwork Haul Volume</div>
+              <div class="metric-value" id="out-haul-lcy">1,000 Loose CY</div>
+              <div class="metric-note" id="out-haul-trucks">63 Tri-Axle dump truck loads (25% swell)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Retaining Wall Face Area</div>
+              <div class="metric-value" id="out-wall-face">360 Sq Ft</div>
+              <div class="metric-note" id="out-wall-blocks">~378 Modular concrete blocks (with waste)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">NCMA Geogrid Sizing</div>
+              <div class="metric-value" id="out-geogrid-tiers" style="color: #f97316;">3 Tiers Required</div>
+              <div class="metric-note" id="out-geogrid-embed">4.5 ft embedment length (0.75 x Height)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">#57 Drainage Gravel Backfill</div>
+              <div class="metric-value" id="out-gravel-tons">19 Tons</div>
+              <div class="metric-note">12-inch continuous drainage chimney</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Turnkey Civil Site Estimate</div>
+              <div class="metric-value" id="out-total-civil">$82,500</div>
+              <div class="metric-note">Grading + Pond + Wall + Erosion control</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Alerts / Callouts -->
+          <div id="alert-container">
+            <div class="callout callout-warning">
+              <span>⚠️</span>
+              <div>
+                <strong>NCMA Geogrid Reinforcement Mandated:</strong> At an exposed height of <strong>6.0 feet</strong> carrying parking lot traffic, structural soil reinforcement is mandatory. Install 3 layers of high-tenacity polyester geogrid extending 4.5 feet into the slope backfill.
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Health Gauge -->
+          <div class="price-gauge-card">
+            <div class="gauge-header">
+              <span class="gauge-title">Turnkey Civil Site Work Budget Benchmark</span>
+              <span class="gauge-status" id="gauge-status-badge">Civil Estimate</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-seg fair"></div>
+              <div class="gauge-seg avg"></div>
+              <div class="gauge-seg high"></div>
+            </div>
+            <div class="gauge-labels">
+              <span id="price-low">$66,000 (Low)</span>
+              <span id="price-mid">$82,500 (Fair Benchmark)</span>
+              <span id="price-high">$108,000 (High Soil Complexity)</span>
+            </div>
+            <p class="gauge-explanation" id="gauge-explanation">
+              Includes 800 BCY mass cut and off-site hauling, detention pond grading with concrete riser, 360 SF geogrid retaining wall, and SWPPP silt fence.
+            </p>
+          </div>
+
+          <!-- Lead Capture / Quote Form Section -->
+          <div id="lead-section" class="lead-cta-card" style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">
+              Request Stamped Civil Grading &amp; Drainage Bids
+            </h3>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Connect directly with verified local civil earthwork contractors, excavation operators, and retaining wall builders licensed in your county.
+            </p>
+
+            <!-- No-Spam Guarantee -->
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>No-Spam Guarantee:</strong> We do not broadcast your contact information to general directories. Your project specs are dispatched strictly to 1 or 2 verified civil site development contractors actively moving dirt in your territory.
+              </div>
+            </div>
+
+            <form id="lead-form">
+              <input type="hidden" name="trade" value="site">
+              <input type="hidden" id="lead-specs-summary" name="specs_summary" value="">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-name" class="form-label">Full Name *</label>
+                  <input type="text" id="lead-name" class="form-control" placeholder="Derrick Cole" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-company" class="form-label">Development / Company Name</label>
+                  <input type="text" id="lead-company" class="form-control" placeholder="Cole Commercial Properties">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-email" class="form-label">Business Email *</label>
+                  <input type="email" id="lead-email" class="form-control" placeholder="dcole@coleproperties.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-phone" class="form-label">Phone Number *</label>
+                  <input type="tel" id="lead-phone" class="form-control" placeholder="(555) 432-8901" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-zip" class="form-label">
+                  <span>Project Site ZIP Code *</span>
+                  <span class="location-detected-pill" id="zip-detected-pill" style="display: none;">📍 Auto-Detected</span>
+                </label>
+                <input type="text" id="lead-zip" class="form-control" placeholder="77002" maxlength="5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-notes" class="form-label">Civil Site Notes / Target Groundbreaking Date</label>
+                <textarea id="lead-notes" class="form-control" rows="2" placeholder="e.g., Commercial pad grading in Q4. Need detention pond rough-in and 60-ft retaining wall along west property line."></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-lead" class="btn btn-primary btn-block" style="font-size: 1rem; padding: 0.75rem;">
+                🚜 Dispatch Specifications to Civil Earthwork Contractors
+              </button>
+              <div id="lead-success-msg" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: var(--radius-md); color: #a7f3d0; font-size: 0.875rem; text-align: center;">
+                ✓ Specification dispatched successfully! A civil excavation contractor will contact you within 1 business day.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Submittal Sheet (Print-Only) -->
+  <section class="printable-sheet" id="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>SiteSpec Pro™ Civil Earthwork &amp; Stormwater Submittal</h2>
+      <p>Prepared in accordance with EPA NPDES Guidelines &amp; NCMA Retaining Wall Standards</p>
+      <div class="print-meta">
+        <span id="print-date">Date: 2026-11-07</span>
+        <span id="print-job-ref">Ref: CIVIL-DRAINAGE-SPEC</span>
+        <span>Target Standard: Rational Method Q=CiA / NCMA SRW</span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">1. Site Area &amp; Stormwater Hydrology</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Total Basin Drainage Area</td>
+          <td style="width: 50%; font-weight: bold;" id="p-acres">1.50 Acres</td>
+        </tr>
+        <tr>
+          <td>Impervious Surface Cover</td>
+          <td style="font-weight: bold;" id="p-impervious">65% (Asphalt / Concrete / Roof)</td>
+        </tr>
+        <tr>
+          <td>Calculated Composite Runoff Coefficient (C)</td>
+          <td style="font-weight: bold;" id="p-coeff">0.67</td>
+        </tr>
+        <tr>
+          <td>25-Year Storm Design Rainfall Intensity</td>
+          <td style="font-weight: bold;" id="p-rain">3.20 In / Hr</td>
+        </tr>
+        <tr>
+          <td>Peak Stormwater Discharge Flow (Q = CiA)</td>
+          <td style="font-weight: bold; color: #b91c1c;" id="p-cfs">3.23 CFS</td>
+        </tr>
+        <tr>
+          <td>Required Stormwater Detention Basin Storage</td>
+          <td style="font-weight: bold;" id="p-pond">0.26 Acre-Feet (~84,700 Gallons)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">2. Earthwork Cut / Fill &amp; Haul Cycles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Undisturbed Bank Volume (BCY)</td>
+          <td style="width: 50%; font-weight: bold;" id="p-bcy">800 Bank Cubic Yards</td>
+        </tr>
+        <tr>
+          <td>Loose Haul Volume (LCY @ 25% Swell)</td>
+          <td style="font-weight: bold;" id="p-lcy">1,000 Loose Cubic Yards</td>
+        </tr>
+        <tr>
+          <td>16-Yard Tri-Axle Dump Truck Haul Loads</td>
+          <td style="font-weight: bold;" id="p-trucks">63 Truck Loads</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">3. Segmental Concrete Retaining Wall Bill of Materials</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Wall Length &amp; Max Exposed Height</td>
+          <td style="width: 50%; font-weight: bold;" id="p-wall-dim">60 Ft Length &bull; 6.0 Ft Height</td>
+        </tr>
+        <tr>
+          <td>Total Wall Face Area</td>
+          <td style="font-weight: bold;" id="p-wall-area">360 Sq Ft</td>
+        </tr>
+        <tr>
+          <td>Modular Concrete Blocks (with 5% waste)</td>
+          <td style="font-weight: bold;" id="p-blocks">378 Blocks</td>
+        </tr>
+        <tr>
+          <td>NCMA Geogrid Soil Reinforcement</td>
+          <td style="font-weight: bold; color: #b91c1c;" id="p-geogrid">3 Tiers &bull; 4.5 Ft Embedment Length</td>
+        </tr>
+        <tr>
+          <td>#57 Clean Drainage Stone Backfill</td>
+          <td style="font-weight: bold;" id="p-stone">19 Tons (12-inch drainage chimney)</td>
+        </tr>
+        <tr>
+          <td>Turnkey Civil Site Budget Range</td>
+          <td style="font-weight: bold;" id="p-budget">$66,000 - $108,000 USD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <p>Developer Representative: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">Property Owner / Civil Engineer</p>
+      </div>
+      <div class="sig-box">
+        <p>Civil Excavation Contractor: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">License #: __________________ State: _________</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="faq-title">Civil Earthwork &amp; Stormwater FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3 class="faq-q">Why does soil swell when excavated by heavy equipment?</h3>
+          <p class="faq-a">
+            Undisturbed soil in the ground (Bank Cubic Yards) has been consolidated under thousands of years of overburden pressure. When an excavator bucket digs it up, mechanical action fractures the grains and introduces 20% to 35% air voids, swelling the loose volume that must be hauled away.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">Why do retaining walls over 4 feet fail without geogrid?</h3>
+          <p class="faq-a">
+            Modular dry-stack concrete blocks rely solely on friction and gravity. Once wall height exceeds 4 feet, the overturning moment of wet earth behind the wall exceeds block weight. Geogrid acts like tensile steel straps, locking the blocks into a unified reinforced soil mass that cannot tip or slide.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">What is the difference between detention and retention ponds?</h3>
+          <p class="faq-a">
+            A dry detention basin remains empty between storms and temporarily holds peak rainwater for 24-48 hours before releasing it into the municipal storm sewer through a restricted orifice. A retention pond (wet pond) maintains a permanent water pool year-round and relies on vegetative uptake and evaporation.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">How does NOAA Atlas 14 dictate stormwater design?</h3>
+          <p class="faq-a">
+            City drainage manuals mandate that commercial site plans withstand a specific statistical rainfall recurrence (typically a 10-year or 25-year 24-hour storm). NOAA Atlas 14 provides precise precipitation frequency estimates for your specific GPS coordinates to prevent undersizing pipes and retention ponds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-nav">
+        <a href="../">TradeSpec Pro™ Suite Hub</a>
+        <a href="../charge-spec/">Commercial EV Sizing</a>
+        <a href="../permit-spec/">Tenant Improvement</a>
+        <a href="../crane-lift/">Crane Rigging</a>
+        <a href="../well-drilling/">Well Sizing</a>
+        <a href="../pallet-racking/">Pallet Racking</a>
+        <a href="../spray-foam/">Spray Foam</a>
+        <a href="../grease-trap/">Grease Interceptor</a>
+      </nav>
+      <p>&copy; 2026 TradeSpec Pro™ Engineering Suite. Built for site developers, civil engineers, and earthwork contractors.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Preliminary civil estimates. Final construction packages require signed/sealed drawings by a licensed Professional Engineer (PE).</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

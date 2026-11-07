@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Walk-in Cooler &amp; Freezer Sizer | ColdSpec Pro™</title>
+  <meta name="description" content="Free engineering calculator for commercial walk-in coolers and freezers. Calculates ASHRAE 24-hr heat loads, condensing unit BTU/hr, compressor HP, and IMP panel insulation.">
+  <meta name="keywords" content="walk in cooler size calculator, commercial freezer btu calculator, walk in compressor horsepower calculator, insulated metal panel r value calculator, refrigeration heat load calculation">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/cold-spec/">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Commercial Walk-in Cooler &amp; Freezer Sizer | ColdSpec Pro™">
+  <meta property="og:description" content="Calculate ASHRAE BTU/hr heat loads, condensing unit compressor HP, IMP panel insulation, and turnkey walk-in refrigeration costs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/cold-spec/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ColdSpec Pro Commercial Walk-in Refrigeration Sizer",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates commercial walk-in cooler and freezer heat loads (transmission, infiltration, product pull-down, internal lighting), condensing unit compressor HP, defrost requirements, and EISA 2007 panel R-values according to ASHRAE Refrigeration Handbook standards.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why are commercial walk-in coolers sized on a 16-hour runtime factor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under ASHRAE standards, walk-in coolers operating above 34°F are designed to run a maximum of 16 hours out of every 24 hours. The remaining 8 hours of off-cycle time allow the evaporator coil fans to continuously circulate air and naturally melt accumulated frost off the coil fins without requiring electric heating elements. Low-temperature freezers are sized on an 18-hour runtime to allow for active electric defrost cycles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the federal EISA 2007 minimum R-value standards for walk-in panels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Energy Independence and Security Act (EISA 2007) mandates minimum thermal insulation values for commercial walk-ins: coolers must have wall, ceiling, and door insulation of at least R-25 (typically 3.5 to 4 inches of foamed-in-place polyurethane). Freezers mandate at least R-32 (typically 4 to 5 inches), plus mandatory insulated floor panels and heated door perimeter perimeter gaskets to prevent frost bridging."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Air Defrost and Electric Defrost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Air defrost (off-cycle defrost) is used in medium-temperature walk-in coolers maintaining 34°F to 38°F. The compressor shuts down while the evaporator fans continue running, using ambient room air to melt coil frost. Electric defrost is mandatory for freezers operating below 32°F; electric resistance heater rods embedded in the evaporator coil energize periodically while fans shut off to rapidly melt ice into a heated drain pan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is floor insulation mandatory for walk-in freezers but optional for coolers on slab?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A walk-in freezer holding -10°F directly on an uninsulated concrete ground slab will freeze moisture in the subsoil below. Over months, expanding subsoil ice lenses cause 'frost heave', cracking the building foundation and buckling the freezer floor upward. Walk-in freezers mandate an insulated floor panel assembly with sub-slab ventilation or electric floor warming cables."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>❄️ <strong>ASHRAE Ch. 23 &amp; EISA 2007 Commercial Refrigeration Utility:</strong> Preliminary thermal heat load estimator for restaurant operators, breweries, cold storage warehouses, and mechanical contractors.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">❄️</div>
+        <div>
+          <h1 class="brand-title">ColdSpec Pro<span class="badge-tag">ASHRAE 23 &bull; COLD CHAIN</span></h1>
+          <p class="brand-tagline">Commercial Walk-in Cooler &amp; Freezer Heat Load &amp; Compressor Sizing</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-primary header-btn">Get Refrigeration Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <h2 class="hero-title">Commercial Walk-in Cooler &amp; Freezer Heat Load Sizer</h2>
+      <p class="hero-subtitle">
+        Prevent spoiled inventory and compressor burnout. Size total 24-hour BTU heat loads (transmission, infiltration, product pull-down), condensing unit compressor HP, evaporator airflow CFM, and EISA 2007 compliant insulated panel specs.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item"><span>📋</span> Standard: <strong>ASHRAE Refrigeration Handbook (Ch. 23/24)</strong></div>
+        <div class="meta-item"><span>🛡️</span> Efficiency: <strong>EISA 2007 (R-25 / R-32 Mandate)</strong></div>
+        <div class="meta-item"><span>⏱️</span> Runtime: <strong>16-Hr Cooler / 18-Hr Freezer Cycle</strong></div>
+        <div class="meta-item"><span>🔒</span> Privacy: <strong>100% Client-Side Engine</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-Click Preset Profiles -->
+  <div class="container">
+    <div class="presets-card">
+      <div class="presets-header">
+        <span>❄️ Quick Presets (1-Click Real-World Refrigeration Profiles)</span>
+      </div>
+      <div class="presets-grid">
+        <button type="button" class="preset-btn" id="preset-beer">
+          <span class="preset-title">🍺 Restaurant Keg &amp; Food Cooler</span>
+          <span class="preset-desc">10x12x8.5 ft &bull; 35&deg;F Box &bull; 4" IMP (R-29) &bull; Medium Traffic &bull; Air Defrost</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-butcher">
+          <span class="preset-title">🥩 Commercial Meat &amp; Seafood Freezer</span>
+          <span class="preset-desc">14x20x9 ft &bull; -10&deg;F Box &bull; 5" IMP (R-36) &bull; Electric Defrost &bull; Insulated Floor</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-floral">
+          <span class="preset-title">💐 Florist Floral Display Cooler</span>
+          <span class="preset-desc">8x10x8 ft &bull; 38&deg;F Box &bull; Gentle Velocity Coil &bull; High Humidity (85% RH)</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-brewery">
+          <span class="preset-title">🍻 Craft Brewery Cold Storage &amp; Kegging</span>
+          <span class="preset-desc">20x30x10 ft &bull; 34&deg;F Box &bull; High Thermal Mass &bull; Pallet Jack Heavy Floor</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Calculator Workspace -->
+  <main class="container calculator-workspace">
+    <div class="workspace-grid">
+
+      <!-- Left Column: Inputs Form -->
+      <div class="inputs-column">
+        <div class="card">
+          <h2 class="card-title">
+            <span>Box Dimensions &amp; Thermal Parameters</span>
+            <span class="badge-tag" style="font-size: 0.7rem;">STEP 1 OF 2</span>
+          </h2>
+
+          <form id="cold-form" novalidate>
+
+            <!-- Box Application & Target Temperature -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="box-application" class="form-label">
+                  <span>Refrigeration Application</span>
+                  <span class="info-tip" tabindex="0" data-tip="Coolers operate at 34°F to 38°F with air defrost. Freezers operate at -10°F to 0°F with electric defrost.">?</span>
+                </label>
+                <select id="box-application" class="form-control">
+                  <option value="cooler" selected>Medium Temp Walk-In Cooler (35&deg;F - Food/Beer)</option>
+                  <option value="freezer">Low Temp Walk-In Freezer (-10&deg;F - Frozen Meat/Seafood)</option>
+                  <option value="floral">Floral Display Cooler (38&deg;F - Gentle Airflow)</option>
+                  <option value="prep">Cold Prep Room (50&deg;F - Worker Occupied)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="ambient-temp" class="form-label">
+                  <span>Surrounding Ambient Temp (&deg;F)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Peak summer temperature of the surrounding kitchen or unconditioned warehouse (typically 85°F to 105°F).">?</span>
+                </label>
+                <input type="number" id="ambient-temp" class="form-control" value="90" min="65" max="115" step="1" required>
+              </div>
+            </div>
+
+            <!-- Box Dimensions (L x W x H) -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="box-length" class="form-label">External Length (Feet)</label>
+                <input type="number" id="box-length" class="form-control" value="12" min="6" max="100" step="1" required>
+              </div>
+
+              <div class="form-group">
+                <label for="box-width" class="form-label">External Width (Feet)</label>
+                <input type="number" id="box-width" class="form-control" value="10" min="6" max="80" step="1" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="box-height" class="form-label">Ceiling Height (Feet)</label>
+                <input type="number" id="box-height" class="form-control" value="8.5" min="7.5" max="25" step="0.5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="panel-thickness" class="form-label">
+                  <span>IMP Panel Insulation</span>
+                  <span class="info-tip" tabindex="0" data-tip="Foamed-in-place polyurethane: 3.5in (R-25), 4.0in (R-29), 5.0in (R-36). Freezers mandate R-32+.">?</span>
+                </label>
+                <select id="panel-thickness" class="form-control">
+                  <option value="4" selected>4.0" Polyurethane (R-29 - Commercial Standard)</option>
+                  <option value="3.5">3.5" Polyurethane (R-25 - EISA Minimum Cooler)</option>
+                  <option value="5">5.0" Polyurethane (R-36 - Heavy Duty Freezer)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Product Pull-down & Door Traffic -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="product-load-lbs" class="form-label">
+                  <span>Daily Product Loading (Lbs/Day)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Total weight of warm food, kegs, or produce loaded into the box daily that requires cooling pulldown.">?</span>
+                </label>
+                <input type="number" id="product-load-lbs" class="form-control" value="800" min="0" max="20000" step="50">
+              </div>
+
+              <div class="form-group">
+                <label for="door-traffic" class="form-label">
+                  <span>Door Openings &amp; Infiltration Traffic</span>
+                  <span class="info-tip" tabindex="0" data-tip="Frequency of door opening. Each opening injects warm, humid air that must be chilled and defrosted.">?</span>
+                </label>
+                <select id="door-traffic" class="form-control">
+                  <option value="light">Light Traffic (10-15 opens/day)</option>
+                  <option value="medium" selected>Medium Traffic (30-50 opens/day)</option>
+                  <option value="heavy">Heavy Traffic / Pallet Jack (75+ opens/day)</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <button type="button" id="btn-recalculate" class="btn btn-primary btn-block">
+                ❄️ Calculate Heat Load &amp; Compressor Sizing
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5 Questions to Ask Commercial Refrigeration Contractors -->
+        <div class="questions-card">
+          <div class="questions-header">
+            <span class="q-icon">👷</span>
+            <h3 class="questions-title">5 Questions to Ask Your Refrigeration Contractor</h3>
+          </div>
+          <ul class="questions-list">
+            <li>
+              <span class="q-icon">1.</span>
+              <div>
+                <strong>"Is the condensing unit sized on a 16-hour runtime for coolers and 18-hour for freezers?"</strong>
+                <p>Contractors who size for 24-hour continuous runtime leave no time for off-cycle defrost, turning the evaporator into a solid block of ice.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">2.</span>
+              <div>
+                <strong>"What ambient temperature rating is specified for the outdoor condensing unit?"</strong>
+                <p>If the compressor is rated only for 90°F ambient but sits on a hot asphalt roof at 115°F in August, capacity drops 25% and trips high-pressure limits.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">3.</span>
+              <div>
+                <strong>"Is a heated drain line and floor frost-heave protection included for freezers?"</strong>
+                <p>Freezer drain lines freeze solid immediately without internal heat tape, and unheated slabs will heave and crack foundations within months.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">4.</span>
+              <div>
+                <strong>"Which low-GWP refrigerant does the system use (R-448A, R-449A, or CO2)?"</strong>
+                <p>Older R-404A and R-22 refrigerants face EPA AIM Act phase-downs and exorbitant recharge replacement costs.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">5.</span>
+              <div>
+                <strong>"Are strip curtains or rapid air curtains included in the door submittal?"</strong>
+                <p>Strip curtains block over 70% of warm moist air infiltration during loading, cutting monthly electric bills by $150 to $300.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Engineering Specification & Bids -->
+      <div class="results-column">
+        <div class="spec-card">
+          <div class="spec-header">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 0.25rem;">REFRIGERATION SPECIFICATION</span>
+              <h3 class="spec-headline">Cooling Load &amp; Equipment Sizing</h3>
+            </div>
+            <button type="button" id="btn-print" class="btn btn-secondary btn-sm" title="Print 8.5x11 Submittal Sheet">
+              🖨️ Print Submittal Sheet
+            </button>
+          </div>
+
+          <!-- Primary Metric: Required Condensing Unit Capacity -->
+          <div class="primary-stat-box">
+            <div class="primary-stat-label">Required Condensing Unit Cooling Capacity</div>
+            <div class="primary-stat-value" id="out-btu-hr">11,850 BTU/hr</div>
+            <div class="primary-stat-sub" id="out-btu-sub">at +20&deg;F SST &bull; 16-Hour Daily Runtime Factor</div>
+          </div>
+
+          <!-- Secondary Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Compressor Horsepower</div>
+              <div class="metric-value" id="out-compressor-hp">1.5 HP</div>
+              <div class="metric-note" id="out-compressor-note">Scroll or Semi-Hermetic Condensing Unit</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Defrost System Mandated</div>
+              <div class="metric-value" id="out-defrost-type" style="color: #10b981;">Air Defrost</div>
+              <div class="metric-note" id="out-defrost-note">Off-cycle coil defrost (Box temp &ge; 34&deg;F)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Evaporator Airflow CFM</div>
+              <div class="metric-value" id="out-evap-cfm">1,250 CFM</div>
+              <div class="metric-note">Low-profile dual-fan ceiling blower</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Total 24-Hr Thermal Load</div>
+              <div class="metric-value" id="out-total-btu-day">189,600 BTU</div>
+              <div class="metric-note">Includes 10% safety margin factor</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Annual Operating Power</div>
+              <div class="metric-value" id="out-annual-kwh">11,200 kWh/yr</div>
+              <div class="metric-note" id="out-annual-power-cost">~$1,568 / yr at $0.14/kWh</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Turnkey Equipment &amp; Install</div>
+              <div class="metric-value" id="out-total-cost">$18,500</div>
+              <div class="metric-note">Box + Mechanicals + Piping + Electrical</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Alerts / Callouts -->
+          <div id="alert-container">
+            <div class="callout callout-success">
+              <span>❄️</span>
+              <div>
+                <strong>Energy Standard Compliant:</strong> 4.0-inch foamed polyurethane insulation delivers <strong>R-29 thermal resistance</strong>, exceeding the federal EISA 2007 walk-in cooler mandate (R-25 minimum).
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Health Gauge -->
+          <div class="price-gauge-card">
+            <div class="gauge-header">
+              <span class="gauge-title">Turnkey Walk-In Equipment &amp; Install Range</span>
+              <span class="gauge-status" id="gauge-status-badge">Commercial Estimate</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-seg fair"></div>
+              <div class="gauge-seg avg"></div>
+              <div class="gauge-seg high"></div>
+            </div>
+            <div class="gauge-labels">
+              <span id="price-low">$14,500 (Basic Box)</span>
+              <span id="price-mid">$18,500 (Fair Benchmark)</span>
+              <span id="price-high">$24,000 (Outdoor Package)</span>
+            </div>
+            <p class="gauge-explanation" id="gauge-explanation">
+              Includes pre-engineered cam-lock IMP panels, 1.5 HP scroll condensing unit, low-profile evaporator, copper line set with armaflex insulation, and startup commissioning.
+            </p>
+          </div>
+
+          <!-- Lead Capture / Quote Form Section -->
+          <div id="lead-section" class="lead-cta-card" style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">
+              Request Stamped Commercial Refrigeration Bids
+            </h3>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Connect directly with verified local commercial refrigeration mechanical contractors (EPA Section 608 certified) for turn-key equipment delivery and installation.
+            </p>
+
+            <!-- No-Spam Guarantee -->
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>No-Spam Guarantee:</strong> We do not sell your contact details to general referral lists. Your thermal specifications are routed strictly to 1 or 2 commercial refrigeration mechanical contractors licensed in your area.
+              </div>
+            </div>
+
+            <form id="lead-form">
+              <input type="hidden" name="trade" value="cold">
+              <input type="hidden" id="lead-specs-summary" name="specs_summary" value="">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-name" class="form-label">Full Name *</label>
+                  <input type="text" id="lead-name" class="form-control" placeholder="Carlos Mendez" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-company" class="form-label">Company / Restaurant Name</label>
+                  <input type="text" id="lead-company" class="form-control" placeholder="Lone Star Brewing Co.">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-email" class="form-label">Business Email *</label>
+                  <input type="email" id="lead-email" class="form-control" placeholder="carlos@lonestarbrew.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-phone" class="form-label">Phone Number *</label>
+                  <input type="tel" id="lead-phone" class="form-control" placeholder="(555) 678-2940" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-zip" class="form-label">
+                  <span>Facility ZIP Code *</span>
+                  <span class="location-detected-pill" id="zip-detected-pill" style="display: none;">📍 Auto-Detected</span>
+                </label>
+                <input type="text" id="lead-zip" class="form-control" placeholder="77002" maxlength="5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-notes" class="form-label">Project Details / Target Installation Window</label>
+                <textarea id="lead-notes" class="form-control" rows="2" placeholder="e.g., Installing 10x12 walk-in cooler in commercial kitchen. Condenser will mount on rooftop (~45 ft line run)."></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-lead" class="btn btn-primary btn-block" style="font-size: 1rem; padding: 0.75rem;">
+                ❄️ Dispatch Specification to Refrigeration Contractors
+              </button>
+              <div id="lead-success-msg" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: var(--radius-md); color: #a7f3d0; font-size: 0.875rem; text-align: center;">
+                ✓ Specification dispatched successfully! A commercial refrigeration contractor will contact you within 1 business day.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Submittal Sheet (Print-Only) -->
+  <section class="printable-sheet" id="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>ColdSpec Pro™ Commercial Walk-in Refrigeration Submittal</h2>
+      <p>Prepared in accordance with ASHRAE Refrigeration Handbook (Ch. 23 &amp; 24) &amp; EISA 2007</p>
+      <div class="print-meta">
+        <span id="print-date">Date: 2026-11-07</span>
+        <span id="print-job-ref">Ref: COLD-CHAIN-SPEC</span>
+        <span>Target Standard: ASHRAE 23 / EISA 2007</span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">1. Box Geometry &amp; Operating Temperatures</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Box Application &amp; Target Temp</td>
+          <td style="width: 50%; font-weight: bold;" id="p-app">Medium Temp Cooler (+35&deg;F)</td>
+        </tr>
+        <tr>
+          <td>External Dimensions (L x W x H)</td>
+          <td style="font-weight: bold;" id="p-dim">12.0 ft x 10.0 ft x 8.5 ft</td>
+        </tr>
+        <tr>
+          <td>Total Box Surface Area &amp; Volume</td>
+          <td style="font-weight: bold;" id="p-area">614 Sq Ft &bull; 1,020 Cu Ft</td>
+        </tr>
+        <tr>
+          <td>Surrounding Ambient Temperature</td>
+          <td style="font-weight: bold;" id="p-ambient">90&deg;F Design Ambient</td>
+        </tr>
+        <tr>
+          <td>IMP Panel Insulation &amp; R-Value</td>
+          <td style="font-weight: bold;" id="p-panel">4.0" Polyurethane (R-29 EISA Compliant)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">2. Heat Load Breakdown &amp; Equipment Specifications</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Daily Thermal Heat Load (BTU / 24 Hr)</td>
+          <td style="width: 50%; font-weight: bold;" id="p-total-btu">189,600 BTU / 24 Hr (with 10% safety)</td>
+        </tr>
+        <tr>
+          <td>Design Runtime Operating Factor</td>
+          <td style="font-weight: bold;" id="p-runtime">16 Hours / 24 Hours</td>
+        </tr>
+        <tr>
+          <td>Required Condensing Unit Capacity</td>
+          <td style="font-weight: bold; color: #0891b2;" id="p-btu-hr">11,850 BTU / Hr</td>
+        </tr>
+        <tr>
+          <td>Recommended Compressor Horsepower</td>
+          <td style="font-weight: bold;" id="p-hp">1.5 HP (Scroll or Semi-Hermetic)</td>
+        </tr>
+        <tr>
+          <td>Defrost System Specification</td>
+          <td style="font-weight: bold;" id="p-defrost">Air Defrost (Off-Cycle)</td>
+        </tr>
+        <tr>
+          <td>Evaporator Coil Airflow Rating</td>
+          <td style="font-weight: bold;" id="p-cfm">1,250 CFM</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">3. Financial &amp; Energy Projections</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Estimated Annual Electric Consumption</td>
+          <td style="width: 50%; font-weight: bold;" id="p-kwh">11,200 kWh / Year (~$1,568 / Year)</td>
+        </tr>
+        <tr>
+          <td>Turnkey Equipment &amp; Installation Budget</td>
+          <td style="font-weight: bold;" id="p-budget">$14,500 - $24,000 USD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <p>Owner / Operator Representative: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">Restaurant / Facility Representative</p>
+      </div>
+      <div class="sig-box">
+        <p>Refrigeration Contractor: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">EPA Section 608 License #: __________________ State: _________</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="faq-title">Commercial Refrigeration Engineering FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3 class="faq-q">Why is a 16-hour runtime mandatory for walk-in coolers?</h3>
+          <p class="faq-a">
+            Coolers operating at 34°F to 38°F have an evaporator coil that runs around 20°F to 25°F. Moisture from the air continuously freezes onto the coil fins. Designing the condensing unit to handle the entire daily heat load in 16 hours leaves 8 hours of off-cycle time where the fans run and melt the frost naturally without expensive electric defrost heaters.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">What causes 'frost heave' under commercial walk-in freezers?</h3>
+          <p class="faq-a">
+            A freezer operating at -10°F slowly pulls heat out of the earth below the concrete slab. Over months, subsoil groundwater freezes into ice lenses that expand with immense pressure, buckling the concrete slab and destroying the walk-in box. Freezers require insulated floor panels and underfloor ventilation or electric warming mats.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">What is the difference between hermetic and scroll compressors?</h3>
+          <p class="faq-a">
+            Scroll compressors have 60% fewer moving parts than traditional reciprocating piston compressors. They operate with higher energy efficiency (higher SEER/EER), lower noise, and greater tolerance for liquid refrigerant slugging, making them the modern standard for commercial walk-ins.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">How does product pull-down load affect equipment sizing?</h3>
+          <p class="faq-a">
+            Loading 1,000 lbs of warm meat or beer at 75°F into a 35°F cooler requires removing 32,000 BTUs of sensible heat in addition to ambient wall leakage. If an operator regularly loads hot product, the refrigeration system must be upsized by 20% to 40% to achieve safe FDA food code cooling times.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-nav">
+        <a href="../">TradeSpec Pro™ Suite Hub</a>
+        <a href="../charge-spec/">Commercial EV Sizing</a>
+        <a href="../permit-spec/">Tenant Improvement</a>
+        <a href="../site-spec/">Civil Earthwork</a>
+        <a href="../crane-lift/">Crane Rigging</a>
+        <a href="../well-drilling/">Well Sizing</a>
+        <a href="../pallet-racking/">Pallet Racking</a>
+        <a href="../spray-foam/">Spray Foam</a>
+        <a href="../grease-trap/">Grease Interceptor</a>
+      </nav>
+      <p>&copy; 2026 TradeSpec Pro™ Engineering Suite. Built for commercial food operators, breweries, and refrigeration contractors.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Preliminary refrigeration estimates. Final equipment selection requires review by an EPA certified mechanical engineer or contractor.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

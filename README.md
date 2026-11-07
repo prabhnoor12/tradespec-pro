@@ -5,20 +5,24 @@
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Suite-0284c7?style=flat&logo=github)](https://prabhnoor12.github.io/tradespec-pro/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Standards: ASME B30.5 / OSHA / UPC](https://img.shields.io/badge/Standards-Compliant-f59e0b.svg)]()
+[![Standards: NEC / IBC / ASME / ASHRAE / UPC](https://img.shields.io/badge/Standards-Compliant-f59e0b.svg)]()
 
 ---
 
 ## 🏗️ Suite Overview
 
-**TradeSpec Pro™** unites 5 specialized, high-intent engineering calculation utilities under a single umbrella banner, single domain, and single repository.
+**TradeSpec Pro™** unites 9 specialized, high-intent engineering calculation utilities under a single umbrella banner, single domain, and single repository.
 
-Instead of paying for 5 separate domain names and hosting plans, every tool is hosted seamlessly under:
+Every tool is hosted seamlessly under:
 `https://prabhnoor12.github.io/tradespec-pro/`
 
 | Tool | Subpath | Governing Standard | Target Audience | Lead Value |
 | :--- | :--- | :--- | :--- | :--- |
-| **RigCheck Pro™** | [`/crane-lift/`](./crane-lift/) | ASME B30.5 &bull; OSHA 1926.1400 | General Contractors, HVAC Mechanical Riggers | \$75 – \$150 / lead |
+| **ChargeSpec Pro™** | [`/charge-spec/`](./charge-spec/) | NFPA 70 / NEC 625 &amp; 220 | EV Fleet Managers, Warehouse Operators | \$125 – \$350 / lead |
+| **PermitSpec Pro™** | [`/permit-spec/`](./permit-spec/) | IBC Table 1004.5 &bull; IPC 403 | Commercial Tenants, Retail Franchisees | \$120 – \$300 / lead |
+| **SiteSpec Pro™** | [`/site-spec/`](./site-spec/) | Rational Q=CiA &bull; NCMA SRW | Civil Developers, Excavation Contractors | \$100 – \$250 / lead |
+| **ColdSpec Pro™** | [`/cold-spec/`](./cold-spec/) | ASHRAE Ch. 23 &bull; EISA 2007 | Restaurant Owners, Breweries, Cold Storage | \$110 – \$275 / lead |
+| **RigCheck Pro™** | [`/crane-lift/`](./crane-lift/) | ASME B30.5 &bull; OSHA 1926.1400 | General Contractors, HVAC Riggers | \$75 – \$150 / lead |
 | **WellSpec Pro™** | [`/well-drilling/`](./well-drilling/) | NGWA Standards &bull; EPA Specs | Commercial Irrigators, Estate Developers | \$100 – \$225 / lead |
 | **RackSpec Pro™** | [`/pallet-racking/`](./pallet-racking/) | RMI ANSI MH16.1 &bull; OSHA 1910.176 | Logistics Directors, 3PL Warehouses | \$150 – \$350 / lead |
 | **FoamSpec Pro™** | [`/spray-foam/`](./spray-foam/) | ASHRAE 90.1 &bull; IBC Chapter 26 | Insulation Subcontractors, Envelope Estimators | \$85 – \$180 / lead |
@@ -30,51 +34,43 @@ Instead of paying for 5 separate domain names and hosting plans, every tool is h
 
 ```text
 tradespec-pro/
-├── index.html            # Unified Suite Directory & Search Portal
+├── index.html            # Unified Suite Directory & Search Portal (9 Tools)
 ├── style.css             # Suite Stylesheet (CSS Subgrid, Container Queries)
 ├── app.js                # Suite Instant Search & Category Filters
 ├── robots.txt            # Global Search Engine Crawling Directives
-├── sitemap.xml           # Multi-Tool XML Sitemap (All 6 routes)
+├── sitemap.xml           # Multi-Tool XML Sitemap (All 10 routes)
 ├── README.md             # Architecture & Operations Documentation
-│
-├── crane-lift/           # Module 1: Mobile Crane & Rigging Sizing
+├── partner/              # Private Subcontractor Portal & PIN Lead Console
 │   ├── index.html
 │   ├── style.css
-│   └── app.js
+│   ├── app.js
+│   └── settings.json
 │
-├── well-drilling/        # Module 2: Water Well & Pump Head Sizing
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-│
-├── pallet-racking/       # Module 3: Warehouse Pallet Racking & Aisles
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-│
-├── spray-foam/           # Module 4: Spray Foam Board-Feet & R-Value
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-│
-└── grease-trap/          # Module 5: Grease Interceptor & Hood CFM
-    ├── index.html
-    ├── style.css
-    └── app.js
+├── charge-spec/          # Module 1: Commercial EV Fleet & Infrastructure (NEC 625)
+├── permit-spec/          # Module 2: Commercial Tenant Improvement (IBC/IPC)
+├── site-spec/            # Module 3: Civil Earthwork & Stormwater (Rational Q=CiA)
+├── cold-spec/            # Module 4: Walk-in Cooler & Freezer Heat Load (ASHRAE 23)
+├── crane-lift/           # Module 5: Mobile Crane & Rigging Sizing (ASME B30.5)
+├── well-drilling/        # Module 6: Water Well & Pump Head Sizing (NGWA)
+├── pallet-racking/       # Module 7: Warehouse Pallet Racking (RMI ANSI MH16.1)
+├── spray-foam/           # Module 8: Spray Foam Board-Feet & R-Value (ASHRAE 90.1)
+└── grease-trap/          # Module 9: Grease Interceptor & Hood CFM (UPC App. H)
 ```
 
 ---
 
 ## 💼 Business & Monetization Architecture
 
-1. **High Commercial Intent**: Estimators and general contractors arrive looking for exact sizing numbers for \$2,500 to \$50,000+ jobs.
-2. **Transparent Calculation**: Instant code-compliant sizing builds deep trust.
-3. **Frictionless Lead Routing**: When users request local equipment bids (crane rental, certified drillers, racking installers), TradeSpec Pro packages the verified calculation specs into an RFP and routes it to 2 licensed regional contractors in that zip code.
+1. **High Commercial Intent**: Estimators and general contractors arrive looking for exact sizing numbers for \$5,000 to \$250,000+ jobs.
+2. **Transparent Calculation**: Instant code-compliant sizing builds deep trust without paywalls.
+3. **Frictionless Lead Routing**: When users request local equipment bids, TradeSpec Pro packages the verified calculation specs into an RFP and routes it into the private subcontractor dispatch console (`/partner/#portal`).
 4. **Unit Economics**:
+   - 15 EV charger depot leads @ \$150 = **\$2,250/mo**
+   - 10 tenant improvement leads @ \$140 = **\$1,400/mo**
+   - 12 civil site grading leads @ \$125 = **\$1,500/mo**
+   - 15 cold storage refrigeration leads @ \$120 = **\$1,800/mo**
    - 25 crane leads @ \$100 = **\$2,500/mo**
-   - 10 well drilling leads @ \$150 = **\$1,500/mo**
-   - 8 warehouse racking leads @ \$200 = **\$1,600/mo**
-   - Total passive potential: **\$3,000 – \$6,000+/mo** without carrying inventory or equipment.
+   - Total passive potential: **\$6,000 – \$12,000+/mo** without inventory or capital risk.
 
 ---
 

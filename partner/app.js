@@ -8,6 +8,62 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 1. DEFAULT MOCK LEADS SEED (Pre-loaded if localStorage is empty) ---
   const DEFAULT_LEADS = [
     {
+      id: "EV-2026-7812",
+      timestamp: "2026-11-07T11:15:00Z",
+      trade: "charge",
+      tradeTitle: "Commercial EV Fleet",
+      name: "Marcus Vance",
+      company: "Apex Logistics LLC",
+      phone: "(713) 555-8902",
+      email: "mvance@apexlogistics.com",
+      zip: "77002",
+      specSummary: "12x 19.2kW Level 2 Ports, 85kWh Vans, 361A @ 480V, 225kVA Padmount, 150ft Trench",
+      budgetEst: "$75,000 – $145,000",
+      status: "new"
+    },
+    {
+      id: "TI-2026-6190",
+      timestamp: "2026-11-07T10:40:00Z",
+      trade: "permit",
+      tradeTitle: "Tenant Improvement",
+      name: "Elena Rostova",
+      company: "Artisan Bakery & Cafe",
+      phone: "(469) 555-7391",
+      email: "elena@artisanbakery.com",
+      zip: "75001",
+      specSummary: "2,400 SF Restaurant, 160 Persons, 2 Remote Exits, 12ft Type I Hood (4,800 CFM), $45/SF TI Credit",
+      budgetEst: "$310,000 – $480,000",
+      status: "new"
+    },
+    {
+      id: "SITE-2026-4431",
+      timestamp: "2026-11-07T09:20:00Z",
+      trade: "site",
+      tradeTitle: "Civil Earthwork",
+      name: "Derrick Cole",
+      company: "Cole Commercial Properties",
+      phone: "(512) 555-4321",
+      email: "dcole@coleproperties.com",
+      zip: "78701",
+      specSummary: "1.5 Acres, 65% Impervious, 3.23 CFS Runoff, 0.26 Ac-Ft Pond, 800 BCY Cut, 60ft x 6ft Geogrid Wall",
+      budgetEst: "$66,000 – $108,000",
+      status: "new"
+    },
+    {
+      id: "COLD-2026-5892",
+      timestamp: "2026-11-07T08:50:00Z",
+      trade: "cold",
+      tradeTitle: "Commercial Refrigeration",
+      name: "Carlos Mendez",
+      company: "Lone Star Brewing Co.",
+      phone: "(210) 555-6789",
+      email: "carlos@lonestarbrew.com",
+      zip: "78205",
+      specSummary: "10x12x8.5 ft Cooler (+35°F), 11,850 BTU/hr, 1.5 HP Scroll Condenser, 4\" IMP (R-29)",
+      budgetEst: "$14,500 – $24,000",
+      status: "new"
+    },
+    {
       id: "LIFT-2026-8491",
       timestamp: "2026-11-06T15:24:00Z",
       trade: "crane",
@@ -124,6 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const roiFactor = document.getElementById('roiFactor');
 
   const TRADE_DEFAULTS = {
+    charge: { ticket: 85000, leadCost: 135 },
+    permit: { ticket: 140000, leadCost: 140 },
+    site: { ticket: 65000, leadCost: 125 },
+    cold: { ticket: 18500, leadCost: 115 },
     crane: { ticket: 3500, leadCost: 110 },
     well: { ticket: 16000, leadCost: 125 },
     racking: { ticket: 32000, leadCost: 150 },

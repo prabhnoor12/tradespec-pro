@@ -457,6 +457,10 @@ body {
   border: 1px solid var(--border-light);
 }
 
+.charge-icon { background: rgba(0, 245, 212, 0.12); border-color: rgba(0, 245, 212, 0.3); }
+.permit-icon { background: rgba(99, 102, 241, 0.12); border-color: rgba(99, 102, 241, 0.3); }
+.site-icon { background: rgba(249, 115, 22, 0.12); border-color: rgba(249, 115, 22, 0.3); }
+.cold-icon { background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.3); }
 .heavy-icon { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.25); }
 .water-icon { background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.25); }
 .logistics-icon { background: rgba(192, 132, 252, 0.12); border-color: rgba(192, 132, 252, 0.25); }
@@ -471,6 +475,10 @@ body {
   border-radius: var(--radius-pill);
 }
 
+.badge-charge { background: rgba(0, 245, 212, 0.15); color: #00f5d4; }
+.badge-permit { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+.badge-site { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+.badge-cold { background: rgba(6, 182, 212, 0.15); color: #38bdf8; }
 .badge-heavy { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
 .badge-water { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
 .badge-logistics { background: rgba(192, 132, 252, 0.15); color: #c084fc; }

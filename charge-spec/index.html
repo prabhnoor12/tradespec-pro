@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial EV Fleet & Electrical Infrastructure Sizer | ChargeSpec Pro™</title>
+  <meta name="description" content="Free engineering calculator for commercial EV fleet depot power sizing, transformer kVA, switchgear amps, utility demand charges, and conduit sizing under NEC Article 625 & 220.">
+  <meta name="keywords" content="commercial ev fleet charger calculator, ev depot transformer sizing, nec article 625 service calculation, level 3 dc fast charger power requirements, ev demand charge estimator">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/charge-spec/">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Commercial EV Fleet & Electrical Infrastructure Sizer | ChargeSpec Pro™">
+  <meta property="og:description" content="Calculate required transformer kVA, switchgear amps, utility demand charges, and turnkey budget for commercial fleet EV depots under NEC Article 625.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/charge-spec/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ChargeSpec Pro Commercial EV Fleet Sizing Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates commercial EV fleet charging depot power requirements, dedicated transformer kVA, switchgear ampacity, utility demand charge penalties, and IRA Section 30C tax credits according to NEC Article 625 & 220 standards.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does NEC Article 625 mandate a 125% continuous duty multiplier for EV chargers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under NEC 625.41, electric vehicle charging loads are classified as continuous loads because charging sessions routinely exceed 3 continuous hours. Consequently, electrical branch circuits, disconnects, and service feeders must be rated for at least 125% of the charger's maximum nameplate amperage. For example, a bank of chargers drawing 400A continuous requires switchgear and feeders rated for at least 500A."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do utility peak demand charges impact commercial EV fleet operations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most electric utilities assess commercial demand charges based on the single highest 15-minute average power draw (measured in kW) during the billing cycle. Demand rates typically range from $12 to $35 per kW. If a fleet charges 10 trucks simultaneously at 50 kW each without load management, the resulting 500 kW spike can create a $7,500 to $17,500 monthly penalty on top of volumetric electricity kWh costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What transformer size (kVA) is required for a commercial EV fleet depot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Transformer capacity is calculated using the total coincident kW divided by power factor (typically 0.95 to 0.98 for modern switched-mode EV rectifiers). A 400 kW peak fleet depot requires at least a 500 kVA padmount transformer. Utility transformer lead times currently range from 40 to 75 weeks, making preliminary engineering and utility interconnection requests critical prior to equipment delivery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Federal IRA Section 30C Alternative Fuel Vehicle Refueling Property Credit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under the Inflation Reduction Act (IRA), Section 30C provides a 30% investment tax credit up to $100,000 per EVSE unit for commercial installations placed in service in eligible non-urban or low-income census tracts, provided prevailing wage and apprenticeship requirements are satisfied."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>⚡ <strong>NEC Article 625 &amp; 220 Commercial Infrastructure Utility:</strong> Preliminary engineering estimator for commercial fleet depot electrification, transformer sizing, and utility demand analysis.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">⚡</div>
+        <div>
+          <h1 class="brand-title">ChargeSpec Pro<span class="badge-tag">NEC 625 &bull; INFRASTRUCTURE</span></h1>
+          <p class="brand-tagline">Commercial EV Fleet Depot Power, Transformer &amp; Switchgear Sizing</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-primary header-btn">Get Master Electrician Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <h2 class="hero-title">Commercial EV Fleet Depot Power &amp; Transformer Sizer</h2>
+      <p class="hero-subtitle">
+        Eliminate utility upgrade surprises. Size coincident peak kW demand, 125% NEC continuous switchgear ampacity, utility padmount transformer kVA, and utility demand charge penalties for last-mile delivery, bus, and commercial trucking fleets.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item"><span>📋</span> Standard: <strong>NFPA 70 / NEC Article 625 &amp; 220</strong></div>
+        <div class="meta-item"><span>🔌</span> Voltage: <strong>480V / 208V 3-Phase</strong></div>
+        <div class="meta-item"><span>💰</span> Incentives: <strong>IRA Section 30C (30% Credit)</strong></div>
+        <div class="meta-item"><span>🔒</span> Privacy: <strong>100% Client-Side Engine</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-Click Preset Profiles -->
+  <div class="container">
+    <div class="presets-card">
+      <div class="presets-header">
+        <span>⚡ Quick Presets (1-Click Real-World Fleet Depot Configurations)</span>
+      </div>
+      <div class="presets-grid">
+        <button type="button" class="preset-btn" id="preset-delivery">
+          <span class="preset-title">📦 Last-Mile Van Depot (Amazon/FedEx)</span>
+          <span class="preset-desc">12x 19.2kW Level 2 Chargers &bull; 85 kWh Vans &bull; 8-hr Overnight &bull; 75% Smart Sharing</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-bus">
+          <span class="preset-title">🚌 Municipal / School Bus Garage</span>
+          <span class="preset-desc">8x 60kW DC Fast Chargers &bull; 210 kWh Buses &bull; 6-hr Dwell &bull; 100% Peak</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-hotel">
+          <span class="preset-title">🏢 Corporate Campus / Hotel Bank</span>
+          <span class="preset-desc">10x 9.6kW Level 2 &bull; 65 kWh EVs &bull; 10-hr Window &bull; 208V 3-Phase</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-travel">
+          <span class="preset-title">🚛 Highway Freight Plaza (Semi Turn)</span>
+          <span class="preset-desc">4x 150kW DC Fast &bull; 300 kWh Trucks &bull; 2-hr Rapid Turnaround</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculator Workspace -->
+  <main class="container calculator-workspace">
+    <div class="workspace-grid">
+
+      <!-- Left Column: Inputs Form -->
+      <div class="inputs-column">
+        <div class="card">
+          <h2 class="card-title">
+            <span>Fleet &amp; Electrical Parameters</span>
+            <span class="badge-tag" style="font-size: 0.7rem;">STEP 1 OF 2</span>
+          </h2>
+
+          <form id="charge-form" novalidate>
+
+            <!-- Fleet Count & Output -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="charger-count" class="form-label">
+                  <span>Number of Dedicated EV Ports</span>
+                  <span class="info-tip" tabindex="0" data-tip="Total active charging heads simultaneously plugged into fleet vehicles.">?</span>
+                </label>
+                <input type="number" id="charger-count" class="form-control" value="12" min="1" max="100" step="1" required>
+              </div>
+
+              <div class="form-group">
+                <label for="charger-kw" class="form-label">
+                  <span>Max Port Power Rating (kW)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Level 2: 7.2 to 19.2 kW. Level 3 DCFC: 50 to 350 kW.">?</span>
+                </label>
+                <select id="charger-kw" class="form-control">
+                  <option value="7.2">7.2 kW (Standard L2 - 30A @ 240V)</option>
+                  <option value="9.6">9.6 kW (Commercial L2 - 40A @ 240V)</option>
+                  <option value="11.5">11.5 kW (Fleet L2 - 48A @ 240V)</option>
+                  <option value="19.2" selected>19.2 kW (High-Output L2 - 80A @ 240V)</option>
+                  <option value="50">50 kW (DC Fast Charger - 480V 3-Ph)</option>
+                  <option value="60">60 kW (DC Fast Charger - Dual Port)</option>
+                  <option value="100">100 kW (Heavy Fleet DCFC)</option>
+                  <option value="150">150 kW (Ultra-Fast Semi DCFC)</option>
+                  <option value="350">350 kW (Megawatt Class Ultra-Fast)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Battery Pack & Dwell Window -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="battery-kwh" class="form-label">
+                  <span>Avg Vehicle Battery (kWh)</span>
+                  <span class="info-tip" tabindex="0" data-tip="E-Transit: 68-89 kWh. BrightDrop: 150 kWh. Electric School Bus: 180-220 kWh. Class 8 Semi: 300-500 kWh.">?</span>
+                </label>
+                <input type="number" id="battery-kwh" class="form-control" value="85" min="20" max="600" step="5">
+              </div>
+
+              <div class="form-group">
+                <label for="dwell-hours" class="form-label">
+                  <span>Overnight Dwell Window (Hours)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Total available time vehicles sit parked at depot before morning dispatch.">?</span>
+                </label>
+                <input type="number" id="dwell-hours" class="form-control" value="8" min="1" max="24" step="0.5">
+              </div>
+            </div>
+
+            <!-- Smart Load Management Factor -->
+            <div class="form-group">
+              <label for="diversity-factor" class="form-label">
+                <span>Power Sharing / Dynamic Load Management</span>
+                <span class="info-tip" tabindex="0" data-tip="NEC 625.42 permits smart Energy Management Systems (EMS) to dynamically throttle total peak coincident draw.">?</span>
+              </label>
+              <select id="diversity-factor" class="form-control">
+                <option value="1.0">100% - Unmanaged (All chargers full power simultaneously)</option>
+                <option value="0.75" selected>75% - Smart Rotational Sharing (Saves 25% transformer capacity)</option>
+                <option value="0.50">50% - Two-Shift Staggered Charging (Saves 50% switchgear)</option>
+              </select>
+            </div>
+
+            <!-- Electrical Service Voltage & Existing Spare -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="service-voltage" class="form-label">
+                  <span>Depot Service Voltage</span>
+                  <span class="info-tip" tabindex="0" data-tip="480V 3-Phase is the industrial standard for fleet depots, reducing wire size and copper costs significantly.">?</span>
+                </label>
+                <select id="service-voltage" class="form-control">
+                  <option value="480" selected>480V 3-Phase (Industrial Standard)</option>
+                  <option value="208">208V 3-Phase (Commercial Light)</option>
+                  <option value="240">240V 1-Phase (Small Commercial)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="spare-amps" class="form-label">
+                  <span>Existing Available Spare (Amps)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Available ampacity on your current main distribution panel before requiring utility upgrade.">?</span>
+                </label>
+                <input type="number" id="spare-amps" class="form-control" value="100" min="0" max="4000" step="50">
+              </div>
+            </div>
+
+            <!-- Trench Distance & Demand Tariff -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="trench-distance" class="form-label">
+                  <span>Trench / Conduit Run (Feet)</span>
+                  <span class="info-tip" tabindex="0" data-tip="One-way conduit distance from main electrical room to the EV parking island.">?</span>
+                </label>
+                <input type="number" id="trench-distance" class="form-control" value="150" min="20" max="1500" step="10">
+              </div>
+
+              <div class="form-group">
+                <label for="demand-rate" class="form-label">
+                  <span>Utility Peak Demand Rate ($/kW)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Check your commercial electric bill: monthly penalty charged per peak kW demand (typically $12 - $35/kW).">?</span>
+                </label>
+                <input type="number" id="demand-rate" class="form-control" value="16.50" min="0" max="60" step="0.5">
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <button type="button" id="btn-recalculate" class="btn btn-primary btn-block">
+                ⚡ Calculate Infrastructure &amp; Transformer Sizing
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5 Questions to Ask Commercial Electrical Contractors -->
+        <div class="questions-card">
+          <div class="questions-header">
+            <span class="q-icon">👷</span>
+            <h3 class="questions-title">5 Questions to Ask Your Commercial EV Electrician</h3>
+          </div>
+          <ul class="questions-list">
+            <li>
+              <span class="q-icon">1.</span>
+              <div>
+                <strong>"Is your proposal calculated under NEC 625.41 (125% continuous duty rule)?"</strong>
+                <p>Ensure they don't undersize branch circuit breakers or switchboard lugs for continuous EV load.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">2.</span>
+              <div>
+                <strong>"What is the lead time on the utility padmount transformer?"</strong>
+                <p>Lead times for 500kVA+ transformers currently run 40-75 weeks. A utility service request must be submitted Day 1.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">3.</span>
+              <div>
+                <strong>"Do you install certified Energy Management Systems (EMS) to shave peak demand?"</strong>
+                <p>Smart load balancing under NEC 625.42 can cut service upgrade costs by $50,000 to $120,000.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">4.</span>
+              <div>
+                <strong>"Did you engineer voltage drop under 3% for the parking lot conduit run?"</strong>
+                <p>Long outdoor feeder runs require up-sizing copper or aluminum cables to prevent charger low-voltage faults.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">5.</span>
+              <div>
+                <strong>"Will your bid paperwork satisfy IRA Section 30C prevailing wage requirements?"</strong>
+                <p>To capture the full 30% federal tax credit (up to $100k/charger), contractor labor documentation must comply.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Engineering Specification & Bids -->
+      <div class="results-column">
+        <div class="spec-card">
+          <div class="spec-header">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 0.25rem;">ENGINEERING SPECIFICATION</span>
+              <h3 class="spec-headline">Fleet Power &amp; Service Sizing</h3>
+            </div>
+            <button type="button" id="btn-print" class="btn btn-secondary btn-sm" title="Print 8.5x11 Submittal Sheet">
+              🖨️ Print Submittal Sheet
+            </button>
+          </div>
+
+          <!-- Primary Metric: Required Service Ampacity -->
+          <div class="primary-stat-box">
+            <div class="primary-stat-label">NEC 625 Dedicated Service Ampacity (125% Continuous)</div>
+            <div class="primary-stat-value" id="out-service-amps">361 A</div>
+            <div class="primary-stat-sub" id="out-service-sub">at 480V 3-Phase &bull; Coincident Peak: 172.8 kW</div>
+          </div>
+
+          <!-- Secondary Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Transformer Size Required</div>
+              <div class="metric-value" id="out-transformer-kva">225 kVA</div>
+              <div class="metric-note" id="out-transformer-note">Padmount utility grade (0.98 PF)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Utility Upgrade Status</div>
+              <div class="metric-value" id="out-upgrade-status" style="color: #f59e0b;">Upgrade Needed</div>
+              <div class="metric-note" id="out-upgrade-note">Exceeds 100A spare capacity</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Feeder Wire &amp; Conduit Spec</div>
+              <div class="metric-value" id="out-feeder-spec">500 kcmil Al (3.5" EMT)</div>
+              <div class="metric-note" id="out-feeder-note">Voltage drop: 1.8% (&lt; 3% NEC limit)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Recharge Verification</div>
+              <div class="metric-value" id="out-charge-time">4.4 hrs / van</div>
+              <div class="metric-note" id="out-charge-note">Fits well inside 8-hr dwell window</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Annual Demand Charge Exposure</div>
+              <div class="metric-value" id="out-demand-annual">$34,214 / yr</div>
+              <div class="metric-note" id="out-demand-monthly">~$2,851 / month at $16.50/kW</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Estimated IRA 30C Tax Credit</div>
+              <div class="metric-value" id="out-tax-credit" style="color: #10b981;">$32,400</div>
+              <div class="metric-note">30% federal credit (eligible census tract)</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Alerts / Callouts -->
+          <div id="alert-container">
+            <div class="callout callout-warning">
+              <span>⚠️</span>
+              <div>
+                <strong>Utility Service Interconnection Alert:</strong> This installation requires <strong>261 Amps</strong> beyond your existing panel spare. Expect an electric utility engineering review and a new padmount transformer with a 35 to 60 week procurement schedule.
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Health Gauge -->
+          <div class="price-gauge-card">
+            <div class="gauge-header">
+              <span class="gauge-title">Turnkey Depot Electrical Budget Range</span>
+              <span class="gauge-status" id="gauge-status-badge">Commercial Estimate</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-seg fair"></div>
+              <div class="gauge-seg avg"></div>
+              <div class="gauge-seg high"></div>
+            </div>
+            <div class="gauge-labels">
+              <span id="price-low">$75,000 (Low)</span>
+              <span id="price-mid">$108,000 (Fair Benchmark)</span>
+              <span id="price-high">$145,000 (High-Spec)</span>
+            </div>
+            <p class="gauge-explanation" id="gauge-explanation">
+              Includes commercial EVSE hardware, directional boring &amp; asphalt trenching, concrete pads, 400A switchgear, bollards, and permit engineering.
+            </p>
+          </div>
+
+          <!-- Lead Capture / Quote Form Section -->
+          <div id="lead-section" class="lead-cta-card" style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">
+              Request Stamped Electrical Engineering &amp; Bids
+            </h3>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Connect directly with verified local commercial electrical contractors specializing in high-voltage fleet depot infrastructure and utility interconnection.
+            </p>
+
+            <!-- No-Spam Guarantee -->
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>No-Spam Guarantee:</strong> We do not sell your contact details to general lead brokers. Your project is routed strictly to 1 or 2 verified industrial electrical contractors licensed in your jurisdiction.
+              </div>
+            </div>
+
+            <form id="lead-form">
+              <input type="hidden" name="trade" value="charge">
+              <input type="hidden" id="lead-specs-summary" name="specs_summary" value="">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-name" class="form-label">Full Name *</label>
+                  <input type="text" id="lead-name" class="form-control" placeholder="Marcus Vance" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-company" class="form-label">Fleet / Company Name</label>
+                  <input type="text" id="lead-company" class="form-control" placeholder="Apex Logistics LLC">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-email" class="form-label">Business Email *</label>
+                  <input type="email" id="lead-email" class="form-control" placeholder="mvance@apexlogistics.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-phone" class="form-label">Phone Number *</label>
+                  <input type="tel" id="lead-phone" class="form-control" placeholder="(555) 234-5678" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-zip" class="form-label">
+                  <span>Project Facility ZIP Code *</span>
+                  <span class="location-detected-pill" id="zip-detected-pill" style="display: none;">📍 Auto-Detected</span>
+                </label>
+                <input type="text" id="lead-zip" class="form-control" placeholder="77002" maxlength="5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-notes" class="form-label">Project Details / Target Commissioning Date</label>
+                <textarea id="lead-notes" class="form-control" rows="2" placeholder="e.g., Adding 12 Ford E-Transits in Q3. Need utility transformer application and trenching across parking lot."></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-lead" class="btn btn-primary btn-block" style="font-size: 1rem; padding: 0.75rem;">
+                ⚡ Dispatch Stamped Specification to Local Electricians
+              </button>
+              <div id="lead-success-msg" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: var(--radius-md); color: #a7f3d0; font-size: 0.875rem; text-align: center;">
+                ✓ Specification dispatched successfully! A commercial electrical contractor will contact you within 1 business day.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Submittal Sheet (Print-Only) -->
+  <section class="printable-sheet" id="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>ChargeSpec Pro™ Commercial EV Electrical Submittal</h2>
+      <p>Prepared in accordance with NFPA 70 / National Electrical Code (NEC) Article 625 &amp; 220</p>
+      <div class="print-meta">
+        <span id="print-date">Date: 2026-11-07</span>
+        <span id="print-job-ref">Ref: EV-DEPOT-SPEC</span>
+        <span>Target Code: NEC 2023 / 2026</span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">1. Fleet &amp; Charger Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Dedicated EV Ports</td>
+          <td style="width: 50%; font-weight: bold;" id="p-ports">12 Ports</td>
+        </tr>
+        <tr>
+          <td>Charger Output Rating</td>
+          <td style="font-weight: bold;" id="p-rating">19.2 kW (High Output L2)</td>
+        </tr>
+        <tr>
+          <td>Average Vehicle Battery Size</td>
+          <td style="font-weight: bold;" id="p-battery">85 kWh</td>
+        </tr>
+        <tr>
+          <td>Overnight Dwell Charging Window</td>
+          <td style="font-weight: bold;" id="p-dwell">8 Hours</td>
+        </tr>
+        <tr>
+          <td>Power Sharing / Diversity Management</td>
+          <td style="font-weight: bold;" id="p-diversity">75% (Dynamic Load Balancing)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">2. Electrical Infrastructure Calculations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Total Coincident Connected Load</td>
+          <td style="width: 50%; font-weight: bold;" id="p-coincident">172.8 kW</td>
+        </tr>
+        <tr>
+          <td>Depot Nominal Service Voltage</td>
+          <td style="font-weight: bold;" id="p-voltage">480V 3-Phase</td>
+        </tr>
+        <tr>
+          <td>NEC 625.41 Continuous Service Ampacity (125%)</td>
+          <td style="font-weight: bold; color: #b91c1c;" id="p-amps">361 Amps</td>
+        </tr>
+        <tr>
+          <td>Required Padmount Utility Transformer</td>
+          <td style="font-weight: bold;" id="p-kva">225 kVA (0.98 PF)</td>
+        </tr>
+        <tr>
+          <td>Recommended Feeder Wire &amp; Conduit</td>
+          <td style="font-weight: bold;" id="p-feeder">500 kcmil Aluminum in 3.5" EMT</td>
+        </tr>
+        <tr>
+          <td>Calculated Feeder Voltage Drop</td>
+          <td style="font-weight: bold;" id="p-vdrop">1.8% (&lt; 3.0% NEC recommendation)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">3. Financial &amp; Utility Demand Exposure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Estimated Utility Peak Demand Penalty</td>
+          <td style="width: 50%; font-weight: bold;" id="p-demand">$34,214 / Year ($2,851 / Mo)</td>
+        </tr>
+        <tr>
+          <td>Estimated IRA 30C Clean Energy Tax Credit</td>
+          <td style="font-weight: bold; color: #047857;" id="p-tax">$32,400 (30% Credit)</td>
+        </tr>
+        <tr>
+          <td>Turnkey Commercial Budget Estimate</td>
+          <td style="font-weight: bold;" id="p-budget">$75,000 - $145,000 USD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <p>Prepared By: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">Fleet Operations Representative / Engineer</p>
+      </div>
+      <div class="sig-box">
+        <p>Master Electrician Review: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">License #: __________________ State: _________</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="faq-title">Commercial Fleet EV Electrical FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3 class="faq-q">Why does NEC Article 625 mandate 125% continuous sizing?</h3>
+          <p class="faq-a">
+            Under NEC 625.41, electric vehicle charging loads are classified as continuous loads because sessions routinely exceed 3 continuous hours without cycling off. All upstream conductors, overcurrent protection devices (breakers), and switchboards must be rated for at least 125% of the total charging load.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">How do utility peak demand charges hurt commercial fleets?</h3>
+          <p class="faq-a">
+            Commercial electric tariffs penalize high simultaneous peak spikes. Even if your trucks charge for only 4 hours, drawing 500 kW creates a peak demand surcharge ($12-$35 per kW) that remains on your electric bill for the entire month. Energy Management Systems (EMS) dynamically throttle charging to flatten this curve.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">Why is 480V 3-Phase preferred over 208V 3-Phase for fleet depots?</h3>
+          <p class="faq-a">
+            Higher voltage dramatically reduces current (Amps) for the same kilowatt load ($P = \sqrt{3} \times V \times I$). A 200 kW load at 208V draws 694 Amps (requiring massive, expensive parallel 500 kcmil copper lines), while at 480V it draws only 300 Amps, saving over 55% in electrical switchgear and copper conduit costs.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">How long does an electric utility transformer upgrade take?</h3>
+          <p class="faq-a">
+            Across North America, lead times for commercial 3-phase padmount transformers (300kVA to 2500kVA) currently range between 40 and 75 weeks due to supply chain backlogs. Initiating your utility engineering study with these calculated specifications is the most urgent first step.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-nav">
+        <a href="../">TradeSpec Pro™ Suite Hub</a>
+        <a href="../crane-lift/">Crane Rigging</a>
+        <a href="../well-drilling/">Well Sizing</a>
+        <a href="../pallet-racking/">Pallet Racking</a>
+        <a href="../spray-foam/">Spray Foam</a>
+        <a href="../grease-trap/">Grease Interceptor</a>
+      </nav>
+      <p>&copy; 2026 TradeSpec Pro™ Engineering Suite. Built for commercial property owners, fleet directors, and electrical contractors.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Preliminary engineering estimates. Final installations require stamped drawings by a licensed Professional Engineer (PE) or Master Electrician.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

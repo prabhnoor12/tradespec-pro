@@ -12,10 +12,30 @@
     "primaryZip": "77002",
     "serviceRadiusMiles": 60,
     "activeZips": ["77001", "77002", "77003", "77004", "77005", "77006", "77007", "77008", "77019", "77024", "77056"],
-    "maxLeadsPerDay": 8,
+    "maxLeadsPerDay": 12,
     "minimumJobValueUSD": 2500
   },
   "tradeSpecialties": {
+    "charge": {
+      "enabled": true,
+      "minServiceAmps": 200,
+      "leadCostUSD": 135
+    },
+    "permit": {
+      "enabled": true,
+      "minSquareFeet": 1500,
+      "leadCostUSD": 140
+    },
+    "site": {
+      "enabled": true,
+      "minEarthworkBcy": 500,
+      "leadCostUSD": 125
+    },
+    "cold": {
+      "enabled": true,
+      "minCompressorHp": 1.5,
+      "leadCostUSD": 115
+    },
     "crane": {
       "enabled": true,
       "minTonnage": 40,
@@ -33,12 +53,12 @@
       "leadCostUSD": 150
     },
     "foam": {
-      "enabled": false,
+      "enabled": true,
       "minBoardFeet": 3000,
       "leadCostUSD": 95
     },
     "grease": {
-      "enabled": false,
+      "enabled": true,
       "minGallons": 500,
       "leadCostUSD": 110
     }

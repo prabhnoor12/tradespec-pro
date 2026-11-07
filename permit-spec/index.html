@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Tenant Improvement & Building Code Sizer | PermitSpec Pro™</title>
+  <meta name="description" content="Free commercial building code calculator for tenant improvements. Sizes IBC occupant load, required exit doors, IPC plumbing fixtures, Type I kitchen hood CFM, and TI allowance gap.">
+  <meta name="keywords" content="ibc occupant load calculator, commercial restroom fixture calculator ipc, commercial kitchen hood cfm calculator, tenant improvement cost estimator, commercial egress door requirement">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/permit-spec/">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Commercial Tenant Improvement & Building Code Sizer | PermitSpec Pro™">
+  <meta property="og:description" content="Calculate IBC occupant load, IPC restroom fixtures, egress doors, Type I hood CFM, and out-of-pocket TI buildout costs before signing a commercial lease.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/permit-spec/">
+
+  <!-- Google Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PermitSpec Pro Commercial Tenant Improvement Code Sizer",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "description": "Calculates commercial building design occupant load under IBC Table 1004.5, required egress exit doors under IBC 1006.2.1, minimum plumbing fixtures under IPC Table 403.1, kitchen exhaust ventilation under IMC Chapter 5, and tenant improvement budget gaps.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Google Structured Data: FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is the 50-occupant threshold critical in the International Building Code (IBC)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IBC Section 1006.2.1, any space with an occupant load of 50 or more is reclassified from low-hazard to Group A (Assembly) occupancy and mandates a minimum of TWO separate, remote exit doors with panic hardware. If a tenant space has only one street entrance and exceeds 49 occupants, the tenant must spend $25,000 to $60,000 carving an emergency exit through a structural demising wall to an alley."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does IPC Table 403.1 determine commercial restroom fixture counts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The International Plumbing Code (IPC) divides calculated occupant load equally between males and females (50/50). In restaurants and assembly uses, IPC Table 403.1 requires 1 water closet per 75 males and 1 water closet per 30 females, plus lavatories at 1 per 200. ADA Chapter 6 requires at least one wheelchair-accessible stall with a 60-inch turning diameter in each multi-user restroom."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a Type I and Type II commercial kitchen hood?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IMC Section 507 and NFPA 96, Type I hoods are mandatory over appliances that produce grease vapors and smoke (fryers, griddles, charbroilers, woks). They require an integrated UL 300 fire suppression system and liquid-tight welded grease exhaust ducts. Type II hoods are only permitted over non-grease steam and heat appliances (dishwashers, pizza ovens, convection steamers)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a Landlord Tenant Improvement (TI) Allowance gap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A landlord TI allowance is typically $25 to $60 per square foot granted toward construction. However, actual commercial buildouts run $110 to $180/SF for retail or office, and $220 to $350+/SF for full commercial restaurants with grease interceptors, makeup air, and dedicated electrical. The gap is the tenant's out-of-pocket capital liability."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" role="complementary" aria-label="Tool disclaimer">
+    <span>🏛️ <strong>IBC Table 1004.5 &amp; IPC Table 403.1 Sizing Utility:</strong> Preliminary code compliance estimator for commercial leaseholders, franchisees, and tenant improvement general contractors.</span>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">🏛️</div>
+        <div>
+          <h1 class="brand-title">PermitSpec Pro<span class="badge-tag">IBC 1004 &bull; TENANT IMPROVEMENT</span></h1>
+          <p class="brand-tagline">Commercial Occupancy, Egress Doors, Plumbing &amp; TI Buildout Sizing</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-secondary header-btn" style="margin-right: 8px;">&larr; Suite Hub</a>
+        <a href="#lead-section" class="btn btn-primary header-btn">Get Commercial GC Bids</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <h2 class="hero-title">Commercial Tenant Improvement &amp; Code Feasibility Sizer</h2>
+      <p class="hero-subtitle">
+        Know your buildout liabilities before signing a commercial lease. Calculate IBC design occupant load, mandated exit doors, IPC restroom fixture minimums, Type I kitchen exhaust CFM, and your out-of-pocket TI allowance shortfall.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item"><span>📋</span> Codes: <strong>IBC 2024 / IPC 2024 / NFPA 96</strong></div>
+        <div class="meta-item"><span>🚪</span> Egress: <strong>IBC 1006.2.1 Remote Exit Doors</strong></div>
+        <div class="meta-item"><span>🚽</span> Plumbing: <strong>IPC Table 403.1 &amp; ADA Ch. 6</strong></div>
+        <div class="meta-item"><span>🔒</span> Privacy: <strong>100% Client-Side Engine</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-Click Preset Profiles -->
+  <div class="container">
+    <div class="presets-card">
+      <div class="presets-header">
+        <span>🏛️ Quick Presets (1-Click Real-World Commercial TI Profiles)</span>
+      </div>
+      <div class="presets-grid">
+        <button type="button" class="preset-btn" id="preset-restaurant">
+          <span class="preset-title">🍔 Fast-Casual Restaurant &bull; 2,400 SF</span>
+          <span class="preset-desc">15 SF/person dining &bull; 12-ft Type I Grease Hood &bull; $45/SF Landlord Allowance</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-fitness">
+          <span class="preset-title">🏋️ Fitness Studio / CrossFit &bull; 4,500 SF</span>
+          <span class="preset-desc">50 SF/person gym &bull; High Ventilation CFM &bull; Showers &bull; $25/SF Allowance</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-office">
+          <span class="preset-title">💼 Professional Office Suite &bull; 5,000 SF</span>
+          <span class="preset-desc">150 SF/person business &bull; Class A finishes &bull; $60/SF Landlord Allowance</span>
+        </button>
+        <button type="button" class="preset-btn" id="preset-retail">
+          <span class="preset-title">🛍️ Boutique Retail / Showroom &bull; 1,800 SF</span>
+          <span class="preset-desc">60 SF/person mercantile &bull; Strip center warm shell &bull; $30/SF Allowance</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Calculator Workspace -->
+  <main class="container calculator-workspace">
+    <div class="workspace-grid">
+
+      <!-- Left Column: Inputs Form -->
+      <div class="inputs-column">
+        <div class="card">
+          <h2 class="card-title">
+            <span>Space &amp; Lease Parameters</span>
+            <span class="badge-tag" style="font-size: 0.7rem;">STEP 1 OF 2</span>
+          </h2>
+
+          <form id="permit-form" novalidate>
+
+            <!-- Square Footage & Occupancy Classification -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="space-sqft" class="form-label">
+                  <span>Usable Floor Area (Sq Ft)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Net leasable square footage of your commercial tenant space.">?</span>
+                </label>
+                <input type="number" id="space-sqft" class="form-control" value="2400" min="200" max="100000" step="50" required>
+              </div>
+
+              <div class="form-group">
+                <label for="occupancy-type" class="form-label">
+                  <span>IBC Occupancy Use Type</span>
+                  <span class="info-tip" tabindex="0" data-tip="IBC Table 1004.5 factors: Assembly dining (15 net SF), Bar (7 net SF), Fitness (50 gross SF), Retail (60 gross SF), Office (150 gross SF).">?</span>
+                </label>
+                <select id="occupancy-type" class="form-control">
+                  <option value="restaurant" selected>Restaurant / Dining (15 net SF/person)</option>
+                  <option value="bar">Bar / Standing Lounge (7 net SF/person)</option>
+                  <option value="fitness">Gym / Fitness Center (50 gross SF/person)</option>
+                  <option value="retail">Mercantile / Retail Shop (60 gross SF/person)</option>
+                  <option value="office">Business / Medical Office (150 gross SF/person)</option>
+                  <option value="kitchen">Commercial Production Kitchen (200 gross SF/person)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Existing Shell Condition & Sprinkler Status -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="shell-condition" class="form-label">
+                  <span>Existing Shell Condition</span>
+                  <span class="info-tip" tabindex="0" data-tip="2nd Generation has existing HVAC/restrooms. Warm Shell has drywall/slab. Cold Dark Shell has gravel floor and no utility drops.">?</span>
+                </label>
+                <select id="shell-condition" class="form-control">
+                  <option value="second-gen" selected>2nd Generation Retrofit (Prior Tenant Space)</option>
+                  <option value="warm-shell">Warm Vanilla Shell (Drywall, Slab, Basic RTU)</option>
+                  <option value="cold-dark">Cold Dark Shell (Dirt/Gravel Floor, Raw Truss)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sprinklered" class="form-label">
+                  <span>Fire Sprinkler System (NFPA 13)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Fully sprinklered buildings allow longer egress travel distances (250 ft vs 200 ft).">?</span>
+                </label>
+                <select id="sprinklered" class="form-control">
+                  <option value="yes" selected>Yes - Fully Sprinklered Building</option>
+                  <option value="no">No - Non-Sprinklered Structure</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Commercial Kitchen Hood Scope -->
+            <div class="form-group">
+              <label for="hood-scope" class="form-label">
+                <span>Commercial Kitchen Ventilation Scope</span>
+                <span class="info-tip" tabindex="0" data-tip="Type I hoods (NFPA 96) require liquid-tight welded duct, fire suppression, and makeup air fans.">?</span>
+              </label>
+              <select id="hood-scope" class="form-control">
+                <option value="type-1-heavy" selected>Type I Hood - Heavy Duty Cookline (Fryers, Charbroiler @ 400 CFM/ft)</option>
+                <option value="type-1-medium">Type I Hood - Medium Duty (Ranges, Griddles @ 300 CFM/ft)</option>
+                <option value="type-2">Type II Hood - Steam / Heat Only (Pizza Ovens, Dishwashers)</option>
+                <option value="none">No Commercial Cooking Hood Required</option>
+              </select>
+            </div>
+
+            <!-- Hood Length & Landlord TI Allowance -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hood-length" class="form-label">
+                  <span>Exhaust Hood Length (Feet)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Linear feet of exhaust canopy extending 6 inches beyond cookline appliances on each end.">?</span>
+                </label>
+                <input type="number" id="hood-length" class="form-control" value="12" min="4" max="50" step="1">
+              </div>
+
+              <div class="form-group">
+                <label for="ti-allowance" class="form-label">
+                  <span>Landlord TI Allowance ($ / Sq Ft)</span>
+                  <span class="info-tip" tabindex="0" data-tip="Cash contribution from the building owner toward your buildout stated in the commercial lease agreement.">?</span>
+                </label>
+                <input type="number" id="ti-allowance" class="form-control" value="45" min="0" max="200" step="5">
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <button type="button" id="btn-recalculate" class="btn btn-primary btn-block">
+                🏛️ Calculate Code Requirements &amp; Buildout Gap
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5 Questions to Ask Commercial General Contractors & Landlords -->
+        <div class="questions-card">
+          <div class="questions-header">
+            <span class="q-icon">👷</span>
+            <h3 class="questions-title">5 Questions to Ask Before Signing the Commercial Lease</h3>
+          </div>
+          <ul class="questions-list">
+            <li>
+              <span class="q-icon">1.</span>
+              <div>
+                <strong>"Does the space have two legally compliant, remote egress exits?"</strong>
+                <p>If your design occupant load exceeds 49, IBC 1006.2.1 mandates two exits. Adding a rear alley door through masonry costs $25k-$60k.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">2.</span>
+              <div>
+                <strong>"Is the sewer lateral sized and pitched for a commercial grease interceptor?"</strong>
+                <p>Sawcutting the concrete slab to trench a 4-inch plumbing drain line under existing tenant demising walls can double plumbing costs.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">3.</span>
+              <div>
+                <strong>"How many amps of 3-phase power are dedicated to our electrical panel?"</strong>
+                <p>Restaurants and gyms routinely overload 200A panels with commercial refrigeration, RTU rooftop units, and fryers.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">4.</span>
+              <div>
+                <strong>"Is the rooftop unit (RTU) HVAC tonnage functioning, and who owns the warranty?"</strong>
+                <p>Replacing a failed 10-ton commercial rooftop HVAC compressor costs $14,000 to $22,000 on Day 1.</p>
+              </div>
+            </li>
+            <li>
+              <span class="q-icon">5.</span>
+              <div>
+                <strong>"Will the landlord disburse the TI Allowance in construction draws or upon final CO?"</strong>
+                <p>If the allowance is paid only after final Certificate of Occupancy, you must finance 100% of upfront construction cash flow.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Engineering Specification & Bids -->
+      <div class="results-column">
+        <div class="spec-card">
+          <div class="spec-header">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 0.25rem;">CODE SPECIFICATION</span>
+              <h3 class="spec-headline">Occupancy, Egress &amp; TI Gap</h3>
+            </div>
+            <button type="button" id="btn-print" class="btn btn-secondary btn-sm" title="Print 8.5x11 Submittal Sheet">
+              🖨️ Print Submittal Sheet
+            </button>
+          </div>
+
+          <!-- Primary Metric: Calculated Occupant Load -->
+          <div class="primary-stat-box">
+            <div class="primary-stat-label">IBC Table 1004.5 Design Occupant Load</div>
+            <div class="primary-stat-value" id="out-occupant-load">160 Persons</div>
+            <div class="primary-stat-sub" id="out-occupant-sub">Assembly Group A-2 &bull; 15 Net SF / Person</div>
+          </div>
+
+          <!-- Secondary Metrics Grid -->
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-label">Mandated Egress Doors</div>
+              <div class="metric-value" id="out-egress-doors" style="color: #f59e0b;">2 Remote Exits</div>
+              <div class="metric-note" id="out-egress-note">IBC 1006.2.1 (&ge; 50 occupants)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Restroom Fixtures (IPC 403)</div>
+              <div class="metric-value" id="out-plumbing-fixtures">3 M / 3 F Toilets</div>
+              <div class="metric-note" id="out-plumbing-note">Includes ADA accessible stall &amp; sinks</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Kitchen Exhaust &amp; Makeup</div>
+              <div class="metric-value" id="out-hood-cfm">4,800 CFM</div>
+              <div class="metric-note" id="out-hood-note">Requires 3,840 CFM tempered makeup air</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">HVAC Cooling Load</div>
+              <div class="metric-value" id="out-hvac-tons">9.5 Tons</div>
+              <div class="metric-note">Includes 250 BTU/hr human latent heat</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Turnkey Buildout Estimate</div>
+              <div class="metric-value" id="out-total-cost">$384,000</div>
+              <div class="metric-note" id="out-cost-sqft">~$160 / Sq Ft (2nd Gen Food Service)</div>
+            </div>
+
+            <div class="metric-item">
+              <div class="metric-label">Tenant Out-of-Pocket Gap</div>
+              <div class="metric-value" id="out-tenant-gap" style="color: #ef4444;">$276,000</div>
+              <div class="metric-note" id="out-allowance-credit">After $108,000 Landlord TI credit</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Alerts / Callouts -->
+          <div id="alert-container">
+            <div class="callout callout-warning">
+              <span>⚠️</span>
+              <div>
+                <strong>Two Egress Exits Mandated by Law:</strong> With an occupant load of <strong>160 persons</strong>, IBC 1006.2.1 prohibits a single main entrance. You must have at least two separate, unblocked exits with panic hardware located at least 1/3 the diagonal length of the space apart.
+              </div>
+            </div>
+          </div>
+
+          <!-- Price Health Gauge -->
+          <div class="price-gauge-card">
+            <div class="gauge-header">
+              <span class="gauge-title">Commercial TI Buildout Cost Benchmark</span>
+              <span class="gauge-status" id="gauge-status-badge">Turnkey Construction</span>
+            </div>
+            <div class="gauge-track">
+              <div class="gauge-seg fair"></div>
+              <div class="gauge-seg avg"></div>
+              <div class="gauge-seg high"></div>
+            </div>
+            <div class="gauge-labels">
+              <span id="price-low">$310,000 (Budget)</span>
+              <span id="price-mid">$384,000 (Fair Market)</span>
+              <span id="price-high">$480,000 (Premium Finishes)</span>
+            </div>
+            <p class="gauge-explanation" id="gauge-explanation">
+              Includes demolition, framing/drywall, commercial kitchen hood &amp; fire suppression, grease interceptor tie-in, ADA restrooms, and final MEP inspections.
+            </p>
+          </div>
+
+          <!-- Lead Capture / Quote Form Section -->
+          <div id="lead-section" class="lead-cta-card" style="margin-top: 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem;">
+              Request Stamped Architectural &amp; GC Bids
+            </h3>
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Connect directly with verified local commercial general contractors and MEP engineering firms licensed to prepare permit drawing sets in your city.
+            </p>
+
+            <!-- No-Spam Guarantee -->
+            <div class="no-spam-box">
+              <span style="font-size: 1.25rem;">🛡️</span>
+              <div>
+                <strong>No-Spam Guarantee:</strong> We do not broadcast your contact information. Your leasehold specifications are routed strictly to 1 or 2 commercial general contractors actively working in your target retail corridor.
+              </div>
+            </div>
+
+            <form id="lead-form">
+              <input type="hidden" name="trade" value="permit">
+              <input type="hidden" id="lead-specs-summary" name="specs_summary" value="">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-name" class="form-label">Full Name *</label>
+                  <input type="text" id="lead-name" class="form-control" placeholder="Elena Rostova" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-company" class="form-label">Business / Franchise Name</label>
+                  <input type="text" id="lead-company" class="form-control" placeholder="Artisan Bakery &amp; Cafe">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="lead-email" class="form-label">Business Email *</label>
+                  <input type="email" id="lead-email" class="form-control" placeholder="elena@artisanbakery.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="lead-phone" class="form-label">Phone Number *</label>
+                  <input type="tel" id="lead-phone" class="form-control" placeholder="(555) 789-1023" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-zip" class="form-label">
+                  <span>Space Property ZIP Code *</span>
+                  <span class="location-detected-pill" id="zip-detected-pill" style="display: none;">📍 Auto-Detected</span>
+                </label>
+                <input type="text" id="lead-zip" class="form-control" placeholder="77002" maxlength="5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="lead-notes" class="form-label">Lease Status / Planned Opening Date</label>
+                <textarea id="lead-notes" class="form-control" rows="2" placeholder="e.g., Lease LOI signed pending GC estimate. Need MEP drawings and grease hood installation."></textarea>
+              </div>
+
+              <button type="submit" id="btn-submit-lead" class="btn btn-primary btn-block" style="font-size: 1rem; padding: 0.75rem;">
+                🏛️ Dispatch Specification to Commercial Contractors
+              </button>
+              <div id="lead-success-msg" style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: var(--radius-md); color: #a7f3d0; font-size: 0.875rem; text-align: center;">
+                ✓ Specification dispatched successfully! A commercial general contractor will contact you within 1 business day.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Printable Submittal Sheet (Print-Only) -->
+  <section class="printable-sheet" id="printable-sheet" aria-hidden="true">
+    <div class="print-header">
+      <h2>PermitSpec Pro™ Commercial Tenant Code &amp; TI Submittal</h2>
+      <p>Prepared in accordance with the International Building Code (IBC) &amp; International Plumbing Code (IPC)</p>
+      <div class="print-meta">
+        <span id="print-date">Date: 2026-11-07</span>
+        <span id="print-job-ref">Ref: TI-CODE-FEASIBILITY</span>
+        <span>Target Code: IBC 2024 / IPC 2024 / NFPA 96</span>
+      </div>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">1. Space &amp; Occupancy Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Usable Leasable Floor Area</td>
+          <td style="width: 50%; font-weight: bold;" id="p-sqft">2,400 Sq Ft</td>
+        </tr>
+        <tr>
+          <td>IBC Occupancy Classification</td>
+          <td style="font-weight: bold;" id="p-occupancy">Restaurant / Dining (15 Net SF/Person)</td>
+        </tr>
+        <tr>
+          <td>Calculated Design Occupant Load</td>
+          <td style="font-weight: bold; color: #b91c1c;" id="p-load">160 Persons</td>
+        </tr>
+        <tr>
+          <td>Building Fire Sprinkler Status</td>
+          <td style="font-weight: bold;" id="p-sprinkler">Fully Sprinklered (NFPA 13)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">2. Egress, Plumbing &amp; Mechanical Code Requirements</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Mandatory Egress Exit Doors</td>
+          <td style="width: 50%; font-weight: bold;" id="p-doors">2 Remote Exits (IBC 1006.2.1)</td>
+        </tr>
+        <tr>
+          <td>Minimum Main Exit Clear Width</td>
+          <td style="font-weight: bold;" id="p-width">36 Inches (Clear width $\ge 0.2 \times$ occupants)</td>
+        </tr>
+        <tr>
+          <td>Required Restroom Plumbing Fixtures</td>
+          <td style="font-weight: bold;" id="p-plumbing">3 M / 3 F Water Closets + ADA Lavatories</td>
+        </tr>
+        <tr>
+          <td>Commercial Kitchen Hood Exhaust</td>
+          <td style="font-weight: bold;" id="p-hood">4,800 CFM (12-ft Type I Grease Canopy)</td>
+        </tr>
+        <tr>
+          <td>Required Tempered Makeup Air</td>
+          <td style="font-weight: bold;" id="p-makeup">3,840 CFM (80% of Exhaust Flow)</td>
+        </tr>
+        <tr>
+          <td>Estimated HVAC Cooling Load</td>
+          <td style="font-weight: bold;" id="p-hvac">9.5 Tons (ASHRAE 62.1)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th colspan="2">3. Tenant Improvement (TI) Capital Feasibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 50%;">Estimated Turnkey Construction Cost</td>
+          <td style="width: 50%; font-weight: bold;" id="p-total-cost">$384,000 USD (~$160/SF)</td>
+        </tr>
+        <tr>
+          <td>Landlord Tenant Improvement Allowance</td>
+          <td style="font-weight: bold; color: #047857;" id="p-allowance">-$108,000 USD ($45/SF)</td>
+        </tr>
+        <tr>
+          <td>Estimated Tenant Out-of-Pocket Capital Gap</td>
+          <td style="font-weight: bold; color: #b91c1c;" id="p-gap">$276,000 USD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="print-signatures">
+      <div class="sig-box">
+        <p>Tenant Representative: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">Leaseholder / Franchisee</p>
+      </div>
+      <div class="sig-box">
+        <p>Commercial GC / Architect: ___________________________</p>
+        <div class="sig-line"></div>
+        <p style="margin-top: 4px;">License #: __________________ State: _________</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="faq-title">Commercial Tenant Improvement &amp; Code FAQ</h2>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3 class="faq-q">Why does 50 occupants trigger a mandatory second exit door?</h3>
+          <p class="faq-a">
+            Under IBC 1006.2.1, occupant loads $\ge 50$ transform a space from low occupancy into an Assembly (Group A) classification. In an emergency, a single door risks crush jams. The code mandates two distinct exits placed at least one-third the overall diagonal length of the suite apart.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">Can existing single-occupancy restrooms satisfy commercial code?</h3>
+          <p class="faq-a">
+            Only if your occupant load is under 15 persons in most jurisdictions. Once a restaurant or retail space exceeds 20-30 occupants, IPC 403 mandates separate multi-user male and female facilities or multiple gender-neutral single-user ADA accessible restrooms with clear 60-inch turning circles.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">Why is kitchen makeup air mandatory for Type I hoods?</h3>
+          <p class="faq-a">
+            A 12-foot commercial kitchen hood pulling 4,800 CFM exhausts the entire cubic air volume of a dining room in minutes. Without an 80% makeup air fan pumping fresh, tempered replacement air into the kitchen, the building will enter extreme negative pressure, causing doors to slam shut and pilot lights to blow out.
+          </p>
+        </div>
+
+        <div class="faq-card">
+          <h3 class="faq-q">What is the biggest hidden cost in 2nd-generation restaurant spaces?</h3>
+          <p class="faq-a">
+            Plumbing and grease interceptor compliance. Even if a prior restaurant operated there, local municipal sewer authorities (FOG ordinances) often mandate upgrading to an exterior 1,000-gallon underground concrete grease interceptor before granting a new Certificate of Occupancy, which costs $25k-$50k.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-nav">
+        <a href="../">TradeSpec Pro™ Suite Hub</a>
+        <a href="../charge-spec/">Commercial EV Sizing</a>
+        <a href="../crane-lift/">Crane Rigging</a>
+        <a href="../well-drilling/">Well Sizing</a>
+        <a href="../pallet-racking/">Pallet Racking</a>
+        <a href="../spray-foam/">Spray Foam</a>
+        <a href="../grease-trap/">Grease Interceptor</a>
+      </nav>
+      <p>&copy; 2026 TradeSpec Pro™ Engineering Suite. Built for commercial leaseholders, architects, and general contractors.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">Preliminary code calculations. Final permit packages require sealed drawings by a registered Architect or Professional Engineer.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
