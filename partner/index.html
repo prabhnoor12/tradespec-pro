@@ -589,8 +589,10 @@
             <p class="portal-territory-text">Territory: <span id="dashTerritoryZips">77002 + 60 Mile Radius</span> • Status: <span class="badge-active">ACTIVE STREAM</span></p>
           </div>
           <div class="dash-top-actions">
+            <button type="button" class="btn btn-secondary" id="openWalletModalBtn">💳 Wallet: <span id="topBarWalletBal">$450.00</span></button>
+            <button type="button" class="btn btn-secondary" id="openBadgeModalBtn">🎖️ Verified Profile &amp; Badge</button>
             <button type="button" class="btn btn-secondary" id="exportCsvBtn">📥 Export CSV</button>
-            <button type="button" class="btn btn-secondary" id="toggleSettingsBtn">⚙️ Dispatch Settings</button>
+            <button type="button" class="btn btn-secondary" id="toggleSettingsBtn">⚙️ Settings</button>
             <button type="button" class="btn btn-outline" id="lockPortalBtn">Lock Console</button>
           </div>
         </div>
@@ -599,7 +601,7 @@
         <div class="kpi-grid">
           <div class="kpi-card">
             <span class="kpi-label">Incoming Leads</span>
-            <span class="kpi-value" id="kpiTotalLeads">14</span>
+            <span class="kpi-value" id="kpiTotalLeads">9</span>
             <span class="kpi-sub">Across 9 Trade Modules</span>
           </div>
           <div class="kpi-card">
@@ -612,10 +614,16 @@
             <span class="kpi-value" id="kpiPipelineVal">$84,200</span>
             <span class="kpi-sub">Calculated job estimates</span>
           </div>
-          <div class="kpi-card">
-            <span class="kpi-label">Dispatch Status</span>
-            <span class="kpi-value text-blue" id="kpiSmsStatus">SMS Active</span>
-            <span class="kpi-sub">Phone: (555) 849-2041</span>
+          <div class="kpi-card wallet-kpi-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="kpi-label">Dispatch Wallet</span>
+              <span class="badge-active" id="walletAutoReloadBadge" style="font-size: 0.65rem;">Auto-Reload: ON</span>
+            </div>
+            <span class="kpi-value text-amber" id="kpiWalletBalance">$450.00</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.35rem;">
+              <span class="kpi-sub" id="kpiWalletLeadsLeft">~4 leads available</span>
+              <button type="button" class="btn-wallet-topup" id="btnQuickTopup">+ Add Credit</button>
+            </div>
           </div>
         </div>
 
@@ -630,20 +638,28 @@
           <form id="settingsForm" class="settings-grid">
             <div class="settings-col">
               <div class="form-group">
-                <label for="cfgCompany">Company Name</label>
+                <label for="cfgCompany">Company Legal Name</label>
                 <input type="text" id="cfgCompany" class="form-input">
+              </div>
+              <div class="form-group">
+                <label for="cfgLicenseNumber">State Contractor License / Reg #</label>
+                <input type="text" id="cfgLicenseNumber" placeholder="e.g. TX-COMM-894120" class="form-input">
+              </div>
+              <div class="form-group">
+                <label for="cfgInsuranceBond">Insurance &amp; Bond Status</label>
+                <input type="text" id="cfgInsuranceBond" placeholder="e.g. $2M General Liability / Bonded" class="form-input">
               </div>
               <div class="form-group">
                 <label for="cfgPhone">SMS Dispatch Alert Phone</label>
                 <input type="tel" id="cfgPhone" class="form-input">
               </div>
+            </div>
+
+            <div class="settings-col">
               <div class="form-group">
                 <label for="cfgEmail">Estimator Dispatch Email</label>
                 <input type="email" id="cfgEmail" class="form-input">
               </div>
-            </div>
-
-            <div class="settings-col">
               <div class="form-group">
                 <label for="cfgBaseZip">Primary Base Zip Code</label>
                 <input type="text" id="cfgBaseZip" maxlength="5" class="form-input">
@@ -731,6 +747,38 @@
               </div>
             </div>
 
+            <!-- Webhook & CRM Sync Configuration -->
+            <div class="settings-col-full" style="grid-column: 1 / -1; margin-top: 0.5rem; margin-bottom: 0.5rem; background: #0b1120; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 1.15rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                <label class="form-label" style="font-weight: 800; color: #fff; font-size: 0.875rem; margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                  <span>🔗 Real-Time Webhook &amp; CRM Sync</span>
+                  <span style="font-size: 0.6875rem; background: rgba(56,189,248,0.15); color: #38bdf8; padding: 0.15rem 0.5rem; border-radius: 4px;">Zapier / Jobber / Procore / Buildertrend</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: #38bdf8; cursor: pointer;">
+                  <input type="checkbox" id="cfgWebhookAutoSync" checked style="accent-color: #38bdf8;">
+                  <span>Auto-Forward Leads on Arrival</span>
+                </label>
+              </div>
+              <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 0.85rem;">
+                Receive instant JSON payloads containing verified client contacts, engineering calculations, and budget estimates directly in your commercial ERP/CRM.
+              </p>
+              <div class="settings-grid" style="gap: 1rem; margin-bottom: 0.75rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="cfgWebhookUrl" style="font-size: 0.75rem;">Webhook POST Endpoint URL</label>
+                  <input type="url" id="cfgWebhookUrl" placeholder="https://hooks.zapier.com/hooks/catch/..." class="form-input sm">
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="cfgWebhookSecret" style="font-size: 0.75rem;">Authorization Token / API Key (Optional)</label>
+                  <input type="text" id="cfgWebhookSecret" placeholder="Bearer sk_live_..." class="form-input sm">
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnTestWebhook">🚀 Send Test Ping Payload</button>
+                <button type="button" class="btn btn-outline btn-sm" id="btnDownloadWebhookSchema">📄 View Schema JSON</button>
+                <span id="webhookStatusNotice" class="hidden" style="font-size: 0.75rem; font-weight: 700;"></span>
+              </div>
+            </div>
+
             <div class="settings-actions">
               <button type="submit" class="btn btn-primary">Save Configuration Rules</button>
               <button type="button" class="btn btn-secondary" id="downloadSettingsJsonBtn">Download settings.json</button>
@@ -783,7 +831,7 @@
                 <th scope="col">Location</th>
                 <th scope="col">Calculated Job Specs</th>
                 <th scope="col">Est. Budget</th>
-                <th scope="col" style="text-align: right;">Actions</th>
+                <th scope="col" style="text-align: right; min-width: 290px;">Contractor Actions</th>
               </tr>
             </thead>
             <tbody id="leadsTableBody">
@@ -798,6 +846,381 @@
       </div>
     </div>
   </section>
+
+  <!-- ========================================================================= -->
+  <!-- 1. FAST-BID SMS & AUTO-RESPONDER MODAL -->
+  <!-- ========================================================================= -->
+  <div id="fastBidModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="fastBidTitle">
+    <div class="tradespec-modal">
+      <div class="tradespec-modal-header">
+        <div class="modal-header-titles">
+          <span style="font-size: 1.25rem;">⚡</span>
+          <h3 class="modal-heading" id="fastBidTitle">1-Click Fast-Bid Proposal Generator</h3>
+          <span class="dossier-code-stamp" style="font-size: 0.625rem;">Sub-5-Min Response</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeFastBidModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="tradespec-modal-body">
+        <div class="bid-client-summary-pill" id="fastBidClientPill">
+          <div>
+            <div class="bid-client-name" id="fastBidClientName">Marcus Vance • Apex Logistics LLC</div>
+            <div class="bid-client-meta" id="fastBidClientMeta">EV Fleet Infrastructure • Zip 77002 • (713) 555-8902</div>
+          </div>
+          <div style="font-size: 0.8125rem; font-weight: 800; color: #38bdf8;" id="fastBidBudgetEst">$75,000 – $145,000</div>
+        </div>
+
+        <div class="bid-template-tabs">
+          <button type="button" class="bid-tab active" data-template="confirm">⚡ Instant Availability &amp; Confirmation</button>
+          <button type="button" class="bid-tab" data-template="formal">📋 Engineered Commercial Estimate</button>
+          <button type="button" class="bid-tab" data-template="site_walk">📍 Request On-Site Discovery Walk</button>
+        </div>
+
+        <div class="bid-input-grid">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="fastBidPriceInput" style="font-size: 0.75rem;">Your Estimated Turnkey Bid ($)</label>
+            <input type="number" id="fastBidPriceInput" class="form-input sm" step="500">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="fastBidTimelineInput" style="font-size: 0.75rem;">Mobilization / Lead Time</label>
+            <input type="text" id="fastBidTimelineInput" class="form-input sm" value="Mobilization within 3-5 business days">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 0.75rem; margin-bottom: 0;">
+          <label for="fastBidNotesInput" style="font-size: 0.75rem;">Scope Inclusions &amp; Warranty (Optional)</label>
+          <input type="text" id="fastBidNotesInput" class="form-input sm" value="Turnkey utility coordination, licensed engineering stamp, 5-yr warranty included.">
+        </div>
+
+        <div class="bid-preview-container">
+          <div class="bid-preview-label-row">
+            <span style="font-size: 0.75rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Generated Client Proposal Script</span>
+            <span style="font-size: 0.6875rem; color: #38bdf8;">Click box to select all</span>
+          </div>
+          <div id="fastBidPreviewBox" class="bid-preview-box">Loading proposal script...</div>
+        </div>
+      </div>
+      <div class="tradespec-modal-footer">
+        <a href="#" id="btnFastBidSms" class="btn-sms-action">💬 Send via SMS</a>
+        <a href="#" id="btnFastBidEmail" class="btn-email-action">✉️ Send via Email</a>
+        <button type="button" class="btn btn-secondary btn-sm" id="btnCopyFastBid">📋 Copy Script</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 2. LEAD DOSSIER & CODE BLUEPRINT MODAL -->
+  <!-- ========================================================================= -->
+  <div id="leadDossierModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="dossierTitle">
+    <div class="tradespec-modal wide">
+      <div class="tradespec-modal-header">
+        <div class="modal-header-titles">
+          <span class="dossier-code-stamp">TRADE SPEC™ CODE CERTIFIED</span>
+          <h3 class="modal-heading" id="dossierTitle">Commercial Project Engineering Dossier</h3>
+          <span class="lead-status-pill status-new" id="dossierStatusBadge">NEW</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeDossierModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="tradespec-modal-body printable-area">
+        <div class="dossier-grid">
+          <!-- Client & Site Info -->
+          <div class="dossier-section-block">
+            <div class="dossier-block-title">
+              <span>🏢</span> Client &amp; Jobsite Overview
+            </div>
+            <div class="dossier-contact-grid">
+              <div>
+                <div class="dossier-field-label">Customer Contact</div>
+                <div class="dossier-field-val" id="dossierCustomerName">Marcus Vance</div>
+                <div style="font-size: 0.75rem; color: #94a3b8;" id="dossierCustomerCompany">Apex Logistics LLC</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Verified Phone</div>
+                <div class="dossier-field-val accent" id="dossierCustomerPhone">(713) 555-8902</div>
+                <div style="font-size: 0.6875rem; color: #10b981;">✓ SMS &amp; Voice Verified</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Direct Email</div>
+                <div class="dossier-field-val" id="dossierCustomerEmail" style="font-size: 0.8125rem;">mvance@apexlogistics.com</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Jobsite Location</div>
+                <div class="dossier-field-val accent" id="dossierLocation">ZIP 77002</div>
+                <div style="font-size: 0.6875rem; color: #94a3b8;">Harris County Metro • Within 60-mi radius</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code-Stamped Engineering Breakdown -->
+          <div class="dossier-section-block">
+            <div class="dossier-block-title">
+              <span>📐</span> Certified Engineering Sizing Schedule
+            </div>
+            <table class="dossier-spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">Engineering Parameter</th>
+                  <th scope="col">Code Standard Reference</th>
+                  <th scope="col" style="text-align: right;">Calculated Specification</th>
+                </tr>
+              </thead>
+              <tbody id="dossierSpecTableBody">
+                <!-- Dynamically populated per trade -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Commercial Budget & Contractor Economics -->
+          <div class="dossier-section-block">
+            <div class="dossier-block-title">
+              <span>💰</span> Commercial Budget Anchoring &amp; Margins
+            </div>
+            <div class="dossier-contact-grid">
+              <div>
+                <div class="dossier-field-label">Anchored Customer Budget</div>
+                <div class="dossier-field-val" style="color: #34d399; font-size: 1.15rem;" id="dossierBudgetVal">$75,000 – $145,000</div>
+                <div style="font-size: 0.6875rem; color: #94a3b8;">Client pre-anchored on TradeSpec pricing</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Estimated Materials / Equipment</div>
+                <div class="dossier-field-val" id="dossierMaterialAlloc">55% ($48,000)</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Estimated Labor &amp; Rigging Margin</div>
+                <div class="dossier-field-val" id="dossierLaborAlloc">45% ($39,500 gross margin)</div>
+              </div>
+              <div>
+                <div class="dossier-field-label">Lead Cost / ROI Factor</div>
+                <div class="dossier-field-val accent" id="dossierLeadCostRoi">$135 lead (~35x ROI)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tradespec-modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="dossierPrintBtn">🖨️ Print Submittal Dossier</button>
+        <button type="button" class="btn btn-outline btn-sm text-red" id="dossierDisputeBtn">⚠️ Request Lead Credit Refund</button>
+        <button type="button" class="btn btn-primary btn-sm" id="dossierFastBidBtn">⚡ Launch Fast Bid</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 3. ZERO-FRICTION LEAD DISPUTE & REFUND MODAL -->
+  <!-- ========================================================================= -->
+  <div id="disputeModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="disputeTitle">
+    <div class="tradespec-modal">
+      <div class="tradespec-modal-header">
+        <div class="modal-header-titles">
+          <span style="font-size: 1.25rem;">🛡️</span>
+          <h3 class="modal-heading" id="disputeTitle">1-Click Lead Dispute &amp; Instant Refund</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeDisputeModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="tradespec-modal-body">
+        <div class="dispute-notice-box">
+          <div class="dispute-shield-icon">🛡️</div>
+          <div>
+            <div class="dispute-notice-heading">Zero-Friction Contractor Credit Guarantee</div>
+            <div class="dispute-notice-text">
+              We never make contractors fight for refunds. If a phone number is dead, out of territory, or a residential tire-kicker, your credit is immediately returned to your Dispatch Wallet with zero administrative delays.
+            </div>
+          </div>
+        </div>
+
+        <div class="bid-client-summary-pill">
+          <div>
+            <div class="bid-client-name" id="disputeLeadRef">Lead: EV-2026-7812 • Marcus Vance</div>
+            <div class="bid-client-meta" id="disputeLeadTrade">Commercial EV Fleet Infrastructure • Zip 77002</div>
+          </div>
+          <div>
+            <span style="font-size: 0.6875rem; color: #94a3b8; display: block; text-transform: uppercase;">Refund Amount:</span>
+            <strong style="color: #34d399; font-size: 1.15rem;" id="disputeRefundAmt">+$135.00 Credit</strong>
+          </div>
+        </div>
+
+        <form id="disputeForm">
+          <div class="form-group">
+            <label for="disputeReason">Reason for Refund Claim *</label>
+            <select id="disputeReason" class="form-select" required>
+              <option value="invalid_phone">Disconnected, wrong number, or automated fax line</option>
+              <option value="out_of_territory">Project site located outside your active radius</option>
+              <option value="residential_diy">Residential DIY project under minimum commercial job threshold</option>
+              <option value="unresponsive">Unresponsive after 3+ verified attempts</option>
+              <option value="duplicate">Duplicate lead already received through another stream</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="disputeNotes">Estimator Brief Notes (Optional)</label>
+            <textarea id="disputeNotes" class="form-input" rows="2" placeholder="e.g. Called twice, phone disconnected carrier intercept tone."></textarea>
+          </div>
+
+          <div class="tradespec-modal-footer" style="padding-inline: 0; background: none; border-top: none;">
+            <button type="button" class="btn btn-secondary" id="cancelDisputeBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="background: #10b981; color: #022c22; font-weight: 800; border: none;" id="btnConfirmDispute">
+              ✓ Issue Instant Wallet Refund
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. CONTRACTOR DISPATCH WALLET & BILLING MODAL -->
+  <!-- ========================================================================= -->
+  <div id="walletModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="walletTitle">
+    <div class="tradespec-modal">
+      <div class="tradespec-modal-header">
+        <div class="modal-header-titles">
+          <span style="font-size: 1.25rem;">💳</span>
+          <h3 class="modal-heading" id="walletTitle">Contractor Dispatch Wallet &amp; Ledger</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeWalletModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="tradespec-modal-body">
+        <div class="wallet-balance-banner">
+          <span class="kpi-label">Current Dispatch Credit Balance</span>
+          <div class="wallet-bal-number" id="modalWalletBalNumber">$450.00</div>
+          <p style="font-size: 0.8125rem; color: #94a3b8; margin: 0;" id="modalWalletLeadsRemaining">
+            Sufficient for ~3 to 4 Code-Stamped Commercial Leads in your territory.
+          </p>
+        </div>
+
+        <div style="font-size: 0.8125rem; font-weight: 800; text-transform: uppercase; color: #ffffff; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+          Select Credit Reload Package:
+        </div>
+        <div class="wallet-packs-grid" id="walletPacksGrid">
+          <div class="wallet-pack-card" data-amount="250" data-bonus="0">
+            <span class="kpi-label">Starter Dispatch</span>
+            <div class="pack-cost">$250</div>
+            <div class="pack-credits-val">$250 Credits</div>
+            <div style="font-size: 0.6875rem; color: #94a3b8; margin-top: 0.35rem;">~2 Commercial Leads</div>
+          </div>
+          <div class="wallet-pack-card selected featured" data-amount="500" data-bonus="50">
+            <span class="wallet-pack-bonus">+10% BONUS</span>
+            <span class="kpi-label">Pro Contractor</span>
+            <div class="pack-cost">$500</div>
+            <div class="pack-credits-val" style="color: #fbbf24;">$550 Credits ($50 Bonus)</div>
+            <div style="font-size: 0.6875rem; color: #a7f3d0; margin-top: 0.35rem;">~5 Commercial Leads</div>
+          </div>
+          <div class="wallet-pack-card" data-amount="1000" data-bonus="150">
+            <span class="wallet-pack-bonus">+15% BONUS</span>
+            <span class="kpi-label">Commercial Fleet</span>
+            <div class="pack-cost">$1,000</div>
+            <div class="pack-credits-val" style="color: #38bdf8;">$1,150 Credits ($150 Bonus)</div>
+            <div style="font-size: 0.6875rem; color: #94a3b8; margin-top: 0.35rem;">~11 Commercial Leads</div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 0.85rem 1rem; border-radius: 8px; margin-top: 1rem;">
+          <div>
+            <div style="font-size: 0.8125rem; font-weight: 700; color: #ffffff;">Auto-Reload Safety Net</div>
+            <div style="font-size: 0.75rem; color: #94a3b8;">Reload $250 automatically when balance drops below $100 so you never miss an incoming lead.</div>
+          </div>
+          <input type="checkbox" id="chkAutoReload" checked style="width: 20px; height: 20px; accent-color: #f59e0b; cursor: pointer;">
+        </div>
+
+        <!-- Transaction Ledger -->
+        <div class="ledger-container">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em;">
+              Recent Wallet Transactions
+            </div>
+            <span style="font-size: 0.6875rem; color: #64748b;">Instant Audit Trail</span>
+          </div>
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Transaction Description</th>
+                <th scope="col" style="text-align: right;">Amount</th>
+                <th scope="col" style="text-align: right;">Balance After</th>
+              </tr>
+            </thead>
+            <tbody id="walletLedgerBody">
+              <!-- Dynamically populated via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tradespec-modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="closeWalletFooterBtn">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btnDepositFunds" style="background: #f59e0b; color: #451a03; font-weight: 800; border: none;">
+          Deposit &amp; Fund Wallet ($500)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 5. VERIFIED CONTRACTOR PROFILE & SEO EMBED BADGE MODAL -->
+  <!-- ========================================================================= -->
+  <div id="badgeModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="badgeTitle">
+    <div class="tradespec-modal">
+      <div class="tradespec-modal-header">
+        <div class="modal-header-titles">
+          <span style="font-size: 1.25rem;">🎖️</span>
+          <h3 class="modal-heading" id="badgeTitle">Verified Contractor Seal &amp; Website Embed</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeBadgeModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="tradespec-modal-body">
+        <p style="font-size: 0.8125rem; color: #94a3b8; margin-bottom: 1.25rem; text-align: center;">
+          Display the official TradeSpec Pro™ verification seal on your company website and bid proposals to give commercial clients verified code-compliance credibility.
+        </p>
+
+        <!-- Digital Certificate Preview Card -->
+        <div class="cert-badge-preview-card printable-area">
+          <div class="cert-seal-symbol">🛡️</div>
+          <div class="cert-company-heading" id="badgePreviewCompany">Apex Heavy Equipment &amp; Rigging</div>
+          <div class="cert-verification-sub">TradeSpec Pro™ Code-Verified Contractor</div>
+
+          <div class="cert-meta-grid">
+            <div>
+              <div class="cert-meta-label">License Number</div>
+              <div class="cert-meta-val" id="badgePreviewLicense">TX-COMM-894120</div>
+            </div>
+            <div>
+              <div class="cert-meta-label">Coverage &amp; Bond</div>
+              <div class="cert-meta-val" id="badgePreviewBond">$2M General Liability</div>
+            </div>
+            <div>
+              <div class="cert-meta-label">Licensed Territory</div>
+              <div class="cert-meta-val" id="badgePreviewTerritory">Harris County • 60-Mi Radius</div>
+            </div>
+            <div>
+              <div class="cert-meta-label">Code Quality Rating</div>
+              <div class="cert-meta-val" style="color: #fbbf24;">⭐ 4.98 / 5.0 (9 Trades)</div>
+            </div>
+          </div>
+
+          <div style="font-size: 0.6875rem; color: #64748b; font-family: var(--font-mono);">
+            CERTIFICATE ID: TSP-CERT-77002-8941 • ISSUED 2026
+          </div>
+        </div>
+
+        <!-- HTML Website Embed Snippet -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em;">
+              HTML Website Embed Code
+            </label>
+            <span style="font-size: 0.6875rem; color: #38bdf8;">Backlink SEO Authority</span>
+          </div>
+          <div class="embed-code-box" id="embedCodeBox">&lt;!-- TradeSpec Pro™ Code-Verified Seal --&gt;
+&lt;a href="https://tradespec.pro/partner/#portal" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0f172a;border:1px solid #eab308;padding:8px 14px;border-radius:6px;color:#fff;text-decoration:none;font-family:sans-serif;font-size:12px;font-weight:700;"&gt;
+  &lt;span&gt;🛡️&lt;/span&gt;
+  &lt;span&gt;TradeSpec Pro™ Code-Verified Contractor&lt;/span&gt;
+&lt;/a&gt;</div>
+        </div>
+      </div>
+      <div class="tradespec-modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="btnPrintCertificate">🖨️ Print Wall Certificate</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btnCopyEmbedCode">📋 Copy Embed Code</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Site Footer -->
   <footer class="site-footer">
