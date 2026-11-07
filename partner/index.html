@@ -82,6 +82,61 @@
       </div>
     </section>
 
+    <!-- Real-Time Territory Slot Availability Checker -->
+    <section class="section checker-section" id="territory-check">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-partner">COUNTY TERRITORY AUDIT</span>
+          <h2 class="section-title">Check Live Territory Availability in Your Zip Code</h2>
+          <p class="section-subtitle">We cap every service radius to maximum 2 contractors to eliminate bidding wars. Enter your base zip to check open partner slots.</p>
+        </div>
+
+        <div class="checker-card">
+          <form id="territoryCheckerForm" class="checker-form" novalidate>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="checkZip">Your Base 5-Digit ZIP *</label>
+              <input type="text" id="checkZip" class="form-input" placeholder="e.g. 77002" maxlength="5" pattern="[0-9]{5}" required value="77002">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="checkTrade">Your Primary Specialty Trade *</label>
+              <select id="checkTrade" class="form-select" required>
+                <option value="charge" selected>⚡ Commercial EV Fleet Infrastructure</option>
+                <option value="permit">🏛️ Commercial Tenant Improvement</option>
+                <option value="site">🚜 Civil Earthwork &amp; Stormwater</option>
+                <option value="cold">❄️ Commercial Walk-In Refrigeration</option>
+                <option value="crane">🏗️ Mobile Crane &amp; Heavy Rigging</option>
+                <option value="well">💧 Water Well Drilling &amp; Pumps</option>
+                <option value="racking">📦 Warehouse Pallet Racking</option>
+                <option value="foam">🧱 Commercial Spray Foam</option>
+                <option value="grease">🍳 Grease Interceptors &amp; Hood MEP</option>
+              </select>
+            </div>
+
+            <button type="submit" id="btnCheckTerritory" class="btn btn-primary" style="height: 44px; padding-inline: 1.5rem;">
+              Check Availability &rarr;
+            </button>
+          </form>
+
+          <div id="checkerResult" class="checker-result-box">
+            <div class="checker-status-left">
+              <span class="status-dot available" id="checkerStatusDot"></span>
+              <div>
+                <div class="checker-metro-name" id="checkerMetroName">Harris County Metro (77002)</div>
+                <div class="checker-slot-status">
+                  <span id="checkerTradeName">Commercial EV Fleet Infrastructure</span>
+                  <span class="checker-slot-badge open" id="checkerSlotBadge">1 Exclusive Slot Available</span>
+                </div>
+              </div>
+            </div>
+            <a href="#apply" id="btnClaimSlot" class="btn btn-secondary btn-sm" style="border-color: #10b981; color: #a7f3d0;">
+              Claim This Territory Slot &darr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Comparison Table (Angie's vs TradeSpec Pro) -->
     <section class="section comparison-section" id="comparison">
       <div class="container">
@@ -127,6 +182,87 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- "The Spec Difference" Live Dossier Comparison -->
+    <section class="section dossier-section" id="spec-difference">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-partner">THE SPEC DIFFERENCE</span>
+          <h2 class="section-title">Why TradeSpec Pro Leads Close at 35% vs 4%</h2>
+          <p class="section-subtitle">Examine the actual raw lead data your estimators receive. See why verified engineering specs eliminate tire-kickers on day one.</p>
+        </div>
+
+        <div class="dossier-grid">
+          <!-- Left: Angie's / HomeAdvisor -->
+          <div class="dossier-card bad">
+            <div class="dossier-header">
+              <div>
+                <span class="dossier-badge bad">SHARED BROKER FARM</span>
+                <h3 class="dossier-lead-title" style="margin-top: 0.25rem;">Typical $45 Portal Lead</h3>
+              </div>
+              <span style="font-size: 1.5rem;">❌</span>
+            </div>
+
+            <div class="dossier-content-box">
+              <p><strong>Customer:</strong> John D. (Homeowner / Unverified)</p>
+              <p><strong>Phone:</strong> (555) 019-XXXX <em style="color:#f87171;">[Disconnected / Voicemail]</em></p>
+              <p><strong>Location:</strong> "Somewhere near Houston"</p>
+              <p><strong>Scope:</strong> "Need someone to give me a price on an electrical charger for my trucks. Cheapest price only."</p>
+              <p style="margin-top: 0.5rem; color:#f87171;">⚠️ No voltage specified. No transformer review. 6 contractors calling John within 2 minutes.</p>
+            </div>
+
+            <div class="dossier-stats-list">
+              <div class="dossier-stat-row">
+                <span>Distribution:</span>
+                <strong style="color: #f87171;">Sold to 6–10 competitors</strong>
+              </div>
+              <div class="dossier-stat-row">
+                <span>Average Close Rate:</span>
+                <strong style="color: #f87171;">3% – 5%</strong>
+              </div>
+              <div class="dossier-stat-row">
+                <span>Time Wasted Calling:</span>
+                <strong>4.5 Hours / lead</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: TradeSpec Pro Stamped Lead -->
+          <div class="dossier-card good">
+            <div class="dossier-header">
+              <div>
+                <span class="dossier-badge good">TRADESPEC PRO STAMPED SPEC</span>
+                <h3 class="dossier-lead-title" style="margin-top: 0.25rem;">Exclusive $135 Commercial Lead</h3>
+              </div>
+              <span style="font-size: 1.5rem;">✅</span>
+            </div>
+
+            <div class="dossier-content-box">
+              <p><strong>Customer:</strong> Marcus Vance &bull; Apex Logistics LLC</p>
+              <p><strong>Direct Phone:</strong> (713) 555-8902 &bull; <strong>Email:</strong> mvance@apexlogistics.com</p>
+              <p><strong>Verified Location:</strong> 77002 (Harris County Industrial Park)</p>
+              <p><strong>Engineered Scope:</strong> 12x 19.2kW Level 2 Ports &bull; 480V 3-Phase &bull; 361A Continuous Duty &bull; 225kVA Padmount Transformer &bull; 150-ft Trenching Run</p>
+              <p style="margin-top: 0.5rem; color:#34d399;">✓ Budget Pre-Anchored: $75,000 – $145,000 USD &bull; Stamped submittal attached</p>
+            </div>
+
+            <div class="dossier-stats-list">
+              <div class="dossier-stat-row">
+                <span>Distribution:</span>
+                <strong style="color: #34d399;">Max 2 Certified Contractors</strong>
+              </div>
+              <div class="dossier-stat-row">
+                <span>Average Close Rate:</span>
+                <strong style="color: #34d399;">30% – 45%</strong>
+              </div>
+              <div class="dossier-stat-row">
+                <span>Time to Bid:</span>
+                <strong>Under 10 Minutes</strong>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -245,6 +381,16 @@
     <!-- Territory Application Form -->
     <section class="section apply-section" id="apply">
       <div class="container">
+
+        <!-- 100% Risk-Free Test-Drive Guarantee Banner -->
+        <div class="test-drive-banner">
+          <div class="guarantee-shield-icon">🛡️</div>
+          <div class="guarantee-content">
+            <h3 class="guarantee-heading">100% Risk-Free Contractor Pilot: First Commercial Lead Free</h3>
+            <p class="guarantee-text">No recurring subscriptions. No credit card required upfront. Claim your territory and receive your 1st code-stamped commercial specification lead completely free to test our engineering accuracy. Only fund dispatch credits if you choose to accept more.</p>
+          </div>
+        </div>
+
         <div class="apply-box">
           <div class="apply-content">
             <span class="badge-partner">TERRITORY AVAILABILITY CHECK</span>
@@ -281,20 +427,93 @@
                   <label for="appTrade">Primary Specialty Trade *</label>
                   <select id="appTrade" required class="form-select">
                     <option value="">Select trade specialty...</option>
-                    <option value="charge">Commercial EV Fleet Infrastructure</option>
-                    <option value="permit">Commercial Tenant Improvement</option>
-                    <option value="site">Civil Earthwork &amp; Stormwater</option>
-                    <option value="cold">Commercial Walk-In Refrigeration</option>
-                    <option value="crane">Mobile Crane &amp; Rigging</option>
-                    <option value="well">Water Well Drilling &amp; Pumps</option>
-                    <option value="racking">Warehouse Pallet Racking</option>
-                    <option value="foam">Commercial Spray Foam</option>
-                    <option value="grease">Grease Interceptor &amp; Hood MEP</option>
+                    <option value="charge" selected>⚡ Commercial EV Fleet Infrastructure</option>
+                    <option value="permit">🏛️ Commercial Tenant Improvement</option>
+                    <option value="site">🚜 Civil Earthwork &amp; Stormwater</option>
+                    <option value="cold">❄️ Commercial Walk-In Refrigeration</option>
+                    <option value="crane">🏗️ Mobile Crane &amp; Rigging</option>
+                    <option value="well">💧 Water Well Drilling &amp; Pumps</option>
+                    <option value="racking">📦 Warehouse Pallet Racking</option>
+                    <option value="foam">🧱 Commercial Spray Foam</option>
+                    <option value="grease">🍳 Grease Interceptor &amp; Hood MEP</option>
                   </select>
                 </div>
                 <div class="form-group half">
                   <label for="appZip">Primary Base Zip Code *</label>
                   <input type="text" id="appZip" required placeholder="e.g. 77002" pattern="[0-9]{5}" maxlength="5" class="form-input">
+                </div>
+              </div>
+
+              <!-- Multi-Source Lead Selection -->
+              <div class="form-group">
+                <label style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <span>Select Desired Lead Sources (Choose all that apply) *</span>
+                  <span style="font-size: 0.75rem; color: #38bdf8;">Multi-Source Dispatch</span>
+                </label>
+                <div class="sources-checkbox-grid" id="appSourceCheckboxes">
+                  <label class="source-checkbox-card checked">
+                    <input type="checkbox" name="lead_sources" value="charge" checked>
+                    <span class="source-title-text">
+                      <span>⚡ EV Infrastructure</span>
+                      <span class="source-badge-sub">ChargeSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="permit">
+                    <span class="source-title-text">
+                      <span>🏛️ Tenant Improvement</span>
+                      <span class="source-badge-sub">PermitSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="site">
+                    <span class="source-title-text">
+                      <span>🚜 Civil &amp; Stormwater</span>
+                      <span class="source-badge-sub">SiteSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="cold">
+                    <span class="source-title-text">
+                      <span>❄️ Commercial Walk-In</span>
+                      <span class="source-badge-sub">ColdSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="crane">
+                    <span class="source-title-text">
+                      <span>🏗️ Crane &amp; Rigging</span>
+                      <span class="source-badge-sub">RigCheck Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="well">
+                    <span class="source-title-text">
+                      <span>💧 Water Well Drilling</span>
+                      <span class="source-badge-sub">WellSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="racking">
+                    <span class="source-title-text">
+                      <span>📦 Pallet Racking</span>
+                      <span class="source-badge-sub">RackSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="foam">
+                    <span class="source-title-text">
+                      <span>🧱 Commercial Foam</span>
+                      <span class="source-badge-sub">FoamSpec Pro</span>
+                    </span>
+                  </label>
+                  <label class="source-checkbox-card">
+                    <input type="checkbox" name="lead_sources" value="grease">
+                    <span class="source-title-text">
+                      <span>🍳 Grease &amp; Hood MEP</span>
+                      <span class="source-badge-sub">FOGSpec Pro</span>
+                    </span>
+                  </label>
                 </div>
               </div>
 
@@ -437,6 +656,78 @@
                 <label for="cfgMinJob">Minimum Job Value Filter ($)</label>
                 <input type="number" id="cfgMinJob" step="500" class="form-input">
                 <small class="field-help">Ignore low-budget jobs under this amount.</small>
+              </div>
+            </div>
+
+            <!-- Active Calculator Lead Sources in Settings -->
+            <div class="settings-col-full" style="grid-column: 1 / -1; margin-top: 0.5rem; margin-bottom: 0.75rem;">
+              <label class="form-label" style="display: block; margin-bottom: 0.35rem; font-weight: 700; color: #fff; font-size: 0.875rem;">
+                Active Calculator Lead Streams (Toggle On/Off)
+              </label>
+              <div class="sources-checkbox-grid" id="settingsSourcesGrid">
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceCharge" value="charge" checked>
+                  <span class="source-title-text">
+                    <span>⚡ EV Infrastructure</span>
+                    <span class="source-badge-sub">ChargeSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourcePermit" value="permit" checked>
+                  <span class="source-title-text">
+                    <span>🏛️ Tenant Improvement</span>
+                    <span class="source-badge-sub">PermitSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceSite" value="site" checked>
+                  <span class="source-title-text">
+                    <span>🚜 Civil &amp; Stormwater</span>
+                    <span class="source-badge-sub">SiteSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceCold" value="cold" checked>
+                  <span class="source-title-text">
+                    <span>❄️ Commercial Walk-In</span>
+                    <span class="source-badge-sub">ColdSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceCrane" value="crane" checked>
+                  <span class="source-title-text">
+                    <span>🏗️ Crane &amp; Rigging</span>
+                    <span class="source-badge-sub">RigCheck Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceWell" value="well" checked>
+                  <span class="source-title-text">
+                    <span>💧 Water Well Drilling</span>
+                    <span class="source-badge-sub">WellSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceRacking" value="racking" checked>
+                  <span class="source-title-text">
+                    <span>📦 Pallet Racking</span>
+                    <span class="source-badge-sub">RackSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceFoam" value="foam" checked>
+                  <span class="source-title-text">
+                    <span>🧱 Commercial Foam</span>
+                    <span class="source-badge-sub">FoamSpec Pro</span>
+                  </span>
+                </label>
+                <label class="source-checkbox-card checked">
+                  <input type="checkbox" id="cfgSourceGrease" value="grease" checked>
+                  <span class="source-title-text">
+                    <span>🍳 Grease &amp; Hood MEP</span>
+                    <span class="source-badge-sub">FOGSpec Pro</span>
+                  </span>
+                </label>
               </div>
             </div>
 

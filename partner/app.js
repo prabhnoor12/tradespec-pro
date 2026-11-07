@@ -149,7 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     leads = DEFAULT_LEADS;
   }
 
-  // Load Settings
+  // Contractor Settings Model
+  const ALL_TRADE_KEYS = ["charge", "permit", "site", "cold", "crane", "well", "racking", "foam", "grease"];
+
   let settings = {
     companyName: "Apex Heavy Equipment & Industrial Services LLC",
     dispatchPhone: "(555) 849-2041",
@@ -157,17 +159,178 @@ document.addEventListener('DOMContentLoaded', () => {
     baseZip: "77002",
     radius: 60,
     minJob: 2500,
-    pin: "1234"
+    pin: "1234",
+    activeSources: [...ALL_TRADE_KEYS]
   };
 
   try {
     const storedCfg = localStorage.getItem('tradespec_partner_settings');
     if (storedCfg) {
       settings = Object.assign(settings, JSON.parse(storedCfg));
+      if (!Array.isArray(settings.activeSources) || settings.activeSources.length === 0) {
+        settings.activeSources = [...ALL_TRADE_KEYS];
+      }
     }
   } catch(e) {}
 
-  // --- 3. ROI CALCULATOR ENGINE ---
+  // --- 3. TRADE METADATA & HELPER DICTIONARY ---
+  const TRADE_META = {
+    charge: { title: "Commercial EV Fleet Infrastructure", short: "EV Charging", ticket: 85000, leadCost: 135 },
+    permit: { title: "Commercial Tenant Improvement", short: "Tenant TI", ticket: 140000, leadCost: 140 },
+    site: { title: "Civil Earthwork & Stormwater", short: "Civil Site", ticket: 65000, leadCost: 125 },
+    cold: { title: "Commercial Walk-In Refrigeration", short: "Walk-In Cold", ticket: 18500, leadCost: 115 },
+    crane: { title: "Mobile Crane & Heavy Rigging", short: "Crane Rigging", ticket: 3500, leadCost: 110 },
+    well: { title: "Water Well Drilling & Pumps", short: "Water Well", ticket: 16000, leadCost: 125 },
+    racking: { title: "Warehouse Pallet Racking", short: "Pallet Racking", ticket: 32000, leadCost: 150 },
+    foam: { title: "Commercial Spray Foam Insulation", short: "Spray Foam", ticket: 9500, leadCost: 95 },
+    grease: { title: "Commercial Kitchen MEP & Hoods", short: "Grease & Hood", ticket: 14000, leadCost: 110 }
+  };
+
+  // --- 4. TERRITORY AVAILABILITY CHECKER ENGINE ---
+  const territoryCheckerForm = document.getElementById('territoryCheckerForm');
+  const checkZip = document.getElementById('checkZip');
+  const checkTrade = document.getElementById('checkTrade');
+  const checkerResult = document.getElementById('checkerResult');
+  const checkerStatusDot = document.getElementById('checkerStatusDot');
+  const checkerMetroName = document.getElementById('checkerMetroName');
+  const checkerTradeName = document.getElementById('checkerTradeName');
+  const checkerSlotBadge = document.getElementById('checkerSlotBadge');
+  const btnClaimSlot = document.getElementById('btnClaimSlot');
+
+  function resolveMetroArea(zip) {
+    if (!zip || zip.length < 2) return "Regional Commercial Service Territory";
+    const prefix2 = zip.substring(0, 2);
+    const prefix3 = zip.substring(0, 3);
+    if (prefix3 === '770' || prefix2 === '77') return `Harris County / Houston Metro (${zip})`;
+    if (prefix2 === '75' || prefix2 === '76') return `Dallas-Fort Worth Metroplex (${zip})`;
+    if (prefix3 === '787' || prefix2 === '78') return `Austin / Central Texas Corridor (${zip})`;
+    if (prefix2 === '79') return `West Texas / Permian Industrial District (${zip})`;
+    if (prefix2 >= '90' && prefix2 <= '93') return `Southern California Regional Metro (${zip})`;
+    if (prefix2 === '94' || prefix2 === '95') return `SF Bay Area / NorCal Commercial District (${zip})`;
+    if (prefix2 === '30' || prefix2 === '31') return `Atlanta Metropolitan Area (${zip})`;
+    if (prefix2 === '33' || prefix2 === '34') return `South & Central Florida Commercial Territory (${zip})`;
+    if (prefix2 === '60') return `Chicagoland Regional Hub (${zip})`;
+    if (prefix2 === '85') return `Phoenix / Maricopa County (${zip})`;
+    if (prefix2 === '98') return `Seattle / Puget Sound Corridor (${zip})`;
+    if (prefix2 === '80') return `Denver Front Range Commercial Zone (${zip})`;
+    return `Regional County Commercial Territory (${zip})`;
+  }
+
+  function runTerritoryCheck() {
+    const rawZip = checkZip ? checkZip.value.trim() : '77002';
+    const zip = rawZip || '77002';
+    const trade = checkTrade ? checkTrade.value : 'charge';
+    const metro = resolveMetroArea(zip);
+    const meta = TRADE_META[trade] || TRADE_META.charge;
+
+    // Scarcity logic: only zips ending in 99 show waitlist; all others show 1 exclusive slot open
+    const isFull = zip.endsWith('99');
+
+    if (checkerMetroName) checkerMetroName.textContent = metro;
+    if (checkerTradeName) checkerTradeName.textContent = meta.title;
+
+    if (isFull) {
+      if (checkerStatusDot) checkerStatusDot.className = 'status-dot full';
+      if (checkerSlotBadge) {
+        checkerSlotBadge.className = 'checker-slot-badge full';
+        checkerSlotBadge.textContent = 'Waitlist Only (2 of 2 Claimed)';
+      }
+      if (btnClaimSlot) {
+        btnClaimSlot.textContent = 'Join Territory Waitlist ↓';
+        btnClaimSlot.style.borderColor = '#ef4444';
+        btnClaimSlot.style.color = '#fca5a5';
+      }
+    } else {
+      if (checkerStatusDot) checkerStatusDot.className = 'status-dot available';
+      if (checkerSlotBadge) {
+        checkerSlotBadge.className = 'checker-slot-badge open';
+        checkerSlotBadge.textContent = '1 Exclusive Slot Available (1 of 2 Claimed)';
+      }
+      if (btnClaimSlot) {
+        btnClaimSlot.textContent = 'Claim This Territory Slot ↓';
+        btnClaimSlot.style.borderColor = '#10b981';
+        btnClaimSlot.style.color = '#a7f3d0';
+      }
+    }
+
+    if (checkerResult) checkerResult.classList.remove('hidden');
+  }
+
+  if (territoryCheckerForm) {
+    territoryCheckerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      runTerritoryCheck();
+    });
+  }
+
+  if (checkZip) checkZip.addEventListener('input', runTerritoryCheck);
+  if (checkTrade) checkTrade.addEventListener('change', runTerritoryCheck);
+
+  // Wire "Claim This Territory Slot" button: auto-fill onboarding fields & smooth scroll
+  if (btnClaimSlot) {
+    btnClaimSlot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const zip = checkZip ? checkZip.value.trim() : '77002';
+      const trade = checkTrade ? checkTrade.value : 'charge';
+
+      const appZip = document.getElementById('appZip');
+      const appTrade = document.getElementById('appTrade');
+      if (appZip && zip) appZip.value = zip;
+      if (appTrade && trade) {
+        appTrade.value = trade;
+        syncAppTradeToCheckboxes(trade);
+      }
+
+      const applySec = document.getElementById('apply');
+      if (applySec) {
+        applySec.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // --- 5. MULTI-SOURCE CHECKBOX INTERACTION ---
+  function setupCheckboxGridListeners(gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+
+    grid.addEventListener('change', (e) => {
+      if (e.target && e.target.type === 'checkbox') {
+        const card = e.target.closest('.source-checkbox-card');
+        if (card) {
+          if (e.target.checked) card.classList.add('checked');
+          else card.classList.remove('checked');
+        }
+      }
+    });
+  }
+
+  setupCheckboxGridListeners('appSourceCheckboxes');
+  setupCheckboxGridListeners('settingsSourcesGrid');
+
+  function syncAppTradeToCheckboxes(primaryTrade) {
+    const checkboxes = document.querySelectorAll('#appSourceCheckboxes input[name="lead_sources"]');
+    checkboxes.forEach(cb => {
+      if (cb.value === primaryTrade) {
+        cb.checked = true;
+        const card = cb.closest('.source-checkbox-card');
+        if (card) card.classList.add('checked');
+      }
+    });
+  }
+
+  const appTradeSelect = document.getElementById('appTrade');
+  if (appTradeSelect) {
+    appTradeSelect.addEventListener('change', () => {
+      if (appTradeSelect.value) {
+        syncAppTradeToCheckboxes(appTradeSelect.value);
+      }
+    });
+  }
+
+  // Initialize territory check on load
+  runTerritoryCheck();
+
+  // --- 6. ROI CALCULATOR ENGINE ---
   const roiTrade = document.getElementById('roiTrade');
   const roiLeads = document.getElementById('roiLeads');
   const roiCloseRate = document.getElementById('roiCloseRate');
@@ -179,26 +342,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const roiNetMargin = document.getElementById('roiNetMargin');
   const roiFactor = document.getElementById('roiFactor');
 
-  const TRADE_DEFAULTS = {
-    charge: { ticket: 85000, leadCost: 135 },
-    permit: { ticket: 140000, leadCost: 140 },
-    site: { ticket: 65000, leadCost: 125 },
-    cold: { ticket: 18500, leadCost: 115 },
-    crane: { ticket: 3500, leadCost: 110 },
-    well: { ticket: 16000, leadCost: 125 },
-    racking: { ticket: 32000, leadCost: 150 },
-    foam: { ticket: 9500, leadCost: 95 },
-    grease: { ticket: 14000, leadCost: 110 }
-  };
-
   function updateRoi() {
     if (!roiTrade) return;
-    const t = TRADE_DEFAULTS[roiTrade.value] || TRADE_DEFAULTS.crane;
+    const t = TRADE_META[roiTrade.value] || TRADE_META.crane;
     const count = parseInt(roiLeads.value, 10);
     const closePct = parseInt(roiCloseRate.value, 10) / 100;
 
-    roiLeadsVal.textContent = count;
-    roiCloseRateVal.textContent = Math.round(closePct * 100);
+    if (roiLeadsVal) roiLeadsVal.textContent = count;
+    if (roiCloseRateVal) roiCloseRateVal.textContent = Math.round(closePct * 100);
 
     const wonJobs = Math.max(1, Math.round(count * closePct));
     const grossRev = wonJobs * t.ticket;
@@ -206,35 +357,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const net = grossRev - totalCost;
     const roi = (grossRev / totalCost).toFixed(1);
 
-    roiProjectedRevenue.textContent = `$${grossRev.toLocaleString()}`;
-    roiWonJobsText.textContent = `${wonJobs} Closed Commercial Contracts`;
-    roiLeadCost.textContent = `$${totalCost.toLocaleString()}`;
-    roiNetMargin.textContent = `$${net.toLocaleString()}`;
-    roiFactor.textContent = `${roi}x ROI`;
+    if (roiProjectedRevenue) roiProjectedRevenue.textContent = `$${grossRev.toLocaleString()}`;
+    if (roiWonJobsText) roiWonJobsText.textContent = `${wonJobs} Closed Commercial Contracts`;
+    if (roiLeadCost) roiLeadCost.textContent = `$${totalCost.toLocaleString()}`;
+    if (roiNetMargin) roiNetMargin.textContent = `$${net.toLocaleString()}`;
+    if (roiFactor) roiFactor.textContent = `${roi}x ROI`;
   }
 
   if (roiTrade) {
     roiTrade.addEventListener('change', updateRoi);
-    roiLeads.addEventListener('input', updateRoi);
-    roiCloseRate.addEventListener('input', updateRoi);
+    if (roiLeads) roiLeads.addEventListener('input', updateRoi);
+    if (roiCloseRate) roiCloseRate.addEventListener('input', updateRoi);
     updateRoi();
   }
 
-  // --- 4. PARTNER ONBOARDING APPLICATION FORM ---
+  // --- 7. PARTNER ONBOARDING APPLICATION FORM ---
   const appForm = document.getElementById('partnerApplicationForm');
   const appSuccessMsg = document.getElementById('appSuccessMsg');
 
   if (appForm) {
     appForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      // Collect chosen lead streams
+      const selectedSources = Array.from(document.querySelectorAll('#appSourceCheckboxes input[name="lead_sources"]:checked'))
+        .map(cb => cb.value);
+
+      const chosenTrade = document.getElementById('appTrade').value;
+      if (selectedSources.length === 0 && chosenTrade) {
+        selectedSources.push(chosenTrade);
+      }
+
       const appData = {
         company: document.getElementById('appCompanyName').value,
-        trade: document.getElementById('appTrade').value,
+        trade: chosenTrade,
         zip: document.getElementById('appZip').value,
         contact: document.getElementById('appContact').value,
         phone: document.getElementById('appPhone').value,
         email: document.getElementById('appEmail').value,
         radius: document.getElementById('appRadius').value,
+        leadSources: selectedSources,
         timestamp: new Date().toISOString()
       };
 
@@ -244,15 +406,22 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('tradespec_partner_apps', JSON.stringify(apps));
       } catch(err) {}
 
-      appSuccessMsg.classList.remove('hidden');
+      if (appSuccessMsg) {
+        appSuccessMsg.classList.remove('hidden');
+        appSuccessMsg.innerHTML = `<strong>✓ Application Received!</strong> Territory reserved for <strong>${escapeHtml(appData.company)}</strong> in ZIP ${escapeHtml(appData.zip)} across ${selectedSources.length} selected trade streams. A dispatch verification code will be sent to ${escapeHtml(appData.phone)} within 24 hours.`;
+      }
       appForm.reset();
+
+      // Re-highlight primary selection card
+      syncAppTradeToCheckboxes('charge');
+
       setTimeout(() => {
-        appSuccessMsg.classList.add('hidden');
-      }, 6000);
+        if (appSuccessMsg) appSuccessMsg.classList.add('hidden');
+      }, 7000);
     });
   }
 
-  // --- 5. PRIVATE DASHBOARD AUTH & VIEW TOGGLING ---
+  // --- 8. PRIVATE DASHBOARD AUTH & VIEW TOGGLING ---
   const portalSection = document.getElementById('portal-section');
   const pinLockScreen = document.getElementById('pin-lock-screen');
   const authenticatedDash = document.getElementById('authenticated-dashboard');
@@ -267,25 +436,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const footerPortalLink = document.getElementById('footer-portal-link');
 
   function showPortal() {
+    if (!portalSection) return;
     portalSection.classList.remove('hidden');
     portalSection.scrollIntoView({ behavior: 'smooth' });
 
     // Check if session is already authenticated
     if (sessionStorage.getItem('tradespec_auth') === 'true') {
-      pinLockScreen.classList.add('hidden');
-      authenticatedDash.classList.remove('hidden');
+      if (pinLockScreen) pinLockScreen.classList.add('hidden');
+      if (authenticatedDash) authenticatedDash.classList.remove('hidden');
       renderDashboard();
     } else {
-      pinLockScreen.classList.remove('hidden');
-      authenticatedDash.classList.add('hidden');
+      if (pinLockScreen) pinLockScreen.classList.remove('hidden');
+      if (authenticatedDash) authenticatedDash.classList.add('hidden');
       if (contractorPin) contractorPin.focus();
     }
   }
 
   function unlockPortal() {
     sessionStorage.setItem('tradespec_auth', 'true');
-    pinLockScreen.classList.add('hidden');
-    authenticatedDash.classList.remove('hidden');
+    if (pinLockScreen) pinLockScreen.classList.add('hidden');
+    if (authenticatedDash) authenticatedDash.classList.remove('hidden');
     if (pinError) pinError.classList.add('hidden');
     renderDashboard();
   }
@@ -299,13 +469,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pinForm) {
     pinForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const entered = contractorPin.value.trim();
+      const entered = contractorPin ? contractorPin.value.trim() : '';
       if (entered === settings.pin || entered === "1234") {
         unlockPortal();
       } else {
-        pinError.classList.remove('hidden');
-        contractorPin.value = '';
-        contractorPin.focus();
+        if (pinError) pinError.classList.remove('hidden');
+        if (contractorPin) {
+          contractorPin.value = '';
+          contractorPin.focus();
+        }
       }
     });
   }
@@ -313,13 +485,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lockPortalBtn) {
     lockPortalBtn.addEventListener('click', () => {
       sessionStorage.removeItem('tradespec_auth');
-      pinLockScreen.classList.remove('hidden');
-      authenticatedDash.classList.add('hidden');
+      if (pinLockScreen) pinLockScreen.classList.remove('hidden');
+      if (authenticatedDash) authenticatedDash.classList.add('hidden');
       if (contractorPin) contractorPin.value = '';
     });
   }
 
-  // --- 6. LEADS TABLE RENDERING & FILTERING ---
+  // --- 9. LEADS TABLE RENDERING & FILTERING ---
   const leadsTableBody = document.getElementById('leadsTableBody');
   const leadTradeFilter = document.getElementById('leadTradeFilter');
   const leadStatusFilter = document.getElementById('leadStatusFilter');
@@ -340,22 +512,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const tradeFilter = leadTradeFilter ? leadTradeFilter.value : 'all';
     const statusFilter = leadStatusFilter ? leadStatusFilter.value : 'all';
     const query = leadSearchInput ? leadSearchInput.value.toLowerCase().trim() : '';
+    const activeStreams = Array.isArray(settings.activeSources) ? settings.activeSources : ALL_TRADE_KEYS;
 
     const filtered = leads.filter(item => {
+      // 1. Filter out sources turned off in settings drawer
+      const matchActiveStream = activeStreams.includes(item.trade);
+      // 2. Filter dropdown
       const matchTrade = (tradeFilter === 'all' || item.trade === tradeFilter);
+      // 3. Status dropdown
       const matchStatus = (statusFilter === 'all' || item.status === statusFilter);
+      // 4. Keyword search
       const textToSearch = `${item.name} ${item.company} ${item.zip} ${item.specSummary}`.toLowerCase();
       const matchQuery = !query || textToSearch.includes(query);
-      return matchTrade && matchStatus && matchQuery;
+
+      return matchActiveStream && matchTrade && matchStatus && matchQuery;
     });
 
-    // Update KPIs
-    if (kpiTotalLeads) kpiTotalLeads.textContent = leads.length;
-    if (kpiNewLeads) kpiNewLeads.textContent = leads.filter(l => l.status === 'new').length;
+    // Update KPIs based on active leads
+    if (kpiTotalLeads) kpiTotalLeads.textContent = filtered.length;
+    if (kpiNewLeads) kpiNewLeads.textContent = filtered.filter(l => l.status === 'new').length;
     
     // Estimate pipeline: calculate approx sum
     let pipeSum = 0;
-    leads.forEach(l => {
+    filtered.forEach(l => {
       const match = (l.budgetEst || '').replace(/[^0-9]/g, ' ');
       const nums = match.trim().split(/\s+/).map(n => parseInt(n, 10)).filter(Boolean);
       if (nums.length > 0) {
@@ -369,7 +548,12 @@ document.addEventListener('DOMContentLoaded', () => {
     leadsTableBody.innerHTML = '';
 
     if (filtered.length === 0) {
-      if (noLeadsMsg) noLeadsMsg.classList.remove('hidden');
+      if (noLeadsMsg) {
+        noLeadsMsg.classList.remove('hidden');
+        noLeadsMsg.innerHTML = activeStreams.length < ALL_TRADE_KEYS.length 
+          ? `No leads found matching criteria. (Note: Some trade streams are currently paused in your Settings Drawer).`
+          : `No incoming leads matching current filter criteria.`;
+      }
       return;
     }
     if (noLeadsMsg) noLeadsMsg.classList.add('hidden');
@@ -420,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function attachRowActions() {
     // Copy Specs
     document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const id = btn.dataset.id;
         const item = leads.find(l => l.id === id);
         if (item) {
@@ -455,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (leadStatusFilter) leadStatusFilter.addEventListener('change', renderDashboard);
   if (leadSearchInput) leadSearchInput.addEventListener('input', renderDashboard);
 
-  // --- 7. CSV EXPORT ---
+  // --- 10. CSV EXPORT ---
   const exportCsvBtn = document.getElementById('exportCsvBtn');
   if (exportCsvBtn) {
     exportCsvBtn.addEventListener('click', () => {
@@ -485,7 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 8. SETTINGS DRAWER & CONFIGURATION FORM ---
+  // --- 11. SETTINGS DRAWER & CONFIGURATION FORM ---
   const toggleSettingsBtn = document.getElementById('toggleSettingsBtn');
   const closeSettingsBtn = document.getElementById('closeSettingsBtn');
   const settingsPanel = document.getElementById('settingsPanel');
@@ -500,6 +684,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const cfgRadius = document.getElementById('cfgRadius');
   const cfgMinJob = document.getElementById('cfgMinJob');
 
+  const SETTINGS_SOURCE_INPUTS = {
+    charge: 'cfgSourceCharge',
+    permit: 'cfgSourcePermit',
+    site: 'cfgSourceSite',
+    cold: 'cfgSourceCold',
+    crane: 'cfgSourceCrane',
+    well: 'cfgSourceWell',
+    racking: 'cfgSourceRacking',
+    foam: 'cfgSourceFoam',
+    grease: 'cfgSourceGrease'
+  };
+
   function populateSettingsForm() {
     if (cfgCompany) cfgCompany.value = settings.companyName;
     if (cfgPhone) cfgPhone.value = settings.dispatchPhone;
@@ -507,6 +703,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cfgBaseZip) cfgBaseZip.value = settings.baseZip;
     if (cfgRadius) cfgRadius.value = settings.radius;
     if (cfgMinJob) cfgMinJob.value = settings.minJob;
+
+    const activeList = Array.isArray(settings.activeSources) ? settings.activeSources : ALL_TRADE_KEYS;
+    Object.keys(SETTINGS_SOURCE_INPUTS).forEach(tradeKey => {
+      const inputEl = document.getElementById(SETTINGS_SOURCE_INPUTS[tradeKey]);
+      if (inputEl) {
+        inputEl.checked = activeList.includes(tradeKey);
+        const card = inputEl.closest('.source-checkbox-card');
+        if (card) {
+          if (inputEl.checked) card.classList.add('checked');
+          else card.classList.remove('checked');
+        }
+      }
+    });
   }
 
   if (toggleSettingsBtn && settingsPanel) {
@@ -525,17 +734,29 @@ document.addEventListener('DOMContentLoaded', () => {
   if (settingsForm) {
     settingsForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      settings.companyName = cfgCompany.value;
-      settings.dispatchPhone = cfgPhone.value;
-      settings.dispatchEmail = cfgEmail.value;
-      settings.baseZip = cfgBaseZip.value;
-      settings.radius = parseInt(cfgRadius.value, 10) || 60;
-      settings.minJob = parseInt(cfgMinJob.value, 10) || 2500;
+      settings.companyName = cfgCompany ? cfgCompany.value : settings.companyName;
+      settings.dispatchPhone = cfgPhone ? cfgPhone.value : settings.dispatchPhone;
+      settings.dispatchEmail = cfgEmail ? cfgEmail.value : settings.dispatchEmail;
+      settings.baseZip = cfgBaseZip ? cfgBaseZip.value : settings.baseZip;
+      settings.radius = cfgRadius ? (parseInt(cfgRadius.value, 10) || 60) : 60;
+      settings.minJob = cfgMinJob ? (parseInt(cfgMinJob.value, 10) || 2500) : 2500;
+
+      // Collect active lead streams from settings checkboxes
+      const selected = [];
+      Object.keys(SETTINGS_SOURCE_INPUTS).forEach(tradeKey => {
+        const inputEl = document.getElementById(SETTINGS_SOURCE_INPUTS[tradeKey]);
+        if (inputEl && inputEl.checked) {
+          selected.push(tradeKey);
+        }
+      });
+      settings.activeSources = selected.length > 0 ? selected : [...ALL_TRADE_KEYS];
 
       localStorage.setItem('tradespec_partner_settings', JSON.stringify(settings));
 
-      cfgSaveNotice.classList.remove('hidden');
-      setTimeout(() => { cfgSaveNotice.classList.add('hidden'); }, 2000);
+      if (cfgSaveNotice) {
+        cfgSaveNotice.classList.remove('hidden');
+        setTimeout(() => { cfgSaveNotice.classList.add('hidden'); }, 2500);
+      }
       renderDashboard();
     });
   }
