@@ -2544,3 +2544,358 @@ body {
   border-radius: var(--radius-sm);
   text-transform: uppercase;
 }
+
+
+/* ==========================================================================
+   MODULAR CONTRACTOR CONSOLE & MODAL STYLES
+   ========================================================================== */
+
+/* Modal Card Bases */
+.fast-bid-card,
+.wallet-modal-card,
+.dispute-modal-card,
+.badge-modal-card,
+.dossier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  max-width: 760px;
+  width: 95%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+  animation: modalScaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.fast-bid-body,
+.dossier-body,
+.wallet-modal-body,
+.dispute-modal-body,
+.badge-modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+.btn-close-modal:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Fast Bid Modal Controls */
+.fast-bid-client-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.bid-client-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+}
+.bid-client-meta {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+.bid-budget-est-badge {
+  text-align: right;
+}
+.bid-budget-est-badge strong {
+  display: block;
+  font-size: 1.1rem;
+  color: #34d399;
+  font-family: var(--font-mono);
+}
+.template-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 1rem 0;
+}
+.template-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.template-chip:hover, .template-chip.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: #38bdf8;
+}
+.bid-calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .bid-calc-grid { grid-template-columns: 1fr; }
+}
+.fast-bid-preview {
+  background: #0b1120;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono);
+  color: #e2e8f0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+/* Dossier Modal */
+.dossier-contact-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+}
+.dossier-contact-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.dossier-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.dossier-field-label {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.dossier-field-val {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0.15rem;
+}
+.dossier-field-val.accent { color: #38bdf8; }
+.dossier-field-val.highlight { color: #34d399; font-family: var(--font-mono); font-size: 1rem; }
+.dossier-info-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+/* Wallet Billing Modal */
+.wallet-balance-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.7) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.wallet-big-val {
+  font-size: 2.25rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  color: #34d399;
+  line-height: 1;
+  margin-top: 0.35rem;
+}
+.deposit-presets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+@media (max-width: 500px) {
+  .deposit-presets { grid-template-columns: 1fr; }
+}
+.deposit-preset-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.deposit-preset-btn:hover, .deposit-preset-btn.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Zero-Friction Dispute Modal */
+.dispute-guarantee-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  background: rgba(239, 68, 68, 0.08);
+  border-left: 3px solid #ef4444;
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 1.25rem;
+}
+.dispute-lead-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 0.875rem;
+  font-size: 0.8125rem;
+}
+.dispute-reasons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.dispute-reason-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: #e2e8f0;
+  transition: var(--transition-fast);
+}
+.dispute-reason-option:hover {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+.dispute-reason-option input[type="radio"] {
+  margin-top: 0.2rem;
+  accent-color: #ef4444;
+}
+
+/* Certificate Preview Box */
+.certificate-preview-box {
+  background: radial-gradient(circle at 50% 30%, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #fbbf24;
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.cert-gold-seal {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.cert-title {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #fbbf24;
+  font-weight: 800;
+}
+.cert-company-heading {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+.cert-subtext {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  max-width: 440px;
+  margin: 0 auto 1.25rem auto;
+}
+.cert-meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Settings Drawer */
+.settings-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 440px;
+  max-width: 90vw;
+  background: #0f172a;
+  border-left: 1px solid var(--border-light);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  animation: drawerSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes drawerSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.settings-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  background: #1e293b;
+}
+.settings-drawer-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+.settings-trade-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+.settings-trade-checkboxes .source-checkbox-card {
+  padding: 0.45rem 0.65rem;
+  font-size: 0.8125rem;
+}
