@@ -23,7 +23,7 @@
     const territoryContractorCount = document.getElementById('territoryContractorCount');
     const territoryCapacityBar = document.getElementById('territoryCapacityBar');
 
-    function checkTerritoryAvailability() {
+    async function checkTerritoryAvailability() {
       if (!territoryZipInput || !territoryResultBox) return;
       const zip = territoryZipInput.value.trim();
       if (!/^\d{5}$/.test(zip)) {
@@ -35,32 +35,87 @@
       const tradeKey = territoryTradeSelect ? territoryTradeSelect.value : 'charge';
       const tradeInfo = TRADE_META[tradeKey] || TRADE_META.charge;
 
+      // Show loading feedback
+      if (checkTerritoryBtn) {
+        checkTerritoryBtn.disabled = true;
+        checkTerritoryBtn.innerHTML = '<span>Verifying Database...</span>';
+      }
+
       territoryResultBox.classList.remove('hidden');
+      if (territoryStatusBadge) {
+        territoryStatusBadge.textContent = 'CHECKING SUPABASE LIVE REGISTRY...';
+        territoryStatusBadge.className = 'territory-status-badge badge-warning';
+      }
+      if (territoryResultMessage) {
+        territoryResultMessage.innerHTML = `Querying live partner registrations for ZIP <strong>${zip}</strong> (${tradeInfo.short})...`;
+      }
 
-      // Deterministic territory occupancy calculation based on zip digits
-      const zipSum = zip.split('').reduce((acc, digit) => acc + parseInt(digit, 10), 0);
-      const isOneTaken = zipSum % 3 !== 0;
+      // Query real database via Supabase layer
+      let territoryData = null;
+      if (window.TradeSpecSupabase && typeof window.TradeSpecSupabase.checkTerritorySlots === 'function') {
+        try {
+          territoryData = await window.TradeSpecSupabase.checkTerritorySlots(zip, tradeKey);
+        } catch (err) {
+          console.warn('[Territory] Query error:', err);
+        }
+      }
 
-      if (isOneTaken) {
+      // Restore button
+      if (checkTerritoryBtn) {
+        checkTerritoryBtn.disabled = false;
+        checkTerritoryBtn.innerHTML = 'Check Availability &rarr;';
+      }
+
+      const claimedCount = territoryData ? territoryData.claimedCount : 0;
+      const isLocked = territoryData ? territoryData.isFullyLocked : false;
+      const isLiveDb = territoryData ? territoryData.isLiveDb : false;
+      const dbTag = isLiveDb ? '<span style="color:#10b981;font-size:0.75rem;display:inline-block;margin-left:6px;">● Supabase Verified</span>' : '';
+
+      if (isLocked) {
+        // 2 of 2 slots taken - Fully locked!
+        if (territoryStatusBadge) {
+          territoryStatusBadge.textContent = 'TERRITORY AT FULL CAPACITY — 0 OF 2 SLOTS OPEN';
+          territoryStatusBadge.className = 'territory-status-badge badge-danger';
+          territoryStatusBadge.style.backgroundColor = '#ef4444';
+        }
+        if (territoryResultMessage) {
+          territoryResultMessage.innerHTML = `⚠️ <strong>Territory Locked:</strong> ZIP <strong>${zip}</strong> has reached the maximum cap of <strong>2 active contractors</strong> for <strong>${tradeInfo.short}</strong>${dbTag}. New contractor enrollments for this primary ZIP are closed to protect partner job exclusivity. You may join the waitlist below or apply with an adjacent service ZIP.`;
+        }
+        if (territoryContractorCount) territoryContractorCount.textContent = '2 / 2 Contractors Active (FULL)';
+        if (territoryCapacityBar) {
+          territoryCapacityBar.style.width = '100%';
+          territoryCapacityBar.style.backgroundColor = '#ef4444';
+        }
+      } else if (claimedCount === 1) {
+        // 1 of 2 slots taken - 1 left
         if (territoryStatusBadge) {
           territoryStatusBadge.textContent = '1 OF 2 SLOTS CLAIMED — 1 TERRITORY SLOT OPEN';
           territoryStatusBadge.className = 'territory-status-badge badge-warning';
+          territoryStatusBadge.style.backgroundColor = '';
         }
         if (territoryResultMessage) {
-          territoryResultMessage.innerHTML = `ZIP <strong>${zip}</strong> has <strong>1 certified contractor</strong> registered in <strong>${tradeInfo.short}</strong>. Exactly <strong>1 exclusive territory license remains</strong> before this ZIP is locked for 12 months.`;
+          territoryResultMessage.innerHTML = `ZIP <strong>${zip}</strong> has <strong>1 certified contractor</strong> active in <strong>${tradeInfo.short}</strong>${dbTag}. Exactly <strong>1 exclusive territory license remains</strong> before this ZIP is locked for 12 months.`;
         }
         if (territoryContractorCount) territoryContractorCount.textContent = '1 / 2 Contractors Active';
-        if (territoryCapacityBar) territoryCapacityBar.style.width = '50%';
+        if (territoryCapacityBar) {
+          territoryCapacityBar.style.width = '50%';
+          territoryCapacityBar.style.backgroundColor = '';
+        }
       } else {
+        // 0 of 2 slots taken - 2 slots open
         if (territoryStatusBadge) {
           territoryStatusBadge.textContent = 'TERRITORY UNCLAIMED — 2 OF 2 SLOTS OPEN';
           territoryStatusBadge.className = 'territory-status-badge badge-success';
+          territoryStatusBadge.style.backgroundColor = '';
         }
         if (territoryResultMessage) {
-          territoryResultMessage.innerHTML = `Good news! ZIP <strong>${zip}</strong> currently has <strong>0 certified contractors</strong> enrolled for <strong>${tradeInfo.short}</strong>. You will hold first-call rights on all commercial specs dispatched in this service radius.`;
+          territoryResultMessage.innerHTML = `Good news! ZIP <strong>${zip}</strong> currently has <strong>0 certified contractors</strong> enrolled for <strong>${tradeInfo.short}</strong>${dbTag}. You will hold first-call rights on all commercial specs dispatched in this service radius.`;
         }
         if (territoryContractorCount) territoryContractorCount.textContent = '0 / 2 Contractors Active';
-        if (territoryCapacityBar) territoryCapacityBar.style.width = '0%';
+        if (territoryCapacityBar) {
+          territoryCapacityBar.style.width = '0%';
+          territoryCapacityBar.style.backgroundColor = '';
+        }
       }
 
       // Pre-fill application form below with verified zip & trade

@@ -434,6 +434,85 @@
     }
   }
 
+  // --- 4. TERRITORY AVAILABILITY VERIFIER ---
+  async function checkTerritorySlots(zip, tradeKey) {
+    initClient();
+    const cleanZip = String(zip || '').trim();
+    const trade = String(tradeKey || '').trim().toLowerCase();
+
+    // Query 1: Active contractors in public.contractors
+    // Check if contractor has primary_zip = cleanZip AND active_trades includes trade
+    let contractorCount = 0;
+    let applicationCount = 0;
+    let querySuccess = false;
+
+    if (client) {
+      try {
+        const { data: contractors, error: cErr } = await client
+          .from('contractors')
+          .select('id, company_name, primary_zip, active_trades, status')
+          .eq('primary_zip', cleanZip)
+          .eq('status', 'active');
+
+        if (!cErr && contractors) {
+          querySuccess = true;
+          // Filter contractors who service this specific trade
+          contractorCount = contractors.filter(c => {
+            const trades = Array.isArray(c.active_trades) ? c.active_trades : [];
+            return trades.includes(trade);
+          }).length;
+        }
+
+        // Query 2: Pending/approved applications in partner_applications for the same ZIP & trade
+        const { data: apps, error: aErr } = await client
+          .from('partner_applications')
+          .select('id, specialty_trade, base_zip, lead_sources, status')
+          .eq('base_zip', cleanZip)
+          .in('status', ['pending', 'approved']);
+
+        if (!aErr && apps) {
+          querySuccess = true;
+          applicationCount = apps.filter(a => {
+            const appTrade = (a.specialty_trade || '').toLowerCase();
+            const sources = Array.isArray(a.lead_sources) ? a.lead_sources : [];
+            return appTrade === trade || sources.includes(trade);
+          }).length;
+        }
+      } catch (err) {
+        console.warn('[TradeSpec Supabase] checkTerritorySlots error:', err);
+      }
+    }
+
+    // Check local storage for recent local applications if Supabase is offline or for local preview
+    try {
+      const localApps = JSON.parse(localStorage.getItem('tradespec_partner_apps') || '[]');
+      const matchingLocal = localApps.filter(a => {
+        const aZip = String(a.base_zip || a.zip || '').trim();
+        const aTrade = String(a.specialty_trade || a.trade || '').trim().toLowerCase();
+        const sources = Array.isArray(a.lead_sources) ? a.lead_sources : [];
+        return aZip === cleanZip && (aTrade === trade || sources.includes(trade));
+      });
+      // Deduplicate count
+      if (!querySuccess) {
+        applicationCount = matchingLocal.length;
+      }
+    } catch (e) {}
+
+    // Total claimed slots in this zip + trade (capped at capacity 2)
+    const totalClaimed = Math.min(2, contractorCount + applicationCount);
+    const slotsAvailable = Math.max(0, 2 - totalClaimed);
+
+    return {
+      zip: cleanZip,
+      trade,
+      claimedCount: totalClaimed,
+      slotsAvailable,
+      maxSlots: 2,
+      isFullyLocked: totalClaimed >= 2,
+      isLiveDb: querySuccess
+    };
+  }
+
   // Expose API globally
   window.TradeSpecSupabase = {
     config: SUPABASE_CONFIG,
@@ -443,6 +522,7 @@
     registerContractor,
     getContractorProfile,
     updateContractorSettings,
+    checkTerritorySlots,
     getLeads,
     claimLead,
     disputeLead,
