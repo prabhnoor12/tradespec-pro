@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const appSuccessMsg = document.getElementById('appSuccessMsg');
 
   if (appForm) {
-    appForm.addEventListener('submit', (e) => {
+    appForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const selectedSources = Array.from(document.querySelectorAll('#appSourceCheckboxes input[name="lead_sources"]:checked'))
@@ -528,22 +528,55 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: new Date().toISOString()
       };
 
-      try {
-        const apps = JSON.parse(localStorage.getItem('tradespec_partner_apps') || '[]');
-        apps.unshift(appData);
-        localStorage.setItem('tradespec_partner_apps', JSON.stringify(apps));
-      } catch(err) {}
-
-      if (appSuccessMsg) {
-        appSuccessMsg.classList.remove('hidden');
-        appSuccessMsg.innerHTML = `<strong>✓ Application Received!</strong> Territory reserved for <strong>${escapeHtml(appData.company)}</strong> in ZIP ${escapeHtml(appData.zip)} across ${selectedSources.length} selected trade streams. A dispatch verification code will be sent to ${escapeHtml(appData.phone)} within 24 hours.`;
+      // 1. Submit to Supabase Backend
+      let isSupabase = false;
+      if (window.TradeSpecSupabase) {
+        const res = await window.TradeSpecSupabase.submitApplication(appData);
+        isSupabase = res && res.isSupabase;
       }
+
+      // 2. Open rich confirmation modal
+      const appModal = document.getElementById('appConfirmationModal');
+      if (appModal) {
+        const elComp = document.getElementById('confModalCompany');
+        const elZip = document.getElementById('confModalZip');
+        const elTrades = document.getElementById('confModalTrades');
+        const elPin = document.getElementById('confModalPin');
+        const elStatus = document.getElementById('confModalBackendStatus');
+
+        if (elComp) elComp.textContent = appData.company;
+        if (elZip) elZip.textContent = `${appData.zip} (${appData.radius} mi radius)`;
+        if (elTrades) elTrades.textContent = selectedSources.map(s => TRADE_META[s] ? TRADE_META[s].short : s).join(', ');
+        if (elPin) elPin.textContent = '1234';
+        if (elStatus) elStatus.textContent = isSupabase ? '🟢 Persisted to Supabase Live DB' : '🟡 Staged (Demo Mode)';
+
+        appModal.classList.remove('hidden');
+      } else if (appSuccessMsg) {
+        appSuccessMsg.classList.remove('hidden');
+        appSuccessMsg.innerHTML = `<strong>✓ Application Received!</strong> Territory reserved for <strong>${escapeHtml(appData.company)}</strong> in ZIP ${escapeHtml(appData.zip)}. Demo PIN: <code>1234</code>.`;
+      }
+
       appForm.reset();
       syncAppTradeToCheckboxes('charge');
+    });
+  }
 
-      setTimeout(() => {
-        if (appSuccessMsg) appSuccessMsg.classList.add('hidden');
-      }, 7000);
+  // Application Confirmation Modal Controls
+  const closeAppConfModalBtn = document.getElementById('closeAppConfModalBtn');
+  const launchConsoleFromModalBtn = document.getElementById('launchConsoleFromModalBtn');
+  const appConfirmationModal = document.getElementById('appConfirmationModal');
+
+  if (closeAppConfModalBtn && appConfirmationModal) {
+    closeAppConfModalBtn.addEventListener('click', () => {
+      appConfirmationModal.classList.add('hidden');
+    });
+  }
+
+  if (launchConsoleFromModalBtn && appConfirmationModal) {
+    launchConsoleFromModalBtn.addEventListener('click', () => {
+      appConfirmationModal.classList.add('hidden');
+      showPortal();
+      unlockPortal();
     });
   }
 
@@ -592,9 +625,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quickDemoUnlock) quickDemoUnlock.addEventListener('click', unlockPortal);
 
   if (pinForm) {
-    pinForm.addEventListener('submit', (e) => {
+    pinForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const entered = contractorPin ? contractorPin.value.trim() : '';
+
+      // Check Supabase contractor profile first
+      if (window.TradeSpecSupabase) {
+        try {
+          const res = await window.TradeSpecSupabase.getContractorProfile(entered);
+          if (res && res.success && res.contractor) {
+            settings = Object.assign(settings, res.contractor);
+            unlockPortal();
+            return;
+          }
+        } catch(err) {
+          console.warn('PIN auth error with Supabase:', err);
+        }
+      }
+
       if (entered === settings.pin || entered === "1234") {
         unlockPortal();
       } else {
@@ -1471,13 +1519,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 18. GLOBAL KEYBOARD & BACKDROP MODAL DISMISSAL ---
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      [fastBidModal, leadDossierModal, disputeModal, walletModal, badgeModal].forEach(m => {
+      [fastBidModal, leadDossierModal, disputeModal, walletModal, badgeModal, backendModal, appConfirmationModal].forEach(m => {
         if (m) m.classList.add('hidden');
       });
     }
   });
 
-  [fastBidModal, leadDossierModal, disputeModal, walletModal, badgeModal].forEach(modalBackdrop => {
+  [fastBidModal, leadDossierModal, disputeModal, walletModal, badgeModal, backendModal, appConfirmationModal].forEach(modalBackdrop => {
     if (modalBackdrop) {
       modalBackdrop.addEventListener('click', (e) => {
         if (e.target === modalBackdrop) {
@@ -1495,6 +1543,426 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;');
   }
+
+  // --- 19. INTERACTIVE 9-TRADE SAMPLE BLUEPRINT INSPECTOR ---
+  const sampleTabsBar = document.getElementById('sampleTabsBar');
+  const sampleBlueprintCard = document.getElementById('sampleBlueprintCard');
+
+  const SAMPLE_BLUEPRINTS = {
+    charge: {
+      title: "Commercial EV Fleet Depot Infrastructure",
+      subTitle: "12x 19.2kW Level 2 Fleet Chargers • 480V 3-Phase",
+      stdBadge: "NFPA 70 / NEC 625 & 220",
+      customer: "Apex Logistics LLC • Harris County (77002)",
+      budget: "$75,000 – $145,000",
+      leadCost: 225,
+      contractorProfit: "$28,000 – $42,000",
+      pctJob: "0.26%",
+      specs: [
+        { param: "Continuous Duty Circuit Rating", code: "NEC 625.41 (125% Rule)", val: "361 Amps Coincident Peak" },
+        { param: "Service Feed Voltage", code: "Commercial 3-Phase Standard", val: "480V / 277V Padmount Feed" },
+        { param: "Dedicated Transformer Sizing", code: "Utility Interconnection Standard", val: "225 kVA Commercial Transformer" },
+        { param: "Trenching Conductor Run", code: "NEC 300.5 Underground RMC Conduit", val: "150 ft Rigid Metal Conduit" },
+        { param: "IRA Section 30C Tax Credit", code: "Inflation Reduction Act", val: "30% Federal Rebate (~$25,500)" }
+      ]
+    },
+    permit: {
+      title: "Commercial Tenant Improvement & Egress",
+      subTitle: "2,400 SF Restaurant & Bakery Buildout • 160 Persons",
+      stdBadge: "IBC Table 1004.5 • IPC 403",
+      customer: "Artisan Bakery & Cafe • Dallas County (75001)",
+      budget: "$310,000 – $480,000",
+      leadCost: 275,
+      contractorProfit: "$40,000 – $65,000",
+      pctJob: "0.20%",
+      specs: [
+        { param: "Design Occupant Load", code: "IBC Table 1004.5 (15 SF/person)", val: "160 Persons Maximum" },
+        { param: "Remote Exit Door Pair", code: "IBC 1006.2.1 Remote Egress", val: "2 Remote Doors (≥ 1/3 diagonal)" },
+        { param: "Restroom Fixture Allocation", code: "IPC Table 403.1 Restroom Code", val: "4 Water Closets (2M/2F) + 2 Lavs" },
+        { param: "Commercial Kitchen Hood", code: "IMC / NFPA 96 Exhaust", val: "12 ft Type I Hood (4,800 CFM)" },
+        { param: "Tenant Improvement Gap", code: "Landlord TI Allowance Allocation", val: "$45/SF Allowance vs $130/SF Cost" }
+      ]
+    },
+    site: {
+      title: "Civil Earthwork, Detention & Retaining Wall",
+      subTitle: "1.5-Acre Commercial Parcel • 65% Impervious Surface",
+      stdBadge: "Rational Method Q=CiA • NCMA SRW",
+      customer: "Cole Commercial Properties • Travis County (78701)",
+      budget: "$66,000 – $108,000",
+      leadCost: 185,
+      contractorProfit: "$20,000 – $32,000",
+      pctJob: "0.28%",
+      specs: [
+        { param: "Peak Stormwater Runoff (Q)", code: "Rational Method Q=CiA (10-Yr)", val: "3.23 CFS Peak Discharge" },
+        { param: "Retention Basin Volume", code: "ASCE MOP 28 Water Quality", val: "0.26 Acre-Feet (11,325 cu ft)" },
+        { param: "Cut/Fill Mass Excavation", code: "25% Soil Swell Factor", val: "800 BCY Cut (67 Haul Cycles)" },
+        { param: "Segmental Retaining Wall", code: "NCMA SRW Standard", val: "60 ft x 6 ft with 3 Geogrid Tiers" },
+        { param: "SWPPP Erosion Silt Guard", code: "EPA Clean Water General Permit", val: "Silt Fencing & Inlet Filter Traps" }
+      ]
+    },
+    cold: {
+      title: "Commercial Walk-In Cooler & Freezer Sizing",
+      subTitle: "10'×12'×8.5' Medium-Temp Cooler (+35°F Design)",
+      stdBadge: "ASHRAE Ch. 23 & 24 • EISA 2007",
+      customer: "Lone Star Brewing Co. • Bexar County (78205)",
+      budget: "$14,500 – $24,000",
+      leadCost: 95,
+      contractorProfit: "$6,500 – $9,500",
+      pctJob: "0.51%",
+      specs: [
+        { param: "24-Hour Design Heat Load", code: "ASHRAE Refrigeration Standard", val: "11,850 BTU/hr (1.1 Safety Factor)" },
+        { param: "Hermetic Condensing Unit", code: "Scroll Compressor Standard", val: "1.5 HP Medium-Temp Scroll" },
+        { param: "Thermal Insulation Envelope", code: "EISA 2007 Federal Energy Code", val: "4\" IMP Panels (R-29 Walls/Ceiling)" },
+        { param: "Defrost Run-Time Basis", code: "16-Hr Medium Temp Defrost", val: "Off-Cycle Scheduled Air Defrost" },
+        { param: "Refrigerant Environmental", code: "EPA AIM Act Low-GWP Standard", val: "R-448A / R-449A Zero ODP" }
+      ]
+    },
+    crane: {
+      title: "Mobile Crane Load-Chart & Setback Rigging",
+      subTitle: "6,000 lbs Commercial RTU Pick • 60ft Setback Radius",
+      stdBadge: "ASME B30.5 • OSHA 1926.1400",
+      customer: "Apex Commercial Mechanical • Harris County (77002)",
+      budget: "$2,800 – $4,200",
+      leadCost: 45,
+      contractorProfit: "$1,400 – $2,200",
+      pctJob: "1.28%",
+      specs: [
+        { param: "Total Pick Weight", code: "OSHA 1926.1400 (with tackle)", val: "6,000 lbs Gross Hoisted Load" },
+        { param: "Operating Setback Radius", code: "Center-of-Rotation Setback", val: "60 ft Horizontal Radius" },
+        { param: "Boom Hook Elevation", code: "Parapet Clearance Allowance", val: "48 ft Hook Height Over Roof" },
+        { param: "Certified Crane Rating", code: "ASME B30.5 Mobile Crane Chart", val: "75-Ton All-Terrain (68% Chart)" },
+        { param: "Ground Matting Requirement", code: "Soil Bearing Pressure Standard", val: "Timber Crane Mats (≤ 3,200 psf)" }
+      ]
+    },
+    well: {
+      title: "Commercial Water Well & Submersible Pump Head",
+      subTitle: "350 ft Consolidated Limestone Bedrock • 25 GPM",
+      stdBadge: "NGWA Standards • EPA Water Specs",
+      customer: "Sterling Ranch & Vineyards • Gillespie County (78624)",
+      budget: "$18,500 – $22,400",
+      leadCost: 85,
+      contractorProfit: "$5,500 – $8,000",
+      pctJob: "0.53%",
+      specs: [
+        { param: "Target Formation Depth", code: "NGWA Commercial Bedrock", val: "350 ft Consolidated Formation" },
+        { param: "Continuous Production Yield", code: "Pumping Flow Test Standard", val: "25 GPM Commercial Yield" },
+        { param: "Submersible Pump & Motor", code: "230V Heavy Duty Motor", val: "3.0 HP High-Efficiency Submersible" },
+        { param: "ASME Bladder Pressure Tank", code: "Commercial Water Vault Spec", val: "119 Gallon Pre-Charged Tank" },
+        { param: "Steel Surface Casing", code: "Groundwater Sanitary Code", val: "6-5/8\" Casing with Neat Grout Seal" }
+      ]
+    },
+    racking: {
+      title: "Warehouse Pallet Racking & Seismic Sizing",
+      subTitle: "648 Pallet Positions • 20ft Upright Frames • 3 Tiers",
+      stdBadge: "RMI ANSI MH16.1 • OSHA 1910.176",
+      customer: "ColdChain Logistics Hub • Dallas County (75001)",
+      budget: "$51,800 – $64,800",
+      leadCost: 135,
+      contractorProfit: "$10,000 – $16,000",
+      pctJob: "0.42%",
+      specs: [
+        { param: "Total Bay Pallet Positions", code: "40\" x 48\" GMA Standard Pallets", val: "648 Positions (3-High Tiers)" },
+        { param: "Clear Eave Elevation", code: "Structural Clear Allowance", val: "24 ft Clear Eave Height" },
+        { param: "Operational Aisle Turning", code: "Reach Truck Turning Standard", val: "9.5 ft Operating Aisle" },
+        { param: "Upright Frame Seismic Sizing", code: "RMI MH16.1 Industrial Steel", val: "20 ft Uprights, 42\" Depth" },
+        { param: "Beam Load Rating per Pair", code: "ANSI / RMI Step Beam Rating", val: "5,500 lbs per Pair of Step Beams" }
+      ]
+    },
+    foam: {
+      title: "Commercial Spray Foam Envelope Sizing",
+      subTitle: "30'×40' Steel Shop • 6,440 Bd Ft • 2\" Closed-Cell",
+      stdBadge: "ASHRAE 90.1 • IBC Chapter 26",
+      customer: "Holcomb Metal Bldgs • Travis County (78701)",
+      budget: "$9,600 – $11,800",
+      leadCost: 60,
+      contractorProfit: "$3,500 – $5,000",
+      pctJob: "0.63%",
+      specs: [
+        { param: "Gross Insulated Board Feet", code: "Roof Deck + Perimeter Walls", val: "6,440 Board Feet Gross" },
+        { param: "Thermal Resistance Value", code: "2\" Closed-Cell Density (2 lb)", val: "R-13.6 Thermal Continuous" },
+        { param: "Chemical Drum Sets", code: "1 Set = 4,000-4,500 Bd Ft", val: "1.6 Sets (A+B 55-Gal Drums)" },
+        { param: "Thermal Ignition Barrier", code: "IBC 2603.4 Code Mandate", val: "Intumescent Coating Mandated" },
+        { param: "Vapor Permeability", code: "Class II Vapor Retarder", val: "≤ 0.8 Perms (Monolithic Seal)" }
+      ]
+    },
+    grease: {
+      title: "Grease Interceptor & Kitchen Hood CFM Sizing",
+      subTitle: "1,000 Gal Gravity Vault • 10ft Type I Hood (4,000 CFM)",
+      stdBadge: "UPC Appendix H • NFPA 96",
+      customer: "Prime Cut Steakhouse • Bexar County (78205)",
+      budget: "$14,200 – $18,500",
+      leadCost: 75,
+      contractorProfit: "$5,000 – $7,200",
+      pctJob: "0.54%",
+      specs: [
+        { param: "Gravity Interceptor Vault", code: "UPC Appendix H Peak Flow", val: "1,000 Gallon Precast Vault" },
+        { param: "Commercial Kitchen Exhaust", code: "NFPA 96 / IMC Standard", val: "10 ft Type I Hood (4,000 CFM)" },
+        { param: "Dedicated Make-Up Air (MUA)", code: "85% Exhaust Replacement Rule", val: "3,400 CFM Tempered MUA" },
+        { param: "Retention Time Requirement", code: "Municipal Pre-Treatment Code", val: "30-Minute Grease Separation" },
+        { param: "Heavy Duty Charbroiler", code: "Solid Fuel / Heavy Duty Class", val: "UL 710 Listed Grease Baffles" }
+      ]
+    }
+  };
+
+  function renderSampleBlueprint(tradeKey) {
+    if (!sampleBlueprintCard) return;
+    const bp = SAMPLE_BLUEPRINTS[tradeKey] || SAMPLE_BLUEPRINTS.charge;
+
+    sampleBlueprintCard.innerHTML = `
+      <div class="blueprint-card-header">
+        <div class="blueprint-title-row">
+          <span style="font-size: 1.75rem;">📐</span>
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0;">${escapeHtml(bp.title)}</h3>
+            <p style="font-size: 0.8125rem; color: #94a3b8; margin: 0.2rem 0 0 0;">${escapeHtml(bp.subTitle)}</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="blueprint-badge-std">${escapeHtml(bp.stdBadge)}</span>
+          <span class="rate-badge high" style="font-size: 0.75rem;">Lead Fee: $${bp.leadCost}</span>
+        </div>
+      </div>
+
+      <div class="blueprint-body">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em;">Attached Engineering Parameters</span>
+            <span style="font-size: 0.6875rem; color: #34d399; font-weight: 700;">✓ Calculated on Public Engine</span>
+          </div>
+
+          <table class="blueprint-spec-table">
+            <thead>
+              <tr>
+                <th scope="col">Parameter</th>
+                <th scope="col">Code Standard</th>
+                <th scope="col">Engineered Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${bp.specs.map(s => `
+                <tr>
+                  <td style="color: #e2e8f0; font-weight: 600;">${escapeHtml(s.param)}</td>
+                  <td class="code-ref">${escapeHtml(s.code)}</td>
+                  <td class="param-val">${escapeHtml(s.val)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+
+          <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(14, 165, 233, 0.08); border-left: 3px solid #0ea5e9; border-radius: 4px; font-size: 0.75rem; color: #cbd5e1;">
+            <strong>Verified Customer:</strong> ${escapeHtml(bp.customer)} • Real-time SMS dispatched directly to 1 of 2 licensed territory contractors.
+          </div>
+        </div>
+
+        <div class="blueprint-economics-card">
+          <div>
+            <div class="econ-stat-group">
+              <span class="econ-stat-label">Calculated Commercial Contract</span>
+              <span class="econ-stat-value gold">${escapeHtml(bp.budget)}</span>
+            </div>
+            <div class="econ-stat-group">
+              <span class="econ-stat-label">Subcontractor Gross Margin</span>
+              <span class="econ-stat-value green">${escapeHtml(bp.contractorProfit)}</span>
+            </div>
+            <div class="econ-stat-group">
+              <span class="econ-stat-label">Lead Fee as % of Job</span>
+              <span style="font-size: 1rem; font-weight: 700; color: #38bdf8; font-family: var(--font-mono);">${escapeHtml(bp.pctJob)}</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block btn-claim-sample-trade" data-trade="${tradeKey}" style="margin-top: 1rem;">
+            Claim ${escapeHtml(TRADE_META[tradeKey] ? TRADE_META[tradeKey].short : 'Trade')} in Your Zip &rarr;
+          </button>
+        </div>
+      </div>
+    `;
+
+    const claimBtn = sampleBlueprintCard.querySelector('.btn-claim-sample-trade');
+    if (claimBtn) {
+      claimBtn.addEventListener('click', () => {
+        const t = claimBtn.dataset.trade;
+        const appTradeSelect = document.getElementById('appTrade');
+        if (appTradeSelect) {
+          appTradeSelect.value = t;
+          syncAppTradeToCheckboxes(t);
+        }
+        const applySection = document.getElementById('apply');
+        if (applySection) applySection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+
+  if (sampleTabsBar) {
+    sampleTabsBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.sample-tab-btn');
+      if (!btn) return;
+      sampleTabsBar.querySelectorAll('.sample-tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      renderSampleBlueprint(btn.dataset.sampleTrade);
+    });
+    renderSampleBlueprint('charge');
+  }
+
+  // --- 20. SUPABASE BACKEND DIAGNOSTICS & CONTROLS ---
+  const backendModal = document.getElementById('backendModal');
+  const openBackendModalBtn = document.getElementById('openBackendModalBtn');
+  const closeBackendModalBtn = document.getElementById('closeBackendModalBtn');
+  const btnTestDbConnection = document.getElementById('btnTestDbConnection');
+  const btnCopySqlSchema = document.getElementById('btnCopySqlSchema');
+  const modalDbStatus = document.getElementById('modalDbStatus');
+
+  async function updateDbStatusUI() {
+    const globalPill = document.getElementById('globalDbStatusPill');
+    const globalText = document.getElementById('globalDbStatusText');
+    const dashText = document.getElementById('dashDbStatusText');
+
+    if (window.TradeSpecSupabase) {
+      const health = await window.TradeSpecSupabase.checkHealth();
+      if (health.connected) {
+        if (globalPill) globalPill.className = 'db-status-pill';
+        if (globalText) globalText.textContent = 'Supabase Live';
+        if (dashText) { dashText.textContent = 'Live DB'; dashText.className = 'text-green'; }
+        if (modalDbStatus) modalDbStatus.innerHTML = '<span class="text-green">✓ Connected &amp; Synced (Live DB)</span>';
+      } else {
+        if (globalPill) globalPill.className = 'db-status-pill warning';
+        if (globalText) globalText.textContent = health.needsSchema ? 'Supabase Ready (Awaiting SQL)' : 'Supabase (Demo Mode)';
+        if (dashText) { dashText.textContent = health.needsSchema ? 'Awaiting Schema' : 'Local Fallback'; dashText.className = 'text-amber'; }
+        if (modalDbStatus) {
+          modalDbStatus.innerHTML = `<span class="text-amber">⚠ ${escapeHtml(health.message || 'Offline/Demo Mode')}</span>`;
+        }
+      }
+    }
+  }
+
+  if (openBackendModalBtn && backendModal) {
+    openBackendModalBtn.addEventListener('click', () => {
+      backendModal.classList.remove('hidden');
+      updateDbStatusUI();
+    });
+  }
+
+  const globalDbStatusPill = document.getElementById('globalDbStatusPill');
+  if (globalDbStatusPill && backendModal) {
+    globalDbStatusPill.addEventListener('click', () => {
+      backendModal.classList.remove('hidden');
+      updateDbStatusUI();
+    });
+  }
+
+  if (closeBackendModalBtn && backendModal) {
+    closeBackendModalBtn.addEventListener('click', () => {
+      backendModal.classList.add('hidden');
+    });
+  }
+
+  if (btnTestDbConnection) {
+    btnTestDbConnection.addEventListener('click', async () => {
+      btnTestDbConnection.disabled = true;
+      btnTestDbConnection.textContent = 'Pinging...';
+      await updateDbStatusUI();
+      btnTestDbConnection.disabled = false;
+      btnTestDbConnection.textContent = '🔄 Test Live Ping';
+    });
+  }
+
+  if (btnCopySqlSchema) {
+    btnCopySqlSchema.addEventListener('click', () => {
+      const sqlSnippet = `-- Copy this into Supabase SQL Editor:
+-- https://supabase.com/dashboard/project/hrutolmtfggvzyhherkr/sql
+-- Open 'tradespec-pro/partner/supabase-schema.sql' for full DDL with tables:
+-- public.contractors, public.leads, public.partner_applications, public.wallet_transactions`;
+      navigator.clipboard.writeText(sqlSnippet).then(() => {
+        btnCopySqlSchema.textContent = '✓ Copied SQL Note!';
+        setTimeout(() => { btnCopySqlSchema.textContent = '📋 Copy SQL Schema'; }, 2500);
+      });
+    });
+  }
+
+  // --- 21. REALTIME LEADS & TOASTS ---
+  function initRealtimeLeads() {
+    if (!window.TradeSpecSupabase) return;
+    window.TradeSpecSupabase.subscribeToLeads(
+      (newLead) => {
+        showRealtimeToast(newLead);
+        if (!leads.some(l => l.id === newLead.id)) {
+          leads.unshift({
+            id: newLead.id,
+            timestamp: newLead.created_at,
+            trade: newLead.trade,
+            tradeTitle: newLead.trade_title,
+            name: newLead.customer_name,
+            company: newLead.company,
+            phone: newLead.phone,
+            email: newLead.email,
+            zip: newLead.zip,
+            specSummary: newLead.spec_summary,
+            budgetEst: newLead.budget_est,
+            leadCost: Number(newLead.lead_cost),
+            status: newLead.status
+          });
+          renderDashboard();
+        }
+      },
+      (updatedLead) => {
+        const idx = leads.findIndex(l => l.id === updatedLead.id);
+        if (idx !== -1) {
+          leads[idx].status = updatedLead.status;
+          renderDashboard();
+        }
+      }
+    );
+  }
+
+  function showRealtimeToast(lead) {
+    const container = document.getElementById('realtimeToastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = 'lead-realtime-toast';
+    toast.innerHTML = `
+      <div style="font-size: 1.5rem;">🚨</div>
+      <div style="flex: 1;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.2rem;">
+          <span class="toast-badge-alert">New Commercial Lead</span>
+          <span style="font-size: 0.6875rem; color: #94a3b8; font-family: var(--font-mono);">${escapeHtml(lead.id || 'NEW')}</span>
+        </div>
+        <div style="font-size: 0.8125rem; font-weight: 700; color: #fff;">${escapeHtml(lead.trade_title || 'Trade Spec')}</div>
+        <div style="font-size: 0.75rem; color: #cbd5e1; margin-top: 0.15rem;">${escapeHtml(lead.zip || '')} • ${escapeHtml(lead.budget_est || '$5,000+')}</div>
+      </div>
+    `;
+
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(20px)';
+      toast.style.transition = 'all 0.3s ease';
+      setTimeout(() => toast.remove(), 350);
+    }, 6000);
+  }
+
+  // --- 22. INITIAL BACKEND SYNC ---
+  async function loadInitialData() {
+    await updateDbStatusUI();
+    if (window.TradeSpecSupabase) {
+      try {
+        const res = await window.TradeSpecSupabase.getLeads();
+        if (res && res.success && res.leads && res.leads.length > 0) {
+          leads = res.leads;
+          console.log('[TradeSpec Partner] Synced', leads.length, 'leads from Supabase live database.');
+          renderDashboard();
+        }
+      } catch(err) {
+        console.warn('Initial leads fetch error:', err);
+      }
+    }
+    initRealtimeLeads();
+  }
+
+  loadInitialData();
 
   // Check URL hash for direct portal access
   if (window.location.hash === '#portal' || window.location.hash === '#portal-section') {

@@ -13,7 +13,12 @@
   <!-- Top Announcement Bar -->
   <aside class="top-bar">
     <div class="container top-bar-inner">
-      <span>🛡️ <strong>TradeSpec Pro Partner Network:</strong> High-intent commercial jobs with calculated engineering specs attached. Capped at 2 contractors per territory.</span>
+      <div class="top-bar-left">
+        <span>🛡️ <strong>TradeSpec Pro Partner Network:</strong> High-intent commercial jobs with calculated engineering specs attached. Capped at 2 contractors per territory.</span>
+        <span class="db-status-pill" id="globalDbStatusPill" title="Supabase Project: hrutolmtfggvzyhherkr.supabase.co">
+          <span class="db-status-dot"></span> <span id="globalDbStatusText">Supabase Sync</span>
+        </span>
+      </div>
       <a href="#portal-section" class="portal-link-btn" id="nav-portal-btn">🔐 Contractor Portal Login</a>
     </div>
   </aside>
@@ -81,6 +86,42 @@
         </div>
       </div>
     </section>
+
+    <!-- Live Commercial Activity Ticker -->
+    <aside class="ticker-section" aria-label="Live Commercial Leads Ticker">
+      <div class="container ticker-inner">
+        <span class="ticker-label"><span class="db-status-dot"></span> Live Activity</span>
+        <div class="ticker-stream" id="leadActivityTicker">
+          <div class="ticker-item">
+            <span>Harris County, TX (77002):</span>
+            <span class="ticker-highlight">Commercial EV Fleet Depot (12 Ports, 480V 3-Phase)</span>
+            <span class="ticker-money">$145,000 RFP</span>
+            <span style="font-size: 0.6875rem; color: #64748b;">(14m ago)</span>
+          </div>
+          <span>•</span>
+          <div class="ticker-item">
+            <span>Dallas County, TX (75001):</span>
+            <span class="ticker-highlight">2,400 SF Restaurant TI (160 Occupants, 12ft Hood)</span>
+            <span class="ticker-money">$380,000 Contract</span>
+            <span style="font-size: 0.6875rem; color: #64748b;">(32m ago)</span>
+          </div>
+          <span>•</span>
+          <div class="ticker-item">
+            <span>Travis County, TX (78701):</span>
+            <span class="ticker-highlight">Civil Site Grading (800 BCY Cut, 6ft Geogrid Wall)</span>
+            <span class="ticker-money">$108,000 Sizing</span>
+            <span style="font-size: 0.6875rem; color: #64748b;">(1h ago)</span>
+          </div>
+          <span>•</span>
+          <div class="ticker-item">
+            <span>Bexar County, TX (78205):</span>
+            <span class="ticker-highlight">Walk-In Cold Box + 1,000 Gal Interceptor</span>
+            <span class="ticker-money">$38,200 MEP</span>
+            <span style="font-size: 0.6875rem; color: #64748b;">(1h 20m ago)</span>
+          </div>
+        </div>
+      </div>
+    </aside>
 
     <!-- Real-Time Territory Slot Availability Checker -->
     <section class="section checker-section" id="territory-check">
@@ -267,7 +308,34 @@
       </div>
     </section>
 
-    <!-- Interactive Subcontractor ROI Calculator -->
+    <!-- Interactive 9-Trade Sample RFP & Code Blueprint Inspector -->
+    <section class="section sample-inspector-section" id="sample-inspector">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge-partner">INTERACTIVE BLUEPRINT INSPECTOR</span>
+          <h2 class="section-title">Inspect Live RFPs Across All 9 Commercial Trades</h2>
+          <p class="section-subtitle">Click any trade specialty below to see the exact code-stamped calculations, governing standards, and project parameters our sizing engines attach to every lead.</p>
+        </div>
+
+        <!-- 9 Trade Selector Tabs -->
+        <div class="sample-tabs-bar" id="sampleTabsBar" role="tablist" aria-label="Trade Specialty Blueprints">
+          <button type="button" class="sample-tab-btn active" data-sample-trade="charge" role="tab" aria-selected="true">⚡ EV Fleet Infrastructure</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="permit" role="tab" aria-selected="false">🏛️ Tenant Improvement</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="site" role="tab" aria-selected="false">🚜 Civil Earthwork</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="cold" role="tab" aria-selected="false">❄️ Walk-In Cold Box</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="crane" role="tab" aria-selected="false">🏗️ Mobile Crane</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="well" role="tab" aria-selected="false">💧 Water Well &amp; Pump</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="racking" role="tab" aria-selected="false">📦 Warehouse Racking</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="foam" role="tab" aria-selected="false">🧱 Spray Foam</button>
+          <button type="button" class="sample-tab-btn" data-sample-trade="grease" role="tab" aria-selected="false">🍳 Grease &amp; Hood MEP</button>
+        </div>
+
+        <!-- Blueprint Viewer Box -->
+        <div class="sample-blueprint-card" id="sampleBlueprintCard">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
     <section class="section roi-section" id="roi-calc">
       <div class="container">
         <div class="section-header">
@@ -702,6 +770,7 @@
             <p class="portal-territory-text">Territory: <span id="dashTerritoryZips">77002 + 60 Mile Radius</span> • Status: <span class="badge-active">ACTIVE STREAM</span></p>
           </div>
           <div class="dash-top-actions">
+            <button type="button" class="btn btn-secondary" id="openBackendModalBtn">⚡ Supabase: <span id="dashDbStatusText" class="text-green">Live</span></button>
             <button type="button" class="btn btn-secondary" id="openWalletModalBtn">💳 Wallet: <span id="topBarWalletBal">$450.00</span></button>
             <button type="button" class="btn btn-secondary" id="openBadgeModalBtn">🎖️ Verified Profile &amp; Badge</button>
             <button type="button" class="btn btn-secondary" id="exportCsvBtn">📥 Export CSV</button>
@@ -1335,6 +1404,102 @@
     </div>
   </div>
 
+  <!-- Application Confirmation Modal -->
+  <div id="appConfirmationModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+    <div class="app-confirmation-card">
+      <div class="app-conf-icon">✓</div>
+      <h3 class="app-conf-title" id="appModalTitle">Territory Application Registered</h3>
+      <p class="app-conf-desc">
+        Your contractor onboarding application has been saved to the <strong>TradeSpec Pro Supabase backend</strong>. Your base territory reservation is locked for 24 hours.
+      </p>
+
+      <div class="app-conf-credentials">
+        <div class="app-cred-row">
+          <span class="app-cred-label">Company Name:</span>
+          <span class="app-cred-val" id="confModalCompany">Apex Industrial Rigging LLC</span>
+        </div>
+        <div class="app-cred-row">
+          <span class="app-cred-label">Reserved Base ZIP:</span>
+          <span class="app-cred-val" id="confModalZip">77002</span>
+        </div>
+        <div class="app-cred-row">
+          <span class="app-cred-label">Active Trade Streams:</span>
+          <span class="app-cred-val" id="confModalTrades">EV Fleet, Crane, Tenant TI</span>
+        </div>
+        <div class="app-cred-row">
+          <span class="app-cred-label">Contractor Demo PIN:</span>
+          <span class="app-cred-val app-cred-pin" id="confModalPin">1234</span>
+        </div>
+        <div class="app-cred-row">
+          <span class="app-cred-label">Backend Persistence:</span>
+          <span class="app-cred-val text-green" id="confModalBackendStatus">Supabase Active</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+        <button type="button" class="btn btn-secondary" id="closeAppConfModalBtn">Close</button>
+        <button type="button" class="btn btn-primary" id="launchConsoleFromModalBtn">🔐 Enter Contractor Console Now &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backend & Supabase Diagnostic Modal -->
+  <div id="backendModal" class="tradespec-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="backendModalTitle">
+    <div class="db-diag-card">
+      <div class="tradespec-modal-header">
+        <div>
+          <span class="portal-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.4);">CLOUD BACKEND DIAGNOSTICS</span>
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0.25rem 0 0 0;" id="backendModalTitle">Supabase Database Integration</h3>
+        </div>
+        <button type="button" class="tradespec-modal-close" id="closeBackendModalBtn">&times;</button>
+      </div>
+
+      <p style="font-size: 0.8125rem; color: var(--text-muted); margin: 0.75rem 0 0.5rem 0;">
+        TradeSpec Pro™ uses Supabase as its unified PostgreSQL relational database and realtime lead engine.
+      </p>
+
+      <div class="db-diag-grid">
+        <div class="db-diag-box">
+          <div class="db-diag-label">Project URL</div>
+          <div class="db-diag-val text-green">https://hrutolmtfggvzyhherkr.supabase.co</div>
+        </div>
+        <div class="db-diag-box">
+          <div class="db-diag-label">Authentication Layer</div>
+          <div class="db-diag-val">Publishable Anon Key (Configured)</div>
+        </div>
+        <div class="db-diag-box">
+          <div class="db-diag-label">Connection Status</div>
+          <div class="db-diag-val" id="modalDbStatus">Checking connection...</div>
+        </div>
+        <div class="db-diag-box">
+          <div class="db-diag-label">Realtime Channel</div>
+          <div class="db-diag-val" id="modalRealtimeStatus">public:leads (Listening)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <div class="db-diag-label">Registered Supabase Tables</div>
+        <div style="margin-top: 0.35rem;">
+          <span class="db-table-pill">📋 public.contractors</span>
+          <span class="db-table-pill">⚡ public.leads</span>
+          <span class="db-table-pill">📝 public.partner_applications</span>
+          <span class="db-table-pill">💳 public.wallet_transactions</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <span style="font-size: 0.75rem; color: var(--text-muted);">Schema file available in: <code>partner/supabase-schema.sql</code></span>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btnTestDbConnection">🔄 Test Live Ping</button>
+          <button type="button" class="btn btn-primary btn-sm" id="btnCopySqlSchema">📋 Copy SQL Schema</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Realtime Lead Notification Container -->
+  <div id="realtimeToastContainer" aria-live="polite"></div>
+
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
@@ -1350,6 +1515,11 @@
     </div>
   </footer>
 
+  <!-- Supabase Official JS SDK (v2) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- TradeSpec Supabase Integration Layer -->
+  <script src="supabase-client.js"></script>
+  <!-- Main Partner Network Application Logic -->
   <script src="app.js"></script>
 </body>
 </html>

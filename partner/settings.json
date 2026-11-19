@@ -68,5 +68,12 @@
     "emailDispatch": true,
     "quietHoursStart": "21:00",
     "quietHoursEnd": "06:00"
+  },
+  "backend": {
+    "provider": "supabase",
+    "projectUrl": "https://hrutolmtfggvzyhherkr.supabase.co",
+    "publishableKey": "sb_publishable_m7-HsbBZNj6d3Loos203ug_eABEliQr",
+    "directConnectionString": "postgresql://postgres:sekhonsaab12@db.hrutolmtfggvzyhherkr.supabase.co:5432/postgres",
+    "schemaFile": "supabase-schema.sql"
   }
 }
