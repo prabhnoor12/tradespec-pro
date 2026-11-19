@@ -364,6 +364,8 @@ body {
   gap: 2.5rem;
   align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  container-type: inline-size;
+  container-name: roicard;
 }
 .roi-controls {
   display: flex;
@@ -398,18 +400,84 @@ body {
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
-  padding: 0.6rem 0.8rem;
+  padding: 0.65rem 0.85rem;
   font-size: 0.875rem;
   color: var(--text-main);
   outline: none;
+  max-width: 100%;
 }
 .form-select:focus, .form-input:focus {
   border-color: var(--accent-blue);
 }
 .range-slider {
-  accent-color: var(--accent-blue);
+  -webkit-appearance: none;
+  appearance: none;
   inline-size: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  padding: 0;
+  margin-block: 0.6rem;
   cursor: pointer;
+  touch-action: pan-y;
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #38bdf8;
+  border: 3px solid #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.range-slider::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+}
+.range-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #38bdf8;
+  border: 3px solid #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.4);
+  cursor: pointer;
+}
+.mobile-slider-presets {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  flex-wrap: wrap;
+}
+.preset-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  touch-action: manipulation;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.preset-pill:hover, .preset-pill:focus-visible {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: #38bdf8;
+}
+.preset-pill.active {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: #38bdf8;
+  color: #fff;
+  font-weight: 800;
 }
 .field-help {
   font-size: 0.6875rem;
@@ -438,12 +506,14 @@ body {
 }
 .roi-result-number {
   display: block;
-  font-size: 2.75rem;
+  font-size: clamp(2rem, 5vw + 1rem, 2.75rem);
   font-weight: 900;
   color: var(--accent-emerald);
   font-family: var(--font-mono);
   line-height: 1.1;
   margin-block: 0.25rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .roi-result-sub {
   font-size: 0.8125rem;
@@ -930,6 +1000,65 @@ body {
   .header-nav { flex-wrap: wrap; gap: 0.75rem; }
   .kpi-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+
+  /* Mobile screen optimization for Subcontractor Revenue & ROI Calculator */
+  .roi-card {
+    padding: 1.25rem 1rem;
+    gap: 1.5rem;
+    border-radius: var(--radius-md);
+  }
+  .roi-controls {
+    gap: 1rem;
+  }
+  .roi-results {
+    padding: 1.25rem 0.875rem;
+    gap: 1rem;
+    border-radius: var(--radius-sm);
+  }
+  .roi-result-box {
+    padding-bottom: 1rem;
+  }
+  .roi-result-number {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+  }
+  .roi-split {
+    gap: 0.5rem;
+  }
+  .roi-mini-box {
+    background: rgba(15, 23, 42, 0.5);
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8125rem;
+  }
+  .form-select#roiTrade {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    padding: 0.65rem 0.65rem;
+  }
+}
+
+@container roicard (max-width: 580px) {
+  .roi-card {
+    padding: 1.25rem 1rem;
+    gap: 1.5rem;
+  }
+  .roi-results {
+    padding: 1.25rem 0.875rem;
+    gap: 1rem;
+  }
+  .roi-result-number {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+  }
+  .roi-split {
+    gap: 0.5rem;
+  }
+  .roi-mini-box {
+    background: rgba(15, 23, 42, 0.5);
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
 }
 
 

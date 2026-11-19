@@ -497,6 +497,36 @@ document.addEventListener('DOMContentLoaded', () => {
     roiTrade.addEventListener('change', updateRoi);
     if (roiLeads) roiLeads.addEventListener('input', updateRoi);
     if (roiCloseRate) roiCloseRate.addEventListener('input', updateRoi);
+
+    // Preset touch pills for mobile ergonomics
+    document.querySelectorAll('.preset-pill[data-slider]').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const sliderId = pill.dataset.slider;
+        const targetSlider = document.getElementById(sliderId);
+        if (targetSlider) {
+          targetSlider.value = pill.dataset.val;
+          pill.parentElement.querySelectorAll('.preset-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          updateRoi();
+        }
+      });
+    });
+
+    if (roiLeads) {
+      roiLeads.addEventListener('input', () => {
+        document.querySelectorAll('.preset-pill[data-slider="roiLeads"]').forEach(p => {
+          p.classList.toggle('active', p.dataset.val === roiLeads.value);
+        });
+      });
+    }
+    if (roiCloseRate) {
+      roiCloseRate.addEventListener('input', () => {
+        document.querySelectorAll('.preset-pill[data-slider="roiCloseRate"]').forEach(p => {
+          p.classList.toggle('active', p.dataset.val === roiCloseRate.value);
+        });
+      });
+    }
+
     updateRoi();
   }
 
