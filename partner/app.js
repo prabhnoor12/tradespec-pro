@@ -158,38 +158,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ALL_TRADE_KEYS = ["charge", "permit", "site", "cold", "crane", "well", "racking", "foam", "grease"];
 
-  let settings = {
-    companyName: "Apex Heavy Equipment & Industrial Services LLC",
-    licenseNumber: "TX-COMM-894120",
-    insuranceBond: "$2,000,000 General Liability / Bonded",
-    dispatchPhone: "(555) 849-2041",
-    dispatchEmail: "dispatch@apexindustrial.com",
+  const DEFAULT_CONTRACTOR = {
+    companyName: "Registered Subcontractor Account",
+    contactPerson: "Estimator / Owner",
+    licenseNumber: "Pending Verification",
+    insuranceBond: "$1,000,000 / $2,000,000 Commercial General Liability",
+    dispatchPhone: "(555) 000-0000",
+    dispatchEmail: "dispatch@contractor.com",
     baseZip: "77002",
     radius: 60,
     minJob: 2500,
     pin: "1234",
-    activeSources: [...ALL_TRADE_KEYS],
-    walletBalance: 450.00,
+    activeSources: ["charge"],
+    walletBalance: 150.00,
     autoReload: true,
     webhookUrl: "",
     webhookSecret: "",
     webhookAutoSync: true,
     transactions: [
-      { date: "2026-11-05", desc: "Initial Dispatch Credit Allocation", amount: 500.00, balance: 500.00, type: "pos" },
-      { date: "2026-11-06", desc: "Dispatched Lead EV-2026-7812 (ChargeSpec)", amount: -225.00, balance: 275.00, type: "neg" },
-      { date: "2026-11-06", desc: "Pilot Fast-Start Bonus Credit ($175)", amount: 175.00, balance: 450.00, type: "pos" }
+      {
+        date: new Date().toISOString().split('T')[0],
+        desc: "Initial Welcome Territory Credit Allocation",
+        amount: 150.00,
+        balance: 150.00,
+        type: "pos"
+      }
     ]
   };
+
+  let settings = Object.assign({}, DEFAULT_CONTRACTOR);
 
   try {
     const storedCfg = localStorage.getItem('tradespec_partner_settings');
     if (storedCfg) {
-      settings = Object.assign(settings, JSON.parse(storedCfg));
+      const parsed = JSON.parse(storedCfg);
+      // Clean up legacy demo name if it was previously saved in localStorage
+      if (parsed.companyName === "Apex Heavy Equipment & Industrial Services LLC") {
+        delete parsed.companyName;
+      }
+      settings = Object.assign(settings, parsed);
       if (!Array.isArray(settings.activeSources) || settings.activeSources.length === 0) {
-        settings.activeSources = [...ALL_TRADE_KEYS];
+        settings.activeSources = ["charge"];
       }
       if (typeof settings.walletBalance !== 'number') {
-        settings.walletBalance = 450.00;
+        settings.walletBalance = 150.00;
       }
       if (!Array.isArray(settings.transactions)) {
         settings.transactions = [];
@@ -558,14 +570,48 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: new Date().toISOString()
       };
 
-      // 1. Submit to Supabase Backend
+      // 1. Construct newly registered contractor profile
+      const newContractor = {
+        companyName: appData.company,
+        contactPerson: appData.contact,
+        licenseNumber: `TX-LIC-${appData.zip}-${Math.floor(100000 + Math.random() * 900000)}`,
+        insuranceBond: "$1,000,000 / $2,000,000 Commercial General Liability",
+        dispatchPhone: appData.phone,
+        dispatchEmail: appData.email,
+        baseZip: appData.zip,
+        radius: parseInt(appData.radius, 10) || 60,
+        minJob: 2500,
+        pin: "1234",
+        activeSources: selectedSources.length > 0 ? [...selectedSources] : [chosenTrade || 'charge'],
+        walletBalance: 150.00,
+        autoReload: true,
+        webhookUrl: "",
+        webhookSecret: "",
+        webhookAutoSync: true,
+        transactions: [
+          {
+            date: new Date().toISOString().split('T')[0],
+            desc: "Welcome Territory Dispatch Credit ($150)",
+            amount: 150.00,
+            balance: 150.00,
+            type: "pos"
+          }
+        ]
+      };
+
+      // Set active session & persistent storage to the contractor's new profile
+      settings = Object.assign(settings, newContractor);
+      localStorage.setItem('tradespec_partner_settings', JSON.stringify(settings));
+
+      // 2. Submit to Supabase Backend
       let isSupabase = false;
       if (window.TradeSpecSupabase) {
-        const res = await window.TradeSpecSupabase.submitApplication(appData);
-        isSupabase = res && res.isSupabase;
+        const appRes = await window.TradeSpecSupabase.submitApplication(appData);
+        const regRes = await window.TradeSpecSupabase.registerContractor(newContractor);
+        isSupabase = (appRes && appRes.isSupabase) || (regRes && regRes.isSupabase);
       }
 
-      // 2. Open rich confirmation modal
+      // 3. Open rich confirmation modal
       const appModal = document.getElementById('appConfirmationModal');
       if (appModal) {
         const elComp = document.getElementById('confModalCompany');
@@ -578,12 +624,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elZip) elZip.textContent = `${appData.zip} (${appData.radius} mi radius)`;
         if (elTrades) elTrades.textContent = selectedSources.map(s => TRADE_META[s] ? TRADE_META[s].short : s).join(', ');
         if (elPin) elPin.textContent = '1234';
-        if (elStatus) elStatus.textContent = isSupabase ? '🟢 Persisted to Supabase Live DB' : '🟡 Staged (Demo Mode)';
+        if (elStatus) elStatus.textContent = isSupabase ? '🟢 Persisted to Supabase Live DB' : '🟡 Staged (Live)';
 
         appModal.classList.remove('hidden');
       } else if (appSuccessMsg) {
         appSuccessMsg.classList.remove('hidden');
-        appSuccessMsg.innerHTML = `<strong>✓ Application Received!</strong> Territory reserved for <strong>${escapeHtml(appData.company)}</strong> in ZIP ${escapeHtml(appData.zip)}. Demo PIN: <code>1234</code>.`;
+        appSuccessMsg.innerHTML = `<strong>✓ Application Received!</strong> Territory reserved for <strong>${escapeHtml(appData.company)}</strong> in ZIP ${escapeHtml(appData.zip)}. Access PIN: <code>1234</code>.`;
       }
 
       appForm.reset();
@@ -618,16 +664,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const contractorPin = document.getElementById('contractorPin');
   const pinError = document.getElementById('pinError');
   const openPortalBtn = document.getElementById('open-portal-btn');
-  const demoDashboardBtn = document.getElementById('demo-dashboard-btn');
-  const quickDemoUnlock = document.getElementById('quick-demo-unlock');
+  const heroPortalBtn = document.getElementById('heroPortalBtn');
+  const exitConsoleBtn = document.getElementById('exitConsoleBtn');
+  const pinBackToHomeBtn = document.getElementById('pinBackToHomeBtn');
   const lockPortalBtn = document.getElementById('lockPortalBtn');
   const navPortalBtn = document.getElementById('nav-portal-btn');
   const footerPortalLink = document.getElementById('footer-portal-link');
 
   function showPortal() {
-    if (!portalSection) return;
-    portalSection.classList.remove('hidden');
-    portalSection.scrollIntoView({ behavior: 'smooth' });
+    const publicView = document.getElementById('public-view');
+    const siteHeader = document.querySelector('.site-header');
+    const topBar = document.querySelector('.top-bar');
+    const siteFooter = document.querySelector('.site-footer');
+
+    if (publicView) publicView.classList.add('hidden');
+    if (siteHeader) siteHeader.classList.add('hidden');
+    if (topBar) topBar.classList.add('hidden');
+    if (siteFooter) siteFooter.classList.add('hidden');
+
+    if (portalSection) {
+      portalSection.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
 
     if (sessionStorage.getItem('tradespec_auth') === 'true') {
       if (pinLockScreen) pinLockScreen.classList.add('hidden');
@@ -640,6 +698,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function hidePortal() {
+    const publicView = document.getElementById('public-view');
+    const siteHeader = document.querySelector('.site-header');
+    const topBar = document.querySelector('.top-bar');
+    const siteFooter = document.querySelector('.site-footer');
+
+    if (portalSection) portalSection.classList.add('hidden');
+    if (publicView) publicView.classList.remove('hidden');
+    if (siteHeader) siteHeader.classList.remove('hidden');
+    if (topBar) topBar.classList.remove('hidden');
+    if (siteFooter) siteFooter.classList.remove('hidden');
+
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
   function unlockPortal() {
     sessionStorage.setItem('tradespec_auth', 'true');
     if (pinLockScreen) pinLockScreen.classList.add('hidden');
@@ -649,10 +722,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (openPortalBtn) openPortalBtn.addEventListener('click', showPortal);
+  if (heroPortalBtn) heroPortalBtn.addEventListener('click', showPortal);
   if (navPortalBtn) navPortalBtn.addEventListener('click', (e) => { e.preventDefault(); showPortal(); });
   if (footerPortalLink) footerPortalLink.addEventListener('click', (e) => { e.preventDefault(); showPortal(); });
-  if (demoDashboardBtn) demoDashboardBtn.addEventListener('click', () => { showPortal(); unlockPortal(); });
-  if (quickDemoUnlock) quickDemoUnlock.addEventListener('click', unlockPortal);
+  if (exitConsoleBtn) exitConsoleBtn.addEventListener('click', hidePortal);
+  if (pinBackToHomeBtn) pinBackToHomeBtn.addEventListener('click', hidePortal);
 
   if (pinForm) {
     pinForm.addEventListener('submit', async (e) => {
@@ -728,12 +802,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dashTerritoryZips) dashTerritoryZips.textContent = `${settings.baseZip} + ${settings.radius} Mile Radius`;
 
     // Wallet display sync
-    const balStr = `$${settings.walletBalance.toFixed(2)}`;
+    const balStr = `$${(settings.walletBalance || 0).toFixed(2)}`;
     if (kpiWalletBalance) kpiWalletBalance.textContent = balStr;
     if (topBarWalletBal) topBarWalletBal.textContent = balStr;
     if (kpiWalletLeadsLeft) {
       const avgCost = getAvgLeadCostForContractor();
-      const leadsLeft = Math.max(0, Math.floor(settings.walletBalance / avgCost));
+      const leadsLeft = Math.max(0, Math.floor((settings.walletBalance || 0) / avgCost));
       kpiWalletLeadsLeft.textContent = `~${leadsLeft} leads (avg $${avgCost}/lead)`;
     }
     if (walletAutoReloadBadge) {
@@ -741,18 +815,52 @@ document.addEventListener('DOMContentLoaded', () => {
       walletAutoReloadBadge.className = settings.autoReload ? "badge-active" : "badge-inactive";
     }
 
+    // Active streams determined strictly by the contractor's selected sources
+    const activeStreams = (Array.isArray(settings.activeSources) && settings.activeSources.length > 0)
+      ? settings.activeSources
+      : ['charge'];
+
+    // Dynamically sync #leadTradeFilter to only display the contractor's subscribed streams
+    if (leadTradeFilter) {
+      const currentVal = leadTradeFilter.value;
+      const cachedKey = activeStreams.slice().sort().join(',');
+      if (leadTradeFilter.getAttribute('data-active-streams') !== cachedKey) {
+        let optionsHtml = `<option value="all">All Subscribed Trades (${activeStreams.length})</option>`;
+        activeStreams.forEach(t => {
+          const meta = TRADE_META[t];
+          const name = meta ? meta.short : t.toUpperCase();
+          optionsHtml += `<option value="${t}">${name}</option>`;
+        });
+        leadTradeFilter.innerHTML = optionsHtml;
+        leadTradeFilter.setAttribute('data-active-streams', cachedKey);
+        if (activeStreams.includes(currentVal)) {
+          leadTradeFilter.value = currentVal;
+        } else {
+          leadTradeFilter.value = 'all';
+        }
+      }
+    }
+
     const tradeFilter = leadTradeFilter ? leadTradeFilter.value : 'all';
     const statusFilter = leadStatusFilter ? leadStatusFilter.value : 'all';
     const query = leadSearchInput ? leadSearchInput.value.toLowerCase().trim() : '';
-    const activeStreams = Array.isArray(settings.activeSources) ? settings.activeSources : ALL_TRADE_KEYS;
 
     const filtered = leads.filter(item => {
-      const matchActiveStream = activeStreams.includes(item.trade);
-      const matchTrade = (tradeFilter === 'all' || item.trade === tradeFilter);
-      const matchStatus = (statusFilter === 'all' || item.status === statusFilter);
-      const textToSearch = `${item.name} ${item.company} ${item.zip} ${item.specSummary}`.toLowerCase();
-      const matchQuery = !query || textToSearch.includes(query);
-      return matchActiveStream && matchTrade && matchStatus && matchQuery;
+      // 1. STRICT SUBSCRIBED SOURCE FILTER: Contractor ONLY sees leads from their chosen trade sources!
+      if (!activeStreams.includes(item.trade)) return false;
+
+      // 2. Dropdown Trade filter (among their subscribed trades)
+      if (tradeFilter !== 'all' && item.trade !== tradeFilter) return false;
+
+      // 3. Status filter
+      if (statusFilter !== 'all' && item.status !== statusFilter) return false;
+
+      // 4. Search query
+      if (query) {
+        const textToSearch = `${item.name} ${item.company} ${item.zip} ${item.specSummary}`.toLowerCase();
+        if (!textToSearch.includes(query)) return false;
+      }
+      return true;
     });
 
     if (kpiTotalLeads) kpiTotalLeads.textContent = filtered.length;
@@ -776,9 +884,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       if (noLeadsMsg) {
         noLeadsMsg.classList.remove('hidden');
-        noLeadsMsg.innerHTML = activeStreams.length < ALL_TRADE_KEYS.length 
-          ? `No leads found matching criteria. (Note: Some trade streams are currently paused in your Settings Drawer).`
-          : `No incoming leads matching current filter criteria.`;
+        const activeNames = activeStreams.map(s => TRADE_META[s] ? TRADE_META[s].short : s).join(', ');
+        noLeadsMsg.innerHTML = `
+          <div style="padding: 2.5rem 1rem; text-align: center;">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">📡</div>
+            <h4 style="color: #fff; margin-bottom: 0.35rem; font-size: 1.1rem;">Realtime Dispatch Listener Active</h4>
+            <p style="color: #94a3b8; font-size: 0.8125rem; max-width: 480px; margin: 0 auto; line-height: 1.5;">
+              No pending leads currently in your subscribed trade streams (<strong>${activeNames}</strong>).
+              When general contractors calculate requirements in your territory, leads will appear here instantly via Supabase Live.
+            </p>
+          </div>
+        `;
       }
       return;
     }

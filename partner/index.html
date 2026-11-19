@@ -60,7 +60,7 @@
 
         <div class="hero-actions">
           <a href="#apply" class="btn btn-primary btn-lg">Check Territory Availability &rarr;</a>
-          <button type="button" class="btn btn-secondary btn-lg" id="demo-dashboard-btn">View Live Demo Leads</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="heroPortalBtn">Contractor Portal Login</button>
         </div>
 
         <div class="hero-stats">
@@ -765,9 +765,8 @@
           <button type="submit" class="btn btn-primary btn-lg pin-submit-btn">Unlock Lead Stream</button>
           <div id="pinError" class="pin-error hidden">❌ Invalid PIN. Please try again.</div>
         </form>
-        <div class="demo-pin-hint">
-          <span>💡 Demonstration PIN: <code>1234</code></span>
-          <button type="button" id="quick-demo-unlock" class="btn-text">One-Click Demo Unlock</button>
+        <div class="pin-footer-action" style="margin-top: 1.25rem;">
+          <button type="button" class="btn btn-outline" id="pinBackToHomeBtn" style="width: 100%;">← Return to Partner Landing Page</button>
         </div>
       </div>
 
@@ -776,18 +775,19 @@
         
         <!-- Dashboard Top Bar -->
         <div class="dashboard-top-bar">
-          <div>
+          <div class="dash-header-left">
+            <button type="button" class="btn-exit-site" id="exitConsoleBtn" title="Return to public landing page">← Return to Public Site</button>
             <span class="portal-badge">CONTRACTOR DISPATCH CONSOLE</span>
-            <h2 class="portal-company-name" id="dashCompanyName">Apex Heavy Equipment &amp; Rigging</h2>
+            <h2 class="portal-company-name" id="dashCompanyName">Registered Subcontractor</h2>
             <p class="portal-territory-text">Territory: <span id="dashTerritoryZips">77002 + 60 Mile Radius</span> • Status: <span class="badge-active">ACTIVE STREAM</span></p>
           </div>
-          <div class="dash-top-actions">
-            <button type="button" class="btn btn-secondary" id="openBackendModalBtn">⚡ Supabase: <span id="dashDbStatusText" class="text-green">Live</span></button>
-            <button type="button" class="btn btn-secondary" id="openWalletModalBtn">💳 Wallet: <span id="topBarWalletBal">$450.00</span></button>
-            <button type="button" class="btn btn-secondary" id="openBadgeModalBtn">🎖️ Verified Profile &amp; Badge</button>
-            <button type="button" class="btn btn-secondary" id="exportCsvBtn">📥 Export CSV</button>
-            <button type="button" class="btn btn-secondary" id="toggleSettingsBtn">⚙️ Settings</button>
-            <button type="button" class="btn btn-outline" id="lockPortalBtn">Lock Console</button>
+          <div class="dash-top-actions" id="dashTopActions">
+            <button type="button" class="btn btn-secondary btn-sm" id="openBackendModalBtn" title="Database Connection Status">⚡ DB: <span id="dashDbStatusText" class="text-green">Live</span></button>
+            <button type="button" class="btn btn-secondary btn-sm" id="openWalletModalBtn" title="Dispatch Wallet Balance">💳 <span id="topBarWalletBal">$150.00</span></button>
+            <button type="button" class="btn btn-secondary btn-sm" id="openBadgeModalBtn" title="Subcontractor Verification Badge">🎖️ Verified Badge</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="exportCsvBtn" title="Export Dispatched Leads">📥 Export CSV</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="toggleSettingsBtn" title="Dispatch Settings">⚙️ Settings</button>
+            <button type="button" class="btn btn-outline btn-sm" id="lockPortalBtn" title="Lock Console">🔒 Lock</button>
           </div>
         </div>
 
@@ -1439,7 +1439,7 @@
           <span class="app-cred-val" id="confModalTrades">EV Fleet, Crane, Tenant TI</span>
         </div>
         <div class="app-cred-row">
-          <span class="app-cred-label">Contractor Demo PIN:</span>
+          <span class="app-cred-label">Contractor Access PIN:</span>
           <span class="app-cred-val app-cred-pin" id="confModalPin">1234</span>
         </div>
         <div class="app-cred-row">

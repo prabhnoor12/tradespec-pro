@@ -120,6 +120,41 @@
   }
 
   // --- 2. CONTRACTOR PROFILE & AUTHENTICATION ---
+  async function registerContractor(contractorData) {
+    initClient();
+    const payload = {
+      company_name: contractorData.companyName,
+      contact_person: contractorData.contactPerson,
+      dispatch_phone: contractorData.dispatchPhone,
+      dispatch_email: contractorData.dispatchEmail,
+      primary_zip: contractorData.baseZip,
+      service_radius_miles: parseInt(contractorData.radius, 10) || 60,
+      active_trades: contractorData.activeSources || [],
+      wallet_balance: contractorData.walletBalance || 150.00,
+      pin: contractorData.pin || '1234',
+      status: 'active'
+    };
+
+    if (client) {
+      try {
+        const { data, error } = await client
+          .from('contractors')
+          .insert([payload])
+          .select();
+
+        if (!error && data && data.length > 0) {
+          console.log('[TradeSpec Supabase] Contractor account registered in DB:', data[0]);
+          return { success: true, isSupabase: true, contractor: data[0] };
+        } else if (error) {
+          console.warn('[TradeSpec Supabase] Contractor registration error:', error.message);
+        }
+      } catch (err) {
+        console.warn('[TradeSpec Supabase] Network error on contractor registration:', err);
+      }
+    }
+    return { success: true, isSupabase: false, contractor: payload };
+  }
+
   async function getContractorProfile(pin) {
     initClient();
     if (client) {
@@ -405,6 +440,7 @@
     init: initClient,
     checkHealth,
     submitApplication,
+    registerContractor,
     getContractorProfile,
     updateContractorSettings,
     getLeads,

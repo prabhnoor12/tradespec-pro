@@ -358,24 +358,34 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-lg);
-  padding: 2.25rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  container-type: inline-size;
-  container-name: roicard;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .roi-controls {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 .form-group label {
   font-size: 0.8125rem;
@@ -386,6 +396,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .unit-badge {
   font-size: 0.75rem;
@@ -395,6 +408,7 @@ body {
   background: rgba(56, 189, 248, 0.12);
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 .form-select, .form-input {
   background: var(--bg-secondary);
@@ -404,7 +418,12 @@ body {
   font-size: 0.875rem;
   color: var(--text-main);
   outline: none;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .form-select:focus, .form-input:focus {
   border-color: var(--accent-blue);
@@ -412,7 +431,9 @@ body {
 .range-slider {
   -webkit-appearance: none;
   appearance: none;
-  inline-size: 100%;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   height: 8px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.15);
@@ -447,26 +468,32 @@ body {
   cursor: pointer;
 }
 .mobile-slider-presets {
-  display: flex;
-  gap: 0.4rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
   margin-top: 0.35rem;
-  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 .preset-pill {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-light);
   color: var(--text-muted);
-  font-size: 0.6875rem;
+  font-size: clamp(0.625rem, 1.8vw, 0.725rem);
   font-weight: 700;
-  padding: 0.35rem 0.6rem;
+  padding: 0.35rem 0.2rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-fast);
   touch-action: manipulation;
-  min-height: 34px;
-  display: inline-flex;
+  min-height: 36px;
+  display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
 }
 .preset-pill:hover, .preset-pill:focus-visible {
   background: rgba(56, 189, 248, 0.15);
@@ -482,20 +509,28 @@ body {
 .field-help {
   font-size: 0.6875rem;
   color: var(--text-subtle);
+  overflow-wrap: break-word;
 }
 .roi-results {
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 1.75rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .roi-result-box {
   text-align: center;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-light);
+  width: 100%;
+  box-sizing: border-box;
 }
 .roi-result-label {
   font-size: 0.8125rem;
@@ -503,33 +538,53 @@ body {
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  display: block;
 }
 .roi-result-number {
   display: block;
-  font-size: clamp(2rem, 5vw + 1rem, 2.75rem);
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
   font-weight: 900;
   color: var(--accent-emerald);
   font-family: var(--font-mono);
-  line-height: 1.1;
+  line-height: 1.15;
   margin-block: 0.25rem;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   word-break: break-word;
+  max-width: 100%;
 }
 .roi-result-sub {
   font-size: 0.8125rem;
   color: #cbd5e1;
+  display: block;
 }
 .roi-split {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   font-size: 0.875rem;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .roi-mini-box {
   display: flex;
   justify-content: space-between;
-  padding: 0.4rem 0;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
   border-bottom: 1px dashed var(--border-light);
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+.roi-mini-box span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.roi-mini-box strong {
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  text-align: right;
 }
 
 /* Pricing Grid */
@@ -739,14 +794,44 @@ body {
 }
 .dashboard-top-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   padding: 1.25rem 1.5rem;
-  gap: 1rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+}
+.dash-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1 1 280px;
+}
+.btn-exit-site {
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 0.35rem;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.btn-exit-site:hover {
+  color: #fff;
+  border-color: var(--accent-blue);
+  background: rgba(56, 189, 248, 0.12);
 }
 .portal-badge {
   font-size: 0.625rem;
@@ -756,11 +841,13 @@ body {
   background: rgba(56, 189, 248, 0.12);
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-pill);
+  align-self: flex-start;
 }
 .portal-company-name {
   font-size: 1.35rem;
   font-weight: 800;
   margin-block: 0.2rem;
+  overflow-wrap: break-word;
 }
 .portal-territory-text {
   font-size: 0.75rem;
@@ -772,7 +859,22 @@ body {
 }
 .dash-top-actions {
   display: flex;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  max-width: 100%;
+}
+.dash-top-actions .btn {
+  white-space: nowrap;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 /* KPI Grid */
@@ -989,12 +1091,26 @@ body {
 /* Responsive */
 @media (max-width: 900px) {
   .roi-card, .apply-box, .pricing-grid, .settings-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .kpi-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .dashboard-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1.1rem;
+  }
+  .dash-top-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .header-inner { flex-direction: column; align-items: flex-start; }
   .header-nav { flex-wrap: wrap; gap: 0.75rem; }
@@ -1003,8 +1119,8 @@ body {
 
   /* Mobile screen optimization for Subcontractor Revenue & ROI Calculator */
   .roi-card {
-    padding: 1.25rem 1rem;
-    gap: 1.5rem;
+    padding: 1.25rem 0.875rem;
+    gap: 1.25rem;
     border-radius: var(--radius-md);
   }
   .roi-controls {
@@ -1016,17 +1132,17 @@ body {
     border-radius: var(--radius-sm);
   }
   .roi-result-box {
-    padding-bottom: 1rem;
+    padding-bottom: 0.875rem;
   }
   .roi-result-number {
-    font-size: clamp(1.85rem, 8vw, 2.4rem);
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
   }
   .roi-split {
     gap: 0.5rem;
   }
   .roi-mini-box {
     background: rgba(15, 23, 42, 0.5);
-    padding: 0.6rem 0.75rem;
+    padding: 0.55rem 0.7rem;
     border-radius: var(--radius-sm);
     border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 0.8125rem;
@@ -1038,26 +1154,14 @@ body {
   }
 }
 
-@container roicard (max-width: 580px) {
-  .roi-card {
-    padding: 1.25rem 1rem;
-    gap: 1.5rem;
+@media (max-width: 440px) {
+  .mobile-slider-presets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
   }
-  .roi-results {
-    padding: 1.25rem 0.875rem;
-    gap: 1rem;
-  }
-  .roi-result-number {
-    font-size: clamp(1.85rem, 8vw, 2.4rem);
-  }
-  .roi-split {
-    gap: 0.5rem;
-  }
-  .roi-mini-box {
-    background: rgba(15, 23, 42, 0.5);
-    padding: 0.6rem 0.75rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .preset-pill {
+    min-height: 38px;
+    font-size: 0.75rem;
   }
 }
 
