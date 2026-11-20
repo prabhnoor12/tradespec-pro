@@ -24,7 +24,9 @@
       title: 'Commercial EV Fleet & Infrastructure',
       primaryId: 'out-service-amps',
       secondaryId: 'out-service-sub',
-      noun: 'EV Charging Spec',
+      noun: 'EV Spec',
+      unitHint: 'A',
+      btnLabel: (val) => val ? `⚡ Get EV Quotes (${val}) →` : '⚡ Get EV Fleet Quotes →',
       basePrice: 225,
       urgentPrice: 375,
       codeCheck: (num) => num >= 200 ? 'NEC 625 / Utility Trigger: 480V Service or Transformer Review Recommended' : ''
@@ -34,7 +36,9 @@
       title: 'Walk-In Cooler & Cold Storage',
       primaryId: 'out-btu-hr',
       secondaryId: 'out-compressor-hp',
-      noun: 'Cold Storage Spec',
+      noun: 'Cooler Spec',
+      unitHint: 'BTU/hr',
+      btnLabel: (val) => val ? `⚡ Get Cooler Quotes (${val}) →` : '⚡ Get Cold Storage Quotes →',
       basePrice: 145,
       urgentPrice: 265,
       codeCheck: (num) => num >= 18000 ? 'ASHRAE / Title 24 Trigger: High-Capacity Condensing & Low-GWP Spec Required' : ''
@@ -45,6 +49,11 @@
       primaryId: 'recommendedTonnage',
       secondaryId: 'grossWeightVal',
       noun: 'Crane Pick',
+      unitHint: '',
+      btnLabel: (val) => {
+        const m = String(val || '').match(/(\d+[\-\s]*Ton)/i);
+        return m ? `⚡ Get ${m[1]} Crane Quotes →` : '⚡ Get Mobile Crane Quotes →';
+      },
       basePrice: 125,
       urgentPrice: 225,
       codeCheck: (num) => num >= 50 ? 'OSHA 1926 / ASME B30.5 Trigger: Outrigger Mat & Lift Plan Recommended' : ''
@@ -54,7 +63,9 @@
       title: 'Commercial Grease Trap & Hood CFM',
       primaryId: 'metricTrapGPM',
       secondaryId: 'metricTurnkeyBudget',
-      noun: 'Grease Interceptor Spec',
+      noun: 'Grease Trap',
+      unitHint: 'GPM',
+      btnLabel: (val) => val ? `⚡ Get ${val} Trap Quotes →` : '⚡ Get Grease Trap Quotes →',
       basePrice: 140,
       urgentPrice: 250,
       codeCheck: (num) => num >= 50 ? 'UPC / IPC FOG Trigger: Gravity Vault or Municipal FOG Permit Likely Required' : ''
@@ -64,7 +75,9 @@
       title: 'Warehouse Pallet Racking Layout',
       primaryId: 'totalPalletPositions',
       secondaryId: 'metricSteelBudget',
-      noun: 'Pallet Rack Layout',
+      noun: 'Rack Layout',
+      unitHint: 'Pallets',
+      btnLabel: (val) => val ? `⚡ Get Quotes (${val} Pallets) →` : '⚡ Get Pallet Rack Quotes →',
       basePrice: 200,
       urgentPrice: 350,
       codeCheck: (num) => num >= 300 ? 'IFC Ch. 32 Trigger: High-Piled Storage Fire Permit & RMI Seismic Calc Likely Required' : ''
@@ -74,7 +87,9 @@
       title: 'Commercial Tenant Improvement (TI)',
       primaryId: 'out-occupant-load',
       secondaryId: 'out-egress-doors',
-      noun: 'Commercial TI Spec',
+      noun: 'TI Spec',
+      unitHint: 'Occ.',
+      btnLabel: (val) => val ? `⚡ Get TI Quotes (${val}) →` : '⚡ Get Commercial TI Quotes →',
       basePrice: 225,
       urgentPrice: 375,
       codeCheck: (num) => num >= 50 ? 'IBC §1006 Trigger: 2+ Remote Exits & Accessibility / Plan Check Required' : ''
@@ -85,6 +100,8 @@
       primaryId: 'out-peak-cfs',
       secondaryId: 'out-pond-volume',
       noun: 'Stormwater Spec',
+      unitHint: 'cfs',
+      btnLabel: (val) => val ? `⚡ Get Site Quotes (${val}) →` : '⚡ Get Stormwater Quotes →',
       basePrice: 185,
       urgentPrice: 325,
       codeCheck: (num) => num >= 5 ? 'Stormwater Permit Trigger: On-Site Detention & Civil PE Grading Review Likely Required' : ''
@@ -94,7 +111,9 @@
       title: 'Commercial Spray Foam Insulation',
       primaryId: 'totalBoardFeet',
       secondaryId: 'metricRValue',
-      noun: 'Spray Foam Spec',
+      noun: 'Spray Foam',
+      unitHint: 'BF',
+      btnLabel: (val) => val ? `⚡ Get Foam Quotes (${val} BF) →` : '⚡ Get Spray Foam Quotes →',
       basePrice: 115,
       urgentPrice: 195,
       codeCheck: (num) => num >= 5000 ? 'IBC §2603.4 Trigger: 15-Min Thermal / Intumescent Fire Barrier Required' : ''
@@ -104,7 +123,9 @@
       title: 'Commercial Water Well & Pump',
       primaryId: 'recommendedPumpHp',
       secondaryId: 'metricTurnkeyBudget',
-      noun: 'Water Well Spec',
+      noun: 'Water Well',
+      unitHint: 'HP',
+      btnLabel: (val) => val ? `⚡ Get Well Quotes (${val}) →` : '⚡ Get Water Well Quotes →',
       basePrice: 165,
       urgentPrice: 295,
       codeCheck: (num) => num >= 5 ? 'Aquifer Permit Trigger: Licensed Driller, Sanitary Seal & District Permit Required' : ''
@@ -317,11 +338,15 @@
       const pill = document.getElementById('tspCapSpecPill');
       const codeAlertEl = document.getElementById('tspCapCodeAlert');
 
-      if (qBtn && spec.shortPrimary) {
-        qBtn.textContent = `⚡ Get Firm Quotes for This ${spec.shortPrimary} →`;
+      const compactLabel = typeof cfg.btnLabel === 'function'
+        ? cfg.btnLabel(spec.shortPrimary)
+        : `⚡ Get ${cfg.noun} Quotes →`;
+
+      if (qBtn) {
+        qBtn.textContent = compactLabel;
       }
-      if (mBtn && spec.shortPrimary) {
-        mBtn.textContent = `⚡ Get Quotes: ${spec.shortPrimary} →`;
+      if (mBtn) {
+        mBtn.textContent = compactLabel;
       }
       if (codeAlertEl) {
         if (spec.codeAlert) {
