@@ -1,0 +1,386 @@
+/* ==========================================================================
+   TradeSpec Pro™ — Contextual Spec Capture & Dynamic Quote Bar
+   100% namespaced (.tsp-cap-*) for zero CSS collisions across all 9 tools
+   ========================================================================== */
+
+.tsp-cap-bar {
+  background: linear-gradient(145deg, #0f172a, #162238);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 12px;
+  padding: 1.15rem 1.25rem;
+  margin: 1rem 0 1.25rem;
+  color: #f8fafc;
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.25);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tsp-cap-bar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.tsp-cap-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #38bdf8;
+}
+
+.tsp-cap-trust-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+}
+
+.tsp-cap-headline {
+  font-size: 1.02rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 0.25rem;
+  line-height: 1.35;
+}
+
+.tsp-cap-sub {
+  font-size: 0.84rem;
+  color: #94a3b8;
+  margin: 0 0 0.95rem;
+  line-height: 1.45;
+}
+
+.tsp-cap-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.tsp-cap-btn-primary {
+  flex: 1 1 230px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: #38bdf8;
+  color: #070b14;
+  border: none;
+  border-radius: 8px;
+  padding: 0.72rem 1.05rem;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+  text-align: center;
+}
+
+.tsp-cap-btn-primary:hover {
+  background: #7dd3fc;
+  transform: translateY(-1px);
+}
+
+.tsp-cap-btn-secondary {
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.tsp-cap-btn-secondary:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+}
+
+/* Soft Capture Modal */
+.tsp-cap-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 15, 0.78);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.tsp-cap-overlay[hidden] {
+  display: none !important;
+}
+
+.tsp-cap-modal {
+  width: 100%;
+  max-width: 540px;
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+}
+
+.tsp-cap-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tsp-cap-modal-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0.2rem 0 0;
+}
+
+.tsp-cap-close {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+}
+
+.tsp-cap-close:hover {
+  color: #f8fafc;
+}
+
+.tsp-cap-spec-pill {
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 10px;
+  padding: 0.75rem 0.95rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+}
+
+.tsp-cap-spec-pill strong {
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.tsp-cap-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.tsp-cap-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.tsp-cap-field.full {
+  grid-column: 1 / -1;
+}
+
+.tsp-cap-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+.tsp-cap-input {
+  width: 100%;
+  background: #070b14;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 0.62rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.tsp-cap-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.tsp-cap-input.invalid {
+  border-color: #ef4444;
+}
+
+/* Timeline Selector Pills */
+.tsp-cap-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.tsp-cap-time-pill {
+  background: #070b14;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.55rem 0.45rem;
+  color: #94a3b8;
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.tsp-cap-time-pill span {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.tsp-cap-time-pill.active {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  color: #fde68a;
+}
+
+.tsp-cap-time-pill.active span {
+  color: #f59e0b;
+}
+
+/* Opt-In Checkbox */
+.tsp-cap-optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.26);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
+  margin-top: 0.95rem;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  line-height: 1.4;
+}
+
+.tsp-cap-optin input {
+  margin-top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  accent-color: #10b981;
+  flex-shrink: 0;
+}
+
+.tsp-cap-error {
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fecaca;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.tsp-cap-submit {
+  width: 100%;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #38bdf8, #0284c7);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.1rem;
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.tsp-cap-submit:hover {
+  filter: brightness(1.08);
+}
+
+.tsp-cap-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tsp-cap-escape {
+  margin-top: 0.85rem;
+  text-align: center;
+}
+
+.tsp-cap-escape-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.tsp-cap-escape-btn:hover {
+  color: #94a3b8;
+}
+
+.tsp-cap-success-box {
+  text-align: center;
+  padding: 0.75rem 0.25rem;
+}
+
+.tsp-cap-success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.16);
+  border: 2px solid #10b981;
+  color: #10b981;
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .tsp-cap-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .tsp-cap-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+  .tsp-cap-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media print {
+  .tsp-cap-bar,
+  .tsp-cap-overlay {
+    display: none !important;
+  }
+}

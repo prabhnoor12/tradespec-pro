@@ -417,6 +417,49 @@
     }
   }
 
+  async function submitLead(leadData) {
+    initClient();
+    const payload = {
+      trade: leadData.trade,
+      trade_title: leadData.tradeTitle,
+      customer_name: leadData.customerName,
+      company: leadData.company || 'Commercial Project Owner',
+      phone: leadData.phone,
+      email: leadData.email,
+      zip: leadData.zip,
+      location: leadData.location || `ZIP ${leadData.zip}`,
+      price_usd: Number(leadData.priceUsd) || 175,
+      status: 'available',
+      specs: leadData.specs || {}
+    };
+
+    if (client) {
+      try {
+        const { data, error } = await client
+          .from('leads')
+          .insert([payload])
+          .select();
+
+        if (!error && data && data.length > 0) {
+          console.log('[TradeSpec Supabase] Commercial RFP lead persisted:', data[0]);
+          return { success: true, isSupabase: true, lead: data[0] };
+        } else if (error) {
+          console.warn('[TradeSpec Supabase] Lead insert warning:', error.message);
+        }
+      } catch (err) {
+        console.warn('[TradeSpec Supabase] Network error on lead insert:', err);
+      }
+    }
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('tradespec_submitted_leads') || '[]');
+      existing.unshift({ ...payload, created_at: new Date().toISOString() });
+      localStorage.setItem('tradespec_submitted_leads', JSON.stringify(existing));
+    } catch (e) {}
+
+    return { success: true, isSupabase: false, lead: payload };
+  }
+
   // Expose API globally
   window.TradeSpecSupabase = {
     config: SUPABASE_CONFIG,
@@ -428,6 +471,7 @@
     updateContractorSettings,
     checkTerritorySlots,
     getLeads,
+    submitLead,
     claimLead,
     disputeLead,
     subscribeToLeads,
