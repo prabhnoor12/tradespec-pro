@@ -77,7 +77,10 @@
       secondaryId: 'metricSteelBudget',
       noun: 'Rack Layout',
       unitHint: 'Pallets',
-      btnLabel: (val) => val ? `⚡ Get Quotes (${val} Pallets) →` : '⚡ Get Pallet Rack Quotes →',
+      btnLabel: (val) => {
+        const num = String(val || '').replace(/pallets?/i, '').trim();
+        return num ? `⚡ Get Quotes (${num} Pallets) →` : '⚡ Get Pallet Rack Quotes →';
+      },
       basePrice: 200,
       urgentPrice: 350,
       codeCheck: (num) => num >= 300 ? 'IFC Ch. 32 Trigger: High-Piled Storage Fire Permit & RMI Seismic Calc Likely Required' : ''
@@ -113,7 +116,10 @@
       secondaryId: 'metricRValue',
       noun: 'Spray Foam',
       unitHint: 'BF',
-      btnLabel: (val) => val ? `⚡ Get Foam Quotes (${val} BF) →` : '⚡ Get Spray Foam Quotes →',
+      btnLabel: (val) => {
+        const num = String(val || '').replace(/(bd\s*ft|board\s*feet|bf)/i, '').trim();
+        return num ? `⚡ Get Foam Quotes (${num} BF) →` : '⚡ Get Spray Foam Quotes →';
+      },
       basePrice: 115,
       urgentPrice: 195,
       codeCheck: (num) => num >= 5000 ? 'IBC §2603.4 Trigger: 15-Min Thermal / Intumescent Fire Barrier Required' : ''
