@@ -443,15 +443,20 @@ def build_page_html(page):
   <meta name="description" content="{html.escape(page['description'])}">
   <meta name="keywords" content="{html.escape(page['keywords'])}">
   <link rel="canonical" href="{canonical_url}">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 
   <!-- OpenGraph / Social -->
   <meta property="og:title" content="{html.escape(page['title'])}">
   <meta property="og:description" content="{html.escape(page['description'])}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{canonical_url}">
+  <meta property="og:image" content="{BASE_URL}/assets/og-tradespec-pro.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{html.escape(page['title'])}">
   <meta name="twitter:description" content="{html.escape(page['description'])}">
+  <meta name="twitter:image" content="{BASE_URL}/assets/og-tradespec-pro.png">
 
   <!-- Structured Data: BreadcrumbList -->
   <script type="application/ld+json">
