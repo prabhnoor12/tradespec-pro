@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Commercial Tenant Improvement Calculator (CBC, Title 24 &amp; ADA 11B) | TradeSpec Pro™</title>
+  <meta name="description" content="Estimate commercial tenant improvement (TI) costs, IBC/CBC occupant load, exit counts, Title 24 Part 6 energy upgrades, and Chapter 11B 20% ADA path-of-travel budgets in California.">
+  <meta name="keywords" content="california commercial tenant improvement cost calculator, title 24 tenant improvement requirements, cbc chapter 11b 20 percent rule, california commercial occupancy load calculator">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/permit-spec/california-cbc-title24/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="California Commercial Tenant Improvement Calculator (CBC, Title 24 &amp; ADA 11B)">
+  <meta property="og:description" content="Estimate commercial tenant improvement (TI) costs, IBC/CBC occupant load, exit counts, Title 24 Part 6 energy upgrades, and Chapter 11B 20% ADA path-of-travel budgets in California.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/permit-spec/california-cbc-title24/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Commercial Tenant Improvement Calculator (CBC, Title 24 &amp; ADA 11B)">
+  <meta name="twitter:description" content="Estimate commercial tenant improvement (TI) costs, IBC/CBC occupant load, exit counts, Title 24 Part 6 energy upgrades, and Chapter 11B 20% ADA path-of-travel budgets in California.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Tenant Improvement & Occupancy Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "California \u2014 CBC & Title 24",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/california-cbc-title24/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "California Commercial Tenant Improvement Calculator (CBC, Title 24 & ADA 11B)",
+  "description": "Estimate commercial tenant improvement (TI) costs, IBC/CBC occupant load, exit counts, Title 24 Part 6 energy upgrades, and Chapter 11B 20% ADA path-of-travel budgets in California.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/california-cbc-title24/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Tenant Improvement & Occupancy Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 20% ADA rule for California commercial tenant improvements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under CBC \u00a711B-202.4, when a commercial TI project is below the state's annual DSA valuation threshold (approx. $200,000+), the owner must spend up to 20% of the construction budget upgrading accessible path-of-travel elements (entrance, restrooms, parking)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do I need 2 exits in a California commercial space?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under CBC Table 1006.2.1, Business (Group B), Mercantile (Group M), and Assembly (Group A) spaces require at least 2 exits whenever the occupant load reaches 50 or more (or if common path of egress exceeds code limits)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Title 24 ATTCP acceptance testing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "California Title 24 Part 6 requires an independent, state-certified Acceptance Test Technician to functionally test commercial lighting controls (occupancy sensors, daylight dimming) and HVAC systems before final inspection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do commercial TI permits take in Los Angeles or San Francisco?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simple office TIs can clear over-the-counter or in 4\u20138 weeks; full restaurant or change-of-use TIs typically require 3 to 6 months across Building, Health, and Fire plan checks."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">PermitSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Tenant Improvement &amp; Occupancy Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">California — CBC &amp; Title 24</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 California Building Code • Title 24 • Chapter 11B</div>
+      <h1>California Commercial Tenant Improvement Calculator (CBC, Title 24 &amp; Chapter 11B)</h1>
+      <p class="guide-hero-lead">Calculate commercial occupant loads, required exits, plumbing fixture counts, and TI construction budgets tailored to the California Building Code (CBC), Title 24 Part 6 energy rules, and Chapter 11B accessibility triggers.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full PermitSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick California Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Building Code</span>
+            <span class="spec-meta-val">2022/2025 California Building Code</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Energy Compliance</span>
+            <span class="spec-meta-val">Title 24 Part 6 (NRCC Forms)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">ADA Path-of-Travel Rule</span>
+            <span class="spec-meta-val">CBC §11B-202.4 (20% Valuation)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Typical CA TI Cost</span>
+            <span class="spec-meta-val">$145 – $280 / sq ft (Urban)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured California — CBC &amp; Title 24 Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>California (CBC, Title 24 Energy &amp; Chapter 11B ADA)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ti">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick California — CBC &amp; Title 24 TI &amp; Occupancy Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded Local TI Cost Benchmark</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Commercial Lease Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="4000" min="500" max="100000" step="250">
+            </div>
+            <div class="calc-field">
+              <label for="qc_occ">Occupancy Load Factor (sq ft / person)</label>
+              <select id="qc_occ">
+                <option value="150" selected>150 sq ft (Business / Office — Group B)</option>
+                <option value="60" >60 sq ft (Mercantile / Retail — Group M)</option>
+                <option value="15" >15 sq ft (Dining / Assembly — Group A-2)</option>
+                <option value="300" >300 sq ft (Warehouse / Storage — Group S)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_cost">Local TI Construction Rate ($ / sq ft)</label>
+              <input type="number" id="qc_cost" value="185" min="50" max="500" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Calculated Occupancy</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Remote Exits</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. TI Budget</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Accessibility Trigger</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Tenant Improvement &amp; Plumbing Fixture Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Hidden California TI Budget Triggers: Title 24 &amp; Chapter 11B Path of Travel</h2>
+        <p>Commercial Tenant Improvements (TI) in Los Angeles, San Francisco, San Diego, and Orange County carry two major regulatory cost drivers beyond standard IBC jurisdictions: California Title 24 Part 6 Energy Standards (requiring automated lighting controls, demand-responsive thermostats, and HERS/ATTCP acceptance testing) and CBC Chapter 11B Disabled Access.</p>
+        <p>Under CBC §11B-202.4, if your TI valuation is below the annual DSA valuation threshold (approx. $200,000+), you must spend up to 20% of the adjusted construction cost upgrading the accessible path of travel (parking, entrance, restrooms, drinking fountains). Above the threshold, full 100% path-of-travel compliance is triggered.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>CBC Table 1004.5</td>
+              <td><strong>Occupant Load Factors</strong></td>
+              <td>Business/Office: 150 gross sq ft; Mercantile/Retail: 60 gross sq ft; Assembly (Unconcentrated): 15 net sq ft.</td>
+            </tr>
+            <tr>
+              <td>CBC §1006.2.1</td>
+              <td><strong>Two-Exit Threshold</strong></td>
+              <td>Spaces with occupant load &gt;= 50 (Group B, M, A) or common path of egress &gt; 75–100 ft require 2 remote exits.</td>
+            </tr>
+            <tr>
+              <td>CBC §11B-202.4</td>
+              <td><strong>20% Path-of-Travel Rule</strong></td>
+              <td>Alterations trigger mandatory accessible parking, entry, and restroom upgrades up to 20% of project valuation (or full compliance above DSA threshold).</td>
+            </tr>
+            <tr>
+              <td>Title 24 Part 6</td>
+              <td><strong>NRCC Lighting &amp; Mechanical</strong></td>
+              <td>Requires certified Acceptance Test Technician (ATTCP) sign-off on commercial lighting controls and HVAC economizers.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>CBC Occupant Load &amp; Chapter 11B Budget Reserve Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Occupant Load = Gross Sq Ft ÷ CBC Table 1004.5 Factor   |   ADA Reserve = 20% × TI Valuation (Below DSA Cap)</div>
+          <h3>Worked Example: 4,000 Sq Ft Commercial Office TI in Orange County, CA</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Occupant Load (Group B):</strong> 4,000 sq ft ÷ 150 sq ft/occupant = <strong>27 Occupants</strong> (1 exit permitted if travel distance <= 100 ft sprinklered).</li>
+          <li><strong>Step 2 — Base TI Construction Cost:</strong> 4,000 sq ft × $185/sq ft = <strong>$740,000</strong>.</li>
+          <li><strong>Step 3 — CBC Chapter 11B Trigger:</strong> Exceeds annual DSA valuation threshold (~$200k) → <strong>full accessible path-of-travel compliance</strong> (parking stall, entry door pressure <= 5 lbf, compliant restroom).</li>
+          <li><strong>Step 4 — Title 24 Acceptance Testing:</strong> Budget $3,500–$6,000 for certified ATTCP lighting & mechanical acceptance testing prior to final inspection.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>California Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Commission a CASp Inspection Before Signing Lease</h3>
+          <p>A Certified Access Specialist (CASp) report identifies hidden parking/restroom barriers so you can negotiate landlord TI allowance.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify Change of Occupancy (e.g., Retail → Restaurant)</h3>
+          <p>Changing occupancy group (M to A-2 or B) triggers full seismic, fire sprinkler, and Title 24 upgrades.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Include Title 24 NRCC Forms in Plan Submittal</h3>
+          <p>Architectural, mechanical, and electrical Title 24 energy compliance forms must be stamped onto the permit drawing set.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Schedule ATTCP Acceptance Testing</h3>
+          <p>City inspectors will not grant final Certificate of Occupancy without signed Title 24 NRCA acceptance certificates.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — California — CBC &amp; Title 24</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the 20% ADA rule for California commercial tenant improvements?</summary>
+          <div class="faq-answer">Under CBC §11B-202.4, when a commercial TI project is below the state&#x27;s annual DSA valuation threshold (approx. $200,000+), the owner must spend up to 20% of the construction budget upgrading accessible path-of-travel elements (entrance, restrooms, parking).</div>
+        </details>
+        <details class="faq-item">
+          <summary>When do I need 2 exits in a California commercial space?</summary>
+          <div class="faq-answer">Under CBC Table 1006.2.1, Business (Group B), Mercantile (Group M), and Assembly (Group A) spaces require at least 2 exits whenever the occupant load reaches 50 or more (or if common path of egress exceeds code limits).</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is Title 24 ATTCP acceptance testing?</summary>
+          <div class="faq-answer">California Title 24 Part 6 requires an independent, state-certified Acceptance Test Technician to functionally test commercial lighting controls (occupancy sensors, daylight dimming) and HVAC systems before final inspection.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How long do commercial TI permits take in Los Angeles or San Francisco?</summary>
+          <div class="faq-answer">Simple office TIs can clear over-the-counter or in 4–8 weeks; full restaurant or change-of-use TIs typically require 3 to 6 months across Building, Health, and Fire plan checks.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other PermitSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-ibc-tas/" class="hub-link-card">
+          <span class="hub-link-title">Texas — IBC &amp; TDLR TAS</span>
+          <span class="hub-link-sub">IBC 2021/2024 • TDLR TAS ($50k Rule)</span>
+        </a>
+        <a href="../nyc-dob-alt2/" class="hub-link-card">
+          <span class="hub-link-title">NYC — BC 2022 &amp; DOB Alt-2</span>
+          <span class="hub-link-sub">2022 NYC Building Code • DOB NOW Alt-2 • NYCECC</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../charge-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial EV Fleet &amp; Infrastructure Calculator</span>
+          <span class="hub-link-sub">ChargeSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../grease-trap/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Grease Trap &amp; Hood CFM Calculator</span>
+          <span class="hub-link-sub">FOGSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../cold-spec/" class="hub-link-card">
+          <span class="hub-link-title">Walk-In Cooler &amp; Cold Storage BTU Calculator</span>
+          <span class="hub-link-sub">ColdSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">PermitSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

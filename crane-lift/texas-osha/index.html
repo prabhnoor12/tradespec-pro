@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Crane Load Radius &amp; Outrigger Mat Calculator (OSHA 1926 &amp; TxDOT) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate mobile crane tonnage, boom radius, and outrigger mat sizing for Texas commercial lifts under OSHA 29 CFR 1926.1400, TxDOT oversize permits, and Gulf Coast clay soils.">
+  <meta name="keywords" content="texas crane size calculator, crane load radius calculator osha 1926, houston crane outrigger mat calculator, txdot crane permit, dallas mobile crane sizing">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/crane-lift/texas-osha/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Crane Load Radius &amp; Outrigger Mat Calculator (OSHA 1926 &amp; TxDOT)">
+  <meta property="og:description" content="Calculate mobile crane tonnage, boom radius, and outrigger mat sizing for Texas commercial lifts under OSHA 29 CFR 1926.1400, TxDOT oversize permits, and Gulf Coast clay soils.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/crane-lift/texas-osha/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Crane Load Radius &amp; Outrigger Mat Calculator (OSHA 1926 &amp; TxDOT)">
+  <meta name="twitter:description" content="Calculate mobile crane tonnage, boom radius, and outrigger mat sizing for Texas commercial lifts under OSHA 29 CFR 1926.1400, TxDOT oversize permits, and Gulf Coast clay soils.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crane Sizing & Radius Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 OSHA 1926 & TxDOT",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/texas-osha/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Crane Load Radius & Outrigger Mat Calculator (OSHA 1926 & TxDOT)",
+  "description": "Calculate mobile crane tonnage, boom radius, and outrigger mat sizing for Texas commercial lifts under OSHA 29 CFR 1926.1400, TxDOT oversize permits, and Gulf Coast clay soils.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/texas-osha/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Crane Sizing & Radius Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Texas have its own state crane license or does it follow Federal OSHA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Texas does not issue a separate state crane operator license. Private commercial lifts follow Federal OSHA 29 CFR 1926.1427, which requires nationally accredited certification (such as NCCCO or NCCER) for the specific crane type."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What soil bearing pressure should I use for outrigger mats in Houston or Dallas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unless a geotechnical report proves otherwise, conservative riggers use 1,500 to 2,000 PSF for wet Gulf Coast or North Texas clay, and 2,500 to 3,000 PSF for compacted crushed limestone base."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a TxDOT permit to drive a 90-ton crane to a Texas jobsite?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most 60-ton and larger hydraulic cranes exceed standard 80,000 lb gross vehicle weight or axle weight limits and require a TxDOT ProMiles oversize/overweight permit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance do I need a street closure permit for a crane in Austin or Houston?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plan for 5 to 14 business days for a municipal Right-of-Way / Traffic Control Plan (TCP) approval when closing a travel lane or sidewalk."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">RigCheck Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Crane Sizing &amp; Radius Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — OSHA 1926 &amp; TxDOT</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 OSHA 29 CFR 1926 Subpart CC • TxDOT</div>
+      <h1>Texas Mobile Crane Sizing &amp; Outrigger Calculator (OSHA 1926 Subpart CC)</h1>
+      <p class="guide-hero-lead">Size hydraulic truck and all-terrain cranes for Texas commercial HVAC, steel erection, and tilt-wall picks. Pre-configured for OSHA 29 CFR 1926.1402 ground bearing rules on expansive Houston/DFW clay soils and TxDOT transport thresholds.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full RigCheck Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Safety Code</span>
+            <span class="spec-meta-val">OSHA 29 CFR 1926.1400–1442</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Transport / Street Agency</span>
+            <span class="spec-meta-val">TxDOT ProMiles &amp; Local ROW</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Typical Clay Soil Bearing</span>
+            <span class="spec-meta-val">1,500 – 2,000 PSF (Houston/DFW)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Wind Shut-Down Reference</span>
+            <span class="spec-meta-val">20–30 mph (Chart / ASCE 7)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — OSHA 1926 &amp; TxDOT Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (Houston, Dallas-Fort Worth, Austin)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="crane" data-rigging-factor="1.15">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — OSHA 1926 &amp; TxDOT Pick &amp; Mat Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 1,800 PSF Local Soil</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_load">Net Equipment / Load Weight (lbs)</label>
+              <input type="number" id="qc_load" value="14000" min="500" step="500">
+            </div>
+            <div class="calc-field">
+              <label for="qc_radius">Horizontal Pick Radius (ft)</label>
+              <input type="number" id="qc_radius" value="60" min="15" max="200" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_soil">Local Soil Bearing Pressure (PSF)</label>
+              <input type="number" id="qc_soil" value="1800" min="1000" max="6000" step="100">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Crane Class</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Gross Pick (w/ Rigging)</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Outrigger Reaction</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Outrigger Mat Size</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Boom Clearance &amp; Rental Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Why Texas Crane Picks Require Larger Outrigger Cribbing &amp; Strict Wind Planning</h2>
+        <p>Texas is a Federal OSHA jurisdiction for private commercial construction, meaning every mobile crane lift in Houston, Dallas-Fort Worth, Austin, and San Antonio is governed by OSHA 29 CFR 1926 Subpart CC (1926.1400–1442) alongside ASME B30.5. Under 1926.1402, the controlling entity—typically the general contractor or property owner—is legally responsible for verifying ground conditions before the crane sets up.</p>
+        <p>In the Gulf Coast and North Texas corridors, high-plasticity expansive clay (Beaumont clay in Houston, Eagle Ford clay in DFW) frequently tests at just 1,500 to 2,000 PSF allowable bearing pressure after rain. Placing an undersized 4 ft × 4 ft pad under a 90-ton crane outrigger can punch through asphalt or cause differential settlement during a boom swing.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>OSHA 1926.1402</td>
+              <td><strong>Ground Conditions &amp; Controlling Entity</strong></td>
+              <td>GC must ensure ground is firm, drained, and graded; outrigger mats must keep bearing pressure below local clay limits.</td>
+            </tr>
+            <tr>
+              <td>OSHA 1926.1408</td>
+              <td><strong>Power Line Clearance (ERCOT / CenterPoint)</strong></td>
+              <td>Minimum 20 ft clearance for lines up to 350 kV unless utility de-energizes or dedicated spotter/encroachment plan is active.</td>
+            </tr>
+            <tr>
+              <td>OSHA 1926.1427</td>
+              <td><strong>Operator Certification</strong></td>
+              <td>NCCCO, CIC, or NCCER accredited certification mandatory by crane type and capacity.</td>
+            </tr>
+            <tr>
+              <td>TxDOT 43 TAC §219</td>
+              <td><strong>Self-Propelled Crane Road Permits</strong></td>
+              <td>Annual or single-trip TxDOT ProMiles oversize/overweight permit required for cranes exceeding 80,000 lbs GVW or legal axle weights.</td>
+            </tr>
+            <tr>
+              <td>ASME B30.5</td>
+              <td><strong>Critical Lift Threshold</strong></td>
+              <td>Written lift plan and Lift Director required when gross load exceeds 75% of chart capacity or involves tandem picks.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Outrigger Mat Area &amp; Gross Pick Formula (Texas Clay Default)</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Gross Load = Net Weight × 1.15 (Rigging)   |   Min Mat Area (sq ft) = Corner Reaction (lbs) ÷ Soil PSF</div>
+          <h3>Worked Example: 14,000 lb Rooftop Chiller Pick in Houston, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Gross Pick Weight:</strong> 14,000 lb chiller + 2,100 lb spreader bar, slings, and hook block (15% rigging allowance) = <strong>16,100 lbs gross</strong>.</li>
+          <li><strong>Step 2 — Radius & Crane Class:</strong> 60 ft horizontal setback from curb to roof dunnage requires a <strong>85-Ton to 100-Ton hydraulic crane</strong> to stay under the 75% non-critical chart limit.</li>
+          <li><strong>Step 3 — Outrigger Corner Reaction:</strong> Peak swing reaction over one corner float ≈ <strong>78,000 lbs</strong>.</li>
+          <li><strong>Step 4 — Houston Clay Mat Sizing:</strong> At 1,800 PSF allowable bearing pressure, 78,000 ÷ 1,800 = <strong>43.3 sq ft</strong> (approx. 6.6 ft × 6.6 ft engineered composite or layered hardwood crane mats).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Verify Controlling Entity Ground Sign-Off</h3>
+          <p>Check for underground detention vaults, sanitary sewer lines, and soft clay shoulders before crane arrival per OSHA 1926.1402.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>File Municipal ROW / Street Closure</h3>
+          <p>City of Houston Mobility Permit or City of Dallas Right-of-Way permit requires a stamped Traffic Control Plan (TCP) 5–10 business days ahead.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Confirm Utility Clearances</h3>
+          <p>Coordinate with CenterPoint Energy or Oncor if boom swing approaches overhead distribution feeders within 20 feet.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Monitor Gulf Coast Gust Limits</h3>
+          <p>Suspend picks if sustained winds or gusts exceed manufacturer chart derating limits (typically 20–25 mph for high-sail-area HVAC units).</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — OSHA 1926 &amp; TxDOT</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Does Texas have its own state crane license or does it follow Federal OSHA?</summary>
+          <div class="faq-answer">Texas does not issue a separate state crane operator license. Private commercial lifts follow Federal OSHA 29 CFR 1926.1427, which requires nationally accredited certification (such as NCCCO or NCCER) for the specific crane type.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What soil bearing pressure should I use for outrigger mats in Houston or Dallas?</summary>
+          <div class="faq-answer">Unless a geotechnical report proves otherwise, conservative riggers use 1,500 to 2,000 PSF for wet Gulf Coast or North Texas clay, and 2,500 to 3,000 PSF for compacted crushed limestone base.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need a TxDOT permit to drive a 90-ton crane to a Texas jobsite?</summary>
+          <div class="faq-answer">Yes. Most 60-ton and larger hydraulic cranes exceed standard 80,000 lb gross vehicle weight or axle weight limits and require a TxDOT ProMiles oversize/overweight permit.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How far in advance do I need a street closure permit for a crane in Austin or Houston?</summary>
+          <div class="faq-answer">Plan for 5 to 14 business days for a municipal Right-of-Way / Traffic Control Plan (TCP) approval when closing a travel lane or sidewalk.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other RigCheck Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-calosha/" class="hub-link-card">
+          <span class="hub-link-title">California — Cal/OSHA Title 8</span>
+          <span class="hub-link-sub">Cal/OSHA Title 8 Group 13 • Caltrans</span>
+        </a>
+        <a href="../nyc-dob/" class="hub-link-card">
+          <span class="hub-link-title">NYC — DOB Chapter 33</span>
+          <span class="hub-link-sub">NYC BC Chapter 33 • DOB Cranes &amp; Derricks</span>
+        </a>
+        <a href="../florida-hvhz/" class="hub-link-card">
+          <span class="hub-link-title">Florida — OSHA &amp; HVHZ Sandy Soil</span>
+          <span class="hub-link-sub">OSHA 1926 Subpart CC • FBC HVHZ • FDOT</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../pallet-racking/" class="hub-link-card">
+          <span class="hub-link-title">Warehouse Pallet Racking Layout Calculator</span>
+          <span class="hub-link-sub">RackSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">RigCheck Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

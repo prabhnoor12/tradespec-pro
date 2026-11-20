@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Mobile Crane Sizing Calculator (Cal/OSHA Title 8 &amp; Caltrans) | TradeSpec Pro™</title>
+  <meta name="description" content="Free California crane load radius and outrigger sizing calculator compliant with Cal/OSHA Title 8 (§4884–5049), accredited crane certification, and LADOT/Caltrans lift permits.">
+  <meta name="keywords" content="california crane sizing calculator, cal osha crane requirements title 8, los angeles crane permit calculator, caltrans crane load radius, mobile crane outrigger mat california">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/crane-lift/california-calosha/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="California Mobile Crane Sizing Calculator (Cal/OSHA Title 8 &amp; Caltrans)">
+  <meta property="og:description" content="Free California crane load radius and outrigger sizing calculator compliant with Cal/OSHA Title 8 (§4884–5049), accredited crane certification, and LADOT/Caltrans lift permits.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/crane-lift/california-calosha/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Mobile Crane Sizing Calculator (Cal/OSHA Title 8 &amp; Caltrans)">
+  <meta name="twitter:description" content="Free California crane load radius and outrigger sizing calculator compliant with Cal/OSHA Title 8 (§4884–5049), accredited crane certification, and LADOT/Caltrans lift permits.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crane Sizing & Radius Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "California \u2014 Cal/OSHA Title 8",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/california-calosha/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "California Mobile Crane Sizing Calculator (Cal/OSHA Title 8 & Caltrans)",
+  "description": "Free California crane load radius and outrigger sizing calculator compliant with Cal/OSHA Title 8 (\u00a74884\u20135049), accredited crane certification, and LADOT/Caltrans lift permits.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/california-calosha/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Crane Sizing & Radius Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Federal OSHA NCCCO certification valid in California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, NCCCO and other nationally accredited certifications meet Cal/OSHA \u00a75006.1, provided the operator also maintains current ASME B30.5 medical and substance-testing compliance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does California require a state inspection sticker on every mobile crane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under Cal/OSHA Title 8 \u00a75021, mobile cranes over 3 tons capacity must be inspected and certified annually by a Cal/OSHA-accredited certifying agency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I set crane outriggers over an underground parking garage in Los Angeles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never without a licensed California Structural Engineer (SE/PE) shoring analysis. Outrigger corner reactions easily exceed 50,000\u2013100,000 lbs and will punch through post-tensioned slabs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a Los Angeles crane street closure permit take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LADOT and Bureau of Street Services (BSS) permits typically require 10 to 15 business days, especially if a Peak Hour Exemption or Metro bus reroute is involved."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">RigCheck Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Crane Sizing &amp; Radius Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">California — Cal/OSHA Title 8</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 Cal/OSHA Title 8 Group 13 • Caltrans</div>
+      <h1>California Mobile Crane Sizing Calculator (Cal/OSHA Title 8, Group 13)</h1>
+      <p class="guide-hero-lead">Plan commercial crane picks across Los Angeles, San Francisco, and San Diego under California's stricter Cal/OSHA Title 8 crane regulations, mandatory state-accredited crane certification, and urban street-closure rules.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full RigCheck Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick California Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Safety Code</span>
+            <span class="spec-meta-val">Cal/OSHA Title 8, §§4884–5049</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Transport / Street Agency</span>
+            <span class="spec-meta-val">Caltrans &amp; LADOT / SFMTA</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Annual Crane Inspection</span>
+            <span class="spec-meta-val">Cal/OSHA Accredited Certifier</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Typical Alluvial Bearing</span>
+            <span class="spec-meta-val">2,000 – 2,500 PSF (SoCal/Bay)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured California — Cal/OSHA Title 8 Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>California (Los Angeles, Bay Area, San Diego)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="crane" data-rigging-factor="1.18">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick California — Cal/OSHA Title 8 Pick &amp; Mat Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 2,200 PSF Local Soil</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_load">Net Equipment / Load Weight (lbs)</label>
+              <input type="number" id="qc_load" value="10000" min="500" step="500">
+            </div>
+            <div class="calc-field">
+              <label for="qc_radius">Horizontal Pick Radius (ft)</label>
+              <input type="number" id="qc_radius" value="55" min="15" max="200" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_soil">Local Soil Bearing Pressure (PSF)</label>
+              <input type="number" id="qc_soil" value="2200" min="1000" max="6000" step="100">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Crane Class</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Gross Pick (w/ Rigging)</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Outrigger Reaction</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Outrigger Mat Size</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Boom Clearance &amp; Rental Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>How Cal/OSHA Title 8 Differs From Federal OSHA on Mobile Crane Picks</h2>
+        <p>California operates an independent State Plan under Cal/OSHA Title 8, Group 13 (Cranes and Other Hoisting Equipment, §§4884–5049) that enforces stricter certification and inspection standards than Federal OSHA 1926 Subpart CC. Every mobile crane exceeding 3 tons rated capacity operating in California must hold a current annual certificate from a Cal/OSHA-accredited certifying agency.</p>
+        <p>Urban jobsites in Los Angeles, San Jose, and San Francisco also face tight alley setbacks, subterranean parking structures, and strict municipal noise and lane-closure windows (LADOT Peak Hour Exemptions, SFMTA Special Traffic Permits).</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Cal/OSHA §5021</td>
+              <td><strong>Mandatory Crane Certification</strong></td>
+              <td>Annual &amp; quadrennial certification by a Cal/OSHA-accredited certifier is mandatory for cranes over 3 tons capacity.</td>
+            </tr>
+            <tr>
+              <td>Cal/OSHA §5006.1</td>
+              <td><strong>Operator Qualification</strong></td>
+              <td>Operators must hold valid accredited certification plus physical exam (ASME B30.5 medical requirements) and substance testing.</td>
+            </tr>
+            <tr>
+              <td>Cal/OSHA §4994</td>
+              <td><strong>Hoisting &amp; Ground Stability</strong></td>
+              <td>Outriggers must be fully extended per chart; cribbing required to distribute load over soft alluvial soils or subterranean slabs.</td>
+            </tr>
+            <tr>
+              <td>Cal/OSHA §2946</td>
+              <td><strong>High-Voltage Clearance</strong></td>
+              <td>Strict minimum approach distances from PG&amp;E, SCE, and LADWP energized overhead lines (10–20+ ft based on voltage).</td>
+            </tr>
+            <tr>
+              <td>Caltrans / LADOT</td>
+              <td><strong>Peak Hour &amp; Haul Permits</strong></td>
+              <td>Oversize crane mobilization requires Caltrans Transportation Permit plus local Peak Hour Exemption for arterial street closures.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Cal/OSHA Pick Margin &amp; Outrigger Bearing Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Gross Pick = Net Load × 1.18 (CA Rigging/Headache Ball)   |   Mat Area = Corner Load ÷ Soil PSF</div>
+          <h3>Worked Example: 10,000 lb Commercial Air Handler Pick in Los Angeles, CA</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Gross Pick Weight:</strong> 10,000 lb AHU + 1,800 lb rigging gear, slings, and hook block = <strong>11,800 lbs gross</strong>.</li>
+          <li><strong>Step 2 — Radius & Crane Class:</strong> 55 ft radius over a 2-story retail parapet requires a <strong>60-Ton to 75-Ton hydraulic crane</strong> with jib or main boom clearance.</li>
+          <li><strong>Step 3 — Outrigger Corner Reaction:</strong> Peak swing force ≈ <strong>58,500 lbs</strong> on the load-side outrigger.</li>
+          <li><strong>Step 4 — Mat Sizing:</strong> On 2,200 PSF compacted SoCal soil, 58,500 ÷ 2,200 = <strong>26.6 sq ft</strong> (minimum 5.2 ft × 5.2 ft cribbing pads).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>California Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Verify Cal/OSHA Annual Cert Sticker</h3>
+          <p>Request the crane rental company&#x27;s current Cal/OSHA §5021 annual inspection certificate before mobilization.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Check Subterranean Vaults &amp; Shoring</h3>
+          <p>In LA and SF urban cores, verify whether sidewalks or parking decks sit over basements; structural PE shoring review is required.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Secure LADOT / SFMTA Street Permit</h3>
+          <p>Submit stamped Traffic Control Plans 10–15 business days prior; weekend picks are often mandated on arterial boulevards.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Document Critical Lift Plan</h3>
+          <p>Any pick over 75% capacity, blind pick, or pick over occupied commercial space requires a written lift plan on site.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — California — Cal/OSHA Title 8</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Federal OSHA NCCCO certification valid in California?</summary>
+          <div class="faq-answer">Yes, NCCCO and other nationally accredited certifications meet Cal/OSHA §5006.1, provided the operator also maintains current ASME B30.5 medical and substance-testing compliance.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does California require a state inspection sticker on every mobile crane?</summary>
+          <div class="faq-answer">Yes. Under Cal/OSHA Title 8 §5021, mobile cranes over 3 tons capacity must be inspected and certified annually by a Cal/OSHA-accredited certifying agency.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I set crane outriggers over an underground parking garage in Los Angeles?</summary>
+          <div class="faq-answer">Never without a licensed California Structural Engineer (SE/PE) shoring analysis. Outrigger corner reactions easily exceed 50,000–100,000 lbs and will punch through post-tensioned slabs.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How long does a Los Angeles crane street closure permit take?</summary>
+          <div class="faq-answer">LADOT and Bureau of Street Services (BSS) permits typically require 10 to 15 business days, especially if a Peak Hour Exemption or Metro bus reroute is involved.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other RigCheck Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-osha/" class="hub-link-card">
+          <span class="hub-link-title">Texas — OSHA 1926 &amp; TxDOT</span>
+          <span class="hub-link-sub">OSHA 29 CFR 1926 Subpart CC • TxDOT</span>
+        </a>
+        <a href="../nyc-dob/" class="hub-link-card">
+          <span class="hub-link-title">NYC — DOB Chapter 33</span>
+          <span class="hub-link-sub">NYC BC Chapter 33 • DOB Cranes &amp; Derricks</span>
+        </a>
+        <a href="../florida-hvhz/" class="hub-link-card">
+          <span class="hub-link-title">Florida — OSHA &amp; HVHZ Sandy Soil</span>
+          <span class="hub-link-sub">OSHA 1926 Subpart CC • FBC HVHZ • FDOT</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../pallet-racking/" class="hub-link-card">
+          <span class="hub-link-title">Warehouse Pallet Racking Layout Calculator</span>
+          <span class="hub-link-sub">RackSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">RigCheck Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

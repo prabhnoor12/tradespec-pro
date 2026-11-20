@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Commercial EV Charger Electrical Sizing Calculator (CEC 625 &amp; CALGreen) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate commercial EV fleet electrical load, 480V amps, transformer kVA, and EMS load sharing under California Electrical Code Article 625 and CALGreen Title 24 mandates.">
+  <meta name="keywords" content="california commercial ev charger electrical sizing calculator, nec 625 calculator california, calgreen ev parking requirements, pge ev fleet transformer sizing, cec article 625">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/charge-spec/california-nec-625/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="California Commercial EV Charger Electrical Sizing Calculator (CEC 625 &amp; CALGreen)">
+  <meta property="og:description" content="Calculate commercial EV fleet electrical load, 480V amps, transformer kVA, and EMS load sharing under California Electrical Code Article 625 and CALGreen Title 24 mandates.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/charge-spec/california-nec-625/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Commercial EV Charger Electrical Sizing Calculator (CEC 625 &amp; CALGreen)">
+  <meta name="twitter:description" content="Calculate commercial EV fleet electrical load, 480V amps, transformer kVA, and EMS load sharing under California Electrical Code Article 625 and CALGreen Title 24 mandates.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial EV Fleet & Infrastructure Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "California \u2014 CEC 625 & CALGreen",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/california-nec-625/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "California Commercial EV Charger Electrical Sizing Calculator (CEC 625 & CALGreen)",
+  "description": "Calculate commercial EV fleet electrical load, 480V amps, transformer kVA, and EMS load sharing under California Electrical Code Article 625 and CALGreen Title 24 mandates.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/california-nec-625/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial EV Fleet & Infrastructure Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does CEC 625.42 EMS reduce commercial EV electrical upgrade costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By installing a UL-listed Energy Management System (EMS) that dynamically caps aggregate current, CEC 625.42 permits sizing the panel and feeder to the EMS maximum setpoint rather than the sum of all charger nameplates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do commercial EV chargers in California require a 125% continuous load factor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under CEC 625.41, EVSE is classified as a continuous load, requiring circuit breakers and conductors to be sized at 125% of the maximum load."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are California's ADA requirements for commercial EV chargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "California Building Code Chapter 11B requires a minimum number of van-accessible, standard-accessible, and ambulatory EVCS stalls with 12-foot stall widths, 5-foot aisles, and operable parts between 15 and 48 inches high."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does PG&E or SCE pay for the transformer upgrade on commercial EV projects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under California's EV Infrastructure Rules (Rule 29 for PG&E/SCE), utilities cover qualifying utility-side distribution and transformer upgrades for separately metered commercial EV installations."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ChargeSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial EV Fleet &amp; Infrastructure Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">California — CEC 625 &amp; CALGreen</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 CEC Article 625 • CALGreen Title 24</div>
+      <h1>California Commercial EV Electrical Sizing Calculator (CEC 625 &amp; CALGreen)</h1>
+      <p class="guide-hero-lead">Size commercial EV charging panels, 480V three-phase feeders, and utility transformers under California Electrical Code (CEC) Article 625, CALGreen Title 24 mandatory EV parking ratios, and NEC 625.42 Energy Management Systems (EMS).</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ChargeSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick California Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Electrical Code</span>
+            <span class="spec-meta-val">CEC Article 625 (NEC 625)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Mandatory Parking Code</span>
+            <span class="spec-meta-val">CALGreen Title 24 Part 11</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Continuous Load Rule</span>
+            <span class="spec-meta-val">125% (CEC 625.41)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Utility Make-Ready</span>
+            <span class="spec-meta-val">PG&amp;E / SCE / LADWP EV Fleet</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured California — CEC 625 &amp; CALGreen Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>California (CEC Article 625 &amp; CALGreen Title 24)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ev">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick California — CEC 625 &amp; CALGreen EV Load Estimator</div>
+            <span class="quick-calc-tag">NEC 625.41 (125%) + EMS 625.42</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_ports">Number of EV Charging Ports</label>
+              <input type="number" id="qc_ports" value="16" min="1" max="200" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_kw">Power per Port (kW)</label>
+              <select id="qc_kw">
+                <option value="7.2" >7.2 kW (Level 2 — 30A)</option>
+                <option value="11.5" >11.5 kW (Level 2 — 48A)</option>
+                <option value="19.2" selected>19.2 kW (Commercial L2 — 80A)</option>
+                <option value="50" >50 kW (Fleet DC Fast)</option>
+                <option value="150" >150 kW (High-Power DCFC)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ems">EMS Power Sharing Ratio</label>
+              <select id="qc_ems">
+                <option value="1.0" >1.0 (No EMS — 100% Dedicated)</option>
+                <option value="0.75" >0.75 (25% Dynamic Load Sharing)</option>
+                <option value="0.5" selected>0.50 (2:1 ALMS / EMS Sharing)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">NEC Continuous Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">480V 3-Phase Amps</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Transformer Size</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">NEC Compliance</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full EV Fleet Switchgear &amp; Cost Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Sizing Commercial EV Infrastructure Under CEC Article 625 &amp; CALGreen</h2>
+        <p>California enforces the most aggressive commercial EV charging mandates in the United States. Under CALGreen (Title 24, Part 11), new commercial buildings and major parking retrofits must allocate up to 20%–45% of total parking spaces as EV-Capable, EV-Ready, or EVCS-installed depending on lot size and local reach codes.</p>
+        <p>Without Automated Load Management Systems (ALMS / EMS under CEC 625.42), installing 16 Level 2 commercial chargers at 19.2 kW each would require a massive 384 kW continuous service upgrade. Using UL-listed EMS load sharing (2:1 or 3:1 power sharing) cuts switchgear and PG&amp;E/SCE transformer upgrade costs by 50% or more.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>CEC 625.41</td>
+              <td><strong>125% Continuous Load Rating</strong></td>
+              <td>Overcurrent protection and feeder conductors must be sized at not less than 125% of maximum EVSE load.</td>
+            </tr>
+            <tr>
+              <td>CEC 625.42</td>
+              <td><strong>Energy Management System (EMS)</strong></td>
+              <td>Allows dynamic load sharing across multiple EVSE ports so feeder/service size matches the EMS setpoint.</td>
+            </tr>
+            <tr>
+              <td>CALGreen §5.106.5.3</td>
+              <td><strong>Nonresidential EV Parking</strong></td>
+              <td>Mandates EV-capable spaces and installed EVCS stations scaled by total commercial parking count.</td>
+            </tr>
+            <tr>
+              <td>CBC Chapter 11B</td>
+              <td><strong>Accessible EVCS Stalls</strong></td>
+              <td>Requires ADA van-accessible EV charging stalls (12 ft wide + 5 ft access aisle) with compliant reach range.</td>
+            </tr>
+            <tr>
+              <td>PG&amp;E / SCE Rule 29</td>
+              <td><strong>Utility-Side Make-Ready</strong></td>
+              <td>Utility covers upstream distribution &amp; transformer upgrades for qualifying commercial EV fleets.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>CEC 625.41 &amp; 625.42 Continuous Load &amp; 480V 3-Phase Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Design kW = (Ports × Port kW × EMS Factor) × 1.25   |   Amps (480V 3Ø) = (Design kW × 1,000) ÷ (480 × 1.732)</div>
+          <h3>Worked Example: 16-Port Commercial Workplace Depot in San Jose, CA</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Nameplate Load:</strong> 16 Level 2 chargers × 19.2 kW (80A) = <strong>307.2 kW raw connected load</strong>.</li>
+          <li><strong>Step 2 — Apply CEC 625.42 EMS (2:1 Sharing):</strong> Dynamic load management caps simultaneous draw at 50% = <strong>153.6 kW</strong>.</li>
+          <li><strong>Step 3 — Apply CEC 625.41 (125% Continuous):</strong> 153.6 kW × 1.25 = <strong>192.0 kW design load</strong>.</li>
+          <li><strong>Step 4 — Service & Transformer Sizing:</strong> 192,000 ÷ 831.4 = <strong>231 Amps @ 480V 3Ø</strong> → <strong>250 kVA dedicated transformer</strong> (eligible for PG&E EV Charge Network / Rule 29).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>California Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Run 12-Month Interval Load Study</h3>
+          <p>Pull PG&amp;E/SCE/LADWP 15-minute interval peak demand data to verify spare capacity under CEC 220.87.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify Local Reach Codes</h3>
+          <p>Cities like San Jose, San Francisco, and Santa Monica enforce stricter EV percentages than baseline CALGreen.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Apply for Utility Rule 29 / Make-Ready</h3>
+          <p>Submit utility service applications early—pad-mount transformer lead times run 16 to 36+ weeks.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Include CBC Chapter 11B ADA Striping</h3>
+          <p>Include van-accessible EV stall slopes (&lt;2%) and bollard clearances on permit plans.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — California — CEC 625 &amp; CALGreen</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>How does CEC 625.42 EMS reduce commercial EV electrical upgrade costs?</summary>
+          <div class="faq-answer">By installing a UL-listed Energy Management System (EMS) that dynamically caps aggregate current, CEC 625.42 permits sizing the panel and feeder to the EMS maximum setpoint rather than the sum of all charger nameplates.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do commercial EV chargers in California require a 125% continuous load factor?</summary>
+          <div class="faq-answer">Yes. Under CEC 625.41, EVSE is classified as a continuous load, requiring circuit breakers and conductors to be sized at 125% of the maximum load.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What are California&#x27;s ADA requirements for commercial EV chargers?</summary>
+          <div class="faq-answer">California Building Code Chapter 11B requires a minimum number of van-accessible, standard-accessible, and ambulatory EVCS stalls with 12-foot stall widths, 5-foot aisles, and operable parts between 15 and 48 inches high.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does PG&amp;E or SCE pay for the transformer upgrade on commercial EV projects?</summary>
+          <div class="faq-answer">Under California&#x27;s EV Infrastructure Rules (Rule 29 for PG&amp;E/SCE), utilities cover qualifying utility-side distribution and transformer upgrades for separately metered commercial EV installations.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ChargeSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Texas — NEC 2023 &amp; TDLR</span>
+          <span class="hub-link-sub">NEC 2023 Article 625 • TDLR • Oncor / CenterPoint</span>
+        </a>
+        <a href="../nyc-electrical-code/" class="hub-link-card">
+          <span class="hub-link-title">NYC — Electrical Code &amp; ConEd</span>
+          <span class="hub-link-sub">NYC Electrical Code • Con Edison PowerReady</span>
+        </a>
+        <a href="../florida-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FBC / NEC 625 &amp; FPL</span>
+          <span class="hub-link-sub">FBC Electrical • NEC Article 625 • FPL EVolution</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ChargeSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

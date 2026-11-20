@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Mobile Crane Sizing &amp; Lift Plan Calculator (NYC DOB BC Chapter 33) | TradeSpec Pro™</title>
+  <meta name="description" content="Size mobile cranes for New York City commercial lifts under NYC DOB Building Code Chapter 33, Cranes &amp; Derricks CD-1/CD-2 filings, Master Rigger rules, and NYCDOT OCMC permits.">
+  <meta name="keywords" content="nyc crane permit calculator, nyc dob cranes and derricks, nyc building code chapter 33 crane, manhattan crane sizing calculator, nyc master rigger lift plan">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/crane-lift/nyc-dob/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="NYC Mobile Crane Sizing &amp; Lift Plan Calculator (NYC DOB BC Chapter 33)">
+  <meta property="og:description" content="Size mobile cranes for New York City commercial lifts under NYC DOB Building Code Chapter 33, Cranes &amp; Derricks CD-1/CD-2 filings, Master Rigger rules, and NYCDOT OCMC permits.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/crane-lift/nyc-dob/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NYC Mobile Crane Sizing &amp; Lift Plan Calculator (NYC DOB BC Chapter 33)">
+  <meta name="twitter:description" content="Size mobile cranes for New York City commercial lifts under NYC DOB Building Code Chapter 33, Cranes &amp; Derricks CD-1/CD-2 filings, Master Rigger rules, and NYCDOT OCMC permits.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crane Sizing & Radius Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NYC \u2014 DOB Chapter 33",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/nyc-dob/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "NYC Mobile Crane Sizing & Lift Plan Calculator (NYC DOB BC Chapter 33)",
+  "description": "Size mobile cranes for New York City commercial lifts under NYC DOB Building Code Chapter 33, Cranes & Derricks CD-1/CD-2 filings, Master Rigger rules, and NYCDOT OCMC permits.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/nyc-dob/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Crane Sizing & Radius Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is a NYC DOB Crane Notice (CN) required for a mobile crane?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under NYC BC \u00a73319, a Crane Notice filed by a NY Professional Engineer is generally required for mobile cranes with booms exceeding 50 feet or capacity exceeding 3 tons, unless qualifying for specific short-term exemptions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an out-of-state NCCCO operator run a crane in New York City?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. New York City requires its own NYC DOB Hoist Machine Operator (HMO) license (Class A, B, or C) in addition to national certification."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the wind speed limit for cranes in NYC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NYC DOB enforces manufacturer wind limits strictly and requires cranes to cease operations and secure booms when wind gusts reach 30 mph (or lower if specified by the crane load chart or high-sail load)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do NYC crane picks almost always happen on weekends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NYCDOT OCMC restricts full lane and street closures in Manhattan and major commercial corridors to Saturday/Sunday off-peak hours to minimize transit disruption."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">RigCheck Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Crane Sizing &amp; Radius Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">NYC — DOB Chapter 33</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 NYC BC Chapter 33 • DOB Cranes &amp; Derricks</div>
+      <h1>NYC Mobile Crane Sizing &amp; Pick Plan Calculator (NYC DOB Chapter 33)</h1>
+      <p class="guide-hero-lead">Navigate the strictest urban crane regulations in North America. Estimate mobile crane class, boom clearance, and outrigger loads aligned with NYC DOB Building Code Chapter 33, Cranes &amp; Derricks (C&amp;D) filings, and NYCDOT street closures.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full RigCheck Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick New York City Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Safety Code</span>
+            <span class="spec-meta-val">NYC BC Chapter 33 (§3319)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Permit Authority</span>
+            <span class="spec-meta-val">NYC DOB C&amp;D Unit &amp; NYCDOT</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Required Supervision</span>
+            <span class="spec-meta-val">NYC Licensed Master Rigger / HMO</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Wind Action Threshold</span>
+            <span class="spec-meta-val">20–30 mph (DOB Wind Plan)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured NYC — DOB Chapter 33 Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>New York City (5 Boroughs — Manhattan, Brooklyn, Queens)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="crane" data-rigging-factor="1.20">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick NYC — DOB Chapter 33 Pick &amp; Mat Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 2,500 PSF Local Soil</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_load">Net Equipment / Load Weight (lbs)</label>
+              <input type="number" id="qc_load" value="8500" min="500" step="500">
+            </div>
+            <div class="calc-field">
+              <label for="qc_radius">Horizontal Pick Radius (ft)</label>
+              <input type="number" id="qc_radius" value="65" min="15" max="200" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_soil">Local Soil Bearing Pressure (PSF)</label>
+              <input type="number" id="qc_soil" value="2500" min="1000" max="6000" step="100">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Crane Class</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Gross Pick (w/ Rigging)</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Outrigger Reaction</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Outrigger Mat Size</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Boom Clearance &amp; Rental Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>NYC DOB Cranes &amp; Derricks (C&amp;D) Compliance Essentials</h2>
+        <p>Operating a mobile crane in Manhattan, Brooklyn, Queens, the Bronx, or Staten Island requires far more than Federal OSHA compliance. Under NYC Building Code §3319 and 1 RCNY §3319-01, cranes with booms exceeding certain lengths or capacities require an engineered Crane Notice (CN) filing engineered by a New York PE, a Licensed Hoist Machine Operator (HMO Class A, B, or C), and a NYC Licensed Master Rigger.</p>
+        <p>Additionally, NYC streets sit atop dense networks of Con Edison steam/electric vaults, subway tunnels, and brick sewers. Outrigger placement over roadway vaults requires steel load-distributing dunnage beams and NYCDOT OCMC (Office of Construction Mitigation and Coordination) street stipulations.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>NYC BC §3319</td>
+              <td><strong>Crane Notice (CN) &amp; CD Filings</strong></td>
+              <td>Engineered CN filing with NYC DOB Cranes &amp; Derricks unit mandatory for most mobile crane picks over 50 ft boom or street setups.</td>
+            </tr>
+            <tr>
+              <td>1 RCNY §3319-01</td>
+              <td><strong>Wind Action Plan &amp; Anemometer</strong></td>
+              <td>Mandatory calibrated anemometer and wind action plan; operations halt per chart or 30 mph (20 mph for high-wind-area loads).</td>
+            </tr>
+            <tr>
+              <td>NYC BC §3316</td>
+              <td><strong>Master Rigger Supervision</strong></td>
+              <td>Critical picks, picks over 2,000 lbs on public right-of-way, or complex rigging require a NYC Licensed Master Rigger on site.</td>
+            </tr>
+            <tr>
+              <td>Local Law 196</td>
+              <td><strong>Site Safety Training (SST)</strong></td>
+              <td>All rigging crew and signalpersons must hold valid 40-hour SST cards plus DOB-approved 16-hr or 32-hr rigging cards.</td>
+            </tr>
+            <tr>
+              <td>NYCDOT OCMC</td>
+              <td><strong>Full Street Closure &amp; Vault Check</strong></td>
+              <td>Weekend street closures and Con Edison/MTA subway vault clearances required before crane mobilization.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>NYC Urban Pick &amp; Dunnage Distribution Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Gross Pick = Net Load × 1.20 (NYC Safety Allowance)   |   Dunnage Area = Corner Reaction ÷ Allowable Street PSF</div>
+          <h3>Worked Example: 8,500 lb Cooling Tower Lift in Midtown Manhattan</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Gross Pick Weight:</strong> 8,500 lb cooling tower module + 1,700 lb engineered spreader beam, shackles, and rigging = <strong>10,200 lbs gross</strong>.</li>
+          <li><strong>Step 2 — Radius & Crane Class:</strong> 65 ft horizontal reach over a 6-story facade requires a <strong>65-Ton to 90-Ton crane</strong> with luffing or swing-away jib.</li>
+          <li><strong>Step 3 — Peak Outrigger Reaction:</strong> Single-float reaction ≈ <strong>64,000 lbs</strong>.</li>
+          <li><strong>Step 4 — Roadway Dunnage:</strong> At 2,500 PSF conservative roadway limit, requires <strong>25.6 sq ft</strong> steel/timber cribbing pads positioned clear of Con Ed vault hatches.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>New York City Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Engage NY PE for DOB CN Filing</h3>
+          <p>Determine if the lift qualifies for Limited Use (CD-4) or requires a full engineered Crane Notice (CN) package with NYC DOB.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify Vaults &amp; Subway Proximity</h3>
+          <p>Check NYC Transit (MTA) and Con Edison vault maps; outriggers cannot bear directly on hollow sidewalk vaults without engineered steel bridging.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Assign Licensed HMO &amp; Master Rigger</h3>
+          <p>Verify active NYC DOB Hoist Machine Operator license and Master Rigger / Rigging Foreman credentials.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Obtain NYCDOT OCMC Stipulations</h3>
+          <p>File for weekend street closure permits and pedestrian protection signage 2–4 weeks prior to pick date.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — NYC — DOB Chapter 33</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>When is a NYC DOB Crane Notice (CN) required for a mobile crane?</summary>
+          <div class="faq-answer">Under NYC BC §3319, a Crane Notice filed by a NY Professional Engineer is generally required for mobile cranes with booms exceeding 50 feet or capacity exceeding 3 tons, unless qualifying for specific short-term exemptions.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can an out-of-state NCCCO operator run a crane in New York City?</summary>
+          <div class="faq-answer">No. New York City requires its own NYC DOB Hoist Machine Operator (HMO) license (Class A, B, or C) in addition to national certification.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is the wind speed limit for cranes in NYC?</summary>
+          <div class="faq-answer">NYC DOB enforces manufacturer wind limits strictly and requires cranes to cease operations and secure booms when wind gusts reach 30 mph (or lower if specified by the crane load chart or high-sail load).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why do NYC crane picks almost always happen on weekends?</summary>
+          <div class="faq-answer">NYCDOT OCMC restricts full lane and street closures in Manhattan and major commercial corridors to Saturday/Sunday off-peak hours to minimize transit disruption.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other RigCheck Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-osha/" class="hub-link-card">
+          <span class="hub-link-title">Texas — OSHA 1926 &amp; TxDOT</span>
+          <span class="hub-link-sub">OSHA 29 CFR 1926 Subpart CC • TxDOT</span>
+        </a>
+        <a href="../california-calosha/" class="hub-link-card">
+          <span class="hub-link-title">California — Cal/OSHA Title 8</span>
+          <span class="hub-link-sub">Cal/OSHA Title 8 Group 13 • Caltrans</span>
+        </a>
+        <a href="../florida-hvhz/" class="hub-link-card">
+          <span class="hub-link-title">Florida — OSHA &amp; HVHZ Sandy Soil</span>
+          <span class="hub-link-sub">OSHA 1926 Subpart CC • FBC HVHZ • FDOT</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../pallet-racking/" class="hub-link-card">
+          <span class="hub-link-title">Warehouse Pallet Racking Layout Calculator</span>
+          <span class="hub-link-sub">RackSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">RigCheck Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

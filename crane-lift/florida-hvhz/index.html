@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Crane Sizing &amp; Outrigger Mat Calculator (OSHA 1926 &amp; Sandy Soils) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate mobile crane tonnage and outrigger mat sizing for Florida commercial projects. Accounts for loose coastal sandy soils, high water tables, FDOT permits, and hurricane wind rules.">
+  <meta name="keywords" content="florida crane sizing calculator, miami crane outrigger mat calculator, fdot crane permit, florida sandy soil bearing pressure crane, tampa mobile crane calculator">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/crane-lift/florida-hvhz/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Florida Crane Sizing &amp; Outrigger Mat Calculator (OSHA 1926 &amp; Sandy Soils)">
+  <meta property="og:description" content="Calculate mobile crane tonnage and outrigger mat sizing for Florida commercial projects. Accounts for loose coastal sandy soils, high water tables, FDOT permits, and hurricane wind rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/crane-lift/florida-hvhz/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Florida Crane Sizing &amp; Outrigger Mat Calculator (OSHA 1926 &amp; Sandy Soils)">
+  <meta name="twitter:description" content="Calculate mobile crane tonnage and outrigger mat sizing for Florida commercial projects. Accounts for loose coastal sandy soils, high water tables, FDOT permits, and hurricane wind rules.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Crane Sizing & Radius Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Florida \u2014 OSHA & HVHZ Sandy Soil",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/florida-hvhz/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Florida Crane Sizing & Outrigger Mat Calculator (OSHA 1926 & Sandy Soils)",
+  "description": "Calculate mobile crane tonnage and outrigger mat sizing for Florida commercial projects. Accounts for loose coastal sandy soils, high water tables, FDOT permits, and hurricane wind rules.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/florida-hvhz/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Crane Sizing & Radius Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/crane-lift/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What soil bearing value is safe for Florida sandy soils?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Loose or saturated Florida sand typically supports 1,500 to 2,000 PSF. Always keep outriggers back from retention pond embankments by at least 1.5\u00d7 the slope depth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Florida require a state crane operator license?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Florida follows Federal OSHA 29 CFR 1926.1427 requiring nationally accredited operator certification (NCCCO/NCCER/CIC)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can sign a Maintenance of Traffic (MOT) plan for a Florida crane closure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roadway lane closures in Florida require a plan prepared or overseen by an FDOT-certified Intermediate or Advanced MOT specialist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Miami-Dade HVHZ rooftop units weigh more than standard units?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Reinforced structural frames, hurricane tie-down curbs, and heavy-gauge cabinetry often add 500 to 2,500 lbs to commercial rooftop HVAC picks."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">RigCheck Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Crane Sizing &amp; Radius Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Florida — OSHA &amp; HVHZ Sandy Soil</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 OSHA 1926 Subpart CC • FBC HVHZ • FDOT</div>
+      <h1>Florida Mobile Crane Sizing &amp; Outrigger Calculator (OSHA 1926 &amp; Coastal Soils)</h1>
+      <p class="guide-hero-lead">Size mobile cranes and heavy-duty outrigger cribbing for Florida commercial roofs, marine terminals, and tilt-wall sites. Tailored for low-bearing coastal sands, high water tables, and FDOT mobilization rules.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full RigCheck Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Florida Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Safety Code</span>
+            <span class="spec-meta-val">OSHA 29 CFR 1926 Subpart CC</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Transport Agency</span>
+            <span class="spec-meta-val">FDOT Permit Office (PAS)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Coastal Sand Bearing</span>
+            <span class="spec-meta-val">1,500 – 2,000 PSF (High Water Table)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Wind / Storm Protocol</span>
+            <span class="spec-meta-val">ASCE 7 / Afternoon Squall Watch</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Florida — OSHA &amp; HVHZ Sandy Soil Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Florida (Miami-Dade, Tampa, Orlando, Jacksonville)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="crane" data-rigging-factor="1.15">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Florida — OSHA &amp; HVHZ Sandy Soil Pick &amp; Mat Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 1,600 PSF Local Soil</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_load">Net Equipment / Load Weight (lbs)</label>
+              <input type="number" id="qc_load" value="11000" min="500" step="500">
+            </div>
+            <div class="calc-field">
+              <label for="qc_radius">Horizontal Pick Radius (ft)</label>
+              <input type="number" id="qc_radius" value="55" min="15" max="200" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_soil">Local Soil Bearing Pressure (PSF)</label>
+              <input type="number" id="qc_soil" value="1600" min="1000" max="6000" step="100">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Crane Class</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Gross Pick (w/ Rigging)</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Outrigger Reaction</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Outrigger Mat Size</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Boom Clearance &amp; Rental Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Why Florida&#x27;s High Water Table &amp; Loose Sands Demand Extra Cribbing</h2>
+        <p>Florida follows Federal OSHA 29 CFR 1926 Subpart CC for mobile crane operations, but coastal geology creates unique ground-stability hazards. Across Miami-Dade, Broward, Tampa Bay, and coastal Jacksonville, shallow water tables (often 2–4 feet below grade) and loose fine sands drastically reduce allowable soil bearing capacity to 1,500 PSF or less.</p>
+        <p>In addition, Florida Building Code High-Velocity Hurricane Zone (HVHZ) rooftop mechanical equipment is significantly heavier due to reinforced hurricane curbs and steel frames—requiring careful gross-weight verification before dispatching a crane.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>OSHA 1926.1402</td>
+              <td><strong>Saturated Sand Ground Conditions</strong></td>
+              <td>High water tables and sandy shoulders require oversized composite/timber mats to prevent outrigger punching shear.</td>
+            </tr>
+            <tr>
+              <td>FDOT Rule 14-26</td>
+              <td><strong>Self-Propelled Crane Permits</strong></td>
+              <td>FDOT Permit Application System (PAS) blanket or trip permits required for cranes over 80,000 lbs or exceeding legal bridge axle formulas.</td>
+            </tr>
+            <tr>
+              <td>FBC HVHZ</td>
+              <td><strong>Hurricane-Rated RTU Weights</strong></td>
+              <td>Miami-Dade/Broward HVHZ HVAC curbs and tiedowns add 10–20% dead weight compared to standard inland specs.</td>
+            </tr>
+            <tr>
+              <td>OSHA 1926.1417</td>
+              <td><strong>Lightning &amp; Squall Shutdown</strong></td>
+              <td>Florida leads the US in lightning strikes; boom must be lowered/secured when convective squalls approach within 10 miles.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Florida Coastal Sand Outrigger Mat Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Gross Weight = (HVHZ Unit + Curb + Rigging) × 1.15   |   Mat Area (sq ft) = Peak Outrigger Load ÷ 1,600 PSF</div>
+          <h3>Worked Example: 11,000 lb HVHZ Rooftop Unit in Miami, FL</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Gross Pick Weight:</strong> 11,000 lb HVHZ-rated rooftop unit + 1,650 lb spreader bar and rigging = <strong>12,650 lbs gross</strong>.</li>
+          <li><strong>Step 2 — Radius & Crane Class:</strong> 55 ft reach across landscaped swale requires a <strong>65-Ton to 75-Ton hydraulic crane</strong>.</li>
+          <li><strong>Step 3 — Outrigger Corner Reaction:</strong> Peak swing force ≈ <strong>61,000 lbs</strong>.</li>
+          <li><strong>Step 4 — Coastal Sand Cribbing:</strong> At 1,600 PSF saturated sand capacity, 61,000 ÷ 1,600 = <strong>38.1 sq ft</strong> (6.2 ft × 6.2 ft layered crane mats).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Florida Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Verify Exact HVHZ Unit Shipping Weight</h3>
+          <p>Confirm whether hurricane rails, hail guards, and steel curbs are shipped bolted to the unit before selecting crane tonnage.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Inspect Stormwater Swales &amp; Retention Slopes</h3>
+          <p>Never set an outrigger within the 1:1 slope influence zone of a Florida retention pond or drainage canal.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Secure FDOT &amp; County MOT Permit</h3>
+          <p>Maintenance of Traffic (MOT) plan stamped by an FDOT-certified Advanced MOT specialist is mandatory for roadway setups.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Schedule Early Morning Picks</h3>
+          <p>Complete critical lifts before afternoon sea-breeze thunderstorms and 25+ mph gusts build.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Florida — OSHA &amp; HVHZ Sandy Soil</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What soil bearing value is safe for Florida sandy soils?</summary>
+          <div class="faq-answer">Loose or saturated Florida sand typically supports 1,500 to 2,000 PSF. Always keep outriggers back from retention pond embankments by at least 1.5× the slope depth.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does Florida require a state crane operator license?</summary>
+          <div class="faq-answer">No, Florida follows Federal OSHA 29 CFR 1926.1427 requiring nationally accredited operator certification (NCCCO/NCCER/CIC).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Who can sign a Maintenance of Traffic (MOT) plan for a Florida crane closure?</summary>
+          <div class="faq-answer">Roadway lane closures in Florida require a plan prepared or overseen by an FDOT-certified Intermediate or Advanced MOT specialist.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do Miami-Dade HVHZ rooftop units weigh more than standard units?</summary>
+          <div class="faq-answer">Yes. Reinforced structural frames, hurricane tie-down curbs, and heavy-gauge cabinetry often add 500 to 2,500 lbs to commercial rooftop HVAC picks.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other RigCheck Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-osha/" class="hub-link-card">
+          <span class="hub-link-title">Texas — OSHA 1926 &amp; TxDOT</span>
+          <span class="hub-link-sub">OSHA 29 CFR 1926 Subpart CC • TxDOT</span>
+        </a>
+        <a href="../california-calosha/" class="hub-link-card">
+          <span class="hub-link-title">California — Cal/OSHA Title 8</span>
+          <span class="hub-link-sub">Cal/OSHA Title 8 Group 13 • Caltrans</span>
+        </a>
+        <a href="../nyc-dob/" class="hub-link-card">
+          <span class="hub-link-title">NYC — DOB Chapter 33</span>
+          <span class="hub-link-sub">NYC BC Chapter 33 • DOB Cranes &amp; Derricks</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../pallet-racking/" class="hub-link-card">
+          <span class="hub-link-title">Warehouse Pallet Racking Layout Calculator</span>
+          <span class="hub-link-sub">RackSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">RigCheck Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Walk-In Cooler Heat Load &amp; Humidity Calculator (FBC Energy) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial walk-in coolers and freezers for Florida&#x27;s extreme ambient humidity and latent infiltration loads under Florida Building Code Energy Conservation rules.">
+  <meta name="keywords" content="florida walk in cooler btu calculator, high humidity walk in freezer sizing, florida building code walk in cooler, miami commercial refrigeration sizing, latent heat load walk in cooler">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/cold-spec/florida-fbc-humidity/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Florida Walk-In Cooler Heat Load &amp; Humidity Calculator (FBC Energy)">
+  <meta property="og:description" content="Size commercial walk-in coolers and freezers for Florida&#x27;s extreme ambient humidity and latent infiltration loads under Florida Building Code Energy Conservation rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/cold-spec/florida-fbc-humidity/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Florida Walk-In Cooler Heat Load &amp; Humidity Calculator (FBC Energy)">
+  <meta name="twitter:description" content="Size commercial walk-in coolers and freezers for Florida&#x27;s extreme ambient humidity and latent infiltration loads under Florida Building Code Energy Conservation rules.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Walk-In Cooler & Cold Storage BTU Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Florida \u2014 FBC & Latent Humidity",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/florida-fbc-humidity/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Florida Walk-In Cooler Heat Load & Humidity Calculator (FBC Energy)",
+  "description": "Size commercial walk-in coolers and freezers for Florida's extreme ambient humidity and latent infiltration loads under Florida Building Code Energy Conservation rules.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/florida-fbc-humidity/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Walk-In Cooler & Cold Storage BTU Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do walk-in freezers ice up so fast in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Florida's high ambient dew point means every door opening pulls heavy moisture into the box. Without tight gaskets, strip curtains, and 4 daily defrost cycles, frost rapidly blocks evaporator airflow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What coil coating is recommended for commercial refrigeration in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Factory-applied E-coat (electrocoating) or phenolic/Heresite coatings protect aluminum condenser fins from coastal salt-spray corrosion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do outdoor walk-in coolers in South Florida need Miami-Dade NOA approval?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Outdoor walk-in coolers/freezers installed in the High-Velocity Hurricane Zone (Miami-Dade and Broward) require structural wind-load engineering and anchored tie-downs per FBC HVHZ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much extra BTU capacity should I add for Florida humidity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For high-traffic commercial kitchens in humid coastal Florida, adding a 15% to 25% latent infiltration allowance prevents under-sizing during peak summer humidity."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ColdSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Walk-In Cooler &amp; Cold Storage BTU Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Florida — FBC &amp; Latent Humidity</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 Florida Building Code Energy • High Latent Load</div>
+      <h1>Florida Walk-In Cooler &amp; Freezer BTU Calculator (FBC &amp; High-Humidity Load)</h1>
+      <p class="guide-hero-lead">Account for Florida's 78°F–80°F dew points and massive latent moisture infiltration. Calculate commercial walk-in cooler BTU loads, evaporator defrost sizing, and coastal corrosion-resistant condensing specs.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ColdSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Florida Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Energy Code</span>
+            <span class="spec-meta-val">FBC Energy Conservation (IECC)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Ambient Humidity Factor</span>
+            <span class="spec-meta-val">High Latent Moisture (78°F+ Dew Pt)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Coastal Coil Spec</span>
+            <span class="spec-meta-val">E-Coated / Copper-Fin Condenser</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Anti-Sweat Hardware</span>
+            <span class="spec-meta-val">Strip Curtains &amp; Heated Thresholds</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Florida — FBC &amp; Latent Humidity Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Florida (FBC Energy &amp; High-Humidity Latent Load)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="cold" data-latent-mult="1.25">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Florida — FBC &amp; Latent Humidity Walk-In BTU Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 95°F Local Ambient</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Walk-In Box Floor Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="360" min="50" max="10000" step="20">
+            </div>
+            <div class="calc-field">
+              <label for="qc_boxtemp">Target Box Temp (°F)</label>
+              <select id="qc_boxtemp">
+                <option value="35" >35°F (Standard Cooler)</option>
+                <option value="28" >28°F (Meat / Beer Cooler)</option>
+                <option value="0" selected>0°F (Commercial Freezer)</option>
+                <option value="-10" >-10°F (Ice Cream / Deep Freeze)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ambtemp">Local Design Ambient (°F)</label>
+              <input type="number" id="qc_ambtemp" value="95" min="70" max="120" step="1">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Heat Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Refrigeration Tons</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Condenser HP</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Thermal Delta</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Walk-In Cooler &amp; Cold Storage Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Why Latent Humidity Dominates Walk-In Freezer Loads in Florida</h2>
+        <p>In Miami, Tampa, Orlando, and Jacksonville, ambient relative humidity regularly sits at 75% to 90% with dew points near 78°F. Every time a kitchen staff member opens a walk-in freezer door, warm moisture-laden air rushes inside and instantly condenses and freezes on the evaporator coil—creating massive latent heat load and rapid coil icing.</p>
+        <p>Under the Florida Building Code – Energy Conservation, walk-in boxes require automatic door closers, heavy-duty vinyl strip curtains or air curtains, and properly sized electric/hot-gas defrost cycles. Coastal installations also require E-coated or Heresite-coated condenser coils to survive salt-air corrosion.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>FBC Energy §C403.10</td>
+              <td><strong>Walk-In Box Efficiency</strong></td>
+              <td>Mandatory R-25 cooler / R-32 freezer panels, EC fan motors, LED lighting, and automatic door closers.</td>
+            </tr>
+            <tr>
+              <td>Latent Infiltration</td>
+              <td><strong>High Dew-Point Multiplier</strong></td>
+              <td>Add 20%–25% infiltration safety margin for high-traffic Florida restaurant kitchens and outdoor boxes.</td>
+            </tr>
+            <tr>
+              <td>Coastal Protection</td>
+              <td><strong>Coil Coating &amp; HVHZ Tie-Downs</strong></td>
+              <td>Specify factory E-coat/TechniCoat condenser coils and FBC HVHZ wind-rated equipment stands.</td>
+            </tr>
+            <tr>
+              <td>Condensate Drainage</td>
+              <td><strong>Heated Freezer Drain Lines</strong></td>
+              <td>Freezer evaporator drain lines must be heat-traced, insulated, and trapped outside the box to prevent freeze-ups.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Florida High-Latent-Load Walk-In Sizing Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Total BTU/hr = Floor Sq Ft × Base Factor × (ΔT ÷ 60) × 1.25 (High Humidity / Latent Factor)</div>
+          <h3>Worked Example: 360 Sq Ft Walk-In Freezer (0°F) in Miami, FL</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Box & Ambient ΔT:</strong> 0°F freezer with 95°F ambient → <strong>ΔT = 95°F</strong>.</li>
+          <li><strong>Step 2 — High-Latent Load Calculation:</strong> 360 sq ft × 48 BTU/sq ft × (95 ÷ 60) × 1.25 = <strong>34,200 BTU/hr</strong> (2.85 Tons).</li>
+          <li><strong>Step 3 — Condensing Unit Selection:</strong> Select a <strong>4.0 HP low-temp condensing unit</strong> with factory E-coated coil and electric defrost evaporator.</li>
+          <li><strong>Step 4 — Moisture Control:</strong> Install heavy-duty strip curtains, heated pressure relief port, and heat-traced condensate drain line.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Florida Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Install Strip Curtains &amp; Auto Door Closers</h3>
+          <p>Mandatory under FBC Energy and critical to cutting Florida latent frost buildup by up to 60%.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Specify Corrosion-Resistant Condenser Coils</h3>
+          <p>Standard bare aluminum fins corrode in 2–4 years near Florida coasts; order factory E-coated coils.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Anchor Outdoor Units for HVHZ Wind Loads</h3>
+          <p>Miami-Dade and Broward outdoor boxes and condensing racks require engineered hurricane tie-down straps.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Size Defrost Cycles for Humid Climate</h3>
+          <p>Program 4 electric defrost cycles per 24 hours on Florida freezers with fan-delay termination.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Florida — FBC &amp; Latent Humidity</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Why do walk-in freezers ice up so fast in Florida?</summary>
+          <div class="faq-answer">Florida&#x27;s high ambient dew point means every door opening pulls heavy moisture into the box. Without tight gaskets, strip curtains, and 4 daily defrost cycles, frost rapidly blocks evaporator airflow.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What coil coating is recommended for commercial refrigeration in Florida?</summary>
+          <div class="faq-answer">Factory-applied E-coat (electrocoating) or phenolic/Heresite coatings protect aluminum condenser fins from coastal salt-spray corrosion.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do outdoor walk-in coolers in South Florida need Miami-Dade NOA approval?</summary>
+          <div class="faq-answer">Yes. Outdoor walk-in coolers/freezers installed in the High-Velocity Hurricane Zone (Miami-Dade and Broward) require structural wind-load engineering and anchored tie-downs per FBC HVHZ.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How much extra BTU capacity should I add for Florida humidity?</summary>
+          <div class="faq-answer">For high-traffic commercial kitchens in humid coastal Florida, adding a 15% to 25% latent infiltration allowance prevents under-sizing during peak summer humidity.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ColdSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-title24-carb/" class="hub-link-card">
+          <span class="hub-link-title">California — Title 24 &amp; CARB</span>
+          <span class="hub-link-sub">Title 24 Part 6 §120.6 • CARB Low-GWP (&lt;150)</span>
+        </a>
+        <a href="../texas-ashrae-90-1/" class="hub-link-card">
+          <span class="hub-link-title">Texas — ASHRAE High Ambient</span>
+          <span class="hub-link-sub">IECC 2021 • ASHRAE 90.1 • 105°F Ambient Design</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../grease-trap/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Grease Trap &amp; Hood CFM Calculator</span>
+          <span class="hub-link-sub">FOGSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../spray-foam/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Spray Foam Board Foot Calculator</span>
+          <span class="hub-link-sub">FoamSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ColdSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

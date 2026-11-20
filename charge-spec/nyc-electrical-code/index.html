@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Commercial EV Charger Electrical Sizing Calculator (Con Edison PowerReady) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial EV charging installations in New York City under NYC Electrical Code Article 625, Local Law 55 EV-ready garage rules, and Con Edison PowerReady incentives.">
+  <meta name="keywords" content="nyc commercial ev charger sizing calculator, con edison powerready commercial, nyc electrical code article 625, nyc parking garage ev charger load calculation, local law 55 ev">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/charge-spec/nyc-electrical-code/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="NYC Commercial EV Charger Electrical Sizing Calculator (Con Edison PowerReady)">
+  <meta property="og:description" content="Size commercial EV charging installations in New York City under NYC Electrical Code Article 625, Local Law 55 EV-ready garage rules, and Con Edison PowerReady incentives.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/charge-spec/nyc-electrical-code/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NYC Commercial EV Charger Electrical Sizing Calculator (Con Edison PowerReady)">
+  <meta name="twitter:description" content="Size commercial EV charging installations in New York City under NYC Electrical Code Article 625, Local Law 55 EV-ready garage rules, and Con Edison PowerReady incentives.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial EV Fleet & Infrastructure Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NYC \u2014 Electrical Code & ConEd",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/nyc-electrical-code/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "NYC Commercial EV Charger Electrical Sizing Calculator (Con Edison PowerReady)",
+  "description": "Size commercial EV charging installations in New York City under NYC Electrical Code Article 625, Local Law 55 EV-ready garage rules, and Con Edison PowerReady incentives.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/nyc-electrical-code/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial EV Fleet & Infrastructure Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does Con Edison PowerReady pay for commercial EV installations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depending on charger type, public accessibility, and disadvantaged community (DAC) location, Con Edison PowerReady can reimburse 50% to 100% of eligible make-ready electrical infrastructure costs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do NYC parking garages need a new Con Edison service to add EV chargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. If a 30-day load study shows spare capacity on the existing switchgear, UL-listed Energy Management Systems (EMS) allow adding 10\u201330+ Level 2 ports without waiting for a utility service upgrade."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What permits are needed for commercial EV chargers in NYC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A NYC DOB Electrical Permit filed by a Licensed Master Electrician is mandatory; larger switchgear or structural trenching work also requires DOB Alt-2 filings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are NYC commercial EV chargers required to be networked?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To qualify for Con Edison PowerReady or NYSERDA Charge Ready NY 2.0 incentives, chargers must be networked (OCPP/cellular) and share utilization data."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ChargeSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial EV Fleet &amp; Infrastructure Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">NYC — Electrical Code &amp; ConEd</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 NYC Electrical Code • Con Edison PowerReady</div>
+      <h1>NYC Commercial EV Charger Sizing Calculator (NYC Electrical Code &amp; Con Edison)</h1>
+      <p class="guide-hero-lead">Plan commercial parking garage and fleet depot EV charging across the five boroughs with NEC/NYC Electrical Code Article 625 load sizing, Con Edison PowerReady make-ready incentives, and FDNY safety compliance.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ChargeSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick New York City Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Code</span>
+            <span class="spec-meta-val">NYC Electrical Code (NEC 625)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Utility Incentive</span>
+            <span class="spec-meta-val">Con Edison PowerReady (Up to 100%)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Garage Mandate</span>
+            <span class="spec-meta-val">NYC Local Law 55 / BC §406</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Fire Safety</span>
+            <span class="spec-meta-val">FDNY / NFPA 88A Garage Rules</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured NYC — Electrical Code &amp; ConEd Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>New York City (NYC Electrical Code &amp; Con Edison PowerReady)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ev">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick NYC — Electrical Code &amp; ConEd EV Load Estimator</div>
+            <span class="quick-calc-tag">NEC 625.41 (125%) + EMS 625.42</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_ports">Number of EV Charging Ports</label>
+              <input type="number" id="qc_ports" value="12" min="1" max="200" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_kw">Power per Port (kW)</label>
+              <select id="qc_kw">
+                <option value="7.2" >7.2 kW (Level 2 — 30A)</option>
+                <option value="11.5" selected>11.5 kW (Level 2 — 48A)</option>
+                <option value="19.2" >19.2 kW (Commercial L2 — 80A)</option>
+                <option value="50" >50 kW (Fleet DC Fast)</option>
+                <option value="150" >150 kW (High-Power DCFC)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ems">EMS Power Sharing Ratio</label>
+              <select id="qc_ems">
+                <option value="1.0" >1.0 (No EMS — 100% Dedicated)</option>
+                <option value="0.75" >0.75 (25% Dynamic Load Sharing)</option>
+                <option value="0.5" selected>0.50 (2:1 ALMS / EMS Sharing)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">NEC Continuous Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">480V 3-Phase Amps</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Transformer Size</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">NEC Compliance</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full EV Fleet Switchgear &amp; Cost Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Designing NYC Commercial Garage EV Charging With Con Edison PowerReady</h2>
+        <p>New York City parking garages face tight electrical room space, older 208V 3-phase services, and strict NYC DOB electrical permitting. Con Edison&#x27;s PowerReady program offsets 50% to 100% of utility-side and customer-side make-ready electrical costs (transformers, conduit, switchgear) for qualifying commercial Level 2 and DC Fast Charging sites.</p>
+        <p>Because upgrading a Manhattan building service can take 12+ months, using UL-listed EMS load management (Article 625.42) to share existing 208V/480V spare capacity is the fastest path to commissioning.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>NYC EC Art. 625</td>
+              <td><strong>125% Continuous Load</strong></td>
+              <td>EVSE branch circuits and feeders must be sized at 125% of continuous rating; NYC DOB Licensed Master Electrician filing required.</td>
+            </tr>
+            <tr>
+              <td>ConEd PowerReady</td>
+              <td><strong>Make-Ready Cost Coverage</strong></td>
+              <td>Covers up to 50%–100% of eligible electrical infrastructure costs for public/fleet commercial EV chargers.</td>
+            </tr>
+            <tr>
+              <td>NYC Local Law 55</td>
+              <td><strong>EV-Ready Garage Infrastructure</strong></td>
+              <td>New and altered open/enclosed parking garages must provide EV-capable conduit/raceways for 20%+ of spaces.</td>
+            </tr>
+            <tr>
+              <td>FDNY / BC §406</td>
+              <td><strong>Ventilation &amp; Protection</strong></td>
+              <td>Impact bollards, emergency shutoff signage, and compliant garage fire sprinkler coverage required.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>NYC Garage 208V/480V EV Load Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Design kW = (Ports × kW × EMS Sharing) × 1.25   |   Amps (480V 3Ø) = Design kW × 1,000 ÷ 831.4</div>
+          <h3>Worked Example: 12-Charger Commercial Parking Garage in Queens, NY</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Connected Load:</strong> 12 commercial Level 2 ports × 11.5 kW (48A) = <strong>138 kW raw load</strong>.</li>
+          <li><strong>Step 2 — EMS 2:1 Load Management:</strong> Dynamic load sharing limits total draw to <strong>69 kW</strong>.</li>
+          <li><strong>Step 3 — 125% Continuous Sizing:</strong> 69 kW × 1.25 = <strong>86.3 kW continuous</strong> (104 Amps @ 480V 3Ø or 240 Amps @ 208V 3Ø).</li>
+          <li><strong>Step 4 — Con Edison PowerReady:</strong> Submit single-line diagram and Licensed Master Electrician quote to Con Edison PowerReady portal prior to construction.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>New York City Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Enroll in Con Edison PowerReady Before Construction</h3>
+          <p>Incentive approval must be secured prior to pulling conduit or installing switchgear.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify 208V vs. 480V Building Service</h3>
+          <p>Many older NYC commercial garages operate on 208V/120V 3-phase; verify voltage drop and panel busbar rating.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>File NYC DOB Electrical Permit</h3>
+          <p>Only a NYC Licensed Master Electrician (LME) can file ED16A/DOB NOW electrical permits.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Install Steel Bollards &amp; Emergency Shutoff</h3>
+          <p>Protect pedestals from vehicle impact and post clear disconnect signage for FDNY response.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — NYC — Electrical Code &amp; ConEd</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>How much does Con Edison PowerReady pay for commercial EV installations?</summary>
+          <div class="faq-answer">Depending on charger type, public accessibility, and disadvantaged community (DAC) location, Con Edison PowerReady can reimburse 50% to 100% of eligible make-ready electrical infrastructure costs.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do NYC parking garages need a new Con Edison service to add EV chargers?</summary>
+          <div class="faq-answer">Not always. If a 30-day load study shows spare capacity on the existing switchgear, UL-listed Energy Management Systems (EMS) allow adding 10–30+ Level 2 ports without waiting for a utility service upgrade.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What permits are needed for commercial EV chargers in NYC?</summary>
+          <div class="faq-answer">A NYC DOB Electrical Permit filed by a Licensed Master Electrician is mandatory; larger switchgear or structural trenching work also requires DOB Alt-2 filings.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Are NYC commercial EV chargers required to be networked?</summary>
+          <div class="faq-answer">To qualify for Con Edison PowerReady or NYSERDA Charge Ready NY 2.0 incentives, chargers must be networked (OCPP/cellular) and share utilization data.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ChargeSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">California — CEC 625 &amp; CALGreen</span>
+          <span class="hub-link-sub">CEC Article 625 • CALGreen Title 24</span>
+        </a>
+        <a href="../texas-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Texas — NEC 2023 &amp; TDLR</span>
+          <span class="hub-link-sub">NEC 2023 Article 625 • TDLR • Oncor / CenterPoint</span>
+        </a>
+        <a href="../florida-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FBC / NEC 625 &amp; FPL</span>
+          <span class="hub-link-sub">FBC Electrical • NEC Article 625 • FPL EVolution</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ChargeSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Commercial EV Fleet Electrical Load Calculator (NEC 2023 Article 625) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate commercial EV charger electrical service size, 480V amps, and transformer kVA for Texas fleets under 2023 NEC Article 625, TDLR licensing, and Oncor/CenterPoint rules.">
+  <meta name="keywords" content="texas commercial ev charger electrical sizing calculator, nec 2023 article 625 texas, fleet ev charging load calculation nec 625, oncor commercial ev transformer, centerpoint ev fleet">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/charge-spec/texas-nec-625/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Commercial EV Fleet Electrical Load Calculator (NEC 2023 Article 625)">
+  <meta property="og:description" content="Calculate commercial EV charger electrical service size, 480V amps, and transformer kVA for Texas fleets under 2023 NEC Article 625, TDLR licensing, and Oncor/CenterPoint rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/charge-spec/texas-nec-625/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Commercial EV Fleet Electrical Load Calculator (NEC 2023 Article 625)">
+  <meta name="twitter:description" content="Calculate commercial EV charger electrical service size, 480V amps, and transformer kVA for Texas fleets under 2023 NEC Article 625, TDLR licensing, and Oncor/CenterPoint rules.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial EV Fleet & Infrastructure Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 NEC 2023 & TDLR",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/texas-nec-625/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Commercial EV Fleet Electrical Load Calculator (NEC 2023 Article 625)",
+  "description": "Calculate commercial EV charger electrical service size, 480V amps, and transformer kVA for Texas fleets under 2023 NEC Article 625, TDLR licensing, and Oncor/CenterPoint rules.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/texas-nec-625/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial EV Fleet & Infrastructure Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which NEC edition does Texas use for commercial EV chargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Texas enforces the 2023 NEC statewide through TDLR, though some home-rule municipalities adopt local amendments\u2014always confirm with the local city electrical inspector."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is a lockable disconnect required on commercial EV chargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under NEC 625.43, any EVSE rated more than 60 amperes or more than 150 volts to ground requires a lockable disconnecting means installed in a readily accessible location."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is ERCOT 4CP and why does it matter for Texas EV fleets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "4CP (Four Coincident Peak) measures your facility's demand during the four highest summer 15-minute ERCOT grid peaks (June\u2013September). Curtailing EV fleet charging during those afternoon windows can save thousands per month in transmission demand charges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do commercial EV charging stations in Texas need TDLR accessibility review?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If total construction cost of the commercial EV project is $50,000 or more, Texas law requires TDLR TAS plan review and post-construction inspection by a Registered Accessibility Specialist."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ChargeSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial EV Fleet &amp; Infrastructure Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — NEC 2023 &amp; TDLR</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 NEC 2023 Article 625 • TDLR • Oncor / CenterPoint</div>
+      <h1>Texas Commercial EV Fleet Electrical Load Calculator (NEC 2023 Article 625)</h1>
+      <p class="guide-hero-lead">Size commercial Level 2 and Level 3 DCFC fleet depots across Dallas-Fort Worth, Houston, Austin, and San Antonio under Texas's statewide 2023 NEC Article 625 adoption and TDLR electrical standards.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ChargeSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Electrical Code</span>
+            <span class="spec-meta-val">2023 NEC Article 625 (TDLR)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Continuous Load Factor</span>
+            <span class="spec-meta-val">125% (NEC 625.41)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Key Texas Utilities</span>
+            <span class="spec-meta-val">Oncor, CenterPoint, Austin Energy</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">NEVI Corridor Grants</span>
+            <span class="spec-meta-val">TxDOT Texas EV Infrastructure Plan</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — NEC 2023 &amp; TDLR Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (NEC 2023 Article 625 &amp; TDLR)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ev">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — NEC 2023 &amp; TDLR EV Load Estimator</div>
+            <span class="quick-calc-tag">NEC 625.41 (125%) + EMS 625.42</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_ports">Number of EV Charging Ports</label>
+              <input type="number" id="qc_ports" value="10" min="1" max="200" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_kw">Power per Port (kW)</label>
+              <select id="qc_kw">
+                <option value="7.2" >7.2 kW (Level 2 — 30A)</option>
+                <option value="11.5" >11.5 kW (Level 2 — 48A)</option>
+                <option value="19.2" >19.2 kW (Commercial L2 — 80A)</option>
+                <option value="50" selected>50 kW (Fleet DC Fast)</option>
+                <option value="150" >150 kW (High-Power DCFC)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ems">EMS Power Sharing Ratio</label>
+              <select id="qc_ems">
+                <option value="1.0" >1.0 (No EMS — 100% Dedicated)</option>
+                <option value="0.75" selected>0.75 (25% Dynamic Load Sharing)</option>
+                <option value="0.5" >0.50 (2:1 ALMS / EMS Sharing)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">NEC Continuous Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">480V 3-Phase Amps</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Transformer Size</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">NEC Compliance</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full EV Fleet Switchgear &amp; Cost Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Commercial EV Depot Sizing Under Texas 2023 NEC Adoption</h2>
+        <p>Texas adopted the 2023 National Electrical Code (NEC) statewide through the Texas Department of Licensing and Regulation (TDLR), bringing updated Article 625 and Article 750 (Energy Management Systems) provisions directly to commercial fleet depots, logistics hubs, and retail plazas.</p>
+        <p>In deregulated ERCOT territories (Oncor in DFW, CenterPoint in Houston), commercial DC Fast Charging (50 kW to 350 kW) projects require careful demand-charge modeling and early utility transformer reservation due to rapid industrial grid growth.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>NEC 625.41</td>
+              <td><strong>125% Continuous Load</strong></td>
+              <td>Branch circuits, feeders, and overcurrent devices must be rated at least 125% of the EVSE maximum load.</td>
+            </tr>
+            <tr>
+              <td>NEC 625.42</td>
+              <td><strong>EMS Load Management</strong></td>
+              <td>2023 NEC explicitly permits automated EMS current limiting to fit fleet charging inside existing switchgear.</td>
+            </tr>
+            <tr>
+              <td>NEC 625.43</td>
+              <td><strong>Disconnecting Means</strong></td>
+              <td>Equipment rated &gt;60A or &gt;150V to ground requires a lockable disconnecting means installed in a readily accessible location.</td>
+            </tr>
+            <tr>
+              <td>TDLR TAS</td>
+              <td><strong>Texas Accessibility Standards</strong></td>
+              <td>Commercial EV projects &gt;= $50,000 must register with TDLR and undergo Registered Accessibility Specialist (RAS) inspection.</td>
+            </tr>
+            <tr>
+              <td>ERCOT / TDU</td>
+              <td><strong>Demand Charge Mitigation</strong></td>
+              <td>4CP (Four Coincident Peak) summer afternoon demand spikes can be avoided by scheduling fleet charging overnight.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Texas 2023 NEC Commercial Fleet Load &amp; Transformer Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">NEC Load (kW) = Ports × kW × EMS Ratio × 1.25   |   Transformer kVA = NEC Load (kW) ÷ 0.85 Power/Design Factor</div>
+          <h3>Worked Example: 10-Bay 50 kW Commercial Fleet Depot in Dallas, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Nameplate DCFC Load:</strong> 10 fleet chargers × 50 kW = <strong>500 kW connected</strong>.</li>
+          <li><strong>Step 2 — EMS Power Sharing (75% Cap):</strong> Managed overnight fleet schedule caps peak draw at <strong>375 kW</strong>.</li>
+          <li><strong>Step 3 — NEC 625.41 Continuous Factor:</strong> 375 kW × 1.25 = <strong>468.8 kW continuous service rating</strong>.</li>
+          <li><strong>Step 4 — Switchgear & Transformer:</strong> 564 Amps @ 480V 3Ø → specify <strong>800A 480V distribution panel</strong> and <strong>500–750 kVA pad-mount transformer</strong> with Oncor.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Submit Utility Load Letter (Oncor / CenterPoint)</h3>
+          <p>Provide 480V 3-phase kVA demand letter to your Transmission &amp; Distribution Utility (TDU) at schematic design.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify NEC 625.43 Lockable Disconnects</h3>
+          <p>All commercial DCFC cabinets (&gt;60A) require accessible, lockable disconnects per 2023 NEC.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Register Project With TDLR (If &gt;= $50k)</h3>
+          <p>File EABPRJ registration for Texas Accessibility Standards (TAS) review on commercial charging bays.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Program 4CP Demand Avoidance</h3>
+          <p>Configure OCPP/EMS software to curtail charging during June–September 3 PM–7 PM ERCOT peak windows.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — NEC 2023 &amp; TDLR</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Which NEC edition does Texas use for commercial EV chargers?</summary>
+          <div class="faq-answer">Texas enforces the 2023 NEC statewide through TDLR, though some home-rule municipalities adopt local amendments—always confirm with the local city electrical inspector.</div>
+        </details>
+        <details class="faq-item">
+          <summary>When is a lockable disconnect required on commercial EV chargers?</summary>
+          <div class="faq-answer">Under NEC 625.43, any EVSE rated more than 60 amperes or more than 150 volts to ground requires a lockable disconnecting means installed in a readily accessible location.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is ERCOT 4CP and why does it matter for Texas EV fleets?</summary>
+          <div class="faq-answer">4CP (Four Coincident Peak) measures your facility&#x27;s demand during the four highest summer 15-minute ERCOT grid peaks (June–September). Curtailing EV fleet charging during those afternoon windows can save thousands per month in transmission demand charges.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do commercial EV charging stations in Texas need TDLR accessibility review?</summary>
+          <div class="faq-answer">Yes. If total construction cost of the commercial EV project is $50,000 or more, Texas law requires TDLR TAS plan review and post-construction inspection by a Registered Accessibility Specialist.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ChargeSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">California — CEC 625 &amp; CALGreen</span>
+          <span class="hub-link-sub">CEC Article 625 • CALGreen Title 24</span>
+        </a>
+        <a href="../nyc-electrical-code/" class="hub-link-card">
+          <span class="hub-link-title">NYC — Electrical Code &amp; ConEd</span>
+          <span class="hub-link-sub">NYC Electrical Code • Con Edison PowerReady</span>
+        </a>
+        <a href="../florida-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FBC / NEC 625 &amp; FPL</span>
+          <span class="hub-link-sub">FBC Electrical • NEC Article 625 • FPL EVolution</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ChargeSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

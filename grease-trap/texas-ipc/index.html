@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas &amp; Houston Grease Trap Sizing Calculator (IPC §1003 &amp; FOG) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial grease traps and interceptors for Texas restaurants under IPC Table 1003.3.5.1, City of Houston Chapter 47 FOG rules, and Dallas/Austin plumbing ordinances.">
+  <meta name="keywords" content="texas grease trap sizing calculator, houston grease interceptor calculator chapter 47, ipc table 1003.3.5.1, dallas restaurant grease trap requirements, austin fog grease trap">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/grease-trap/texas-ipc/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas &amp; Houston Grease Trap Sizing Calculator (IPC §1003 &amp; FOG)">
+  <meta property="og:description" content="Size commercial grease traps and interceptors for Texas restaurants under IPC Table 1003.3.5.1, City of Houston Chapter 47 FOG rules, and Dallas/Austin plumbing ordinances.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/grease-trap/texas-ipc/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas &amp; Houston Grease Trap Sizing Calculator (IPC §1003 &amp; FOG)">
+  <meta name="twitter:description" content="Size commercial grease traps and interceptors for Texas restaurants under IPC Table 1003.3.5.1, City of Houston Chapter 47 FOG rules, and Dallas/Austin plumbing ordinances.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Grease Trap & Hood CFM Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 IPC & Houston Ch. 47",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/texas-ipc/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas & Houston Grease Trap Sizing Calculator (IPC \u00a71003 & FOG)",
+  "description": "Size commercial grease traps and interceptors for Texas restaurants under IPC Table 1003.3.5.1, City of Houston Chapter 47 FOG rules, and Dallas/Austin plumbing ordinances.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/texas-ipc/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Grease Trap & Hood CFM Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the minimum grease trap size in Houston, Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For small light-duty food establishments, Houston allows PDI-rated hydromechanical traps starting at 20\u201335 GPM (40\u201370 lbs), while new full-service restaurants typically require a 1,000 to 1,500-gallon exterior gravity interceptor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Houston require a sample well on a commercial grease trap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under City of Houston Code of Ordinances Chapter 47, commercial grease interceptors require an accessible downstream sample well so city inspectors can test FOG discharge concentrations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often must commercial grease traps be pumped in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Houston and Dallas enforce a standard 90-day pump-out interval (or sooner if the 25% FOG/solids limit is reached), tracked via municipal liquid waste manifests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I install an indoor Schier/Thermaco grease interceptor instead of an outdoor concrete vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many Texas cities now accept high-capacity ASME A112.14.3 / CSA B481 hydromechanical interceptors for tenant retrofits when outdoor excavation is infeasible\u2014always confirm with the local plumbing plans examiner first."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">FOGSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Grease Trap &amp; Hood CFM Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — IPC &amp; Houston Ch. 47</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 IPC Table 1003.3.5.1 • City of Houston Ch. 47</div>
+      <h1>Texas &amp; Houston Grease Trap Sizing Calculator (IPC §1003 &amp; FOG Ordinance)</h1>
+      <p class="guide-hero-lead">Calculate hydromechanical GPM ratings and exterior gravity interceptor capacity for Texas commercial kitchens under IPC Table 1003.3.5.1, City of Houston Chapter 47 FOG ordinances, and Austin/DFW municipal amendments.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full FOGSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Plumbing Code</span>
+            <span class="spec-meta-val">IPC 2021 / 2024 (§1003.3)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Houston FOG Ordinance</span>
+            <span class="spec-meta-val">Code of Ordinances Ch. 47, Art. XI</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Mandatory Inspection Port</span>
+            <span class="spec-meta-val">Downstream Sample Well</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Default Pump-Out Cycle</span>
+            <span class="spec-meta-val">Every 90 Days (Houston/Dallas)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — IPC &amp; Houston Ch. 47 Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (Houston, Dallas, Austin, San Antonio)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="grease" data-code-style="IPC">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — IPC &amp; Houston Ch. 47 Grease Interceptor Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: IPC Sizing Mode</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sinks">Connected Sink Compartments</label>
+              <input type="number" id="qc_sinks" value="3" min="1" max="12" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_vol">Avg. Gallons per Basin</label>
+              <input type="number" id="qc_vol" value="18" min="5" max="60" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_seats">Restaurant Dining Seats</label>
+              <input type="number" id="qc_seats" value="90" min="10" max="500" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Indoor HGI Rating</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">FOG Grease Capacity</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Outdoor Gravity Vault</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Code Basis</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Grease Trap &amp; NFPA 96 Hood CFM Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Navigating Texas IPC Grease Trap Rules &amp; Municipal FOG Ordinances</h2>
+        <p>Most major Texas metros—including Houston, Dallas, Fort Worth, and San Antonio—adopt the International Plumbing Code (IPC) with local municipal FOG amendments (Austin uses UPC with local amendments). Under IPC Section 1003.3.5, hydromechanical grease interceptors must comply with PDI G101 or ASME A112.14.3 and be sized to match the total flow rate (GPM) of connected fixtures.</p>
+        <p>In Houston, Chapter 47 Article XI enforces strict Fats, Oils, and Grease registration, a mandatory downstream sample well for city inspectors, and a standard 90-day manifest-tracked pump-out schedule unless a variance is granted.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>IPC §1003.3.5.1</td>
+              <td><strong>Hydromechanical Capacity Table</strong></td>
+              <td>Minimum 20 GPM (40 lb) to 100 GPM (200 lb) based on fixture drainage rate; PDI G101 / ASME A112.14.3 certified.</td>
+            </tr>
+            <tr>
+              <td>IPC §1003.3.7</td>
+              <td><strong>Gravity Grease Interceptors</strong></td>
+              <td>Outdoor concrete/fiberglass vaults (typically 500–2,000 gal) required for high-volume kitchens with 30-minute retention time.</td>
+            </tr>
+            <tr>
+              <td>Houston Ch. 47</td>
+              <td><strong>Sample Well &amp; 90-Day Pumping</strong></td>
+              <td>Requires a dedicated 4-inch or 6-inch downstream sample well and City of Houston FOG transporter manifests every 90 days.</td>
+            </tr>
+            <tr>
+              <td>Dallas Ch. 19</td>
+              <td><strong>Liquid Waste / FOG Permitting</strong></td>
+              <td>Dallas Water Utilities (DWU) mandates minimum 750–1,000 gal outdoor interceptors for new full-service FSEs.</td>
+            </tr>
+            <tr>
+              <td>IPC §1003.3.2</td>
+              <td><strong>Food Waste Grinders</strong></td>
+              <td>Where grinders are allowed, a solids interceptor must precede the grease interceptor.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>IPC Hydromechanical GPM &amp; Gravity Retention Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">HGI GPM = (Sink L × W × D ÷ 231) × 0.75 ÷ Drain Time (min)   |   GGI Gal = Peak Flow (GPM) × 30-Min Retention</div>
+          <h3>Worked Example: 90-Seat Restaurant in Houston, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Sink Volume:</strong> 3-compartment sink (18" × 18" × 13" per basin) = 18.2 gal × 3 = <strong>54.6 gallons total</strong>.</li>
+          <li><strong>Step 2 — Hydromechanical GPM:</strong> 54.6 gal × 0.75 fill factor = <strong>41 GPM → 50 GPM (100 lb)</strong> PDI-certified HGI (if indoor space is approved).</li>
+          <li><strong>Step 3 — Outdoor Gravity Vault (New Build):</strong> 90 seats × 12 gal/seat baseline = <strong>1,080 gal → 1,250-Gallon</strong> precast concrete interceptor.</li>
+          <li><strong>Step 4 — Houston Sample Well:</strong> Add a 6-inch vertical sample well downstream of the interceptor outlet prior to tying into city sewer.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Confirm Local Metro Code (IPC vs. Austin UPC)</h3>
+          <p>Houston, Dallas, and San Antonio follow IPC §1003; verify Austin Water&#x27;s UPC-based sizing criteria if building in Travis County.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Include Sample Well on Plumbing Plans</h3>
+          <p>City of Houston Public Works will reject FOG plan reviews missing a clearly detailed downstream sample well.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Separate Sanitary &amp; Grease Waste</h3>
+          <p>Never route restroom toilets, hand sinks, or condensate drains through the grease interceptor.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Register With City FOG Program</h3>
+          <p>Register the Food Service Establishment (FSE) with Houston Health / DWU and log manifested pump-outs every 90 days.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — IPC &amp; Houston Ch. 47</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the minimum grease trap size in Houston, Texas?</summary>
+          <div class="faq-answer">For small light-duty food establishments, Houston allows PDI-rated hydromechanical traps starting at 20–35 GPM (40–70 lbs), while new full-service restaurants typically require a 1,000 to 1,500-gallon exterior gravity interceptor.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does Houston require a sample well on a commercial grease trap?</summary>
+          <div class="faq-answer">Yes. Under City of Houston Code of Ordinances Chapter 47, commercial grease interceptors require an accessible downstream sample well so city inspectors can test FOG discharge concentrations.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How often must commercial grease traps be pumped in Texas?</summary>
+          <div class="faq-answer">Houston and Dallas enforce a standard 90-day pump-out interval (or sooner if the 25% FOG/solids limit is reached), tracked via municipal liquid waste manifests.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I install an indoor Schier/Thermaco grease interceptor instead of an outdoor concrete vault?</summary>
+          <div class="faq-answer">Many Texas cities now accept high-capacity ASME A112.14.3 / CSA B481 hydromechanical interceptors for tenant retrofits when outdoor excavation is infeasible—always confirm with the local plumbing plans examiner first.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other FOGSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-upc/" class="hub-link-card">
+          <span class="hub-link-title">California / LA — CPC &amp; UPC</span>
+          <span class="hub-link-sub">California Plumbing Code • UPC Table 1014.3.6</span>
+        </a>
+        <a href="../nyc-dep/" class="hub-link-card">
+          <span class="hub-link-title">NYC — Plumbing Code &amp; DEP</span>
+          <span class="hub-link-sub">NYC Plumbing Code §1003 • NYC DEP FOG</span>
+        </a>
+        <a href="../florida-fbc/" class="hub-link-card">
+          <span class="hub-link-title">Florida / Miami-Dade — FBC &amp; DERM</span>
+          <span class="hub-link-sub">Florida Building Code Plumbing • Miami-Dade DERM</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../cold-spec/" class="hub-link-card">
+          <span class="hub-link-title">Walk-In Cooler &amp; Cold Storage BTU Calculator</span>
+          <span class="hub-link-sub">ColdSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">FOGSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

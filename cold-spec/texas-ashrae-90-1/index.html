@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Walk-In Cooler &amp; Freezer BTU Calculator (ASHRAE 90.1 High Ambient) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial walk-in coolers and freezers for Texas&#x27;s extreme 100°F–105°F summer ambient design temperatures under IECC 2021 and ASHRAE 90.1.">
+  <meta name="keywords" content="texas walk in cooler btu calculator, high ambient condensing unit sizing texas, ashrae 90.1 walk in cooler, dallas commercial refrigeration sizing, houston walk in freezer calculator">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/cold-spec/texas-ashrae-90-1/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Walk-In Cooler &amp; Freezer BTU Calculator (ASHRAE 90.1 High Ambient)">
+  <meta property="og:description" content="Size commercial walk-in coolers and freezers for Texas&#x27;s extreme 100°F–105°F summer ambient design temperatures under IECC 2021 and ASHRAE 90.1.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/cold-spec/texas-ashrae-90-1/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Walk-In Cooler &amp; Freezer BTU Calculator (ASHRAE 90.1 High Ambient)">
+  <meta name="twitter:description" content="Size commercial walk-in coolers and freezers for Texas&#x27;s extreme 100°F–105°F summer ambient design temperatures under IECC 2021 and ASHRAE 90.1.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Walk-In Cooler & Cold Storage BTU Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 ASHRAE High Ambient",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/texas-ashrae-90-1/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Walk-In Cooler & Freezer BTU Calculator (ASHRAE 90.1 High Ambient)",
+  "description": "Size commercial walk-in coolers and freezers for Texas's extreme 100\u00b0F\u2013105\u00b0F summer ambient design temperatures under IECC 2021 and ASHRAE 90.1.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/texas-ashrae-90-1/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Walk-In Cooler & Cold Storage BTU Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/cold-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What ambient temperature should I use to size a walk-in cooler in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use at least 100\u00b0F\u2013105\u00b0F for ground-level shaded units and 110\u00b0F for rooftop condensing units across Dallas, Austin, Houston, and San Antonio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do walk-in coolers fail in Texas during July and August?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Undersized condensers selected at 95\u00b0F ratings cannot reject heat when rooftop air hits 110\u00b0F+, causing high head pressure trips and compressor overheating."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do walk-in freezers in Texas need heated pressure relief ports?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every commercial walk-in freezer requires a heated pressure relief port to equalize air pressure when warm humid air contracts after door openings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What insulation thickness is best for Texas walk-in freezers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Minimum 4-inch foamed-in-place polyurethane/PIR panels (R-32) for indoor freezers, and 5-inch panels (R-40) for outdoor boxes exposed to direct Texas sun."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ColdSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Walk-In Cooler &amp; Cold Storage BTU Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — ASHRAE High Ambient</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 IECC 2021 • ASHRAE 90.1 • 105°F Ambient Design</div>
+      <h1>Texas Walk-In Cooler &amp; Freezer BTU Calculator (High-Ambient ASHRAE 90.1)</h1>
+      <p class="guide-hero-lead">Prevent summer compressor burnout across Dallas, Houston, Austin, and San Antonio. Size walk-in cooler BTU heat loads and outdoor condensing units for 100°F–105°F Texas summer ambient design temperatures.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ColdSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Energy Code</span>
+            <span class="spec-meta-val">IECC 2021 / ASHRAE 90.1</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Summer 0.4% Ambient</span>
+            <span class="spec-meta-val">100°F – 105°F (Roof up to 115°F)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Panel Spec</span>
+            <span class="spec-meta-val">4&quot;+ Foamed-in-Place PIR (R-28/R-32)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Condenser Sizing</span>
+            <span class="spec-meta-val">Derated for 105°F–110°F Ambient</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — ASHRAE High Ambient Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (IECC 2021 / ASHRAE 90.1 High-Ambient Sizing)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="cold" data-latent-mult="1.18">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — ASHRAE High Ambient Walk-In BTU Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 105°F Local Ambient</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Walk-In Box Floor Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="450" min="50" max="10000" step="20">
+            </div>
+            <div class="calc-field">
+              <label for="qc_boxtemp">Target Box Temp (°F)</label>
+              <select id="qc_boxtemp">
+                <option value="35" selected>35°F (Standard Cooler)</option>
+                <option value="28" >28°F (Meat / Beer Cooler)</option>
+                <option value="0" >0°F (Commercial Freezer)</option>
+                <option value="-10" >-10°F (Ice Cream / Deep Freeze)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ambtemp">Local Design Ambient (°F)</label>
+              <input type="number" id="qc_ambtemp" value="105" min="70" max="120" step="1">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Heat Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Refrigeration Tons</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Condenser HP</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Thermal Delta</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Walk-In Cooler &amp; Cold Storage Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Why Standard 95°F Refrigeration Charts Fail on Texas Rooftops</h2>
+        <p>Most manufacturer walk-in condensing unit brochures publish headline BTU ratings at 90°F or 95°F ambient air temperature. In Texas, ASHRAE 0.4% cooling design temperatures exceed 100°F–103°F—and black TPO or gravel commercial rooftops routinely hit 110°F–115°F in July and August.</p>
+        <p>At 105°F–110°F ambient, an air-cooled condensing unit loses 12% to 20% of its rated BTU capacity while head pressures spike. Properly derating the condenser and upgrading to 4-inch or 5-inch insulated panels avoids high-pressure cutouts during peak summer service.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>ASHRAE 0.4% DB</td>
+              <td><strong>Texas Summer Design Temps</strong></td>
+              <td>Dallas/Fort Worth: 101°F; Houston: 98°F (High Humidity); Austin/San Antonio: 101°F; El Paso: 102°F.</td>
+            </tr>
+            <tr>
+              <td>IECC 2021 §C403.10</td>
+              <td><strong>Walk-In Efficiency Rules</strong></td>
+              <td>Mandates DOE-compliant R-25/R-32 panels, EC evaporator fan motors, automatic door closers, and LED lighting.</td>
+            </tr>
+            <tr>
+              <td>Condenser Derating</td>
+              <td><strong>High-Ambient Selection</strong></td>
+              <td>Always select outdoor Texas condensing units from the 105°F or 110°F ambient column of the manufacturer catalog.</td>
+            </tr>
+            <tr>
+              <td>IMC Chapter 11</td>
+              <td><strong>Refrigerant Piping &amp; Access</strong></td>
+              <td>Insulate suction lines with minimum 3/4&quot; to 1&quot; closed-cell elastomeric insulation to prevent condensation drip.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Texas High-Ambient Heat Load Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Total BTU/hr = Floor Sq Ft × Base Factor × ((Ambient 105°F − Box Temp) ÷ 60) × 1.18</div>
+          <h3>Worked Example: 450 Sq Ft Restaurant Walk-In Cooler in Dallas, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — High-Ambient ΔT:</strong> 35°F cooler box with 105°F summer design ambient → <strong>ΔT = 70°F</strong>.</li>
+          <li><strong>Step 2 — Calculated Load:</strong> 450 sq ft × 30 × (70 ÷ 60) × 1.18 = <strong>18,585 BTU/hr</strong> (1.55 Tons).</li>
+          <li><strong>Step 3 — Condenser Selection:</strong> Select a <strong>2.5 HP condensing unit</strong> rated to deliver >= 19,000 BTU/hr specifically at <strong>105°F–110°F ambient</strong>.</li>
+          <li><strong>Step 4 — Rooftop Placement:</strong> Elevate unit on 18-inch stands above roof membrane heat layer with clear airflow on all condenser coil sides.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Select From 105°F–110°F Catalog Column</h3>
+          <p>Never size a Texas outdoor condensing unit using standard 90°F/95°F ratings.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify 16-to-18 Hour Daily Runtime</h3>
+          <p>Size equipment so total 24-hour heat load is satisfied in 16 hours (coolers) or 18 hours (freezers with defrost).</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Install Oversized Condenser Coil / Hail Guards</h3>
+          <p>Protect rooftop fins from Texas spring hailstorms without restricting airflow.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Confirm Dedicated Electrical Disconnect</h3>
+          <p>Provide weatherproof NEC disconnect and 120V GFCI service receptacle within 25 feet on the roof.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — ASHRAE High Ambient</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What ambient temperature should I use to size a walk-in cooler in Texas?</summary>
+          <div class="faq-answer">Use at least 100°F–105°F for ground-level shaded units and 110°F for rooftop condensing units across Dallas, Austin, Houston, and San Antonio.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why do walk-in coolers fail in Texas during July and August?</summary>
+          <div class="faq-answer">Undersized condensers selected at 95°F ratings cannot reject heat when rooftop air hits 110°F+, causing high head pressure trips and compressor overheating.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do walk-in freezers in Texas need heated pressure relief ports?</summary>
+          <div class="faq-answer">Yes. Every commercial walk-in freezer requires a heated pressure relief port to equalize air pressure when warm humid air contracts after door openings.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What insulation thickness is best for Texas walk-in freezers?</summary>
+          <div class="faq-answer">Minimum 4-inch foamed-in-place polyurethane/PIR panels (R-32) for indoor freezers, and 5-inch panels (R-40) for outdoor boxes exposed to direct Texas sun.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ColdSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-title24-carb/" class="hub-link-card">
+          <span class="hub-link-title">California — Title 24 &amp; CARB</span>
+          <span class="hub-link-sub">Title 24 Part 6 §120.6 • CARB Low-GWP (&lt;150)</span>
+        </a>
+        <a href="../florida-fbc-humidity/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FBC &amp; Latent Humidity</span>
+          <span class="hub-link-sub">Florida Building Code Energy • High Latent Load</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../grease-trap/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Grease Trap &amp; Hood CFM Calculator</span>
+          <span class="hub-link-sub">FOGSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../spray-foam/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Spray Foam Board Foot Calculator</span>
+          <span class="hub-link-sub">FoamSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ColdSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

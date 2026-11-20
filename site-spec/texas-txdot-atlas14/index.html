@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Rational Method Stormwater Runoff Calculator (TxDOT HDM &amp; Atlas 14) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate peak stormwater runoff (cfs) and detention volume for Texas commercial sites using the Rational Method (Q = C × I × A), TxDOT runoff C-values, and NOAA Atlas 14 rainfall intensities.">
+  <meta name="keywords" content="rational method stormwater runoff c value texas dot, txdot hydraulic design manual calculator, noaa atlas 14 houston runoff calculator, texas commercial detention pond sizing">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/site-spec/texas-txdot-atlas14/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Rational Method Stormwater Runoff Calculator (TxDOT HDM &amp; Atlas 14)">
+  <meta property="og:description" content="Calculate peak stormwater runoff (cfs) and detention volume for Texas commercial sites using the Rational Method (Q = C × I × A), TxDOT runoff C-values, and NOAA Atlas 14 rainfall intensities.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/site-spec/texas-txdot-atlas14/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Rational Method Stormwater Runoff Calculator (TxDOT HDM &amp; Atlas 14)">
+  <meta name="twitter:description" content="Calculate peak stormwater runoff (cfs) and detention volume for Texas commercial sites using the Rational Method (Q = C × I × A), TxDOT runoff C-values, and NOAA Atlas 14 rainfall intensities.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Civil Earthwork & Stormwater Runoff Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/site-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 TxDOT & Atlas 14",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/site-spec/texas-txdot-atlas14/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Rational Method Stormwater Runoff Calculator (TxDOT HDM & Atlas 14)",
+  "description": "Calculate peak stormwater runoff (cfs) and detention volume for Texas commercial sites using the Rational Method (Q = C \u00d7 I \u00d7 A), TxDOT runoff C-values, and NOAA Atlas 14 rainfall intensities.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/site-spec/texas-txdot-atlas14/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Civil Earthwork & Stormwater Runoff Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/site-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What runoff coefficient (C) does TxDOT use for commercial asphalt parking lots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The TxDOT Hydraulic Design Manual lists C = 0.70 to 0.95 for asphalt and concrete pavements, with 0.85 to 0.95 standard for commercial retail and industrial pads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much did NOAA Atlas 14 increase Houston detention requirements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Harris County, Atlas 14 raised 100-year rainfall depths by 25%\u201335%, pushing commercial detention requirements to roughly 0.55 to 0.65+ acre-feet per acre of impervious cover."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I use the Rational Method vs. HEC-HMS in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Rational Method is standard for small commercial tracts (typically under 20\u201350 acres, max 200 acres per TxDOT). Larger watersheds or complex regional routing require NRCS/SCS hydrographs in HEC-HMS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a 1.5-acre commercial site in Texas need a TCEQ stormwater permit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Any construction activity disturbing 1.0 or more acres in Texas requires a Stormwater Pollution Prevention Plan (SWPPP) under TCEQ General Permit TXR150000."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">SiteSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Civil Earthwork &amp; Stormwater Runoff Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — TxDOT &amp; Atlas 14</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 TxDOT HDM • NOAA Atlas 14 • HCFCD</div>
+      <h1>Texas Rational Method Stormwater Runoff Calculator (TxDOT HDM &amp; Atlas 14)</h1>
+      <p class="guide-hero-lead">Compute peak commercial site runoff (cfs) and preliminary detention sizing using the Rational Method (Q = C·I·A) calibrated for TxDOT Hydraulic Design Manual C-values and post-Harvey NOAA Atlas 14 rainfall intensity curves.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full SiteSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Manual</span>
+            <span class="spec-meta-val">TxDOT Hydraulic Design Manual</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Rainfall Dataset</span>
+            <span class="spec-meta-val">NOAA Atlas 14 (Volume 11 — TX)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Asphalt / Roof C-Value</span>
+            <span class="spec-meta-val">0.85 – 0.95 (TxDOT Table 4-10)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Houston 100-Yr Intensity</span>
+            <span class="spec-meta-val">~10.0 – 12.5 in/hr (Short Tc)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — TxDOT &amp; Atlas 14 Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (TxDOT Hydraulic Design Manual &amp; NOAA Atlas 14)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="stormwater">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — TxDOT &amp; Atlas 14 Rational Method Estimator</div>
+            <span class="quick-calc-tag">Q = C × I × A (Local Intensity)</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_acres">Drainage Area (Acres)</label>
+              <input type="number" id="qc_acres" value="3.0" min="0.1" max="200" step="0.25">
+            </div>
+            <div class="calc-field">
+              <label for="qc_cval">Runoff Coefficient (C)</label>
+              <input type="number" id="qc_cval" value="0.9" min="0.10" max="0.98" step="0.02">
+            </div>
+            <div class="calc-field">
+              <label for="qc_intensity">Design Rainfall Intensity I (in/hr)</label>
+              <input type="number" id="qc_intensity" value="8.8" min="1.0" max="15.0" step="0.2">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Peak Discharge (Q)</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Flow Rate</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Prelim. Detention Vol.</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Design Parameters</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Civil Earthwork &amp; Stormwater Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Why NOAA Atlas 14 Changed Commercial Stormwater Sizing Across Texas</h2>
+        <p>Following Hurricane Harvey, NOAA Atlas 14 (Volume 11) significantly increased design rainfall intensities across Houston (Harris County Flood Control District — HCFCD), Austin, and Central Texas. What used to be a 100-year storm in Harris County is now closer to a 25-year storm, forcing larger on-site commercial detention ponds and underground storm vaults.</p>
+        <p>For commercial sites under 200 acres, Texas civil engineers use the Rational Method (Q = C × I × A) per the TxDOT Hydraulic Design Manual, applying frequency adjustment factors (Cf) for 25-year (1.10), 50-year (1.20), and 100-year (1.25) storms where required.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>TxDOT HDM Ch. 4</td>
+              <td><strong>Rational Method Limit</strong></td>
+              <td>Approved for drainage areas up to 200 acres; Q = C × I × A (cfs).</td>
+            </tr>
+            <tr>
+              <td>TxDOT Table 4-10</td>
+              <td><strong>Commercial Runoff C-Values</strong></td>
+              <td>Pavement/Asphalt: 0.70–0.95; Commercial Roofs: 0.75–0.95; Lawns (Clay, &gt;2%): 0.18–0.35.</td>
+            </tr>
+            <tr>
+              <td>TxDOT Cf Factor</td>
+              <td><strong>Rare Storm Adjustment</strong></td>
+              <td>Multiply C by 1.1 (25-yr), 1.2 (50-yr), or 1.25 (100-yr), capped at C_max = 1.0.</td>
+            </tr>
+            <tr>
+              <td>HCFCD / Austin</td>
+              <td><strong>Zero Net Rise Detention</strong></td>
+              <td>Post-development peak runoff must not exceed pre-development rates; Harris County requires Atlas 14 detention ratios (0.55–0.65+ ac-ft/acre).</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>TxDOT Rational Method Peak Discharge Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Q (cfs) = C × I (in/hr) × A (acres)   |   1 cfs = 448.83 GPM   |   Apply Cf for 25–100 yr storms</div>
+          <h3>Worked Example: 3.0-Acre Commercial Retail Pad in Houston, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Composite C-Value:</strong> 85% asphalt/roof (C = 0.92) + 15% landscape (C = 0.25) → composite <strong>C = 0.82</strong> (adjusted to 0.90 for 25-yr Cf = 1.1).</li>
+          <li><strong>Step 2 — NOAA Atlas 14 Intensity:</strong> 15-minute Time of Concentration (Tc) for 25-yr storm in Harris County ≈ <strong>8.8 in/hr</strong>.</li>
+          <li><strong>Step 3 — Peak Runoff (Q):</strong> Q = 0.90 × 8.8 × 3.0 = <strong>23.76 cfs (10,664 GPM)</strong>.</li>
+          <li><strong>Step 4 — Detention Volume:</strong> Requires approximately <strong>38,500+ cu ft</strong> (~0.88 acre-ft) of surface pond or underground corrugated pipe detention.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Pull Site-Specific NOAA Atlas 14 IDF Table</h3>
+          <p>Use the exact project latitude/longitude on NOAA PFDS for 2-, 10-, 25-, and 100-year intensities.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify HCFCD / City Detention Rate</h3>
+          <p>Harris County, City of Houston, Austin, and Dallas enforce strict post-development detention minimums.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Check TCEQ Construction General Permit</h3>
+          <p>Sites disturbing 1.0+ acres require a SWPPP and TCEQ TXR150000 Notice of Intent (NOI).</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Design Outfall Restrictor</h3>
+          <p>Size orifice plate or weir structure to throttle post-development discharge to pre-development cfs.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — TxDOT &amp; Atlas 14</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What runoff coefficient (C) does TxDOT use for commercial asphalt parking lots?</summary>
+          <div class="faq-answer">The TxDOT Hydraulic Design Manual lists C = 0.70 to 0.95 for asphalt and concrete pavements, with 0.85 to 0.95 standard for commercial retail and industrial pads.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How much did NOAA Atlas 14 increase Houston detention requirements?</summary>
+          <div class="faq-answer">In Harris County, Atlas 14 raised 100-year rainfall depths by 25%–35%, pushing commercial detention requirements to roughly 0.55 to 0.65+ acre-feet per acre of impervious cover.</div>
+        </details>
+        <details class="faq-item">
+          <summary>When should I use the Rational Method vs. HEC-HMS in Texas?</summary>
+          <div class="faq-answer">The Rational Method is standard for small commercial tracts (typically under 20–50 acres, max 200 acres per TxDOT). Larger watersheds or complex regional routing require NRCS/SCS hydrographs in HEC-HMS.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does a 1.5-acre commercial site in Texas need a TCEQ stormwater permit?</summary>
+          <div class="faq-answer">Yes. Any construction activity disturbing 1.0 or more acres in Texas requires a Stormwater Pollution Prevention Plan (SWPPP) under TCEQ General Permit TXR150000.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other SiteSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../florida-fdot-erp/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FDOT &amp; WMD ERP</span>
+          <span class="hub-link-sub">FDOT Drainage Manual • SFWMD / SWFWMD ERP</span>
+        </a>
+        <a href="../california-caltrans-lid/" class="hub-link-card">
+          <span class="hub-link-title">California — Caltrans &amp; LID</span>
+          <span class="hub-link-sub">Caltrans HDM Ch. 810 • State Water Board MS4 LID</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../well-drilling/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Water Well &amp; Pump Calculator</span>
+          <span class="hub-link-sub">WellSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">SiteSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

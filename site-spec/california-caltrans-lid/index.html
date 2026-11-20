@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Stormwater Runoff &amp; LID Capture Calculator (Caltrans HDM &amp; MS4) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate commercial site peak runoff (cfs) and Low Impact Development (LID) 85th-percentile capture volumes under Caltrans Highway Design Manual and California MS4 permits.">
+  <meta name="keywords" content="california stormwater runoff calculator, caltrans hdm rational method, los angeles lid stormwater capture calculator, california ms4 85th percentile storm, rational method california">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/site-spec/california-caltrans-lid/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="California Stormwater Runoff &amp; LID Capture Calculator (Caltrans HDM &amp; MS4)">
+  <meta property="og:description" content="Calculate commercial site peak runoff (cfs) and Low Impact Development (LID) 85th-percentile capture volumes under Caltrans Highway Design Manual and California MS4 permits.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/site-spec/california-caltrans-lid/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Stormwater Runoff &amp; LID Capture Calculator (Caltrans HDM &amp; MS4)">
+  <meta name="twitter:description" content="Calculate commercial site peak runoff (cfs) and Low Impact Development (LID) 85th-percentile capture volumes under Caltrans Highway Design Manual and California MS4 permits.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Civil Earthwork & Stormwater Runoff Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/site-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "California \u2014 Caltrans & LID",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/site-spec/california-caltrans-lid/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "California Stormwater Runoff & LID Capture Calculator (Caltrans HDM & MS4)",
+  "description": "Calculate commercial site peak runoff (cfs) and Low Impact Development (LID) 85th-percentile capture volumes under Caltrans Highway Design Manual and California MS4 permits.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/site-spec/california-caltrans-lid/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Civil Earthwork & Stormwater Runoff Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/site-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the 85th percentile storm in California LID stormwater design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the 24-hour rainfall depth that is greater than or equal to 85% of all storm events in the local historical record (commonly 0.75 to 1.10 inches in Southern California)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What impervious threshold triggers California MS4 LID requirements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most California MS4 permits trigger full LID stormwater capture when a commercial development creates or replaces 5,000 to 10,000 sq ft of impervious surface (2,500 sq ft for restaurants and auto facilities in some counties)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use underground infiltration chambers under a California parking lot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes\u2014provided geotechnical percolation testing confirms adequate infiltration rate, minimum 10-foot groundwater separation, and no soil contamination plumes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a QSD vs. QSP under California's Construction General Permit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A QSD (Qualified SWPPP Developer) writes the stormwater plan, while a QSP (Qualified SWPPP Practitioner) conducts mandatory site inspections and rain-event sampling during construction."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">SiteSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Civil Earthwork &amp; Stormwater Runoff Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">California — Caltrans &amp; LID</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 Caltrans HDM Ch. 810 • State Water Board MS4 LID</div>
+      <h1>California Stormwater Runoff &amp; LID Capture Calculator (Caltrans HDM &amp; MS4)</h1>
+      <p class="guide-hero-lead">Estimate commercial site peak discharge (cfs) and preliminary Low Impact Development (LID) capture sizing under Caltrans Highway Design Manual Chapter 810 and California Regional Water Board MS4 permits.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full SiteSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick California Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Manual</span>
+            <span class="spec-meta-val">Caltrans HDM Ch. 810 &amp; County Hydrology</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Water Quality Mandate</span>
+            <span class="spec-meta-val">MS4 LID (85th Percentile 24-Hr Storm)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Impervious C-Value</span>
+            <span class="spec-meta-val">0.90 (LA County / Caltrans Standard)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Construction Permit</span>
+            <span class="spec-meta-val">SWRCB CGP (SMARTS Filing)</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured California — Caltrans &amp; LID Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>California (Caltrans HDM &amp; MS4 LID Stormwater)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="stormwater">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick California — Caltrans &amp; LID Rational Method Estimator</div>
+            <span class="quick-calc-tag">Q = C × I × A (Local Intensity)</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_acres">Drainage Area (Acres)</label>
+              <input type="number" id="qc_acres" value="2.0" min="0.1" max="200" step="0.25">
+            </div>
+            <div class="calc-field">
+              <label for="qc_cval">Runoff Coefficient (C)</label>
+              <input type="number" id="qc_cval" value="0.9" min="0.10" max="0.98" step="0.02">
+            </div>
+            <div class="calc-field">
+              <label for="qc_intensity">Design Rainfall Intensity I (in/hr)</label>
+              <input type="number" id="qc_intensity" value="3.2" min="1.0" max="15.0" step="0.2">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Peak Discharge (Q)</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Peak Flow Rate</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Prelim. Detention Vol.</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Design Parameters</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Civil Earthwork &amp; Stormwater Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>California Rational Method &amp; Mandatory LID Bioretention Standards</h2>
+        <p>Commercial projects in California face a dual stormwater requirement: peak flood control using the Rational Method (or LA County Modified Rational Method) AND mandatory Low Impact Development (LID) on-site capture of the 85th-percentile, 24-hour storm event under Regional Water Quality Control Board MS4 permits.</p>
+        <p>In Los Angeles County (SUSMP/LID), the Bay Area (MRP C.3), and San Diego (BMP Design Manual), projects creating or replacing 5,000+ sq ft of impervious surface must infiltrate, capture/reuse, or biofilter stormwater on site via bioretention planters, permeable pavers, or underground infiltration galleries.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>Caltrans HDM §819.2</td>
+              <td><strong>Rational Method Standard</strong></td>
+              <td>Q = C × I × A for commercial tracts; asphalt/concrete roof C = 0.90.</td>
+            </tr>
+            <tr>
+              <td>MS4 LID Mandate</td>
+              <td><strong>85th Percentile Storm Capture</strong></td>
+              <td>On-site infiltration or biofiltration of the 85th percentile 24-hour storm (typically 0.75&quot; to 1.1&quot; in SoCal).</td>
+            </tr>
+            <tr>
+              <td>SWRCB CGP</td>
+              <td><strong>SMARTS Risk Level 1–3</strong></td>
+              <td>Sites disturbing &gt;= 1 acre require QSD-prepared SWPPP filed on California SMARTS portal.</td>
+            </tr>
+            <tr>
+              <td>LA County / Bay C.3</td>
+              <td><strong>Hydromodification Control</strong></td>
+              <td>Maintain post-project runoff flow duration curve to prevent downstream creek erosion.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>California Rational Method &amp; LID Capture Volume Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Peak Q (cfs) = C × I × A   |   LID Capture Vol (cu ft) ≈ (0.85–1.0 in ÷ 12) × Impervious Area (sq ft) × C</div>
+          <h3>Worked Example: 2.0-Acre Commercial Warehouse in Los Angeles, CA</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Peak Runoff Inputs:</strong> 2.0 acres (87,120 sq ft), 90% impervious (<strong>C = 0.90</strong>), 25-yr short-duration intensity ≈ <strong>3.2 in/hr</strong>.</li>
+          <li><strong>Step 2 — Peak Discharge (Q):</strong> Q = 0.90 × 3.2 × 2.0 = <strong>5.76 cfs (2,585 GPM)</strong>.</li>
+          <li><strong>Step 3 — LA County LID 85th Percentile Capture:</strong> At 0.85 inch design storm, (0.85 ÷ 12) × 87,120 × 0.90 = <strong>5,554 cu ft</strong>.</li>
+          <li><strong>Step 4 — BMP Selection:</strong> Size underground infiltration chambers (if percolation >= 0.3 in/hr) or lined flow-through bioretention planters.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>California Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Run Soil Percolation / Infiltration Test</h3>
+          <p>Geotechnical infiltration rate (in/hr) determines whether you can infiltrate on site or must use lined biofiltration.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Prepare LID / WQMP Report</h3>
+          <p>Submit Low Impact Development (LA) or Water Quality Management Plan (OC/IE/SD) during grading plan check.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>File SWRCB SMARTS NOI (If &gt;= 1 Acre)</h3>
+          <p>Engage a Qualified SWPPP Developer (QSD) and Practitioner (QSP) for California Construction General Permit.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Record LID Maintenance Covenant</h3>
+          <p>Most California cities require recording a permanent BMP maintenance covenant on the property title.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — California — Caltrans &amp; LID</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the 85th percentile storm in California LID stormwater design?</summary>
+          <div class="faq-answer">It is the 24-hour rainfall depth that is greater than or equal to 85% of all storm events in the local historical record (commonly 0.75 to 1.10 inches in Southern California).</div>
+        </details>
+        <details class="faq-item">
+          <summary>What impervious threshold triggers California MS4 LID requirements?</summary>
+          <div class="faq-answer">Most California MS4 permits trigger full LID stormwater capture when a commercial development creates or replaces 5,000 to 10,000 sq ft of impervious surface (2,500 sq ft for restaurants and auto facilities in some counties).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I use underground infiltration chambers under a California parking lot?</summary>
+          <div class="faq-answer">Yes—provided geotechnical percolation testing confirms adequate infiltration rate, minimum 10-foot groundwater separation, and no soil contamination plumes.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is a QSD vs. QSP under California&#x27;s Construction General Permit?</summary>
+          <div class="faq-answer">A QSD (Qualified SWPPP Developer) writes the stormwater plan, while a QSP (Qualified SWPPP Practitioner) conducts mandatory site inspections and rain-event sampling during construction.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other SiteSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-txdot-atlas14/" class="hub-link-card">
+          <span class="hub-link-title">Texas — TxDOT &amp; Atlas 14</span>
+          <span class="hub-link-sub">TxDOT HDM • NOAA Atlas 14 • HCFCD</span>
+        </a>
+        <a href="../florida-fdot-erp/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FDOT &amp; WMD ERP</span>
+          <span class="hub-link-sub">FDOT Drainage Manual • SFWMD / SWFWMD ERP</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../well-drilling/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Water Well &amp; Pump Calculator</span>
+          <span class="hub-link-sub">WellSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">SiteSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

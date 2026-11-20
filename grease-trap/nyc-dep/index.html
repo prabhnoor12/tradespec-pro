@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NYC Commercial Grease Trap Sizing Calculator (NYC Plumbing Code §1003 &amp; DEP) | TradeSpec Pro™</title>
+  <meta name="description" content="Size restaurant grease interceptors in New York City per NYC Plumbing Code Section 1003, NYC DEP Best Management Practices, and flow control sizing rules.">
+  <meta name="keywords" content="nyc grease trap sizing calculator, nyc dep grease interceptor requirements, nyc plumbing code section 1003, restaurant grease trap nyc, manhattan grease interceptor sizing">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/grease-trap/nyc-dep/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="NYC Commercial Grease Trap Sizing Calculator (NYC Plumbing Code §1003 &amp; DEP)">
+  <meta property="og:description" content="Size restaurant grease interceptors in New York City per NYC Plumbing Code Section 1003, NYC DEP Best Management Practices, and flow control sizing rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/grease-trap/nyc-dep/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NYC Commercial Grease Trap Sizing Calculator (NYC Plumbing Code §1003 &amp; DEP)">
+  <meta name="twitter:description" content="Size restaurant grease interceptors in New York City per NYC Plumbing Code Section 1003, NYC DEP Best Management Practices, and flow control sizing rules.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Grease Trap & Hood CFM Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "NYC \u2014 Plumbing Code & DEP",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/nyc-dep/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "NYC Commercial Grease Trap Sizing Calculator (NYC Plumbing Code \u00a71003 & DEP)",
+  "description": "Size restaurant grease interceptors in New York City per NYC Plumbing Code Section 1003, NYC DEP Best Management Practices, and flow control sizing rules.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/nyc-dep/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Grease Trap & Hood CFM Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/grease-trap/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the smallest legal commercial grease trap in NYC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under NYC Plumbing Code \u00a71003.3.4, commercial hydromechanical grease interceptors must have a minimum flow rating of 20 GPM (40 lbs grease retention capacity)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I connect a commercial dishwasher to a grease trap in NYC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. NYC DEP and NYC Plumbing Code prohibit connecting commercial dishwashers (which use hot water >140\u00b0F and detergents) to indoor hydromechanical grease traps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a Licensed Master Plumber (LMP) to install a grease trap in NYC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Any alteration to commercial sanitary drainage piping in NYC must be performed and signed off by a NYC Licensed Master Plumber."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if NYC DEP inspects and finds no flow control device?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NYC DEP issues a Notice of Violation (NOV) requiring immediate retrofit of a vented flow control fitting, as unthrottled sink drainage flushes emulsified grease straight into the city sewer."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">FOGSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Grease Trap &amp; Hood CFM Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">NYC — Plumbing Code &amp; DEP</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 NYC Plumbing Code §1003 • NYC DEP FOG</div>
+      <h1>NYC Commercial Grease Trap Sizing Calculator (NYC Plumbing Code §1003 &amp; DEP)</h1>
+      <p class="guide-hero-lead">Calculate compliant indoor hydromechanical grease trap GPM and grease retention ratings for New York City restaurants, delis, and commissaries under NYC Plumbing Code §1003 and NYC DEP FOG Best Management Practices.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full FOGSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick New York City Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Code</span>
+            <span class="spec-meta-val">2022 NYC Plumbing Code §1003</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Enforcement Agency</span>
+            <span class="spec-meta-val">NYC DEP &amp; NYC DOB Plumbing</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Typical Urban Unit</span>
+            <span class="spec-meta-val">Indoor PDI / ASME HGI (20–75 GPM)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Mandatory Accessory</span>
+            <span class="spec-meta-val">Vented Flow Control Fitting</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured NYC — Plumbing Code &amp; DEP Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>New York City (NYC Plumbing Code §1003 &amp; NYC DEP)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="grease" data-code-style="IPC">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick NYC — Plumbing Code &amp; DEP Grease Interceptor Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: IPC Sizing Mode</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sinks">Connected Sink Compartments</label>
+              <input type="number" id="qc_sinks" value="3" min="1" max="12" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_vol">Avg. Gallons per Basin</label>
+              <input type="number" id="qc_vol" value="15" min="5" max="60" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_seats">Restaurant Dining Seats</label>
+              <input type="number" id="qc_seats" value="65" min="10" max="500" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Indoor HGI Rating</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">FOG Grease Capacity</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Outdoor Gravity Vault</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Code Basis</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Grease Trap &amp; NFPA 96 Hood CFM Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>NYC DEP Grease Interceptor Standards for Dense Urban Kitchens</h2>
+        <p>Because almost all New York City restaurants operate in ground-floor retail spaces without parking lots, exterior concrete gravity vaults are rarely feasible. Instead, the 2022 NYC Plumbing Code (Section 1003.3) and NYC Department of Environmental Protection (DEP) rely heavily on properly sized indoor Hydromechanical Grease Interceptors (HGIs) certified to PDI G101 or ASME A112.14.3.</p>
+        <p>NYC DEP inspectors routinely issue hefty fines when kitchens omit the mandatory vented flow-control device, undersize the trap relative to 3-compartment sink volume, or fail to maintain grease cleaning logs.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>NYC PC §1003.3.4</td>
+              <td><strong>PDI G101 / ASME A112.14.3 Rating</strong></td>
+              <td>Indoor grease traps must match total connected fixture flow rate in GPM with 2× lbs grease retention capacity.</td>
+            </tr>
+            <tr>
+              <td>NYC PC §1003.3.4.2</td>
+              <td><strong>Mandatory Flow Control Device</strong></td>
+              <td>Every hydromechanical interceptor must have an accessible, vented flow-control fitting upstream of the trap.</td>
+            </tr>
+            <tr>
+              <td>NYC DEP BMP</td>
+              <td><strong>Weekly / Monthly Cleaning Logs</strong></td>
+              <td>NYC DEP requires regular skimming/cleaning before 25% capacity and visible maintenance logs posted on site.</td>
+            </tr>
+            <tr>
+              <td>NYC PC §1003.3.2</td>
+              <td><strong>No Food Waste Grinders</strong></td>
+              <td>Commercial garbage disposals discharging to grease interceptors are strictly prohibited in NYC.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>NYC Plumbing Code Fixture-Volume GPM Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Required GPM = (Total Sink Compartment Cubic Inches ÷ 231) × 0.75 ÷ 1-Min Drain   |   Retention = GPM × 2 lbs</div>
+          <h3>Worked Example: 65-Seat Bistro Kitchen in Brooklyn, NY</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Calculate Sink Volume:</strong> 3-compartment pot sink (16" × 16" × 14" each) = 15.5 gal × 3 = <strong>46.5 gallons</strong>.</li>
+          <li><strong>Step 2 — Apply 75% Load Factor:</strong> 46.5 gal × 0.75 = <strong>34.9 GPM</strong>.</li>
+          <li><strong>Step 3 — Select Standard PDI Size:</strong> Round up to a <strong>35 GPM (70 lb) or 50 GPM (100 lb)</strong> PDI-certified hydromechanical grease interceptor.</li>
+          <li><strong>Step 4 — Flow Control & Access:</strong> Install vented flow control tee and ensure minimum 18-inch vertical clearance above lid for weekly baffle removal.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>New York City Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>File Plumbing Alteration (DOB NOW)</h3>
+          <p>Licensed NYC Master Plumber (LMP) must file grease interceptor installation on DOB NOW plumbing drawings.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Verify Flow Control Venting</h3>
+          <p>Confirm the external flow control device has an air intake vent installed per manufacturer and NYC PC §1003.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Install Solids Strainer Basket</h3>
+          <p>Add removable mesh baskets on 3-compartment sinks to prevent food solids from choking the HGI.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Maintain NYC DEP Logbook</h3>
+          <p>Log every cleaning date, volume removed, and licensed grease hauler manifest to avoid NYC DEP NOV fines.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — NYC — Plumbing Code &amp; DEP</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What is the smallest legal commercial grease trap in NYC?</summary>
+          <div class="faq-answer">Under NYC Plumbing Code §1003.3.4, commercial hydromechanical grease interceptors must have a minimum flow rating of 20 GPM (40 lbs grease retention capacity).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I connect a commercial dishwasher to a grease trap in NYC?</summary>
+          <div class="faq-answer">No. NYC DEP and NYC Plumbing Code prohibit connecting commercial dishwashers (which use hot water &gt;140°F and detergents) to indoor hydromechanical grease traps.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need a Licensed Master Plumber (LMP) to install a grease trap in NYC?</summary>
+          <div class="faq-answer">Yes. Any alteration to commercial sanitary drainage piping in NYC must be performed and signed off by a NYC Licensed Master Plumber.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if NYC DEP inspects and finds no flow control device?</summary>
+          <div class="faq-answer">NYC DEP issues a Notice of Violation (NOV) requiring immediate retrofit of a vented flow control fitting, as unthrottled sink drainage flushes emulsified grease straight into the city sewer.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other FOGSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-upc/" class="hub-link-card">
+          <span class="hub-link-title">California / LA — CPC &amp; UPC</span>
+          <span class="hub-link-sub">California Plumbing Code • UPC Table 1014.3.6</span>
+        </a>
+        <a href="../texas-ipc/" class="hub-link-card">
+          <span class="hub-link-title">Texas — IPC &amp; Houston Ch. 47</span>
+          <span class="hub-link-sub">IPC Table 1003.3.5.1 • City of Houston Ch. 47</span>
+        </a>
+        <a href="../florida-fbc/" class="hub-link-card">
+          <span class="hub-link-title">Florida / Miami-Dade — FBC &amp; DERM</span>
+          <span class="hub-link-sub">Florida Building Code Plumbing • Miami-Dade DERM</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../cold-spec/" class="hub-link-card">
+          <span class="hub-link-title">Walk-In Cooler &amp; Cold Storage BTU Calculator</span>
+          <span class="hub-link-sub">ColdSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">FOGSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

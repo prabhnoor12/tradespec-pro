@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Commercial EV Fleet Sizing Calculator (FBC / NEC 625 &amp; Coastal Specs) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial EV chargers, 480V feeders, and transformers in Florida under FBC Electrical / NEC Article 625, NEMA 4X coastal enclosures, and FPL EVolution commercial programs.">
+  <meta name="keywords" content="florida commercial ev charger sizing calculator, fpl evolution commercial ev, nec 625 florida building code, miami ev fleet electrical calculator, nema 4x ev charger coastal">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/charge-spec/florida-nec-625/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Florida Commercial EV Fleet Sizing Calculator (FBC / NEC 625 &amp; Coastal Specs)">
+  <meta property="og:description" content="Size commercial EV chargers, 480V feeders, and transformers in Florida under FBC Electrical / NEC Article 625, NEMA 4X coastal enclosures, and FPL EVolution commercial programs.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/charge-spec/florida-nec-625/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Florida Commercial EV Fleet Sizing Calculator (FBC / NEC 625 &amp; Coastal Specs)">
+  <meta name="twitter:description" content="Size commercial EV chargers, 480V feeders, and transformers in Florida under FBC Electrical / NEC Article 625, NEMA 4X coastal enclosures, and FPL EVolution commercial programs.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial EV Fleet & Infrastructure Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Florida \u2014 FBC / NEC 625 & FPL",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/florida-nec-625/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Florida Commercial EV Fleet Sizing Calculator (FBC / NEC 625 & Coastal Specs)",
+  "description": "Size commercial EV chargers, 480V feeders, and transformers in Florida under FBC Electrical / NEC Article 625, NEMA 4X coastal enclosures, and FPL EVolution commercial programs.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/florida-nec-625/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial EV Fleet & Infrastructure Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/charge-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is NEMA 4X recommended for commercial EV chargers in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Salt air along Florida's coasts causes rapid rusting of standard NEMA 3R painted steel panels. NEMA 4X stainless or aluminum enclosures resist salt corrosion and wind-driven hurricane rain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do outdoor EV chargers in Miami-Dade need hurricane wind-load calculations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pedestals, overhead canopies, and concrete transformer pads in the High-Velocity Hurricane Zone (HVHZ) require engineered anchoring per FBC wind loads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should commercial EV panels in Florida include surge protection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strongly recommended and increasingly mandated. Lightning-induced grid transients are the #1 cause of premature EV charger board failures in Florida."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Florida have a statewide commercial EV mandate like California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No statewide mandate like CALGreen, though certain South Florida municipalities (such as Miami Beach and Coral Gables) enforce local EV-ready parking ordinances for new developments."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">ChargeSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial EV Fleet &amp; Infrastructure Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Florida — FBC / NEC 625 &amp; FPL</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 FBC Electrical • NEC Article 625 • FPL EVolution</div>
+      <h1>Florida Commercial EV Fleet Sizing Calculator (FBC / NEC 625 &amp; Coastal Specs)</h1>
+      <p class="guide-hero-lead">Calculate commercial EV charging service capacity, 480V amps, and transformer sizing for Florida retail, hospitality, and fleet sites under Florida Building Code (NEC Article 625), coastal NEMA 4X/3R standards, and FPL/Duke utility programs.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full ChargeSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Florida Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Code</span>
+            <span class="spec-meta-val">Florida Building Code (NEC 625)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Coastal Enclosure Spec</span>
+            <span class="spec-meta-val">NEMA 3R / 4X Corrosion-Resistant</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Surge Protection</span>
+            <span class="spec-meta-val">UL 1449 Type 1/2 SPD Mandatory</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Utility Programs</span>
+            <span class="spec-meta-val">FPL EVolution / Duke Park &amp; Plug</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Florida — FBC / NEC 625 &amp; FPL Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Florida (FBC / NEC 625 &amp; FPL EVolution)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ev">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Florida — FBC / NEC 625 &amp; FPL EV Load Estimator</div>
+            <span class="quick-calc-tag">NEC 625.41 (125%) + EMS 625.42</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_ports">Number of EV Charging Ports</label>
+              <input type="number" id="qc_ports" value="8" min="1" max="200" step="1">
+            </div>
+            <div class="calc-field">
+              <label for="qc_kw">Power per Port (kW)</label>
+              <select id="qc_kw">
+                <option value="7.2" >7.2 kW (Level 2 — 30A)</option>
+                <option value="11.5" >11.5 kW (Level 2 — 48A)</option>
+                <option value="19.2" selected>19.2 kW (Commercial L2 — 80A)</option>
+                <option value="50" >50 kW (Fleet DC Fast)</option>
+                <option value="150" >150 kW (High-Power DCFC)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_ems">EMS Power Sharing Ratio</label>
+              <select id="qc_ems">
+                <option value="1.0" >1.0 (No EMS — 100% Dedicated)</option>
+                <option value="0.75" selected>0.75 (25% Dynamic Load Sharing)</option>
+                <option value="0.5" >0.50 (2:1 ALMS / EMS Sharing)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">NEC Continuous Load</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">480V 3-Phase Amps</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Transformer Size</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">NEC Compliance</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full EV Fleet Switchgear &amp; Cost Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Florida Coastal Engineering Requirements for Commercial EV Charging</h2>
+        <p>Florida commercial EV installations follow NEC Article 625 as adopted by the Florida Building Code, but environmental exposure demands tougher hardware specifications. Salt-spray corrosion within 5 miles of the Atlantic or Gulf coasts rapidly degrades painted steel enclosures—making stainless steel or powder-coated aluminum NEMA 4X switchgear and pedestals essential.</p>
+        <p>Additionally, Florida&#x27;s lightning density makes heavy-duty Type 1/Type 2 Surge Protective Devices (SPDs) at the EV distribution panel critical to prevent blown DCFC power modules.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>NEC 625.41</td>
+              <td><strong>125% Continuous Load</strong></td>
+              <td>Conductors and breakers sized at minimum 125% of continuous EVSE load.</td>
+            </tr>
+            <tr>
+              <td>FBC / ASCE 7</td>
+              <td><strong>Wind-Load Pedestal Anchoring</strong></td>
+              <td>Outdoor charging pedestals and canopies in HVHZ (Miami-Dade/Broward) require wind-load stamped anchor bolts.</td>
+            </tr>
+            <tr>
+              <td>NEC 242 / UL 1449</td>
+              <td><strong>Lightning Surge Protection</strong></td>
+              <td>Install Type 1/2 SPD on dedicated EV subpanels to protect sensitive charger electronics from Florida surges.</td>
+            </tr>
+            <tr>
+              <td>FEMA Flood Zones</td>
+              <td><strong>Base Flood Elevation (BFE)</strong></td>
+              <td>In AE/VE coastal flood zones, elevate switchgear and transformer pads above Base Flood Elevation.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Florida Commercial EV Service &amp; Transformer Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Design kW = (Ports × kW × EMS Ratio) × 1.25   |   Transformer kVA = Design kW ÷ 0.85</div>
+          <h3>Worked Example: 8-Port Hotel &amp; Fleet EV Hub in Tampa, FL</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Connected Load:</strong> 8 Level 2 commercial ports × 19.2 kW = <strong>153.6 kW raw load</strong>.</li>
+          <li><strong>Step 2 — EMS Load Sharing (75%):</strong> Caps aggregate draw at <strong>115.2 kW</strong>.</li>
+          <li><strong>Step 3 — 125% Continuous Rating:</strong> 115.2 kW × 1.25 = <strong>144.0 kW</strong> (174 Amps @ 480V 3Ø).</li>
+          <li><strong>Step 4 — Coastal Protection:</strong> Specify 225A 480V NEMA 4X panelboard with integrated 200kA SPD and elevated concrete pad.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Florida Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Check FEMA Flood Map Elevation</h3>
+          <p>Verify Base Flood Elevation (BFE) before setting pad-mount transformers or DCFC power cabinets.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Specify NEMA 4X &amp; Stainless Hardware</h3>
+          <p>Use 316 stainless steel anchor bolts and NEMA 4X enclosures for coastal salt-air durability.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Install Commercial Surge Protection</h3>
+          <p>Add UL 1449 Type 1/2 surge arrestors at both the main EV switchgear and subpanel.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Coordinate FPL / Duke Commercial Service</h3>
+          <p>Submit load calculations early for dedicated EV metering and demand-rate optimization.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Florida — FBC / NEC 625 &amp; FPL</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Why is NEMA 4X recommended for commercial EV chargers in Florida?</summary>
+          <div class="faq-answer">Salt air along Florida&#x27;s coasts causes rapid rusting of standard NEMA 3R painted steel panels. NEMA 4X stainless or aluminum enclosures resist salt corrosion and wind-driven hurricane rain.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do outdoor EV chargers in Miami-Dade need hurricane wind-load calculations?</summary>
+          <div class="faq-answer">Yes. Pedestals, overhead canopies, and concrete transformer pads in the High-Velocity Hurricane Zone (HVHZ) require engineered anchoring per FBC wind loads.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Should commercial EV panels in Florida include surge protection?</summary>
+          <div class="faq-answer">Strongly recommended and increasingly mandated. Lightning-induced grid transients are the #1 cause of premature EV charger board failures in Florida.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does Florida have a statewide commercial EV mandate like California?</summary>
+          <div class="faq-answer">No statewide mandate like CALGreen, though certain South Florida municipalities (such as Miami Beach and Coral Gables) enforce local EV-ready parking ordinances for new developments.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other ChargeSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">California — CEC 625 &amp; CALGreen</span>
+          <span class="hub-link-sub">CEC Article 625 • CALGreen Title 24</span>
+        </a>
+        <a href="../texas-nec-625/" class="hub-link-card">
+          <span class="hub-link-title">Texas — NEC 2023 &amp; TDLR</span>
+          <span class="hub-link-sub">NEC 2023 Article 625 • TDLR • Oncor / CenterPoint</span>
+        </a>
+        <a href="../nyc-electrical-code/" class="hub-link-card">
+          <span class="hub-link-title">NYC — Electrical Code &amp; ConEd</span>
+          <span class="hub-link-sub">NYC Electrical Code • Con Edison PowerReady</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">ChargeSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

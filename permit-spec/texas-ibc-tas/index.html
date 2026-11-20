@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Commercial Tenant Improvement &amp; Occupancy Calculator (IBC &amp; TDLR TAS) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate commercial TI budgets, IBC occupant load, exit counts, and Texas Accessibility Standards (TDLR TAS $50,000 threshold) requirements for Houston, Dallas, and Austin.">
+  <meta name="keywords" content="texas commercial tenant improvement calculator, tdlr tas 50000 threshold, ibc 1004 occupant load calculator texas, houston commercial remodel permit, austin commercial ti cost">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/permit-spec/texas-ibc-tas/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Commercial Tenant Improvement &amp; Occupancy Calculator (IBC &amp; TDLR TAS)">
+  <meta property="og:description" content="Calculate commercial TI budgets, IBC occupant load, exit counts, and Texas Accessibility Standards (TDLR TAS $50,000 threshold) requirements for Houston, Dallas, and Austin.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/permit-spec/texas-ibc-tas/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Commercial Tenant Improvement &amp; Occupancy Calculator (IBC &amp; TDLR TAS)">
+  <meta name="twitter:description" content="Calculate commercial TI budgets, IBC occupant load, exit counts, and Texas Accessibility Standards (TDLR TAS $50,000 threshold) requirements for Houston, Dallas, and Austin.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Tenant Improvement & Occupancy Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 IBC & TDLR TAS",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/texas-ibc-tas/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Commercial Tenant Improvement & Occupancy Calculator (IBC & TDLR TAS)",
+  "description": "Calculate commercial TI budgets, IBC occupant load, exit counts, and Texas Accessibility Standards (TDLR TAS $50,000 threshold) requirements for Houston, Dallas, and Austin.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/texas-ibc-tas/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Tenant Improvement & Occupancy Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/permit-spec/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What triggers a TDLR TAS accessibility review in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any commercial building construction, remodel, or tenant finish-out in Texas with an estimated construction cost of $50,000 or more requires TDLR registration and Registered Accessibility Specialist (RAS) review and inspection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Texas cities require a TABS number before issuing a commercial building permit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Houston, Dallas, Austin, and San Antonio building departments require your TDLR Architectural Barriers (TABS) registration number on the permit application for projects >= $50,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the IBC occupant load factor for a commercial office in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the 2021 and 2024 IBC Table 1004.5, Business areas (offices) are calculated at 150 gross square feet per occupant (updated from the older 100 sq ft rule)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an architect seal required for a commercial tenant improvement in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the Texas Board of Architectural Examiners (TBAE), an architect seal is generally required for commercial alterations exceeding $50,000 or involving life-safety/egress changes."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">PermitSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Tenant Improvement &amp; Occupancy Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — IBC &amp; TDLR TAS</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 IBC 2021/2024 • TDLR TAS ($50k Rule)</div>
+      <h1>Texas Commercial Tenant Improvement Calculator (IBC &amp; TDLR TAS)</h1>
+      <p class="guide-hero-lead">Estimate commercial occupant loads, required egress doors, plumbing fixtures, and TI construction costs across Texas under the International Building Code (IBC) and mandatory TDLR Texas Accessibility Standards (TAS) registration.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full PermitSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Building Code</span>
+            <span class="spec-meta-val">IBC 2021 / 2024 (Local Adoption)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Accessibility Law</span>
+            <span class="spec-meta-val">TDLR TAS (Mandatory &gt;= $50,000)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Energy Code</span>
+            <span class="spec-meta-val">IECC 2021 (COMcheck Required)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Typical TX TI Cost</span>
+            <span class="spec-meta-val">$105 – $195 / sq ft</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — IBC &amp; TDLR TAS Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (IBC 2021/2024 &amp; TDLR TAS Accessibility)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="ti">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — IBC &amp; TDLR TAS TI &amp; Occupancy Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded Local TI Cost Benchmark</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Commercial Lease Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="5000" min="500" max="100000" step="250">
+            </div>
+            <div class="calc-field">
+              <label for="qc_occ">Occupancy Load Factor (sq ft / person)</label>
+              <select id="qc_occ">
+                <option value="150" selected>150 sq ft (Business / Office — Group B)</option>
+                <option value="60" >60 sq ft (Mercantile / Retail — Group M)</option>
+                <option value="15" >15 sq ft (Dining / Assembly — Group A-2)</option>
+                <option value="300" >300 sq ft (Warehouse / Storage — Group S)</option>
+              </select>
+            </div>
+            <div class="calc-field">
+              <label for="qc_cost">Local TI Construction Rate ($ / sq ft)</label>
+              <input type="number" id="qc_cost" value="135" min="50" max="500" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Calculated Occupancy</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Min. Remote Exits</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. TI Budget</span><span class="qres-val highlight-green" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Accessibility Trigger</span><span class="qres-val" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Tenant Improvement &amp; Plumbing Fixture Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>The Texas TDLR TAS $50,000 Rule Every Commercial Contractor Must Know</h2>
+        <p>Texas municipalities (Houston, Dallas, Austin, San Antonio) enforce the 2021 or 2024 International Building Code (IBC) and IECC energy code (via COMcheck). However, Texas enforces a unique statewide accessibility statute: the Architectural Barriers Act (Texas Government Code Chapter 469).</p>
+        <p>Any commercial construction, renovation, or tenant improvement in Texas with an estimated construction cost of $50,000 or more MUST be registered with the Texas Department of Licensing and Regulation (TDLR), reviewed by a Registered Accessibility Specialist (RAS) before permitting, and inspected within 1 year of completion.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>IBC Table 1004.5</td>
+              <td><strong>Occupant Load Factors</strong></td>
+              <td>Business: 150 gross sq ft; Mercantile: 60 gross sq ft; Dining/Assembly: 15 net sq ft.</td>
+            </tr>
+            <tr>
+              <td>TDLR TAS §68.50</td>
+              <td><strong>$50,000 Registration Threshold</strong></td>
+              <td>Mandatory EABPRJ registration + RAS plan review &amp; post-construction inspection for all commercial projects &gt;= $50,000.</td>
+            </tr>
+            <tr>
+              <td>IECC 2021</td>
+              <td><strong>COMcheck Energy Compliance</strong></td>
+              <td>Envelope, lighting power density (LPD), and mechanical COMcheck certificates required at permit submittal.</td>
+            </tr>
+            <tr>
+              <td>IPC Table 403.1</td>
+              <td><strong>Restroom Fixture Counts</strong></td>
+              <td>Single-user unisex restroom allowed for small spaces (typically &lt;= 15 occupants for B/M or &lt;= 30 in some TX amendments).</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Texas IBC Occupant Load &amp; TI Budget Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Occupant Load = Area (sq ft) ÷ IBC Factor   |   TDLR TAS Trigger = Estimated Construction Cost &gt;= $50,000</div>
+          <h3>Worked Example: 5,000 Sq Ft Medical / Professional Office TI in Dallas, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Occupant Load:</strong> 5,000 sq ft ÷ 150 sq ft (Group B) = <strong>34 Occupants</strong>.</li>
+          <li><strong>Step 2 — Egress Check:</strong> Under 50 occupants, but confirm max common path of egress travel (<= 75 ft unsprinklered / <= 100 ft sprinklered).</li>
+          <li><strong>Step 3 — Estimated TI Budget:</strong> 5,000 sq ft × $135/sq ft = <strong>$675,000</strong>.</li>
+          <li><strong>Step 4 — TDLR TAS Filing:</strong> Exceeds $50,000 → obtain TDLR Project Number (TABS) and submit drawings to a Registered Accessibility Specialist (RAS).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Register TABS Number With TDLR</h3>
+          <p>If project valuation is &gt;= $50,000, register online with TDLR ($175 state fee) and hire a Texas RAS before submitting to the city.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Generate COMcheck Energy Reports</h3>
+          <p>Attach signed Lighting, Mechanical, and Envelope COMcheck compliance certificates to the permit package.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Verify Fire Marshal Sprinkler &amp; Alarm Scope</h3>
+          <p>Moving partitions or ceilings in sprinklered Texas buildings requires a licensed Texas RME-G / APS fire submittal.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Complete Post-Construction RAS Inspection</h3>
+          <p>Schedule the mandatory RAS accessibility inspection within 365 days of substantial completion to avoid TDLR fines.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — IBC &amp; TDLR TAS</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>What triggers a TDLR TAS accessibility review in Texas?</summary>
+          <div class="faq-answer">Any commercial building construction, remodel, or tenant finish-out in Texas with an estimated construction cost of $50,000 or more requires TDLR registration and Registered Accessibility Specialist (RAS) review and inspection.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do Texas cities require a TABS number before issuing a commercial building permit?</summary>
+          <div class="faq-answer">Yes. Houston, Dallas, Austin, and San Antonio building departments require your TDLR Architectural Barriers (TABS) registration number on the permit application for projects &gt;= $50,000.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is the IBC occupant load factor for a commercial office in Texas?</summary>
+          <div class="faq-answer">Under the 2021 and 2024 IBC Table 1004.5, Business areas (offices) are calculated at 150 gross square feet per occupant (updated from the older 100 sq ft rule).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is an architect seal required for a commercial tenant improvement in Texas?</summary>
+          <div class="faq-answer">Under the Texas Board of Architectural Examiners (TBAE), an architect seal is generally required for commercial alterations exceeding $50,000 or involving life-safety/egress changes.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other PermitSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-cbc-title24/" class="hub-link-card">
+          <span class="hub-link-title">California — CBC &amp; Title 24</span>
+          <span class="hub-link-sub">California Building Code • Title 24 • Chapter 11B</span>
+        </a>
+        <a href="../nyc-dob-alt2/" class="hub-link-card">
+          <span class="hub-link-title">NYC — BC 2022 &amp; DOB Alt-2</span>
+          <span class="hub-link-sub">2022 NYC Building Code • DOB NOW Alt-2 • NYCECC</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../charge-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial EV Fleet &amp; Infrastructure Calculator</span>
+          <span class="hub-link-sub">ChargeSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../grease-trap/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Grease Trap &amp; Hood CFM Calculator</span>
+          <span class="hub-link-sub">FOGSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../cold-spec/" class="hub-link-card">
+          <span class="hub-link-title">Walk-In Cooler &amp; Cold Storage BTU Calculator</span>
+          <span class="hub-link-sub">ColdSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">PermitSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>
