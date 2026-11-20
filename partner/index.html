@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Partner Dispatch Portal | TradeSpec Pro™</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="portal-shell">
+    <!-- Left Navigation Sidebar -->
+    <aside class="portal-sidebar" id="portalSidebar" aria-label="Partner Portal Navigation">
+      <div class="sidebar-brand">
+        <span class="brand-mark">T</span>
+        <div>
+          <span class="brand-name">TradeSpec Pro™</span>
+          <span class="brand-sub">B2B Partner Portal</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-label">Lead Dispatch</span>
+        <button type="button" class="sidebar-btn active" data-view="monitor">
+          <span class="sidebar-btn-left">📊 Leads &amp; Spend Monitor</span>
+          <span class="sidebar-badge" id="navLeadBadge">0</span>
+        </button>
+
+        <span class="nav-section-label">Territory &amp; Scope</span>
+        <button type="button" class="sidebar-btn" data-view="territory">
+          <span class="sidebar-btn-left">🔒 Territory Lock</span>
+        </button>
+        <button type="button" class="sidebar-btn" data-view="sources">
+          <span class="sidebar-btn-left">⚡ Lead Sources</span>
+          <span class="sidebar-badge" id="navSourceBadge">1/9</span>
+        </button>
+
+        <span class="nav-section-label">Business &amp; Stack</span>
+        <button type="button" class="sidebar-btn" data-view="integrations">
+          <span class="sidebar-btn-left">🔌 CRM &amp; Integrations</span>
+        </button>
+        <button type="button" class="sidebar-btn" data-view="settings">
+          <span class="sidebar-btn-left">⚙️ Company Settings</span>
+        </button>
+
+        <span class="nav-section-label">Public Suite</span>
+        <a href="../" class="sidebar-btn" style="text-decoration:none;">
+          <span class="sidebar-btn-left">&larr; Public Calculators</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="contractor-chip">
+          <div class="contractor-chip-name" id="sidebarCompanyName">Loading Partner...</div>
+          <div class="contractor-chip-meta" id="sidebarCompanyMeta">Verified Subcontractor</div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm btn-block" id="logoutBtn">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Portal Workspace -->
+    <div class="portal-main">
+      <header class="portal-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">&#9776;</button>
+          <h1 class="topbar-title" id="topbarTitle">Leads &amp; Monthly Spend Dashboard</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="status-pill" id="dbStatusPill"><span class="status-dot"></span><span>Connecting...</span></span>
+          <button type="button" class="wallet-pill" id="walletQuickBtn" title="Dispatch Wallet Balance">
+            💳 <span id="walletPillVal">$0</span>
+          </button>
+        </div>
+      </header>
+
+      <main class="portal-content">
+        <section class="view-panel active" id="view-monitor"></section>
+        <section class="view-panel" id="view-territory"></section>
+        <section class="view-panel" id="view-sources"></section>
+        <section class="view-panel" id="view-integrations"></section>
+        <section class="view-panel" id="view-settings"></section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Universal Spec Sheet Modal -->
+  <div class="modal-backdrop hidden" id="portalModal" role="dialog" aria-modal="true" aria-labelledby="portalModalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="card-title" id="portalModalTitle">Engineering Spec Sheet</h3>
+        <button type="button" class="modal-close" id="portalModalClose" aria-label="Close modal">&times;</button>
+      </div>
+      <div id="portalModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <!-- Supabase SDK + Root Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-client.js"></script>
+  <!-- Central Store -->
+  <script src="js/store.js"></script>
+  <!-- 5 Dedicated Modular Components -->
+  <script src="components/leads-monitor.js"></script>
+  <script src="components/territory-lock.js"></script>
+  <script src="components/lead-sources.js"></script>
+  <script src="components/company-settings.js"></script>
+  <script src="components/integrations.js"></script>
+  <!-- Shell Orchestrator -->
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

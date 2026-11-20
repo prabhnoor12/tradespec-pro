@@ -1,0 +1,476 @@
+/* ==========================================================================
+   TradeSpec Pro™ Partner Portal — Scoped Component Styles
+   Covers: Leads Monitor, Territory Lock, Lead Sources, Settings, Integrations
+   ========================================================================== */
+
+/* --- 1. LEADS MONITOR & LOYALTY WALLET --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.kpi-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.kpi-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.kpi-value.accent-blue { color: var(--accent-blue); }
+.kpi-value.accent-gold { color: var(--accent-gold); }
+.kpi-value.accent-green { color: var(--accent-green); }
+
+.kpi-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+/* Loyalty & Auto-Reload Strip */
+.loyalty-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(56, 189, 248, 0.08));
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.loyalty-info h3 {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  margin-bottom: 0.2rem;
+}
+
+.loyalty-info p {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.loyalty-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* Filter Toolbar */
+.toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.38rem 0.8rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.filter-pill.active {
+  background: rgba(56, 189, 248, 0.16);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.search-input {
+  min-width: 220px;
+  max-width: 300px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-md);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+/* Leads Table */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.data-table th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: rgba(7, 11, 20, 0.45);
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.lead-primary-title {
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+}
+
+.lead-meta-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1.25rem;
+  color: var(--text-secondary);
+}
+
+.empty-state-icon {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.empty-state h4 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.empty-state p {
+  max-width: 520px;
+  margin: 0 auto 1rem;
+  font-size: 0.86rem;
+}
+
+/* --- 2. TERRITORY LOCK COMPONENT --- */
+.territory-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+.territory-status-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+}
+
+.slot-meter {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin: 0.75rem 0;
+}
+
+.slot-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+  border-radius: var(--radius-pill);
+  transition: width 0.3s ease;
+}
+
+.slot-meter-fill.full {
+  background: var(--accent-red);
+}
+
+.slot-meter-fill.locked {
+  background: var(--accent-gold);
+}
+
+.exclusivity-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tier-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+
+.tier-card.featured {
+  border-color: var(--accent-gold);
+  background: linear-gradient(160deg, rgba(245, 158, 11, 0.09), var(--bg-input));
+}
+
+.tier-price {
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.tier-price span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.tier-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+/* --- 3. LEAD SOURCES (SINGLE VS MULTI) --- */
+.mode-switch-bar {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.mode-btn {
+  flex: 1;
+  min-width: 220px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.mode-btn strong {
+  display: block;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  margin-bottom: 0.2rem;
+}
+
+.mode-btn span {
+  font-size: 0.78rem;
+}
+
+.mode-btn.active {
+  border-color: var(--accent-blue);
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.source-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.source-card:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.source-card.selected {
+  border-color: var(--accent-blue);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.source-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.source-name {
+  font-weight: 800;
+  font-size: 0.94rem;
+  color: var(--text-primary);
+}
+
+.source-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.source-pricing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.source-pricing .excl {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* --- 4. INTEGRATIONS HUB --- */
+.integration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.integration-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: border-color 0.15s ease;
+}
+
+.integration-card:hover {
+  border-color: var(--accent-blue);
+}
+
+.integration-card.active {
+  border-color: var(--accent-green);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.integration-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.integration-name {
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.integration-cat {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.payload-preview {
+  background: #050811;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #7dd3fc;
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+/* Spec Dossier Modal Key-Value Grid */
+.spec-kv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 0.9rem 0;
+}
+
+.spec-kv-item {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.85rem;
+}
+
+.spec-kv-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.spec-kv-val {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}

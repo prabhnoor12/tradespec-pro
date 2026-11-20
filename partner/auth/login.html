@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Contractor Partner Login | TradeSpec Pro™</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+  <header class="auth-header">
+    <a href="../../" class="auth-header-brand">
+      <span class="brand-mark">T</span>
+      <span>TradeSpec Pro™ <small style="color:#f59e0b;font-size:0.75rem;margin-left:4px;">B2B Partner Portal</small></span>
+    </a>
+    <nav class="auth-header-links">
+      <a href="../../">Public Calculators</a>
+      <a href="signup.html" class="btn btn-primary btn-sm">Register Subcontractor Account &rarr;</a>
+    </nav>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-single">
+      <section class="auth-panel">
+        <span class="auth-kicker">Verified Subcontractor Access</span>
+        <h1 class="auth-title">Partner Console Sign In</h1>
+        <p class="auth-lead">Access your live commercial RFP feed, locked territory seats, spend ledger, and CRM webhooks.</p>
+
+        <div id="loginAlert" class="auth-alert error hidden" role="alert"></div>
+
+        <form id="partnerLoginForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label" for="loginEmail">Registered Business Dispatch Email</label>
+              <input class="form-input" type="email" id="loginEmail" placeholder="estimating@yourcompany.com" required autocomplete="email">
+            </div>
+
+            <div class="form-group full">
+              <label class="form-label" for="loginPin">Contractor Access PIN</label>
+              <input class="form-input" type="password" id="loginPin" placeholder="4–8 digit PIN" inputmode="numeric" maxlength="8" required autocomplete="current-password">
+              <span class="form-hint">Verified live against the TradeSpec Pro Supabase partner registry.</span>
+            </div>
+          </div>
+
+          <div class="auth-actions-row">
+            <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">Sign In to Partner Portal &rarr;</button>
+          </div>
+        </form>
+
+        <div class="auth-footer-note">
+          New commercial contractor? <a href="signup.html"><strong>Verify territory &amp; create a B2B partner account &rarr;</strong></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../supabase-client.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

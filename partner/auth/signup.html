@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Subcontractor B2B Registration | TradeSpec Pro™</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+  <header class="auth-header">
+    <a href="../../" class="auth-header-brand">
+      <span class="brand-mark">T</span>
+      <span>TradeSpec Pro™ <small style="color:#f59e0b;font-size:0.75rem;margin-left:4px;">Commercial Partner Network</small></span>
+    </a>
+    <nav class="auth-header-links">
+      <a href="../../">Public Calculators</a>
+      <a href="login.html" class="btn btn-secondary btn-sm">Existing Partner Login</a>
+    </nav>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-split">
+
+      <!-- Left B2B Value Column -->
+      <aside class="auth-aside">
+        <span class="auth-kicker">High-Carat Commercial RFPs</span>
+        <h2 class="auth-title">Built Exclusively for Licensed Commercial Subcontractors</h2>
+        <p class="auth-lead">Receive pre-calculated engineering bid packages directly from property owners, GCs, and engineers using TradeSpec Pro's 9 calculators.</p>
+
+        <ul class="b2b-trust-list">
+          <li>
+            <strong>⚡ Pre-Scoped Engineering Specs Attached</strong>
+            Every RFP includes calculated tonnage, 480V kW load, DFU/GPM vault size, board feet, or pallet layout before your estimator picks up the phone.
+          </li>
+          <li>
+            <strong>🔒 Strict Territory Cap (Max 2 or 1-of-1 Exclusive)</strong>
+            We check live Supabase territory capacity before approving your ZIP—zero bidding wars against 8 unvetted contractors.
+          </li>
+          <li>
+            <strong>🔌 Direct Push Into Your Existing CRM / ERP</strong>
+            Route claimed RFPs directly into ServiceTitan, Jobber, Procore, HubSpot, Salesforce, Zapier, or Slack.
+          </li>
+          <li>
+            <strong>🛡️ $250 First-Spec Test Drive Credit + 100% Bad-Lead Refund</strong>
+            Start with $250 dispatch credit to inspect real spec accuracy, backed by instant 1-click credit replacement.
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Right Multi-Step Onboarding Form -->
+      <section class="auth-panel">
+        <div class="auth-stepper" aria-label="Registration Steps">
+          <div class="step-pill active" id="stepPill1">1. Company &amp; License</div>
+          <div class="step-pill" id="stepPill2">2. Territory &amp; Sources</div>
+          <div class="step-pill" id="stepPill3">3. Lock &amp; Launch</div>
+        </div>
+
+        <div id="signupAlert" class="auth-alert error hidden" role="alert"></div>
+
+        <form id="partnerSignupForm" novalidate>
+
+          <!-- STEP 1: COMPANY & CREDENTIALS -->
+          <div class="auth-step-pane active" id="signupStep1">
+            <h1 class="auth-title" style="font-size:1.3rem;">Company &amp; Licensing Credentials</h1>
+            <p class="auth-lead">Commercial verification ensures only licensed, bonded contractors access TradeSpec Pro RFPs.</p>
+
+            <div class="form-grid">
+              <div class="form-group full">
+                <label class="form-label" for="regCompany">Legal Company Name *</label>
+                <input class="form-input" type="text" id="regCompany" placeholder="e.g., Lone Star Commercial Mechanical LLC" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regLicense">State Contractor License # *</label>
+                <input class="form-input" type="text" id="regLicense" placeholder="e.g., TX-TACLA-84920C" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regInsurance">GL Insurance &amp; Bond Coverage</label>
+                <select class="form-select" id="regInsurance">
+                  <option value="$1M / $2M Commercial GL">$1M / $2M Commercial General Liability</option>
+                  <option value="$2M / $5M Commercial GL + Bonded" selected>$2M / $5M Commercial GL + Bonded</option>
+                  <option value="$5M+ Heavy Commercial / Umbrella">$5M+ Heavy Commercial / Umbrella</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regContact">Primary Estimator / Dispatch Name *</label>
+                <input class="form-input" type="text" id="regContact" placeholder="e.g., David Alvarez" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regPhone">Direct Mobile (SMS RFP Alerts) *</label>
+                <input class="form-input" type="tel" id="regPhone" placeholder="(713) 555-0194" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regEmail">Business Dispatch Email *</label>
+                <input class="form-input" type="email" id="regEmail" placeholder="bids@lonestarmech.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regPin">Create Portal Access PIN (4–8 digits) *</label>
+                <input class="form-input" type="password" id="regPin" inputmode="numeric" maxlength="8" placeholder="e.g., 4829" required>
+              </div>
+            </div>
+
+            <div class="auth-actions-row">
+              <a href="login.html" class="btn btn-secondary">Already Registered?</a>
+              <button type="button" class="btn btn-primary" id="nextToStep2Btn">Next: Territory &amp; Lead Sources &rarr;</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: TERRITORY & LEAD SOURCES -->
+          <div class="auth-step-pane" id="signupStep2">
+            <h2 class="auth-title" style="font-size:1.3rem;">Verify Territory &amp; Select Lead Sources</h2>
+            <p class="auth-lead">Check real-time ZIP availability against Supabase and choose single or multiple trade streams.</p>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="regZip">Primary Commercial Base ZIP *</label>
+                <div class="territory-check-inline">
+                  <input class="form-input" type="text" id="regZip" maxlength="5" inputmode="numeric" placeholder="77002" required>
+                  <button type="button" class="btn btn-gold btn-sm" id="signupCheckTerritoryBtn">Verify ZIP</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regRadius">Service Dispatch Radius</label>
+                <select class="form-select" id="regRadius">
+                  <option value="25">25 Miles (Metro Core)</option>
+                  <option value="50" selected>50 Miles (Greater Metro)</option>
+                  <option value="75">75 Miles (Regional Corridor)</option>
+                  <option value="100">100 Miles (Multi-County Commercial)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="signupTerritoryStatus" class="auth-alert hidden" style="margin-top:0.85rem;"></div>
+
+            <div class="form-group full" style="margin-top:1rem;">
+              <label class="form-label">Select Lead Sources (Single or Multi-Trade) *</label>
+              <span class="form-hint">You will ONLY receive and monitor RFPs from the trade streams checked below.</span>
+              <div class="auth-source-grid" id="signupSourcesGrid"></div>
+            </div>
+
+            <div class="auth-actions-row">
+              <button type="button" class="btn btn-secondary" id="backToStep1Btn">&larr; Back</button>
+              <button type="button" class="btn btn-primary" id="nextToStep3Btn">Next: Exclusivity &amp; Review &rarr;</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: EXCLUSIVITY & CONFIRM -->
+          <div class="auth-step-pane" id="signupStep3">
+            <h2 class="auth-title" style="font-size:1.3rem;">Exclusivity Tier &amp; Launch</h2>
+            <p class="auth-lead">Choose how aggressively you want to lock down RFPs in your service radius.</p>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="regExclusivity">Territory Dispatch Mode</label>
+                <select class="form-select" id="regExclusivity">
+                  <option value="semi_max2" selected>Semi-Exclusive (Max 2 Partners per ZIP — Pay-Per-RFP)</option>
+                  <option value="exclusive_1of1">1-of-1 Exclusive Metro Lock (100% Exclusive First-Call)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regMinJob">Minimum Project Value Filter</label>
+                <select class="form-select" id="regMinJob">
+                  <option value="5000">$5,000+ (All Commercial Picks &amp; Jobs)</option>
+                  <option value="15000" selected>$15,000+ (Standard Commercial)</option>
+                  <option value="35000">$35,000+ (Mid-Market Commercial)</option>
+                  <option value="75000">$75,000+ (Heavy Commercial / Enterprise)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="signupReviewSummary" style="margin-top:1.1rem;"></div>
+
+            <div class="auth-actions-row">
+              <button type="button" class="btn btn-secondary" id="backToStep2Btn">&larr; Back</button>
+              <button type="submit" class="btn btn-gold" id="completeSignupBtn">Create Partner Account &amp; Open Dashboard &rarr;</button>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../supabase-client.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
