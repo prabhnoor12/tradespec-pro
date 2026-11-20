@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Commercial &amp; Ag Water Well Sizing Calculator (DWR &amp; SGMA) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial and agricultural water wells, pump HP, and budgets in California under DWR Bulletin 74-90, County Environmental Health permits, and SGMA GSA groundwater sustainability rules.">
+  <meta name="keywords" content="california commercial water well cost calculator, ca dwr bulletin 74-90, sgma groundwater well permit california, central valley ag well pump sizing, california well drilling cost per foot">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/well-drilling/california-sgma/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="California Commercial &amp; Ag Water Well Sizing Calculator (DWR &amp; SGMA)">
+  <meta property="og:description" content="Size commercial and agricultural water wells, pump HP, and budgets in California under DWR Bulletin 74-90, County Environmental Health permits, and SGMA GSA groundwater sustainability rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/well-drilling/california-sgma/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="California Commercial &amp; Ag Water Well Sizing Calculator (DWR &amp; SGMA)">
+  <meta name="twitter:description" content="Size commercial and agricultural water wells, pump HP, and budgets in California under DWR Bulletin 74-90, County Environmental Health permits, and SGMA GSA groundwater sustainability rules.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Water Well & Pump Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "California \u2014 DWR & SGMA",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/california-sgma/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "California Commercial & Ag Water Well Sizing Calculator (DWR & SGMA)",
+  "description": "Size commercial and agricultural water wells, pump HP, and budgets in California under DWR Bulletin 74-90, County Environmental Health permits, and SGMA GSA groundwater sustainability rules.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/california-sgma/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Water Well & Pump Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How deep is the required sanitary seal for a commercial well in California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under DWR Bulletin 74-90, agricultural and commercial wells typically require a minimum 50-foot annular cement seal (compared to 20 feet for standard domestic wells in some counties)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does SGMA affect new commercial water wells in California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under the Sustainable Groundwater Management Act (SGMA), counties cannot issue permits for new non-domestic wells in medium- or high-priority basins without verifying consistency with the local GSA's Groundwater Sustainability Plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What license is required to drill a water well in California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only a contractor holding an active California Contractors State License Board (CSLB) C-57 Water Well Drilling license can legally drill or rehabilitate a water well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a commercial water well cost in California?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Expect $75 to $130+ per foot for commercial 6-inch to 10-inch rotary-drilled wells with stainless steel screen, gravel pack, and 50-foot cement seal, excluding pump and electrical service."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">WellSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Water Well &amp; Pump Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">California — DWR &amp; SGMA</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 CA DWR Bulletin 74-90 • SGMA GSA • County EHD</div>
+      <h1>California Commercial &amp; Ag Water Well Calculator (DWR Bulletin 74-90 &amp; SGMA)</h1>
+      <p class="guide-hero-lead">Estimate commercial and agricultural water well drilling depth, Total Dynamic Head (TDH), pump horsepower, and budgets calibrated for California DWR Bulletin 74-90 sanitary seals and SGMA Groundwater Sustainability Agency (GSA) rules.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full WellSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick California Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Standard</span>
+            <span class="spec-meta-val">CA DWR Bulletin 74-81 / 74-90</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Groundwater Authority</span>
+            <span class="spec-meta-val">Local SGMA GSA &amp; County EHD</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Sanitary Annular Seal</span>
+            <span class="spec-meta-val">Min. 50 ft Cement Seal (Commercial)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Driller License</span>
+            <span class="spec-meta-val">CSLB C-57 Water Well Contractor</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured California — DWR &amp; SGMA Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>California (DWR Bulletin 74-90 &amp; SGMA GSA Permits)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="well">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick California — DWR &amp; SGMA Water Well &amp; Pump Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: $95/ft Local Drilling Rate</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_depth">Target Well Depth (ft)</label>
+              <input type="number" id="qc_depth" value="600" min="80" max="2000" step="25">
+            </div>
+            <div class="calc-field">
+              <label for="qc_gpm">Required Flow Rate (GPM)</label>
+              <input type="number" id="qc_gpm" value="80" min="10" max="500" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_costft">Local Drilling + Casing ($/ft)</label>
+              <input type="number" id="qc_costft" value="95" min="25" max="200" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Dynamic Head</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Submersible Pump</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Rec. Casing Dia.</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Turnkey Cost</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Water Well &amp; Aquifer Pump Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>California SGMA Permitting &amp; DWR Bulletin 74-90 Sanitary Seal Rules</h2>
+        <p>Drilling a commercial or agricultural water well in California requires navigating both County Environmental Health Department (EHD) construction standards (DWR Bulletin 74-90) and the Sustainable Groundwater Management Act (SGMA). In medium- and high-priority basins across the Central Valley, Salinas Valley, and Southern California, counties must obtain written consistency verification from the local Groundwater Sustainability Agency (GSA) before issuing a commercial well permit.</p>
+        <p>California also mandates a much deeper annular sanitary cement seal—typically 50 feet minimum for commercial/agricultural wells (and 50–100+ feet for public supply)—plus a CSLB C-57 licensed drilling contractor.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>DWR Bulletin 74-90</td>
+              <td><strong>50-Foot Annular Sanitary Seal</strong></td>
+              <td>Commercial and public supply wells require a minimum 50 ft cement grout seal inspected by County EHD.</td>
+            </tr>
+            <tr>
+              <td>SGMA / Exec. Order</td>
+              <td><strong>GSA Consistency Verification</strong></td>
+              <td>New non-domestic wells in medium/high-priority basins require written GSA determination of no undesirable subsidence/depletion.</td>
+            </tr>
+            <tr>
+              <td>CSLB C-57 License</td>
+              <td><strong>Licensed Well Driller</strong></td>
+              <td>All drilling, deepening, and well destruction must be performed by an active California C-57 contractor.</td>
+            </tr>
+            <tr>
+              <td>SWRCB DDW</td>
+              <td><strong>Public Supply Standards</strong></td>
+              <td>Commercial facilities serving 25+ people/day trigger State Water Board Division of Drinking Water permitting.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>California Deep-Well TDH &amp; Submersible Pump Sizing Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">TDH (ft) = Pumping Depth + 115 ft (50 PSI) + Friction   |   HP = (GPM × TDH) ÷ (3,960 × 0.62)</div>
+          <h3>Worked Example: 600 ft, 80 GPM Commercial / Ag Well in Central California</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Pumping Level & TDH:</strong> 600 ft alluvial basin well with 432 ft pumping water level + 125 ft pressure/friction = <strong>557 ft TDH</strong>.</li>
+          <li><strong>Step 2 — Pump Horsepower:</strong> (80 GPM × 557 ft) ÷ 2,455 = 18.15 → specify <strong>20 HP 480V 3-phase submersible pump</strong> with VFD.</li>
+          <li><strong>Step 3 — Casing & 50 ft Seal:</strong> 6-inch or 8-inch stainless-screened casing with 50 ft neat-cement sanitary seal witnessed by County EHD.</li>
+          <li><strong>Step 4 — Turnkey Budget:</strong> 600 ft × $95/ft ($57,000) + 20 HP pump/VFD/column ($23,500) ≈ <strong>$80,500 turnkey</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>California Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Obtain Local SGMA GSA Written Verification</h3>
+          <p>Verify basin priority and obtain GSA groundwater sustainability consistency sign-off prior to County EHD submittal.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Hire Active CSLB C-57 Contractor</h3>
+          <p>Verify C-57 license and workers&#x27; comp before filing the County Environmental Health well permit.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Schedule Witnessed 50-Foot Annular Seal</h3>
+          <p>County EHD inspector must witness the cement grout pour for the minimum 50-foot sanitary seal.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Install Totalizing Flow Meter</h3>
+          <p>Most California GSAs require calibrated flow meters and semi-annual groundwater extraction reporting.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — California — DWR &amp; SGMA</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>How deep is the required sanitary seal for a commercial well in California?</summary>
+          <div class="faq-answer">Under DWR Bulletin 74-90, agricultural and commercial wells typically require a minimum 50-foot annular cement seal (compared to 20 feet for standard domestic wells in some counties).</div>
+        </details>
+        <details class="faq-item">
+          <summary>How does SGMA affect new commercial water wells in California?</summary>
+          <div class="faq-answer">Under the Sustainable Groundwater Management Act (SGMA), counties cannot issue permits for new non-domestic wells in medium- or high-priority basins without verifying consistency with the local GSA&#x27;s Groundwater Sustainability Plan.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What license is required to drill a water well in California?</summary>
+          <div class="faq-answer">Only a contractor holding an active California Contractors State License Board (CSLB) C-57 Water Well Drilling license can legally drill or rehabilitate a water well.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How much does a commercial water well cost in California?</summary>
+          <div class="faq-answer">Expect $75 to $130+ per foot for commercial 6-inch to 10-inch rotary-drilled wells with stainless steel screen, gravel pack, and 50-foot cement seal, excluding pump and electrical service.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other WellSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-tdlr/" class="hub-link-card">
+          <span class="hub-link-title">Texas — TDLR Ch. 76 &amp; GCDs</span>
+          <span class="hub-link-sub">TDLR 16 TAC Ch. 76 • Groundwater Conservation Districts</span>
+        </a>
+        <a href="../florida-wmd/" class="hub-link-card">
+          <span class="hub-link-title">Florida — FDEP &amp; WMD CUP</span>
+          <span class="hub-link-sub">FDEP Ch. 62-532 • Floridan Aquifer • WMD CUP</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../charge-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial EV Fleet &amp; Infrastructure Calculator</span>
+          <span class="hub-link-sub">ChargeSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">WellSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

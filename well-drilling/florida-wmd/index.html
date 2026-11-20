@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Commercial Water Well &amp; Pump Calculator (FDEP 62-532 &amp; WMD) | TradeSpec Pro™</title>
+  <meta name="description" content="Size commercial water wells, Floridan Aquifer pump HP, and drilling budgets in Florida under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits (CUP).">
+  <meta name="keywords" content="florida commercial water well cost calculator, floridan aquifer well drilling cost, fdep chapter 62-532 water well, florida wmd consumptive use permit, florida well pump sizing">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/well-drilling/florida-wmd/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Florida Commercial Water Well &amp; Pump Calculator (FDEP 62-532 &amp; WMD)">
+  <meta property="og:description" content="Size commercial water wells, Floridan Aquifer pump HP, and drilling budgets in Florida under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits (CUP).">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/well-drilling/florida-wmd/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Florida Commercial Water Well &amp; Pump Calculator (FDEP 62-532 &amp; WMD)">
+  <meta name="twitter:description" content="Size commercial water wells, Floridan Aquifer pump HP, and drilling budgets in Florida under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits (CUP).">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Commercial Water Well & Pump Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Florida \u2014 FDEP & WMD CUP",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/florida-wmd/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Florida Commercial Water Well & Pump Calculator (FDEP 62-532 & WMD)",
+  "description": "Size commercial water wells, Floridan Aquifer pump HP, and drilling budgets in Florida under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits (CUP).",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/florida-wmd/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Commercial Water Well & Pump Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/well-drilling/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When do I need a Consumptive Use Permit (CUP) for a commercial well in Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most Florida Water Management Districts require a CUP/WUP when a commercial well uses a 6-inch or larger casing diameter, withdraws over 100,000 gallons per day, or sits inside a Water Use Caution Area."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How deep are commercial Floridan Aquifer wells in Central Florida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most commercial Upper Floridan wells in Orlando, Tampa, and Jacksonville range from 250 to 600 feet deep, frequently yielding 60 to 300+ GPM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Florida require a licensed driller for commercial wells?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under Florida Statutes Chapter 373, all water well construction must be performed by a Water Management District-licensed Water Well Contractor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is stainless steel recommended for Florida commercial well pumps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Floridan Aquifer water often contains elevated dissolved sulfur (hydrogen sulfide), iron, and chlorides in coastal areas, which corrode cast-iron pump housings rapidly."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">WellSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Commercial Water Well &amp; Pump Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Florida — FDEP &amp; WMD CUP</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 FDEP Ch. 62-532 • Floridan Aquifer • WMD CUP</div>
+      <h1>Florida Commercial Water Well &amp; Pump Calculator (FDEP Ch. 62-532 &amp; WMD)</h1>
+      <p class="guide-hero-lead">Estimate commercial water well drilling costs, Total Dynamic Head, and submersible pump sizing tapping the Floridan or Biscayne Aquifers under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full WellSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Florida Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Governing Regulation</span>
+            <span class="spec-meta-val">FDEP Ch. 62-532 F.A.C.</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Permit Authority</span>
+            <span class="spec-meta-val">SFWMD / SWFWMD / SJRWMD (WUP/CUP)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Primary Commercial Aquifer</span>
+            <span class="spec-meta-val">Upper Floridan Limestone (250–650 ft)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Driller License</span>
+            <span class="spec-meta-val">FL Licensed Water Well Contractor</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Florida — FDEP &amp; WMD CUP Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Florida (FDEP Ch. 62-532 &amp; WMD Consumptive Use Permits)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="well">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Florida — FDEP &amp; WMD CUP Water Well &amp; Pump Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: $52/ft Local Drilling Rate</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_depth">Target Well Depth (ft)</label>
+              <input type="number" id="qc_depth" value="350" min="80" max="2000" step="25">
+            </div>
+            <div class="calc-field">
+              <label for="qc_gpm">Required Flow Rate (GPM)</label>
+              <input type="number" id="qc_gpm" value="75" min="10" max="500" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_costft">Local Drilling + Casing ($/ft)</label>
+              <input type="number" id="qc_costft" value="52" min="25" max="200" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Dynamic Head</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Submersible Pump</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Rec. Casing Dia.</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Turnkey Cost</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Water Well &amp; Aquifer Pump Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Tapping the Floridan Aquifer Under FDEP Chapter 62-532 &amp; WMD Rules</h2>
+        <p>Commercial, irrigation, and industrial wells across Central and North Florida typically tap the high-yielding Upper Floridan limestone aquifer (often 200 to 650 feet deep), while South Florida commercial wells tap either the surficial Biscayne Aquifer or deeper brackish Floridan zones. All well construction is governed by FDEP Chapter 62-532 F.A.C. and delegated to Florida&#x27;s five Water Management Districts.</p>
+        <p>Commercial wells with casing diameters of 6 inches or larger—or average daily withdrawals exceeding district thresholds (often 100,000 GPD)—require a formal Water Use Permit (WUP) or Consumptive Use Permit (CUP) alongside the standard well construction permit.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>FDEP 62-532.400</td>
+              <td><strong>Well Construction Permits</strong></td>
+              <td>Required from the local Water Management District or delegated county health department prior to mobilizing.</td>
+            </tr>
+            <tr>
+              <td>FDEP 62-532.500</td>
+              <td><strong>Casing &amp; Grouting Standards</strong></td>
+              <td>Casing must seat into the confining limestone formation with continuous neat cement grout to prevent saltwater intrusion.</td>
+            </tr>
+            <tr>
+              <td>WMD CUP / WUP</td>
+              <td><strong>Consumptive Use Permit</strong></td>
+              <td>Mandatory for large commercial/industrial/irrigation withdrawals (&gt;= 6&quot; casing or high daily GPD allocations).</td>
+            </tr>
+            <tr>
+              <td>FDOH Ch. 64E-8</td>
+              <td><strong>Limited Use Public Systems</strong></td>
+              <td>Commercial properties serving non-community drinking water require Florida Dept. of Health microbiological testing.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Florida Limestone Aquifer TDH &amp; Pump Sizing Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">TDH (ft) = Pumping Level + (50 PSI × 2.31) + Friction   |   HP = (GPM × TDH) ÷ (3,960 × 0.62)</div>
+          <h3>Worked Example: 350 ft, 75 GPM Upper Floridan Commercial Well in Central FL</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Pumping Level & TDH:</strong> High-yield Floridan limestone well with 252 ft pumping head + 125 ft surface pressure/friction = <strong>377 ft TDH</strong>.</li>
+          <li><strong>Step 2 — Pump Horsepower:</strong> (75 GPM × 377 ft) ÷ 2,455 = 11.5 → specify <strong>15 HP submersible pump</strong> with stainless steel impellers for mineral resistance.</li>
+          <li><strong>Step 3 — Casing & Grout:</strong> 6-inch Schedule 80 PVC or steel casing grouted solidly into the Ocala/Avon Park limestone cap.</li>
+          <li><strong>Step 4 — Turnkey Budget:</strong> 350 ft × $52/ft ($18,200) + 15 HP pump/VFD/wellhead ($18,750) ≈ <strong>$36,950 turnkey</strong>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Florida Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Verify WMD CUP / WUP Threshold</h3>
+          <p>Check SFWMD, SWFWMD, or SJRWMD rules to see if your casing diameter (&gt;= 6&quot;) or daily GPM triggers a Consumptive Use Permit.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Screen for Saltwater Intrusion Zones</h3>
+          <p>Coastal Florida parcels require chloride testing and strict well-depth caps to avoid brackish upconing.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Confirm Septic &amp; Stormwater Setbacks</h3>
+          <p>Maintain minimum 75–100 ft separation from septic systems and sanitary hazards per FDEP 62-532.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>File Well Completion Report</h3>
+          <p>Licensed Florida Water Well Contractor must submit completion log and cuttings data within 30 days.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Florida — FDEP &amp; WMD CUP</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>When do I need a Consumptive Use Permit (CUP) for a commercial well in Florida?</summary>
+          <div class="faq-answer">Most Florida Water Management Districts require a CUP/WUP when a commercial well uses a 6-inch or larger casing diameter, withdraws over 100,000 gallons per day, or sits inside a Water Use Caution Area.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How deep are commercial Floridan Aquifer wells in Central Florida?</summary>
+          <div class="faq-answer">Most commercial Upper Floridan wells in Orlando, Tampa, and Jacksonville range from 250 to 600 feet deep, frequently yielding 60 to 300+ GPM.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does Florida require a licensed driller for commercial wells?</summary>
+          <div class="faq-answer">Yes. Under Florida Statutes Chapter 373, all water well construction must be performed by a Water Management District-licensed Water Well Contractor.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why is stainless steel recommended for Florida commercial well pumps?</summary>
+          <div class="faq-answer">Floridan Aquifer water often contains elevated dissolved sulfur (hydrogen sulfide), iron, and chlorides in coastal areas, which corrode cast-iron pump housings rapidly.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other WellSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../texas-tdlr/" class="hub-link-card">
+          <span class="hub-link-title">Texas — TDLR Ch. 76 &amp; GCDs</span>
+          <span class="hub-link-sub">TDLR 16 TAC Ch. 76 • Groundwater Conservation Districts</span>
+        </a>
+        <a href="../california-sgma/" class="hub-link-card">
+          <span class="hub-link-title">California — DWR &amp; SGMA</span>
+          <span class="hub-link-sub">CA DWR Bulletin 74-90 • SGMA GSA • County EHD</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../site-spec/" class="hub-link-card">
+          <span class="hub-link-title">Civil Earthwork &amp; Stormwater Runoff Calculator</span>
+          <span class="hub-link-sub">SiteSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../charge-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial EV Fleet &amp; Infrastructure Calculator</span>
+          <span class="hub-link-sub">ChargeSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">WellSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

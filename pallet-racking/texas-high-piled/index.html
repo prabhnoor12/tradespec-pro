@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Warehouse Pallet Racking &amp; High-Piled Storage Calculator (IFC Ch. 32) | TradeSpec Pro™</title>
+  <meta name="description" content="Calculate warehouse pallet positions, forklift aisle widths, and IFC Chapter 32 High-Piled Storage permit requirements for Dallas-Fort Worth, Houston, and Austin logistics centers.">
+  <meta name="keywords" content="texas warehouse pallet racking layout calculator, ifc chapter 32 high piled storage texas, dallas warehouse rack permit, houston pallet rack layout calculator, esfr sprinkler rack clearance">
+  <link rel="canonical" href="https://prabhnoor12.github.io/tradespec-pro/pallet-racking/texas-high-piled/">
+
+  <!-- OpenGraph / Social -->
+  <meta property="og:title" content="Texas Warehouse Pallet Racking &amp; High-Piled Storage Calculator (IFC Ch. 32)">
+  <meta property="og:description" content="Calculate warehouse pallet positions, forklift aisle widths, and IFC Chapter 32 High-Piled Storage permit requirements for Dallas-Fort Worth, Houston, and Austin logistics centers.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prabhnoor12.github.io/tradespec-pro/pallet-racking/texas-high-piled/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Texas Warehouse Pallet Racking &amp; High-Piled Storage Calculator (IFC Ch. 32)">
+  <meta name="twitter:description" content="Calculate warehouse pallet positions, forklift aisle widths, and IFC Chapter 32 High-Piled Storage permit requirements for Dallas-Fort Worth, Houston, and Austin logistics centers.">
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TradeSpec Pro",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Warehouse Pallet Racking Layout Calculator",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/pallet-racking/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Texas \u2014 IFC Ch. 32 & RMI",
+      "item": "https://prabhnoor12.github.io/tradespec-pro/pallet-racking/texas-high-piled/"
+    }
+  ]
+}
+  </script>
+
+  <!-- Structured Data: TechArticle -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Texas Warehouse Pallet Racking & High-Piled Storage Calculator (IFC Ch. 32)",
+  "description": "Calculate warehouse pallet positions, forklift aisle widths, and IFC Chapter 32 High-Piled Storage permit requirements for Dallas-Fort Worth, Houston, and Austin logistics centers.",
+  "url": "https://prabhnoor12.github.io/tradespec-pro/pallet-racking/texas-high-piled/",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro Engineering"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TradeSpec Pro\u2122"
+  },
+  "about": {
+    "@type": "WebApplication",
+    "name": "Warehouse Pallet Racking Layout Calculator",
+    "url": "https://prabhnoor12.github.io/tradespec-pro/pallet-racking/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All"
+  }
+}
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a permit to install pallet racking in Dallas or Houston?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Both cities require a building/rack permit for storage racks over 8 feet tall AND an IFC Chapter 32 High-Piled Combustible Storage permit from the Fire Marshal when storage exceeds 12 feet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do solid wood decking shelves violate NFPA 13 in Texas warehouses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Solid shelving blocks ESFR sprinkler water penetration and typically triggers expensive in-rack sprinklers. Use open wire mesh decking (at least 70% open) instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much clearance is required between top pallets and ESFR sprinklers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NFPA 13 requires a minimum of 36 inches of clear vertical space between the top of the highest stored pallet and the deflector of ESFR sprinkler heads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many pallet positions fit in a 40,000 sq ft warehouse with 32-foot ceilings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With standard selective racking and 10.5-foot reach-truck aisles, a 40,000 sq ft warehouse typically holds 3,000 to 3,400 standard 48\"\u00d740\" GMA pallets."
+      }
+    }
+  ]
+}
+  </script>
+
+  <link rel="stylesheet" href="../../css/code-guide.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="guide-header">
+    <div class="container guide-header-inner">
+      <a href="../../" class="guide-brand">
+        <span>TradeSpec Pro™</span>
+        <span class="guide-brand-badge">RackSpec Pro</span>
+      </a>
+      <nav class="guide-nav" aria-label="Primary Navigation">
+        <a href="../../">All 9 Calculators</a>
+        <a href="#quick-estimator">Quick Estimator</a>
+        <a href="#code-reference">Code Table</a>
+        <a href="#worked-example">Worked Example</a>
+        <a href="#faq">FAQs</a>
+        <a href="../" class="nav-cta">Launch Full Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="../../">TradeSpec Pro</a></li>
+        <li><a href="../">Warehouse Pallet Racking Layout Calculator</a></li>
+        <li class="breadcrumb-current" aria-current="page">Texas — IFC Ch. 32 &amp; RMI</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="guide-hero">
+    <div class="container">
+      <div class="jurisdiction-pill">📍 IFC Chapter 32 • RMI MH16.1 (SDC A/B) • NFPA 13</div>
+      <h1>Texas Warehouse Pallet Racking &amp; High-Piled Calculator (IFC Ch. 32 &amp; RMI)</h1>
+      <p class="guide-hero-lead">Optimize warehouse pallet density, reach-truck aisle widths, and IFC Chapter 32 High-Piled Combustible Storage compliance across Dallas-Fort Worth, Houston, San Antonio, and Austin industrial parks.</p>
+
+      <div class="hero-actions">
+        <a href="../" class="btn btn-primary">⚡ Open Full RackSpec Pro™ Calculator</a>
+        <a href="#quick-estimator" class="btn btn-secondary">Run Quick Texas Check &darr;</a>
+      </div>
+
+      <div class="spec-meta-grid">
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Structural Rack Code</span>
+            <span class="spec-meta-val">IBC &amp; ANSI / RMI MH16.1 (SDC A/B)</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Fire &amp; High-Piled Code</span>
+            <span class="spec-meta-val">IFC 2021/2024 Chapter 32</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">High-Piled Trigger</span>
+            <span class="spec-meta-val">Storage Height &gt; 12 ft</span>
+          </div>
+          <div class="spec-meta-card">
+            <span class="spec-meta-label">Permit Authority</span>
+            <span class="spec-meta-val">City Building &amp; Fire Marshal</span>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="guide-main">
+    <div class="container">
+
+      <!-- 1. Interactive Quick Estimator -->
+      <section class="guide-section" id="quick-estimator">
+        <span class="section-kicker">Interactive Jurisdiction Tool</span>
+        <h2>Pre-Configured Texas — IFC Ch. 32 &amp; RMI Quick Estimator</h2>
+        <p>Default values below are pre-seeded for <strong>Texas (IFC Ch. 32 High-Piled Storage &amp; RMI MH16.1)</strong>. Adjust inputs for an instant code-aligned sanity check, or launch the full calculator for printable engineering specs.</p>
+
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="racking">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick Texas — IFC Ch. 32 &amp; RMI Pallet Rack Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: 32 ft Clear / 10.5 ft Aisles</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Total Warehouse Floor Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="40000" min="2000" max="500000" step="1000">
+            </div>
+            <div class="calc-field">
+              <label for="qc_height">Building Clear Height (ft)</label>
+              <input type="number" id="qc_height" value="32" min="14" max="45" step="2">
+            </div>
+            <div class="calc-field">
+              <label for="qc_aisle">Forklift Aisle Width (ft)</label>
+              <select id="qc_aisle">
+                <option value="12.5" >12.5 ft (Sit-Down Counterbalance)</option>
+                <option value="10.5" selected>10.5 ft (Stand-Up Reach Truck)</option>
+                <option value="9.5" >9.5 ft (Narrow Reach Aisle)</option>
+                <option value="6.0" >6.0 ft (VNA / Turret Truck)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Total Capacity</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Rack Levels</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Ground Positions</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Fire Code Trigger</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Warehouse Pallet Racking Layout Calculator &rarr;</a>
+        </div>
+      </section>
+
+      <!-- 2. Local Regulatory Overview -->
+      <section class="guide-section" id="code-reference">
+        <span class="section-kicker">Regulatory &amp; Engineering Standards</span>
+        <h2>Texas Logistics Warehouse Racking: IFC Chapter 32 &amp; Fire Marshal Approvals</h2>
+        <p>While Texas sits in low-seismic Seismic Design Category A/B (making structural uprights and baseplates significantly more economical than in California), Dallas-Fort Worth and Houston Fire Marshals strictly enforce International Fire Code (IFC) Chapter 32 for High-Piled Combustible Storage whenever pallet tops exceed 12 feet.</p>
+        <p>Before anchoring a single upright, Texas warehouse tenants must submit a High-Piled Storage submittal detailing commodity class (Class I–IV or Group A Plastics), transverse/longitudinal flue spaces, fire department exterior access doors (every 100–125 linear feet), and confirmation that existing ESFR sprinklers match the rack layout.</p>
+
+        <div class="table-wrap">
+          <table class="code-table">
+            <thead>
+              <tr>
+                <th>Code / Standard</th>
+                <th>Requirement</th>
+                <th>Jurisdiction Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>IFC Chapter 32</td>
+              <td><strong>High-Piled Storage Permit</strong></td>
+              <td>Mandatory Fire Marshal permit for combustible storage &gt; 12 ft (or &gt; 6 ft for high-hazard commodities).</td>
+            </tr>
+            <tr>
+              <td>ANSI / RMI MH16.1</td>
+              <td><strong>Structural Load Plaques</strong></td>
+              <td>Maximum unit load and bay load plaques must be permanently mounted on rack end-frames.</td>
+            </tr>
+            <tr>
+              <td>NFPA 13 / ESFR</td>
+              <td><strong>Flue Space Alignment</strong></td>
+              <td>6-inch longitudinal flue spaces between back-to-back rows and 3-inch transverse flues at uprights.</td>
+            </tr>
+            <tr>
+              <td>IFC §3206.7</td>
+              <td><strong>Fire Dept. Access Doors</strong></td>
+              <td>Exterior personnel access doors required at max 100–125 ft spacing along fire lane walls.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Formula & Worked Local Example -->
+      <section class="guide-section" id="worked-example">
+        <span class="section-kicker">Calculation Walkthrough</span>
+        <h2>Texas Distribution Warehouse Pallet Capacity Formula</h2>
+        <div class="formula-box">
+          <strong>Governing Engineering Formula:</strong>
+          <div class="formula-code">Total Pallets = Floor((Sq Ft × 0.62) ÷ (4.25 × (4 + Aisle ÷ 2))) × Floor((Clear Ht − 3 ft) ÷ 5.5 ft)</div>
+          <h3>Worked Example: 40,000 Sq Ft Logistics Hub in Dallas-Fort Worth, TX</h3>
+          <ul class="worked-example-steps">
+          <li><strong>Step 1 — Usable Storage Zone:</strong> 40,000 sq ft × 62% usable = <strong>24,800 sq ft</strong>.</li>
+          <li><strong>Step 2 — Ground Positions (10.5 ft Reach Aisles):</strong> 24,800 ÷ 39.31 = <strong>630 ground pallet positions</strong>.</li>
+          <li><strong>Step 3 — Vertical Beam Levels (32 ft Clear):</strong> (32 − 3 ft ESFR clearance) ÷ 5.5 ft = <strong>5 levels</strong>.</li>
+          <li><strong>Step 4 — Total Warehouse Capacity:</strong> 630 × 5 = <strong>3,150 pallet positions</strong> → requires City of Dallas / Fort Worth IFC Ch. 32 High-Piled Fire Permit.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4. Jurisdiction Permit & Inspection Checklist -->
+      <section class="guide-section" id="permit-checklist">
+        <span class="section-kicker">Field Execution</span>
+        <h2>Texas Permit &amp; Compliance Checklist</h2>
+        <div class="checklist-grid">
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 01</span>
+          <h3>Obtain Existing Fire Sprinkler Hydraulic Data</h3>
+          <p>Pull the landlord&#x27;s sprinkler riser tag and hydraulic calc sheet to verify ESFR K-factor and commodity rating.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 02</span>
+          <h3>Submit IFC Chapter 32 High-Piled Package</h3>
+          <p>Include commodity class letter, rack elevation drawings, and flue-space keeper bars for Fire Marshal review.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 03</span>
+          <h3>Install Column Guards &amp; Load Plaques</h3>
+          <p>Protect end-of-aisle uprights from forklift strikes and post RMI MH16.1 rated capacity plaques.</p>
+        </div>
+        <div class="checklist-card">
+          <span class="checklist-step">STEP 04</span>
+          <h3>Pass Final Fire Marshal Inspection</h3>
+          <p>Ensure aisles are striped, exit paths unobstructed, and 36-inch ESFR sprinkler clearance maintained.</p>
+        </div>
+        </div>
+      </section>
+
+      <!-- 5. Jurisdiction FAQs -->
+      <section class="guide-section" id="faq">
+        <span class="section-kicker">Technical Q&amp;A</span>
+        <h2>Frequently Asked Questions — Texas — IFC Ch. 32 &amp; RMI</h2>
+        <div class="faq-list">
+        <details class="faq-item">
+          <summary>Do I need a permit to install pallet racking in Dallas or Houston?</summary>
+          <div class="faq-answer">Yes. Both cities require a building/rack permit for storage racks over 8 feet tall AND an IFC Chapter 32 High-Piled Combustible Storage permit from the Fire Marshal when storage exceeds 12 feet.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do solid wood decking shelves violate NFPA 13 in Texas warehouses?</summary>
+          <div class="faq-answer">Yes. Solid shelving blocks ESFR sprinkler water penetration and typically triggers expensive in-rack sprinklers. Use open wire mesh decking (at least 70% open) instead.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How much clearance is required between top pallets and ESFR sprinklers?</summary>
+          <div class="faq-answer">NFPA 13 requires a minimum of 36 inches of clear vertical space between the top of the highest stored pallet and the deflector of ESFR sprinkler heads.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How many pallet positions fit in a 40,000 sq ft warehouse with 32-foot ceilings?</summary>
+          <div class="faq-answer">With standard selective racking and 10.5-foot reach-truck aisles, a 40,000 sq ft warehouse typically holds 3,000 to 3,400 standard 48&quot;×40&quot; GMA pallets.</div>
+        </details>
+        </div>
+      </section>
+
+      <!-- 6. Internal Linking Hub: Sibling States & Related Tools -->
+      <section class="guide-section" id="other-jurisdictions">
+        <span class="section-kicker">State &amp; Municipal Editions</span>
+        <h2>Other RackSpec Pro™ Jurisdiction Guides</h2>
+        <div class="hub-grid">
+        <a href="../california-seismic-rmi/" class="hub-link-card">
+          <span class="hub-link-title">California — Seismic RMI &amp; CBC</span>
+          <span class="hub-link-sub">CBC / RMI MH16.1 (SDC D/E) • CFC Ch. 32 High-Piled</span>
+        </a>
+        <a href="../new-jersey-northeast/" class="hub-link-card">
+          <span class="hub-link-title">NJ / NY Metro — NJ UCC &amp; IFC</span>
+          <span class="hub-link-sub">NJ UCC (IBC) • IFC Ch. 32 • Port Logistics Corridor</span>
+        </a>
+        </div>
+      </section>
+
+      <section class="guide-section" id="related-calculators">
+        <span class="section-kicker">TradeSpec Pro Suite</span>
+        <h2>Related Commercial Sizing Calculators</h2>
+        <div class="hub-grid">
+        <a href="../../permit-spec/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Tenant Improvement &amp; Occupancy Calculator</span>
+          <span class="hub-link-sub">PermitSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../crane-lift/" class="hub-link-card">
+          <span class="hub-link-title">Crane Sizing &amp; Radius Calculator</span>
+          <span class="hub-link-sub">RigCheck Pro™ — Free Engineering Calculator</span>
+        </a>
+        <a href="../../spray-foam/" class="hub-link-card">
+          <span class="hub-link-title">Commercial Spray Foam Board Foot Calculator</span>
+          <span class="hub-link-sub">FoamSpec Pro™ — Free Engineering Calculator</span>
+        </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="guide-footer">
+    <div class="container guide-footer-inner">
+      <div>
+        <p><strong>TradeSpec Pro™</strong> — Engineering-Grade Commercial Sizing Suite.</p>
+        <p>Disclaimer: Preliminary engineering sizing tool. Always verify final stamped calculations with a licensed PE, architect, or local Authority Having Jurisdiction (AHJ).</p>
+      </div>
+      <div class="guide-footer-links">
+        <a href="../../">Home</a>
+        <a href="../">RackSpec Pro™ Calculator</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../js/code-guide-calc.js"></script>
+</body>
+</html>

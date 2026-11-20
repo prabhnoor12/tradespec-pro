@@ -219,6 +219,104 @@ def render_quick_calc(page, tool_meta):
           <a href="../" class="btn btn-primary">Open Full Walk-In Cooler &amp; Cold Storage Calculator &rarr;</a>
         </div>"""
 
+    if mode == "well":
+        return f"""
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="well">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick {html.escape(page['short_label'])} Water Well &amp; Pump Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: ${d['costft']}/ft Local Drilling Rate</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_depth">Target Well Depth (ft)</label>
+              <input type="number" id="qc_depth" value="{d['depth']}" min="80" max="2000" step="25">
+            </div>
+            <div class="calc-field">
+              <label for="qc_gpm">Required Flow Rate (GPM)</label>
+              <input type="number" id="qc_gpm" value="{d['gpm']}" min="10" max="500" step="5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_costft">Local Drilling + Casing ($/ft)</label>
+              <input type="number" id="qc_costft" value="{d['costft']}" min="25" max="200" step="5">
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Dynamic Head</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Submersible Pump</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Rec. Casing Dia.</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Turnkey Cost</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Water Well &amp; Aquifer Pump Calculator &rarr;</a>
+        </div>"""
+
+    if mode == "racking":
+        return f"""
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="racking">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick {html.escape(page['short_label'])} Pallet Rack Estimator</div>
+            <span class="quick-calc-tag">Pre-Loaded: {d['height']} ft Clear / {d['aisle']} ft Aisles</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Total Warehouse Floor Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="{d['sqft']}" min="2000" max="500000" step="1000">
+            </div>
+            <div class="calc-field">
+              <label for="qc_height">Building Clear Height (ft)</label>
+              <input type="number" id="qc_height" value="{d['height']}" min="14" max="45" step="2">
+            </div>
+            <div class="calc-field">
+              <label for="qc_aisle">Forklift Aisle Width (ft)</label>
+              <select id="qc_aisle">
+                <option value="12.5" {"selected" if d['aisle'] == 12.5 else ""}>12.5 ft (Sit-Down Counterbalance)</option>
+                <option value="10.5" {"selected" if d['aisle'] == 10.5 else ""}>10.5 ft (Stand-Up Reach Truck)</option>
+                <option value="9.5" {"selected" if d['aisle'] == 9.5 else ""}>9.5 ft (Narrow Reach Aisle)</option>
+                <option value="6.0" {"selected" if d['aisle'] == 6.0 else ""}>6.0 ft (VNA / Turret Truck)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Est. Total Capacity</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Rack Levels</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Ground Positions</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Fire Code Trigger</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Warehouse Pallet Racking Layout Calculator &rarr;</a>
+        </div>"""
+
+    if mode == "foam":
+        return f"""
+        <div class="quick-calc-card" id="jurisdictionQuickCalc" data-calc-mode="foam">
+          <div class="quick-calc-header">
+            <div class="quick-calc-title">⚡ Quick {html.escape(page['short_label'])} Spray Foam Estimator</div>
+            <span class="quick-calc-tag">Includes 10% Corrugation / Overspray Factor</span>
+          </div>
+          <div class="quick-calc-grid">
+            <div class="calc-field">
+              <label for="qc_sqft">Total Spray Surface Area (sq ft)</label>
+              <input type="number" id="qc_sqft" value="{d['sqft']}" min="500" max="200000" step="250">
+            </div>
+            <div class="calc-field">
+              <label for="qc_thick">Foam Thickness (Inches)</label>
+              <input type="number" id="qc_thick" value="{d['thick']}" min="1" max="10" step="0.5">
+            </div>
+            <div class="calc-field">
+              <label for="qc_type">Spray Foam Density</label>
+              <select id="qc_type">
+                <option value="closed" {"selected" if d['type'] == "closed" else ""}>2.0 lb Closed-Cell (R-6.5/in — Vapor Barrier)</option>
+                <option value="open" {"selected" if d['type'] == "open" else ""}>0.5 lb Open-Cell (R-3.7/in — Interior Cavity)</option>
+              </select>
+            </div>
+          </div>
+          <div class="quick-calc-results">
+            <div class="qres-item"><span class="qres-label">Total Board Feet</span><span class="qres-val" id="qc_out1">—</span></div>
+            <div class="qres-item"><span class="qres-label">Achieved R-Value</span><span class="qres-val highlight-amber" id="qc_out2">—</span></div>
+            <div class="qres-item"><span class="qres-label">Material Sets</span><span class="qres-val" id="qc_out3">—</span></div>
+            <div class="qres-item"><span class="qres-label">Est. Installed Budget</span><span class="qres-val highlight-green" id="qc_out4">—</span></div>
+          </div>
+          <a href="../" class="btn btn-primary">Open Full Commercial Spray Foam &amp; R-Value Calculator &rarr;</a>
+        </div>"""
+
     return ""
 
 
@@ -624,7 +722,11 @@ def inject_homepage_directory():
         return
 
     content = home_file.read_text(encoding="utf-8")
-    tools_with_pages = ["crane-lift", "grease-trap", "charge-spec", "site-spec", "permit-spec", "cold-spec"]
+    tools_with_pages = [
+        "crane-lift", "grease-trap", "charge-spec",
+        "site-spec", "permit-spec", "cold-spec",
+        "well-drilling", "pallet-racking", "spray-foam"
+    ]
 
     groups_html = []
     for tool in tools_with_pages:

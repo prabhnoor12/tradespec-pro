@@ -45,9 +45,24 @@ TOOLS_META = {
         "calc_mode": "cold",
         "related": ["grease-trap", "permit-spec", "spray-foam"]
     },
-    "well-drilling": {"name": "Commercial Water Well & Pump Calculator", "short": "WellSpec Pro"},
-    "pallet-racking": {"name": "Warehouse Pallet Racking Layout Calculator", "short": "RackSpec Pro"},
-    "spray-foam": {"name": "Commercial Spray Foam Board Foot Calculator", "short": "FoamSpec Pro"},
+    "well-drilling": {
+        "name": "Commercial Water Well & Pump Calculator",
+        "short": "WellSpec Pro",
+        "calc_mode": "well",
+        "related": ["site-spec", "charge-spec", "permit-spec"]
+    },
+    "pallet-racking": {
+        "name": "Warehouse Pallet Racking Layout Calculator",
+        "short": "RackSpec Pro",
+        "calc_mode": "racking",
+        "related": ["permit-spec", "crane-lift", "spray-foam"]
+    },
+    "spray-foam": {
+        "name": "Commercial Spray Foam Board Foot Calculator",
+        "short": "FoamSpec Pro",
+        "calc_mode": "foam",
+        "related": ["cold-spec", "permit-spec", "pallet-racking"]
+    },
 }
 
 PAGES = [
@@ -1245,6 +1260,513 @@ PAGES = [
             ("What coil coating is recommended for commercial refrigeration in Florida?", "Factory-applied E-coat (electrocoating) or phenolic/Heresite coatings protect aluminum condenser fins from coastal salt-spray corrosion."),
             ("Do outdoor walk-in coolers in South Florida need Miami-Dade NOA approval?", "Yes. Outdoor walk-in coolers/freezers installed in the High-Velocity Hurricane Zone (Miami-Dade and Broward) require structural wind-load engineering and anchored tie-downs per FBC HVHZ."),
             ("How much extra BTU capacity should I add for Florida humidity?", "For high-traffic commercial kitchens in humid coastal Florida, adding a 15% to 25% latent infiltration allowance prevents under-sizing during peak summer humidity.")
+        ]
+    },
+
+    # =========================================================================
+    # 7. WELL DRILLING (3 JURISDICTIONS)
+    # =========================================================================
+    {
+        "tool": "well-drilling",
+        "slug": "texas-tdlr",
+        "jurisdiction": "Texas (TDLR 16 TAC Ch. 76 & Edwards / Trinity / Gulf Coast Aquifers)",
+        "short_label": "Texas — TDLR Ch. 76 & GCDs",
+        "code_badge": "TDLR 16 TAC Ch. 76 • Groundwater Conservation Districts",
+        "title": "Texas Commercial Water Well & Pump Sizing Calculator (TDLR Ch. 76)",
+        "description": "Estimate commercial water well drilling costs, Total Dynamic Head (TDH), submersible pump HP, and casing specs in Texas under TDLR 16 TAC Chapter 76 and local GCD rules.",
+        "keywords": "texas commercial water well cost calculator, tdlr water well regulations chapter 76, texas well pump sizing calculator, trinity aquifer well depth cost, edwards aquifer well permit",
+        "h1": "Texas Commercial Water Well &amp; Pump Calculator (TDLR 16 TAC Ch. 76)",
+        "lead": "Calculate commercial drilling budgets, Total Dynamic Head (TDH), submersible pump horsepower, and casing diameters across Texas aquifers under TDLR 16 TAC Chapter 76 and local Groundwater Conservation District (GCD) spacing rules.",
+        "meta_cards": [
+            ("Governing Regulation", "TDLR 16 TAC Chapter 76"),
+            ("Local Permitting", "Texas Groundwater Conservation Districts"),
+            ("Typical Commercial Depth", "350 – 800+ ft (Trinity / Gulf Coast)"),
+            ("Sanitary Seal Requirement", "Min. 10 ft Cement Annular Seal")
+        ],
+        "calc_defaults": {
+            "depth": 500,
+            "gpm": 50,
+            "costft": 60
+        },
+        "intro_heading": "Texas Water Well Standards: TDLR Licensing, GCD Permits & Aquifer Depths",
+        "intro_body": [
+            "Every commercial, industrial, or agricultural water well drilled in Texas is regulated by the Texas Department of Licensing and Regulation (TDLR) under 16 TAC Chapter 76—requiring a licensed Texas Water Well Driller, mandatory State of Texas Well Reports filed within 60 days, and minimum annular cement sanitary seals.",
+            "In addition, over 98 local Groundwater Conservation Districts (such as the Edwards Aquifer Authority, Barton Springs/Edwards Aquifer CD, and Harris-Galveston Subsidence District) enforce strict well spacing, metering, and annual acre-foot production permits for non-exempt commercial wells."
+        ],
+        "code_table": [
+            ("16 TAC §76.100", "Annular Cement Seal & Setbacks", "Minimum 10-foot cement/bentonite sanitary seal; minimum 50 ft from property lines (100 ft from septic drain fields)."),
+            ("TCEQ 30 TAC §290", "Public Water System (PWS) Wells", "Commercial sites serving 25+ people/day for 60+ days/year require TCEQ Public Water Supply engineering approval."),
+            ("Local GCD Rules", "Production & Metering Permits", "Commercial wells (>25,000 GPD or non-exempt) require GCD drilling permits, flow meters, and spacing clearances."),
+            ("TDLR Well Log", "60-Day Submission Mandate", "Driller must submit official lithologic log and pump test data to the Texas Water Development Board (TWDB).")
+        ],
+        "formula_title": "Total Dynamic Head (TDH) & Submersible Pump Horsepower Formula",
+        "formula_expr": "TDH (ft) = Pumping Water Level + (Surface PSI × 2.31) + Friction Loss   |   Pump HP = (GPM × TDH) ÷ (3,960 × Pump Eff.)",
+        "worked_example_title": "Worked Example: 500 ft, 50 GPM Commercial Well in Hill Country / Central Texas",
+        "worked_example_steps": [
+            "<strong>Step 1 — Pumping Level & TDH:</strong> 500 ft Trinity Aquifer well with 360 ft pumping level + 115 ft (50 PSI pressure tank) + 10 ft friction = <strong>485 ft TDH</strong>.",
+            "<strong>Step 2 — Submersible Pump HP:</strong> (50 GPM × 485 ft) ÷ (3,960 × 0.62) = 9.88 → specify <strong>10 HP 3-phase submersible pump</strong> with VFD constant-pressure controller.",
+            "<strong>Step 3 — Casing Specification:</strong> 6-inch Schedule 80 PVC or steel casing with TDLR-compliant cement annular seal.",
+            "<strong>Step 4 — Turnkey Budget:</strong> 500 ft × $60/ft ($30,000) + 10 HP pump/VFD/drop pipe ($14,000) ≈ <strong>$44,000 turnkey</strong>."
+        ],
+        "checklist": [
+            ("STEP 01", "Check Local Groundwater Conservation District", "Confirm whether the parcel lies inside a GCD or Subsidence District and apply for a commercial drilling permit first."),
+            ("STEP 02", "Verify TCEQ Public Water Supply Trigger", "If serving >= 25 employees/customers daily, engage a TX PE for TCEQ Chapter 290 PWS well design before drilling."),
+            ("STEP 03", "Confirm Setbacks From Septic & Property Lines", "Maintain 50 ft from property lines and 100 ft from aerobic spray fields or septic leach lines per 16 TAC §76.100."),
+            ("STEP 04", "Run 4-to-24 Hour Yield & Drawdown Test", "Document static level, pumping level, and recovery rate before ordering final submersible pump horsepower.")
+        ],
+        "faqs": [
+            ("How much does it cost to drill a commercial water well in Texas?", "Commercial 6-inch to 8-inch water wells in Texas typically cost $45 to $85+ per foot for drilling and casing, plus $10,000 to $35,000+ for high-GPM submersible pumps, VFDs, and storage tanks."),
+            ("Do I need a permit to drill a commercial water well in Texas?", "If your property is inside a Groundwater Conservation District (GCD) or Subsidence District, yes—commercial wells are generally non-exempt and require a drilling and production permit before mobilizing a rig."),
+            ("When does a Texas commercial well become a TCEQ Public Water System?", "Under TCEQ 30 TAC Chapter 290, a well serving at least 25 people per day for at least 60 days per year (such as an office park, RV park, or restaurant) is regulated as a Public Water System."),
+            ("What casing diameter is needed for a 50 to 100 GPM commercial well?", "A 6-inch ID casing is standard for 40 to 100 GPM commercial submersible pumps; flows above 100–150 GPM generally require 8-inch or 10-inch steel/PVC casing.")
+        ]
+    },
+    {
+        "tool": "well-drilling",
+        "slug": "california-sgma",
+        "jurisdiction": "California (DWR Bulletin 74-90 & SGMA GSA Permits)",
+        "short_label": "California — DWR & SGMA",
+        "code_badge": "CA DWR Bulletin 74-90 • SGMA GSA • County EHD",
+        "title": "California Commercial & Ag Water Well Sizing Calculator (DWR & SGMA)",
+        "description": "Size commercial and agricultural water wells, pump HP, and budgets in California under DWR Bulletin 74-90, County Environmental Health permits, and SGMA GSA groundwater sustainability rules.",
+        "keywords": "california commercial water well cost calculator, ca dwr bulletin 74-90, sgma groundwater well permit california, central valley ag well pump sizing, california well drilling cost per foot",
+        "h1": "California Commercial &amp; Ag Water Well Calculator (DWR Bulletin 74-90 &amp; SGMA)",
+        "lead": "Estimate commercial and agricultural water well drilling depth, Total Dynamic Head (TDH), pump horsepower, and budgets calibrated for California DWR Bulletin 74-90 sanitary seals and SGMA Groundwater Sustainability Agency (GSA) rules.",
+        "meta_cards": [
+            ("Governing Standard", "CA DWR Bulletin 74-81 / 74-90"),
+            ("Groundwater Authority", "Local SGMA GSA & County EHD"),
+            ("Sanitary Annular Seal", "Min. 50 ft Cement Seal (Commercial)"),
+            ("Driller License", "CSLB C-57 Water Well Contractor")
+        ],
+        "calc_defaults": {
+            "depth": 600,
+            "gpm": 80,
+            "costft": 95
+        },
+        "intro_heading": "California SGMA Permitting & DWR Bulletin 74-90 Sanitary Seal Rules",
+        "intro_body": [
+            "Drilling a commercial or agricultural water well in California requires navigating both County Environmental Health Department (EHD) construction standards (DWR Bulletin 74-90) and the Sustainable Groundwater Management Act (SGMA). In medium- and high-priority basins across the Central Valley, Salinas Valley, and Southern California, counties must obtain written consistency verification from the local Groundwater Sustainability Agency (GSA) before issuing a commercial well permit.",
+            "California also mandates a much deeper annular sanitary cement seal—typically 50 feet minimum for commercial/agricultural wells (and 50–100+ feet for public supply)—plus a CSLB C-57 licensed drilling contractor."
+        ],
+        "code_table": [
+            ("DWR Bulletin 74-90", "50-Foot Annular Sanitary Seal", "Commercial and public supply wells require a minimum 50 ft cement grout seal inspected by County EHD."),
+            ("SGMA / Exec. Order", "GSA Consistency Verification", "New non-domestic wells in medium/high-priority basins require written GSA determination of no undesirable subsidence/depletion."),
+            ("CSLB C-57 License", "Licensed Well Driller", "All drilling, deepening, and well destruction must be performed by an active California C-57 contractor."),
+            ("SWRCB DDW", "Public Supply Standards", "Commercial facilities serving 25+ people/day trigger State Water Board Division of Drinking Water permitting.")
+        ],
+        "formula_title": "California Deep-Well TDH & Submersible Pump Sizing Formula",
+        "formula_expr": "TDH (ft) = Pumping Depth + 115 ft (50 PSI) + Friction   |   HP = (GPM × TDH) ÷ (3,960 × 0.62)",
+        "worked_example_title": "Worked Example: 600 ft, 80 GPM Commercial / Ag Well in Central California",
+        "worked_example_steps": [
+            "<strong>Step 1 — Pumping Level & TDH:</strong> 600 ft alluvial basin well with 432 ft pumping water level + 125 ft pressure/friction = <strong>557 ft TDH</strong>.",
+            "<strong>Step 2 — Pump Horsepower:</strong> (80 GPM × 557 ft) ÷ 2,455 = 18.15 → specify <strong>20 HP 480V 3-phase submersible pump</strong> with VFD.",
+            "<strong>Step 3 — Casing & 50 ft Seal:</strong> 6-inch or 8-inch stainless-screened casing with 50 ft neat-cement sanitary seal witnessed by County EHD.",
+            "<strong>Step 4 — Turnkey Budget:</strong> 600 ft × $95/ft ($57,000) + 20 HP pump/VFD/column ($23,500) ≈ <strong>$80,500 turnkey</strong>."
+        ],
+        "checklist": [
+            ("STEP 01", "Obtain Local SGMA GSA Written Verification", "Verify basin priority and obtain GSA groundwater sustainability consistency sign-off prior to County EHD submittal."),
+            ("STEP 02", "Hire Active CSLB C-57 Contractor", "Verify C-57 license and workers' comp before filing the County Environmental Health well permit."),
+            ("STEP 03", "Schedule Witnessed 50-Foot Annular Seal", "County EHD inspector must witness the cement grout pour for the minimum 50-foot sanitary seal."),
+            ("STEP 04", "Install Totalizing Flow Meter", "Most California GSAs require calibrated flow meters and semi-annual groundwater extraction reporting.")
+        ],
+        "faqs": [
+            ("How deep is the required sanitary seal for a commercial well in California?", "Under DWR Bulletin 74-90, agricultural and commercial wells typically require a minimum 50-foot annular cement seal (compared to 20 feet for standard domestic wells in some counties)."),
+            ("How does SGMA affect new commercial water wells in California?", "Under the Sustainable Groundwater Management Act (SGMA), counties cannot issue permits for new non-domestic wells in medium- or high-priority basins without verifying consistency with the local GSA's Groundwater Sustainability Plan."),
+            ("What license is required to drill a water well in California?", "Only a contractor holding an active California Contractors State License Board (CSLB) C-57 Water Well Drilling license can legally drill or rehabilitate a water well."),
+            ("How much does a commercial water well cost in California?", "Expect $75 to $130+ per foot for commercial 6-inch to 10-inch rotary-drilled wells with stainless steel screen, gravel pack, and 50-foot cement seal, excluding pump and electrical service.")
+        ]
+    },
+    {
+        "tool": "well-drilling",
+        "slug": "florida-wmd",
+        "jurisdiction": "Florida (FDEP Ch. 62-532 & WMD Consumptive Use Permits)",
+        "short_label": "Florida — FDEP & WMD CUP",
+        "code_badge": "FDEP Ch. 62-532 • Floridan Aquifer • WMD CUP",
+        "title": "Florida Commercial Water Well & Pump Calculator (FDEP 62-532 & WMD)",
+        "description": "Size commercial water wells, Floridan Aquifer pump HP, and drilling budgets in Florida under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits (CUP).",
+        "keywords": "florida commercial water well cost calculator, floridan aquifer well drilling cost, fdep chapter 62-532 water well, florida wmd consumptive use permit, florida well pump sizing",
+        "h1": "Florida Commercial Water Well &amp; Pump Calculator (FDEP Ch. 62-532 &amp; WMD)",
+        "lead": "Estimate commercial water well drilling costs, Total Dynamic Head, and submersible pump sizing tapping the Floridan or Biscayne Aquifers under FDEP Chapter 62-532 and Water Management District Consumptive Use Permits.",
+        "meta_cards": [
+            ("Governing Regulation", "FDEP Ch. 62-532 F.A.C."),
+            ("Permit Authority", "SFWMD / SWFWMD / SJRWMD (WUP/CUP)"),
+            ("Primary Commercial Aquifer", "Upper Floridan Limestone (250–650 ft)"),
+            ("Driller License", "FL Licensed Water Well Contractor")
+        ],
+        "calc_defaults": {
+            "depth": 350,
+            "gpm": 75,
+            "costft": 52
+        },
+        "intro_heading": "Tapping the Floridan Aquifer Under FDEP Chapter 62-532 & WMD Rules",
+        "intro_body": [
+            "Commercial, irrigation, and industrial wells across Central and North Florida typically tap the high-yielding Upper Floridan limestone aquifer (often 200 to 650 feet deep), while South Florida commercial wells tap either the surficial Biscayne Aquifer or deeper brackish Floridan zones. All well construction is governed by FDEP Chapter 62-532 F.A.C. and delegated to Florida's five Water Management Districts.",
+            "Commercial wells with casing diameters of 6 inches or larger—or average daily withdrawals exceeding district thresholds (often 100,000 GPD)—require a formal Water Use Permit (WUP) or Consumptive Use Permit (CUP) alongside the standard well construction permit."
+        ],
+        "code_table": [
+            ("FDEP 62-532.400", "Well Construction Permits", "Required from the local Water Management District or delegated county health department prior to mobilizing."),
+            ("FDEP 62-532.500", "Casing & Grouting Standards", "Casing must seat into the confining limestone formation with continuous neat cement grout to prevent saltwater intrusion."),
+            ("WMD CUP / WUP", "Consumptive Use Permit", "Mandatory for large commercial/industrial/irrigation withdrawals (>= 6\" casing or high daily GPD allocations)."),
+            ("FDOH Ch. 64E-8", "Limited Use Public Systems", "Commercial properties serving non-community drinking water require Florida Dept. of Health microbiological testing.")
+        ],
+        "formula_title": "Florida Limestone Aquifer TDH & Pump Sizing Formula",
+        "formula_expr": "TDH (ft) = Pumping Level + (50 PSI × 2.31) + Friction   |   HP = (GPM × TDH) ÷ (3,960 × 0.62)",
+        "worked_example_title": "Worked Example: 350 ft, 75 GPM Upper Floridan Commercial Well in Central FL",
+        "worked_example_steps": [
+            "<strong>Step 1 — Pumping Level & TDH:</strong> High-yield Floridan limestone well with 252 ft pumping head + 125 ft surface pressure/friction = <strong>377 ft TDH</strong>.",
+            "<strong>Step 2 — Pump Horsepower:</strong> (75 GPM × 377 ft) ÷ 2,455 = 11.5 → specify <strong>15 HP submersible pump</strong> with stainless steel impellers for mineral resistance.",
+            "<strong>Step 3 — Casing & Grout:</strong> 6-inch Schedule 80 PVC or steel casing grouted solidly into the Ocala/Avon Park limestone cap.",
+            "<strong>Step 4 — Turnkey Budget:</strong> 350 ft × $52/ft ($18,200) + 15 HP pump/VFD/wellhead ($18,750) ≈ <strong>$36,950 turnkey</strong>."
+        ],
+        "checklist": [
+            ("STEP 01", "Verify WMD CUP / WUP Threshold", "Check SFWMD, SWFWMD, or SJRWMD rules to see if your casing diameter (>= 6\") or daily GPM triggers a Consumptive Use Permit."),
+            ("STEP 02", "Screen for Saltwater Intrusion Zones", "Coastal Florida parcels require chloride testing and strict well-depth caps to avoid brackish upconing."),
+            ("STEP 03", "Confirm Septic & Stormwater Setbacks", "Maintain minimum 75–100 ft separation from septic systems and sanitary hazards per FDEP 62-532."),
+            ("STEP 04", "File Well Completion Report", "Licensed Florida Water Well Contractor must submit completion log and cuttings data within 30 days.")
+        ],
+        "faqs": [
+            ("When do I need a Consumptive Use Permit (CUP) for a commercial well in Florida?", "Most Florida Water Management Districts require a CUP/WUP when a commercial well uses a 6-inch or larger casing diameter, withdraws over 100,000 gallons per day, or sits inside a Water Use Caution Area."),
+            ("How deep are commercial Floridan Aquifer wells in Central Florida?", "Most commercial Upper Floridan wells in Orlando, Tampa, and Jacksonville range from 250 to 600 feet deep, frequently yielding 60 to 300+ GPM."),
+            ("Does Florida require a licensed driller for commercial wells?", "Yes. Under Florida Statutes Chapter 373, all water well construction must be performed by a Water Management District-licensed Water Well Contractor."),
+            ("Why is stainless steel recommended for Florida commercial well pumps?", "Floridan Aquifer water often contains elevated dissolved sulfur (hydrogen sulfide), iron, and chlorides in coastal areas, which corrode cast-iron pump housings rapidly.")
+        ]
+    },
+
+    # =========================================================================
+    # 8. PALLET RACKING (3 JURISDICTIONS)
+    # =========================================================================
+    {
+        "tool": "pallet-racking",
+        "slug": "california-seismic-rmi",
+        "jurisdiction": "California (CBC / RMI MH16.1 Seismic Category D/E & NFPA 13)",
+        "short_label": "California — Seismic RMI & CBC",
+        "code_badge": "CBC / RMI MH16.1 (SDC D/E) • CFC Ch. 32 High-Piled",
+        "title": "California Seismic Pallet Racking & High-Piled Storage Calculator (CBC & RMI)",
+        "description": "Calculate warehouse pallet positions, aisle widths, and seismic rack engineering requirements in California under CBC / RMI MH16.1 Seismic Design Category D/E and CFC Chapter 32.",
+        "keywords": "california seismic pallet racking calculator, rmi mh16.1 seismic design category d, california high piled storage permit cfc chapter 32, inland empire warehouse rack layout calculator",
+        "h1": "California Seismic Pallet Racking Calculator (CBC / RMI MH16.1 &amp; CFC Ch. 32)",
+        "lead": "Plan warehouse pallet capacity, forklift aisle spacing, and seismic rack compliance across the Inland Empire, Los Angeles, and Bay Area under California Building Code (CBC), RMI MH16.1 Seismic Design Categories D/E, and CFC Chapter 32 High-Piled Storage.",
+        "meta_cards": [
+            ("Structural Rack Code", "CBC & ANSI / RMI MH16.1 (SDC D/E)"),
+            ("Fire & High-Piled Code", "California Fire Code (CFC) Ch. 32"),
+            ("Permit Trigger Height", "Racks > 5 ft 9 in (Seismic) / > 12 ft (Fire)"),
+            ("Sprinkler Clearance", "Min. 36 in (ESFR) / 18 in (Std.)")
+        ],
+        "calc_defaults": {
+            "sqft": 30000,
+            "height": 32,
+            "aisle": 10.5
+        },
+        "intro_heading": "Why California Warehouse Racking Requires PE Seismic Stamping Over 5'-9\"",
+        "intro_body": [
+            "California enforces the strictest industrial storage rack permitting in the United States. Under the California Building Code (CBC) and ANSI/RMI MH16.1, ANY pallet rack exceeding 5 feet 9 inches in height (effectively every commercial warehouse rack) requires a building permit with California PE-stamped seismic structural calculations, oversized seismic footplates, and heavy-duty wedge/epoxy concrete anchors.",
+            "Furthermore, storing commodities higher than 12 feet triggers California Fire Code (CFC) Chapter 32 High-Piled Combustible Storage permitting—requiring longitudinal and transverse flue spaces (typically 6-inch longitudinal, 3-inch transverse), smoke/heat vents, and ESFR (Early Suppression Fast Response) sprinkler verification."
+        ],
+        "code_table": [
+            ("CBC / RMI MH16.1", "Seismic Design Category D/E", "Heavy-gauge columns, oversized seismic baseplates, and PE-stamped slab thickness & anchor pull-out calculations required."),
+            ("CBC §105.2", "5'-9\" Rack Permit Trigger", "Storage racks taller than 5 ft 9 in require a full municipal building permit and Deputy Special Inspector anchor verification."),
+            ("CFC Chapter 32", "High-Piled Storage (> 12 ft)", "Requires High-Piled Storage Fire Permit, commodity classification (Class I–IV or Group A Plastics), and fire department access doors."),
+            ("NFPA 13 / ESFR", "Flue Space & Deflector Clearance", "Maintain strict 6\" longitudinal flue spaces and 36\" clearance below ESFR sprinkler deflectors.")
+        ],
+        "formula_title": "Warehouse Pallet Density & Clear-Height Level Formula",
+        "formula_expr": "Ground Positions = (Warehouse Sq Ft × 0.62 Usable) ÷ (4.25 ft × (4 ft Rack + Aisle ÷ 2))   |   Levels = Floor((Clear Ht − 3 ft) ÷ 5.5 ft)",
+        "worked_example_title": "Worked Example: 30,000 Sq Ft Distribution Center in Inland Empire, CA",
+        "worked_example_steps": [
+            "<strong>Step 1 — Usable Racking Footprint:</strong> 30,000 sq ft × 62% usable storage (38% docks/staging/fire aisles) = <strong>18,600 sq ft</strong>.",
+            "<strong>Step 2 — Ground Pallet Positions (10.5 ft Reach-Truck Aisles):</strong> 18,600 ÷ (4.25 × 9.25) = <strong>473 ground positions</strong>.",
+            "<strong>Step 3 — Beam Levels (32 ft Clear Height):</strong> (32 ft − 3 ft ESFR clearance) ÷ 5.5 ft/level = <strong>5 levels high</strong>.",
+            "<strong>Step 4 — Total Capacity & Permitting:</strong> 473 × 5 = <strong>2,365 pallet positions</strong> → requires CA PE seismic rack calc + CFC Ch. 32 High-Piled Fire Permit."
+        ],
+        "checklist": [
+            ("STEP 01", "Verify Concrete Slab Thickness & PSI", "Seismic SDC D/E racks typically require a minimum 6-inch, 3,000–4,000 PSI concrete slab; core-test if slab drawings are missing."),
+            ("STEP 02", "Obtain CA PE-Stamped RMI Seismic Calcs", "Submit rack elevations, baseplate details, and anchor torque specs for municipal Building & Safety review."),
+            ("STEP 03", "File CFC Chapter 32 High-Piled Permit", "Classify stored goods (Class I–IV vs. Group A Plastics) and verify ESFR K-14/K-17/K-25 sprinkler adequacy."),
+            ("STEP 04", "Schedule Deputy Inspector Anchor Sign-Off", "LADBS and Inland Empire cities require a certified Special Inspector to verify anchor embedment and torque.")
+        ],
+        "faqs": [
+            ("What height requires a pallet rack permit in California?", "Under the California Building Code, any storage rack exceeding 5 feet 9 inches in height requires a building permit with California PE-stamped seismic calculations."),
+            ("When does a California warehouse need a High-Piled Storage Permit?", "Under California Fire Code (CFC) Chapter 32, storing combustible materials higher than 12 feet (or 6 feet for high-hazard Group A plastics) triggers a High-Piled Combustible Storage permit."),
+            ("What aisle width do I need for a stand-up reach truck vs. sit-down forklift?", "Standard counterbalance sit-down forklifts require 12 to 13-foot aisles; stand-up reach trucks require 9.5 to 10.5-foot aisles; turret/VNA trucks operate in 5.5 to 6.5-foot aisles."),
+            ("Why are seismic pallet racks more expensive in California than Texas?", "Seismic Design Category D/E engineering requires thicker upright columns, larger welded seismic footplates, multiple heavy-duty concrete anchors per column, and Special Inspection sign-offs.")
+        ]
+    },
+    {
+        "tool": "pallet-racking",
+        "slug": "texas-high-piled",
+        "jurisdiction": "Texas (IFC Ch. 32 High-Piled Storage & RMI MH16.1)",
+        "short_label": "Texas — IFC Ch. 32 & RMI",
+        "code_badge": "IFC Chapter 32 • RMI MH16.1 (SDC A/B) • NFPA 13",
+        "title": "Texas Warehouse Pallet Racking & High-Piled Storage Calculator (IFC Ch. 32)",
+        "description": "Calculate warehouse pallet positions, forklift aisle widths, and IFC Chapter 32 High-Piled Storage permit requirements for Dallas-Fort Worth, Houston, and Austin logistics centers.",
+        "keywords": "texas warehouse pallet racking layout calculator, ifc chapter 32 high piled storage texas, dallas warehouse rack permit, houston pallet rack layout calculator, esfr sprinkler rack clearance",
+        "h1": "Texas Warehouse Pallet Racking &amp; High-Piled Calculator (IFC Ch. 32 &amp; RMI)",
+        "lead": "Optimize warehouse pallet density, reach-truck aisle widths, and IFC Chapter 32 High-Piled Combustible Storage compliance across Dallas-Fort Worth, Houston, San Antonio, and Austin industrial parks.",
+        "meta_cards": [
+            ("Structural Rack Code", "IBC & ANSI / RMI MH16.1 (SDC A/B)"),
+            ("Fire & High-Piled Code", "IFC 2021/2024 Chapter 32"),
+            ("High-Piled Trigger", "Storage Height > 12 ft"),
+            ("Permit Authority", "City Building & Fire Marshal")
+        ],
+        "calc_defaults": {
+            "sqft": 40000,
+            "height": 32,
+            "aisle": 10.5
+        },
+        "intro_heading": "Texas Logistics Warehouse Racking: IFC Chapter 32 & Fire Marshal Approvals",
+        "intro_body": [
+            "While Texas sits in low-seismic Seismic Design Category A/B (making structural uprights and baseplates significantly more economical than in California), Dallas-Fort Worth and Houston Fire Marshals strictly enforce International Fire Code (IFC) Chapter 32 for High-Piled Combustible Storage whenever pallet tops exceed 12 feet.",
+            "Before anchoring a single upright, Texas warehouse tenants must submit a High-Piled Storage submittal detailing commodity class (Class I–IV or Group A Plastics), transverse/longitudinal flue spaces, fire department exterior access doors (every 100–125 linear feet), and confirmation that existing ESFR sprinklers match the rack layout."
+        ],
+        "code_table": [
+            ("IFC Chapter 32", "High-Piled Storage Permit", "Mandatory Fire Marshal permit for combustible storage > 12 ft (or > 6 ft for high-hazard commodities)."),
+            ("ANSI / RMI MH16.1", "Structural Load Plaques", "Maximum unit load and bay load plaques must be permanently mounted on rack end-frames."),
+            ("NFPA 13 / ESFR", "Flue Space Alignment", "6-inch longitudinal flue spaces between back-to-back rows and 3-inch transverse flues at uprights."),
+            ("IFC §3206.7", "Fire Dept. Access Doors", "Exterior personnel access doors required at max 100–125 ft spacing along fire lane walls.")
+        ],
+        "formula_title": "Texas Distribution Warehouse Pallet Capacity Formula",
+        "formula_expr": "Total Pallets = Floor((Sq Ft × 0.62) ÷ (4.25 × (4 + Aisle ÷ 2))) × Floor((Clear Ht − 3 ft) ÷ 5.5 ft)",
+        "worked_example_title": "Worked Example: 40,000 Sq Ft Logistics Hub in Dallas-Fort Worth, TX",
+        "worked_example_steps": [
+            "<strong>Step 1 — Usable Storage Zone:</strong> 40,000 sq ft × 62% usable = <strong>24,800 sq ft</strong>.",
+            "<strong>Step 2 — Ground Positions (10.5 ft Reach Aisles):</strong> 24,800 ÷ 39.31 = <strong>630 ground pallet positions</strong>.",
+            "<strong>Step 3 — Vertical Beam Levels (32 ft Clear):</strong> (32 − 3 ft ESFR clearance) ÷ 5.5 ft = <strong>5 levels</strong>.",
+            "<strong>Step 4 — Total Warehouse Capacity:</strong> 630 × 5 = <strong>3,150 pallet positions</strong> → requires City of Dallas / Fort Worth IFC Ch. 32 High-Piled Fire Permit."
+        ],
+        "checklist": [
+            ("STEP 01", "Obtain Existing Fire Sprinkler Hydraulic Data", "Pull the landlord's sprinkler riser tag and hydraulic calc sheet to verify ESFR K-factor and commodity rating."),
+            ("STEP 02", "Submit IFC Chapter 32 High-Piled Package", "Include commodity class letter, rack elevation drawings, and flue-space keeper bars for Fire Marshal review."),
+            ("STEP 03", "Install Column Guards & Load Plaques", "Protect end-of-aisle uprights from forklift strikes and post RMI MH16.1 rated capacity plaques."),
+            ("STEP 04", "Pass Final Fire Marshal Inspection", "Ensure aisles are striped, exit paths unobstructed, and 36-inch ESFR sprinkler clearance maintained.")
+        ],
+        "faqs": [
+            ("Do I need a permit to install pallet racking in Dallas or Houston?", "Yes. Both cities require a building/rack permit for storage racks over 8 feet tall AND an IFC Chapter 32 High-Piled Combustible Storage permit from the Fire Marshal when storage exceeds 12 feet."),
+            ("Do solid wood decking shelves violate NFPA 13 in Texas warehouses?", "Yes. Solid shelving blocks ESFR sprinkler water penetration and typically triggers expensive in-rack sprinklers. Use open wire mesh decking (at least 70% open) instead."),
+            ("How much clearance is required between top pallets and ESFR sprinklers?", "NFPA 13 requires a minimum of 36 inches of clear vertical space between the top of the highest stored pallet and the deflector of ESFR sprinkler heads."),
+            ("How many pallet positions fit in a 40,000 sq ft warehouse with 32-foot ceilings?", "With standard selective racking and 10.5-foot reach-truck aisles, a 40,000 sq ft warehouse typically holds 3,000 to 3,400 standard 48\"×40\" GMA pallets.")
+        ]
+    },
+    {
+        "tool": "pallet-racking",
+        "slug": "new-jersey-northeast",
+        "jurisdiction": "New Jersey / NY Metro (NJ UCC / IBC High-Piled & ESFR)",
+        "short_label": "NJ / NY Metro — NJ UCC & IFC",
+        "code_badge": "NJ UCC (IBC) • IFC Ch. 32 • Port Logistics Corridor",
+        "title": "New Jersey & NY Metro Warehouse Pallet Racking Calculator (NJ UCC & IFC Ch. 32)",
+        "description": "Size warehouse pallet racking layouts, VNA/reach aisle density, and NJ Uniform Construction Code (NJ UCC) High-Piled Storage permits along the NJ Turnpike & Port Newark corridor.",
+        "keywords": "new jersey warehouse pallet racking calculator, nj ucc pallet rack permit, port newark warehouse rack layout, high piled storage permit new jersey, vna pallet racking calculator",
+        "h1": "New Jersey &amp; NY Metro Pallet Racking Calculator (NJ UCC &amp; High-Piled Storage)",
+        "lead": "Maximize pallet density in high-rent Northern/Central New Jersey and NY Metro warehouses. Calculate selective and narrow-aisle pallet counts aligned with the NJ Uniform Construction Code (NJ UCC) and Fire Official High-Piled rules.",
+        "meta_cards": [
+            ("Governing Code", "NJ Uniform Construction Code (IBC)"),
+            ("Fire Permit Standard", "NJ Uniform Fire Code / IFC Ch. 32"),
+            ("High-Rent Optimization", "Reach (10 ft) & VNA (6 ft) Aisles"),
+            ("Sprinkler Standard", "NFPA 13 ESFR / In-Rack Rules")
+        ],
+        "calc_defaults": {
+            "sqft": 25000,
+            "height": 36,
+            "aisle": 9.5
+        },
+        "intro_heading": "Maximizing Cube Utilization in High-Rent NJ Turnpike & Port Newark Warehouses",
+        "intro_body": [
+            "With industrial warehouse rents along the New Jersey Turnpike (Exits 7A–14) and Port Newark among the highest in North America, shifting from 12-foot counterbalance aisles to 9.5-foot reach-truck or 6-foot Very Narrow Aisle (VNA) layouts can increase pallet capacity by 25% to 45% inside the exact same building footprint.",
+            "All commercial rack installations in New Jersey must comply with the New Jersey Uniform Construction Code (NJ UCC — Building & Fire Protection Subcodes), requiring NJ PE-signed rack drawings, slab load verification, and municipal Fire Official High-Piled Combustible Storage clearance."
+        ],
+        "code_table": [
+            ("NJ UCC (IBC)", "Building & Fire Subcode Permits", "Municipal Construction Office building + fire subcode permits required for racks > 8 ft / high-piled storage > 12 ft."),
+            ("RMI MH16.1", "NJ PE Structural Seal", "Signed and sealed rack calculations verifying upright capacity, baseplates, and floor slab bearing."),
+            ("NFPA 13 / ESFR", "36'-40' Clear Height Rules", "Modern 36–40 ft NJ spec warehouses rely on K-22/K-25 ESFR heads; verify exact ceiling-to-pallet clearances."),
+            ("NJ Uniform Fire Code", "Flue Space & Rack Signage", "6\" longitudinal flues, wire decking, and posted maximum load limit signs inspected prior to Certificate of Approval.")
+        ],
+        "formula_title": "High-Cube NJ Warehouse Pallet Density Formula",
+        "formula_expr": "Total Pallets = Floor((Sq Ft × 0.62) ÷ (4.25 × (4 + Aisle ÷ 2))) × Floor((Clear Ht − 3 ft) ÷ 5.5 ft)",
+        "worked_example_title": "Worked Example: 25,000 Sq Ft 36-Foot Clear Warehouse in Edison, NJ",
+        "worked_example_steps": [
+            "<strong>Step 1 — Usable Racking Zone:</strong> 25,000 sq ft × 62% = <strong>15,500 sq ft</strong>.",
+            "<strong>Step 2 — Ground Positions (9.5 ft Reach Aisles):</strong> 15,500 ÷ (4.25 × 8.75) = <strong>416 ground positions</strong>.",
+            "<strong>Step 3 — Beam Levels (36 ft Clear Height):</strong> (36 − 3 ft ESFR clearance) ÷ 5.5 ft = <strong>6 levels high</strong>.",
+            "<strong>Step 4 — Total Capacity:</strong> 416 × 6 = <strong>2,496 pallet positions</strong> (vs. ~1,950 with 12.5 ft aisles — a +28% gain)."
+        ],
+        "checklist": [
+            ("STEP 01", "Confirm Municipal NJ UCC Subcode Forms", "Submit NJ Construction Permit Jacket with Building and Fire Protection Technical Sections + NJ PE sealed rack drawings."),
+            ("STEP 02", "Verify Slab Flatness for VNA / High-Bay", "Racks reaching 30–36 ft high require high slab flatness (FF/FL) tolerances to prevent turret-truck sway."),
+            ("STEP 03", "Check ESFR Obstructions (Lights & Heaters)", "Confirm LED high-bay fixtures and gas unit heaters do not obstruct ESFR sprinkler discharge patterns."),
+            ("STEP 04", "Schedule Fire Official High-Piled Walk-Through", "Confirm flue spaces, fire extinguishers, and exit signage before loading inventory.")
+        ],
+        "faqs": [
+            ("Does New Jersey require a PE seal for warehouse pallet racking?", "Yes. Under the NJ Uniform Construction Code (NJ UCC), commercial pallet racking installations generally require structural drawings and calculations signed and sealed by a New Jersey Licensed Professional Engineer."),
+            ("How much more storage does a 9.5-foot reach aisle give over a 12-foot aisle?", "Narrowing aisles from 12 feet to 9.5 feet typically increases total warehouse pallet capacity by 18% to 25% without adding a single square foot of leased space."),
+            ("Are wire decks required on pallet racks in New Jersey?", "In sprinklered high-piled warehouses, NFPA 13 requires at least 70% open wire mesh decking (or open bar grating) rather than solid plywood so overhead sprinklers can reach lower rack levels."),
+            ("How long does a pallet rack permit take in New Jersey?", "Under NJ UCC statutory timelines, municipal construction offices have 20 business days to review complete permit applications once all Fire Subcode and PE documents are submitted.")
+        ]
+    },
+
+    # =========================================================================
+    # 9. SPRAY FOAM (3 JURISDICTIONS)
+    # =========================================================================
+    {
+        "tool": "spray-foam",
+        "slug": "california-title24",
+        "jurisdiction": "California (Title 24 Part 6 & CBC §2603.4 Thermal Barrier)",
+        "short_label": "California — Title 24 & CBC",
+        "code_badge": "Title 24 Part 6 • CBC §2603.4 Thermal/Ignition Barrier",
+        "title": "California Commercial Spray Foam Board Foot & R-Value Calculator (Title 24)",
+        "description": "Calculate commercial closed-cell and open-cell spray foam board feet, R-value thickness, chemical drum sets, and CBC §2603.4 intumescent thermal barrier compliance in California.",
+        "keywords": "california commercial spray foam calculator, title 24 spray foam r value requirements, cbc 2603.4 thermal barrier spray foam, closed cell spray foam board foot calculator california",
+        "h1": "California Commercial Spray Foam Calculator (Title 24 &amp; CBC §2603.4)",
+        "lead": "Calculate commercial spray polyurethane foam (SPF) board feet, chemical drum sets, and R-value thickness compliant with California Title 24 Part 6 continuous insulation rules and CBC §2603.4 thermal/ignition barrier codes.",
+        "meta_cards": [
+            ("Energy Standard", "Title 24 Part 6 (Climate Zones 1–16)"),
+            ("Fire / Thermal Barrier", "CBC §2603.4 (15-Min / DC315 Intumescent)"),
+            ("Closed-Cell R-Value", "~R-6.5 per inch (2.0 lb/cu ft)"),
+            ("HERS / Verification", "QII (Quality Insulation Installation)")
+        ],
+        "calc_defaults": {
+            "sqft": 6500,
+            "thick": 3.5,
+            "type": "closed"
+        },
+        "intro_heading": "California Title 24 Roof/Wall R-Values & CBC §2603.4 Thermal Barriers",
+        "intro_body": [
+            "Commercial metal buildings, warehouses, and tenant retrofits in California rely heavily on 2.0 lb closed-cell spray polyurethane foam (ccSPF) to hit Title 24 Part 6 continuous insulation (ci) targets while simultaneously sealing air leakage in a single pass.",
+            "Under California Building Code (CBC) Section 2603.4, exposed foam plastic inside occupied commercial interiors MUST be separated from the interior by a 15-minute thermal barrier (typically 1/2-inch gypsum drywall) OR a tested, ICC-ES approved intumescent fire-retardant coating (such as DC315 or No-Burn Plus ThB) applied at the exact wet-mil thickness specified in its ESR report."
+        ],
+        "code_table": [
+            ("Title 24 Part 6", "Commercial Roof / Wall R-Value", "Commercial metal roofs typically require R-19 to R-30 continuous insulation depending on California Climate Zone (CZ 1–16)."),
+            ("CBC §2603.4", "15-Minute Thermal Barrier", "Occupied spaces require 1/2\" drywall or ICC-ES NFPA 286 approved intumescent coating over exposed spray foam."),
+            ("CBC §2603.4.1.6", "Attic / Crawlspace Ignition Barrier", "Unoccupied mechanical attics/crawlspaces require a compliant ignition barrier coating if entered only for service."),
+            ("Title 24 QII", "Insulation Depth Verification", "Third-party verification of uniform foam thickness and zero thermal bridging on metal purlins/girts.")
+        ],
+        "formula_title": "Commercial Spray Foam Board Foot & Drum Set Formula",
+        "formula_expr": "Board Feet = Area (sq ft) × Thickness (in) × 1.10 (Waste/Texture)   |   2.0 lb Closed-Cell Sets = Board Feet ÷ 4,000",
+        "worked_example_title": "Worked Example: 6,500 Sq Ft Commercial Metal Roof Deck in Fresno, CA",
+        "worked_example_steps": [
+            "<strong>Step 1 — Target R-Value:</strong> 3.5 inches of 2.0 lb closed-cell SPF × R-6.5/in = <strong>R-22.8 continuous insulation</strong> + air/vapor barrier.",
+            "<strong>Step 2 — Board Feet (w/ 10% Waste):</strong> 6,500 sq ft × 3.5 in × 1.10 = <strong>25,025 Board Feet</strong>.",
+            "<strong>Step 3 — Chemical Drum Sets:</strong> 25,025 BF ÷ 4,000 BF/set = <strong>6.3 Sets</strong> (A-side + B-side 55-gal drums).",
+            "<strong>Step 4 — CBC §2603.4 Fire Coating:</strong> Exposed commercial ceiling requires ~18–20 wet mils of ICC-ES approved intumescent paint (e.g., DC315) over the foam."
+        ],
+        "checklist": [
+            ("STEP 01", "Confirm California Climate Zone (CZ 1–16)", "Verify exact Title 24 Part 6 roof and wall U-factor / R-value target on the NRCC-ENV compliance form."),
+            ("STEP 02", "Match Foam Brand With Intumescent ESR Report", "Inspectors verify that the specific spray foam manufacturer is listed on the intumescent coating's ICC-ES ESR report."),
+            ("STEP 03", "Keep Substrate Clean & Dry (> 50°F)", "De-grease new galvanized metal roof panels and confirm substrate temperature before spraying 2.0 lb closed-cell foam."),
+            ("STEP 04", "Log Wet-Mil Thickness Readings", "Document intumescent coating wet-mil gauge checks for final California Building Inspector sign-off.")
+        ],
+        "faqs": [
+            ("Can commercial spray foam be left exposed in a California warehouse?", "Only if covered with an ICC-ES tested NFPA 286 intumescent thermal barrier coating (such as DC315) specifically approved for that exact spray foam product, or separated by 1/2-inch drywall per CBC §2603.4."),
+            ("How many board feet are in one set of 2.0 lb closed-cell spray foam?", "A standard 1,000 lb two-drum set (A + B) of 2.0 lb closed-cell foam theoretically yields ~4,000 to 4,500 board feet; commercial estimators use 4,000 BF per set to account for corrugated metal ribs and overspray."),
+            ("What thickness of closed-cell spray foam gives R-20?", "At approximately R-6.5 per inch, 3.0 to 3.25 inches of 2.0 lb closed-cell spray foam delivers R-19.5 to R-21 continuous insulation."),
+            ("Does spray foam help pass California Title 24 blower door / air sealing requirements?", "Yes. Closed-cell spray foam forms a monolithic air barrier at 1.5+ inches, dramatically reducing envelope air leakage compared to fiberglass batts.")
+        ]
+    },
+    {
+        "tool": "spray-foam",
+        "slug": "texas-iecc-climate-2",
+        "jurisdiction": "Texas (IECC 2021 Climate Zones 2A/3A & Metal Building Condensation)",
+        "short_label": "Texas — IECC Climate Zone 2/3",
+        "code_badge": "IECC 2021 CZ 2A / 3A • Metal Building Condensation Control",
+        "title": "Texas Commercial Metal Building Spray Foam Calculator (IECC 2021)",
+        "description": "Calculate closed-cell spray foam board feet, R-values, and drum sets for Texas steel warehouses, barndominiums, and commercial shops under IECC 2021 Climate Zones 2 & 3.",
+        "keywords": "texas commercial spray foam calculator, metal building spray foam thickness texas, iecc 2021 climate zone 2 spray foam, closed cell spray foam board foot calculator texas, houston warehouse spray foam",
+        "h1": "Texas Commercial Metal Building Spray Foam Calculator (IECC 2021 CZ 2/3)",
+        "lead": "Size closed-cell spray foam thickness, board feet, and material budgets for Texas steel buildings, warehouses, and shops—engineered to stop Gulf Coast condensation and meet IECC 2021 Climate Zone 2A/3A energy codes.",
+        "meta_cards": [
+            ("Governing Energy Code", "IECC 2021 (Climate Zones 2A & 3A)"),
+            ("Condensation Prevention", "Min. 2\" Closed-Cell (Class II Vapor)"),
+            ("Thermal Barrier Code", "IBC §2603.4 (Intumescent / Drywall)"),
+            ("Typical TX Metal Shop", "2\" Walls (R-13) / 3\" Roof (R-19.5)")
+        ],
+        "calc_defaults": {
+            "sqft": 8000,
+            "thick": 2.5,
+            "type": "closed"
+        },
+        "intro_heading": "Stopping Steel-Building Condensation in Humid Texas Summers",
+        "intro_body": [
+            "Across Houston (Climate Zone 2A), Dallas-Fort Worth (3A), Austin, and San Antonio, uninsulated or fiberglass-insulated commercial metal buildings suffer severe interior sweating when humid Gulf air meets cool steel panels—leading to dripping roofs, rusted purlins, and ruined inventory.",
+            "Applying a minimum of 2.0 inches of 2.0 lb closed-cell spray foam directly to the interior steel skin creates a Class II vapor retarder (<1.0 perm) that permanently eliminates dew-point condensation on the metal while slashing summer HVAC cooling tonnage by 30%–45%."
+        ],
+        "code_table": [
+            ("IECC 2021 CZ 2A/3A", "Commercial Metal Building Roof/Wall", "Metal building walls typically target R-13+ continuous (2\" ccSPF); roofs target R-19 to R-25 continuous (3\"–4\" ccSPF)."),
+            ("Class II Vapor Retarder", "2.0\" Closed-Cell Minimum", "At 2 inches, 2.0 lb closed-cell foam achieves < 1.0 perm, blocking humid Gulf Coast moisture from reaching cool steel."),
+            ("IBC §2603.4", "Thermal Barrier in Occupied Shops", "Commercial shops/warehouses require 1/2\" drywall or NFPA 286 intumescent coating over exposed foam."),
+            ("Open-Cell Caution", "Avoid Open-Cell on Direct Steel", "0.5 lb open-cell foam is vapor-permeable and can trap moisture against bare metal panels in humid Texas Climate Zone 2A.")
+        ],
+        "formula_title": "Texas Metal Building Board Foot & Corrugation Factor Formula",
+        "formula_expr": "Board Feet = Flat Area × Thickness (in) × 1.10–1.15 (R-Panel Rib Factor)   |   Closed-Cell Sets = BF ÷ 4,000",
+        "worked_example_title": "Worked Example: 8,000 Sq Ft Commercial Steel Warehouse in Houston, TX",
+        "worked_example_steps": [
+            "<strong>Step 1 — Thickness & R-Value:</strong> 2.5 inches average closed-cell SPF (2\" walls, 3\" roof deck) = <strong>R-16.3 avg continuous insulation</strong>.",
+            "<strong>Step 2 — Board Feet (w/ Rib/Waste Allowance):</strong> 8,000 sq ft × 2.5 in × 1.10 = <strong>22,000 Board Feet</strong>.",
+            "<strong>Step 3 — Material Requirement:</strong> 22,000 BF ÷ 4,000 BF/set = <strong>5.5 Chemical Drum Sets</strong>.",
+            "<strong>Step 4 — Installed Budget:</strong> 22,000 BF × $1.45/BF ≈ <strong>$31,900 installed</strong> (add ~$0.75–$1.10/sq ft if intumescent fire paint is required)."
+        ],
+        "checklist": [
+            ("STEP 01", "Use Closed-Cell (Not Open-Cell) on Metal", "In humid Texas Climate Zones 2A/3A, always specify 2.0 lb closed-cell foam directly on steel panels to prevent hidden rust."),
+            ("STEP 02", "Account for R-Panel Corrugations & Purlins", "Add 10% to 15% surface area multiplier for ribbed steel panels and wrapping exposed C-purlins."),
+            ("STEP 03", "Verify City Fire Marshal Intumescent Rule", "Occupied commercial bays inside city limits require IBC §2603.4 thermal barrier coating (e.g., DC315)."),
+            ("STEP 04", "Mask Skylights, Roll-Up Tracks & Conduit", "Protect translucent panels, overhead door tracks, and electrical boxes prior to high-pressure spraying.")
+        ],
+        "faqs": [
+            ("Should I use open-cell or closed-cell spray foam on a Texas metal building?", "Always use 2.0 lb closed-cell spray foam on metal buildings in Texas. Open-cell foam allows humid Gulf air to pass through and condense against cool steel panels, risking roof rust and mold."),
+            ("How thick should closed-cell spray foam be in a Houston or Dallas warehouse?", "Standard commercial practice is 2 inches (R-13) on steel walls and 3 inches (R-19.5) on the roof deck to control radiant heat and condensation."),
+            ("Does closed-cell spray foam add structural rigidity to metal buildings?", "Yes. 2.0 lb closed-cell foam adheres tightly to steel panels and purlins, increasing racking strength and noticeably reducing rain and wind noise."),
+            ("Do commercial shops in Texas need fire-retardant paint over spray foam?", "Inside incorporated Texas municipalities enforcing the IBC, exposed spray foam in occupied commercial buildings requires a 15-minute thermal barrier (drywall or ICC-ES approved intumescent coating).")
+        ]
+    },
+    {
+        "tool": "spray-foam",
+        "slug": "florida-hvhz-vapor",
+        "jurisdiction": "Florida (FBC Energy, Class II Vapor Barrier & HVHZ Uplift)",
+        "short_label": "Florida — FBC & HVHZ Uplift",
+        "code_badge": "FBC Energy CZ 1A/2A • Class II Vapor • HVHZ Uplift",
+        "title": "Florida Commercial Closed-Cell Spray Foam Calculator (FBC & HVHZ)",
+        "description": "Calculate commercial closed-cell spray foam board feet, R-value, and costs in Florida under FBC Energy Conservation (Climate Zones 1A/2A), vapor barrier rules, and hurricane roof uplift.",
+        "keywords": "florida commercial spray foam calculator, closed cell spray foam florida building code, hvhz roof uplift spray foam florida, miami spray foam board foot calculator, climate zone 1a spray foam",
+        "h1": "Florida Commercial Spray Foam Calculator (FBC Energy &amp; HVHZ Uplift)",
+        "lead": "Size 2.0 lb closed-cell spray polyurethane foam for Florida commercial roofs, warehouses, and coastal structures—delivering FBC Climate Zone 1A/2A thermal performance, moisture vapor blocking, and hurricane roof-deck uplift resistance.",
+        "meta_cards": [
+            ("Governing Energy Code", "FBC Energy Conservation (CZ 1A / 2A)"),
+            ("Moisture Control", "Closed-Cell (< 1.0 Perm @ 2 in)"),
+            ("Wind Uplift Benefit", "Up to 2×–3× Roof Deck Uplift Resistance"),
+            ("Fire Protection", "FBC §2603.4 Thermal / Ignition Barrier")
+        ],
+        "calc_defaults": {
+            "sqft": 5500,
+            "thick": 3.0,
+            "type": "closed"
+        },
+        "intro_heading": "Why Closed-Cell Spray Foam Is the Gold Standard for Florida Commercial Envelopes",
+        "intro_body": [
+            "Florida's hot-humid Climate Zones 1A (Miami-Dade/Broward/Keys) and 2A (Tampa/Orlando/Jacksonville) drive continuous inward moisture vapor pressure 10 months of the year. Closed-cell 2.0 lb spray foam seals air leakage and acts as a Class II vapor retarder at 2+ inches—stopping humid outdoor air from infiltrating cooled commercial ceilings and causing mold.",
+            "Beyond energy savings, structural adhesive testing shows 2 to 3 inches of 2.0 lb closed-cell foam bonded to the underside of commercial roof decks significantly boosts wind-uplift resistance during tropical storms and hurricanes, and qualifies for wind-mitigation insurance credits in many Florida jurisdictions."
+        ],
+        "code_table": [
+            ("FBC Energy CZ 1A/2A", "Commercial Roof / Wall Insulation", "Continuous roof insulation R-20 to R-25 (3\"–4\" ccSPF); wall insulation R-13+ (2\" ccSPF)."),
+            ("FBC §2603.4", "Thermal & Ignition Barriers", "1/2\" gypsum board or approved NFPA 286 intumescent coating mandatory in occupied commercial interiors."),
+            ("Unvented Roof Decks", "FBC §R806.5 / IBC §1202.3", "Direct-to-deck closed-cell spray foam allows unvented conditioned attics/plenums, keeping ductwork inside conditioned space."),
+            ("FEMA Flood Zones", "FEMA Class 5 Flood-Resistant", "Closed-cell SPF is classified by FEMA Technical Bulletin 2 as a Class 5 flood-damage-resistant insulation material.")
+        ],
+        "formula_title": "Florida Commercial Closed-Cell Board Foot & R-Value Formula",
+        "formula_expr": "Board Feet = Area (sq ft) × Thickness (in) × 1.10 (Waste)   |   Total R-Value = Thickness × 6.5 (Closed-Cell)",
+        "worked_example_title": "Worked Example: 5,500 Sq Ft Commercial Roof Deck in Tampa, FL",
+        "worked_example_steps": [
+            "<strong>Step 1 — Thickness & R-Value:</strong> 3.0 inches of 2.0 lb closed-cell SPF × R-6.5/in = <strong>R-19.5 continuous roof insulation</strong>.",
+            "<strong>Step 2 — Total Board Feet:</strong> 5,500 sq ft × 3.0 in × 1.10 = <strong>18,150 Board Feet</strong>.",
+            "<strong>Step 3 — Chemical Drum Sets:</strong> 18,150 BF ÷ 4,000 BF/set = <strong>4.5 Sets</strong>.",
+            "<strong>Step 4 — Moisture & Fire Compliance:</strong> Exceeds Class II vapor barrier threshold (< 1 perm) and receives FBC §2603.4 intumescent thermal barrier where exposed."
+        ],
+        "checklist": [
+            ("STEP 01", "Specify 2.0 lb Closed-Cell for Vapor & Flood Rating", "Closed-cell foam resists bulk water absorption and is FEMA Class 5 flood-damage-resistant for coastal Florida buildings."),
+            ("STEP 02", "Verify Unvented Roof Assembly Details", "Seal all ridge and soffit vents when creating an unvented conditioned commercial roof deck per FBC."),
+            ("STEP 03", "Apply FBC §2603.4 Intumescent Coating", "If the roof deck remains exposed to occupied commercial space, apply tested intumescent fire barrier to spec mil thickness."),
+            ("STEP 04", "Resize HVAC Load (Manual N / ASHRAE)", "Airtight spray-foamed Florida commercial envelopes often allow downsizing HVAC tonnage while requiring dedicated dehumidification.")
+        ],
+        "faqs": [
+            ("Is closed-cell spray foam flood-resistant for coastal Florida buildings?", "Yes. FEMA Technical Bulletin 2 classifies 2.0 lb closed-cell spray polyurethane foam as a Class 5 flood-damage-resistant material because it does not absorb water or sag when submerged."),
+            ("Why shouldn't I use open-cell spray foam in Miami or Tampa commercial roofs?", "Open-cell foam is vapor-permeable and can absorb moisture during high-humidity seasons or roof leaks. Closed-cell foam blocks vapor drive and adds hurricane wind-uplift strength."),
+            ("Does spray foam under a Florida commercial roof require a fire barrier?", "Yes. Under Florida Building Code §2603.4, foam plastic insulation in occupied commercial spaces must be covered by 1/2-inch drywall or an ICC-ES approved intumescent coating."),
+            ("How much does commercial closed-cell spray foam cost in Florida?", "Commercial 2.0 lb closed-cell spray foam typically installs for $1.35 to $1.85 per board foot (approx. $4.00–$5.50 per sq ft at 3 inches thick), excluding intumescent fire coating.")
         ]
     }
 ]

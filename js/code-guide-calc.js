@@ -142,6 +142,67 @@
         setVal('qc_out3', `${estHp.toFixed(2)} HP Condenser`);
         setVal('qc_out4', `ΔT = ${deltaT}°F (${boxTemp <= 10 ? 'Freezer' : 'Cooler'})`);
       }
+
+      if (mode === 'well') {
+        const depthFt = parseFloat(document.getElementById('qc_depth')?.value) || 400;
+        const gpm = parseFloat(document.getElementById('qc_gpm')?.value) || 45;
+        const costPerFt = parseFloat(document.getElementById('qc_costft')?.value) || 55;
+
+        // Total Dynamic Head (TDH) approx = static/pumping depth (75% of well depth) + 115 ft (50 psi surface) + friction
+        const tdhFt = Math.round(depthFt * 0.72 + 125);
+        // Submersible Pump HP = (GPM * TDH) / (3960 * 0.62 efficiency)
+        const rawHp = (gpm * tdhFt) / (3960 * 0.62);
+        const stdHps = [1, 1.5, 2, 3, 5, 7.5, 10, 15, 20, 25, 30, 40, 50];
+        const pumpHp = stdHps.find((h) => h >= rawHp) || Math.ceil(rawHp / 10) * 10;
+        const casingDia = gpm > 100 ? '8" Steel / PVC' : (gpm > 40 ? '6" Sch 80 / Steel' : '4"–6" PVC');
+        const estCost = Math.round(depthFt * costPerFt + pumpHp * 950 + 4500);
+
+        setVal('qc_out1', `${fmt(tdhFt)} ft TDH`);
+        setVal('qc_out2', `${pumpHp} HP Submersible`);
+        setVal('qc_out3', casingDia);
+        setVal('qc_out4', `$${fmt(estCost)}`);
+      }
+
+      if (mode === 'racking') {
+        const sqft = parseFloat(document.getElementById('qc_sqft')?.value) || 25000;
+        const clearHt = parseFloat(document.getElementById('qc_height')?.value) || 28;
+        const aisleFt = parseFloat(document.getElementById('qc_aisle')?.value) || 10.5;
+
+        // Usable storage footprint (~62% after docks/staging)
+        const usableSqFt = sqft * 0.62;
+        // Footprints per pallet bay (2 pallets wide = 8.5 ft × (4 ft rack + half aisle))
+        const sqFtPerGroundPallet = (4.25 * (4.0 + aisleFt / 2));
+        const groundPositions = Math.floor(usableSqFt / sqFtPerGroundPallet);
+        // Beam levels based on 5.5 ft per pallet level with 3 ft sprinkler clearance
+        const levels = Math.max(2, Math.floor((clearHt - 3) / 5.5));
+        const totalPallets = groundPositions * levels;
+        const highPiled = clearHt > 15 ? 'IFC Ch. 32 High-Piled (>12 ft)' : 'Standard Storage';
+
+        setVal('qc_out1', `${fmt(totalPallets)} Pallets`);
+        setVal('qc_out2', `${levels} Levels High`);
+        setVal('qc_out3', `${fmt(groundPositions)} Ground Pos.`);
+        setVal('qc_out4', highPiled);
+      }
+
+      if (mode === 'foam') {
+        const sqft = parseFloat(document.getElementById('qc_sqft')?.value) || 6000;
+        const thickIn = parseFloat(document.getElementById('qc_thick')?.value) || 3;
+        const foamType = document.getElementById('qc_type')?.value || 'closed';
+
+        const rPerIn = foamType === 'closed' ? 6.5 : 3.7;
+        const yieldPerSet = foamType === 'closed' ? 4000 : 12000; // board feet per 2-drum set
+        const costPerBf = foamType === 'closed' ? 1.45 : 0.65;
+
+        const boardFeet = Math.round(sqft * thickIn * 1.10); // 10% waste/overspray
+        const totalR = (thickIn * rPerIn).toFixed(1);
+        const setsNeeded = (boardFeet / yieldPerSet).toFixed(1);
+        const estBudget = Math.round(boardFeet * costPerBf);
+
+        setVal('qc_out1', `${fmt(boardFeet)} Board Ft`);
+        setVal('qc_out2', `R-${totalR}`);
+        setVal('qc_out3', `${setsNeeded} Chemical Sets`);
+        setVal('qc_out4', `$${fmt(estBudget)}`);
+      }
     }
 
     function setVal(id, text) {
