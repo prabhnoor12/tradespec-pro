@@ -2,13 +2,21 @@
  * TradeSpec Pro™ — Contextual Spec Capture & High-Conversion Quote Engine
  * Features:
  *  1. Dynamic Output-Mirrored CTA Bar directly inside .results-column
- *  2. Soft "Email / Save Stamped Spec PDF" capture with optional local contractor matching
- *  3. Real US phone auto-formatting + fake-number rejection & Project Timeline urgency selector
- *  4. Direct Supabase public.leads persistence + zero-trap print escape hatch
+ *  2. Code-Trigger Urgency Callout when calculation crosses permit/code thresholds
+ *  3. 1-Click "Copy Spec" plain-text summary for Slack/Teams/Email sharing
+ *  4. Soft "Email / Save Stamped Spec PDF" capture with zero-trap print escape hatch
+ *  5. Live ZIP coverage micro-confirmation + cross-tool ZIP memory + US phone validation
+ *  6. Slim mobile-only sticky bottom CTA pill + silent B2B email-domain enrichment
  */
 
 (function (window, document) {
   'use strict';
+
+  const SAVED_ZIP_KEY = 'tradespec_user_zip_v1';
+  const FREE_DOMAINS = new Set([
+    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com',
+    'icloud.com', 'aol.com', 'proton.me', 'protonmail.com', 'live.com', 'msn.com'
+  ]);
 
   const TOOL_CONFIG = {
     'charge-spec': {
@@ -18,7 +26,8 @@
       secondaryId: 'out-service-sub',
       noun: 'EV Charging Spec',
       basePrice: 225,
-      urgentPrice: 375
+      urgentPrice: 375,
+      codeCheck: (num) => num >= 200 ? 'NEC 625 / Utility Trigger: 480V Service or Transformer Review Recommended' : ''
     },
     'cold-spec': {
       trade: 'cold',
@@ -27,7 +36,8 @@
       secondaryId: 'out-compressor-hp',
       noun: 'Cold Storage Spec',
       basePrice: 145,
-      urgentPrice: 265
+      urgentPrice: 265,
+      codeCheck: (num) => num >= 18000 ? 'ASHRAE / Title 24 Trigger: High-Capacity Condensing & Low-GWP Spec Required' : ''
     },
     'crane-lift': {
       trade: 'crane',
@@ -36,7 +46,8 @@
       secondaryId: 'grossWeightVal',
       noun: 'Crane Pick',
       basePrice: 125,
-      urgentPrice: 225
+      urgentPrice: 225,
+      codeCheck: (num) => num >= 50 ? 'OSHA 1926 / ASME B30.5 Trigger: Outrigger Mat & Lift Plan Recommended' : ''
     },
     'grease-trap': {
       trade: 'grease',
@@ -45,7 +56,8 @@
       secondaryId: 'metricTurnkeyBudget',
       noun: 'Grease Interceptor Spec',
       basePrice: 140,
-      urgentPrice: 250
+      urgentPrice: 250,
+      codeCheck: (num) => num >= 50 ? 'UPC / IPC FOG Trigger: Gravity Vault or Municipal FOG Permit Likely Required' : ''
     },
     'pallet-racking': {
       trade: 'racking',
@@ -54,7 +66,8 @@
       secondaryId: 'metricSteelBudget',
       noun: 'Pallet Rack Layout',
       basePrice: 200,
-      urgentPrice: 350
+      urgentPrice: 350,
+      codeCheck: (num) => num >= 300 ? 'IFC Ch. 32 Trigger: High-Piled Storage Fire Permit & RMI Seismic Calc Likely Required' : ''
     },
     'permit-spec': {
       trade: 'permit',
@@ -63,7 +76,8 @@
       secondaryId: 'out-egress-doors',
       noun: 'Commercial TI Spec',
       basePrice: 225,
-      urgentPrice: 375
+      urgentPrice: 375,
+      codeCheck: (num) => num >= 50 ? 'IBC §1006 Trigger: 2+ Remote Exits & Accessibility / Plan Check Required' : ''
     },
     'site-spec': {
       trade: 'site',
@@ -72,7 +86,8 @@
       secondaryId: 'out-pond-volume',
       noun: 'Stormwater Spec',
       basePrice: 185,
-      urgentPrice: 325
+      urgentPrice: 325,
+      codeCheck: (num) => num >= 5 ? 'Stormwater Permit Trigger: On-Site Detention & Civil PE Grading Review Likely Required' : ''
     },
     'spray-foam': {
       trade: 'foam',
@@ -81,7 +96,8 @@
       secondaryId: 'metricRValue',
       noun: 'Spray Foam Spec',
       basePrice: 115,
-      urgentPrice: 195
+      urgentPrice: 195,
+      codeCheck: (num) => num >= 5000 ? 'IBC §2603.4 Trigger: 15-Min Thermal / Intumescent Fire Barrier Required' : ''
     },
     'well-drilling': {
       trade: 'well',
@@ -90,7 +106,8 @@
       secondaryId: 'metricTurnkeyBudget',
       noun: 'Water Well Spec',
       basePrice: 165,
-      urgentPrice: 295
+      urgentPrice: 295,
+      codeCheck: (num) => num >= 5 ? 'Aquifer Permit Trigger: Licensed Driller, Sanitary Seal & District Permit Required' : ''
     }
   };
 
@@ -104,6 +121,11 @@
     return null;
   }
 
+  function extractFirstNumber(text) {
+    const m = String(text || '').replace(/,/g, '').match(/(\d+(?:\.\d+)?)/);
+    return m ? parseFloat(m[1]) : 0;
+  }
+
   function formatPhoneUS(raw) {
     const digits = String(raw || '').replace(/\D/g, '').slice(0, 10);
     if (digits.length <= 3) return digits;
@@ -114,7 +136,6 @@
   function isValidUSPhone(raw) {
     const digits = String(raw || '').replace(/\D/g, '');
     if (digits.length !== 10) return false;
-    // Reject obvious fake sequences (all same digit, 1234567890, invalid area code starting with 0 or 1)
     if (/^(\d)\1{9}$/.test(digits)) return false;
     if (digits === '1234567890' || digits === '0123456789') return false;
     if (digits[0] === '0' || digits[0] === '1') return false;
@@ -122,13 +143,22 @@
     return true;
   }
 
+  function extractCommercialDomain(email) {
+    const parts = String(email || '').trim().toLowerCase().split('@');
+    if (parts.length !== 2) return '';
+    const domain = parts[1];
+    return FREE_DOMAINS.has(domain) ? '' : domain;
+  }
+
   function readLiveSpec(cfg) {
     const pEl = document.getElementById(cfg.primaryId);
     const sEl = document.getElementById(cfg.secondaryId);
     const primary = pEl ? pEl.textContent.trim().replace(/\s+/g, ' ') : '';
     const secondary = sEl ? sEl.textContent.trim().replace(/\s+/g, ' ') : '';
-    const shortPrimary = primary.length > 34 ? primary.slice(0, 34).trim() + '…' : primary;
-    return { primary, secondary, shortPrimary };
+    const shortPrimary = primary.length > 32 ? primary.slice(0, 32).trim() + '…' : primary;
+    const primaryNum = extractFirstNumber(primary);
+    const codeAlert = typeof cfg.codeCheck === 'function' ? cfg.codeCheck(primaryNum) : '';
+    return { primary, secondary, shortPrimary, codeAlert };
   }
 
   function initSpecCapture() {
@@ -138,7 +168,9 @@
     const resultsCol = document.querySelector('.results-column');
     if (!resultsCol || document.getElementById('tspCapBar')) return;
 
-    // 1. Inject Contextual Action Bar cleanly inside .results-column (right after the first main result card)
+    const savedZip = localStorage.getItem(SAVED_ZIP_KEY) || '';
+
+    // 1. Inject Contextual Action Bar cleanly inside .results-column
     const bar = document.createElement('div');
     bar.id = 'tspCapBar';
     bar.className = 'tsp-cap-bar';
@@ -147,22 +179,44 @@
         <span class="tsp-cap-eyebrow">⚡ Calculated Engineering Spec Ready</span>
         <span class="tsp-cap-trust-chip">Max 2 Vetted Contractors • Zero Spam</span>
       </div>
+      <div id="tspCapCodeAlert" class="tsp-cap-code-alert" hidden></div>
       <h3 class="tsp-cap-headline" id="tspCapBarHeadline">Save Your ${cfg.noun} or Get Local Commercial Pricing</h3>
       <p class="tsp-cap-sub" id="tspCapBarSub">Lock in your calculated parameters as a printable engineering submittal, or attach them directly to 1–2 licensed local bids.</p>
       <div class="tsp-cap-actions">
         <button type="button" class="tsp-cap-btn-primary" id="tspCapQuoteBtn">⚡ Get Firm Quotes for This ${cfg.noun} &rarr;</button>
-        <button type="button" class="tsp-cap-btn-secondary" id="tspCapPdfBtn">📄 Save / Email Spec PDF</button>
+        <button type="button" class="tsp-cap-btn-secondary" id="tspCapPdfBtn">📄 Save Spec PDF</button>
+        <button type="button" class="tsp-cap-btn-ghost" id="tspCapCopyBtn" title="Copy formatted spec for Slack or Email">📋 Copy Spec</button>
       </div>
     `;
 
-    // Place cleanly right after the first child card of .results-column (above the fold!)
     if (resultsCol.children.length > 0) {
       resultsCol.insertBefore(bar, resultsCol.children[1] || null);
     } else {
       resultsCol.appendChild(bar);
     }
 
-    // 2. Build Soft Capture Modal
+    // 2. Slim Mobile-Only Sticky Bottom CTA
+    const mobileSticky = document.createElement('div');
+    mobileSticky.id = 'tspCapMobileSticky';
+    mobileSticky.className = 'tsp-cap-mobile-sticky';
+    mobileSticky.hidden = true;
+    mobileSticky.innerHTML = `
+      <button type="button" class="tsp-cap-mobile-sticky-btn" id="tspCapMobileBtn">⚡ Get Quotes for This ${cfg.noun} &rarr;</button>
+      <button type="button" class="tsp-cap-mobile-dismiss" id="tspCapMobileDismiss" aria-label="Dismiss">&times;</button>
+    `;
+    document.body.appendChild(mobileSticky);
+
+    let mobileDismissed = false;
+    mobileSticky.querySelector('#tspCapMobileDismiss')?.addEventListener('click', () => {
+      mobileDismissed = true;
+      mobileSticky.hidden = true;
+    });
+    window.addEventListener('scroll', () => {
+      if (mobileDismissed) return;
+      mobileSticky.hidden = window.scrollY < 320;
+    }, { passive: true });
+
+    // 3. Build Soft Capture Modal
     const overlay = document.createElement('div');
     overlay.id = 'tspCapOverlay';
     overlay.className = 'tsp-cap-overlay';
@@ -212,7 +266,8 @@
 
             <div class="tsp-cap-field">
               <label class="tsp-cap-label" for="tspCapZip">Project 5-Digit ZIP *</label>
-              <input class="tsp-cap-input" type="text" id="tspCapZip" maxlength="5" inputmode="numeric" placeholder="e.g., 77002" required>
+              <input class="tsp-cap-input" type="text" id="tspCapZip" maxlength="5" inputmode="numeric" placeholder="e.g., 77002" value="${savedZip}" required>
+              <div id="tspCapZipOk" class="tsp-cap-zip-ok" hidden></div>
             </div>
 
             <div class="tsp-cap-field">
@@ -234,6 +289,7 @@
           <div id="tspCapError" class="tsp-cap-error" hidden></div>
 
           <button type="submit" class="tsp-cap-submit" id="tspCapSubmitBtn">Save Spec PDF &amp; Request Firm Quotes &rarr;</button>
+          <div class="tsp-cap-trust-foot">🔒 Your spec stays private • Max 2 licensed contractors • Avg. bid turnaround &lt; 2 hrs</div>
 
           <div class="tsp-cap-escape">
             <button type="button" class="tsp-cap-escape-btn" id="tspCapPrintRawBtn">Just print raw worksheet without saving &rarr;</button>
@@ -251,16 +307,29 @@
 
     document.body.appendChild(overlay);
 
-    // 3. Live DOM Mirroring (updates CTA button dynamically as user calculates!)
+    // 4. Live DOM Mirroring + Code-Trigger Callout
     let selectedTimeline = 'Immediate (< 2 wks)';
 
     function syncLiveOutput() {
       const spec = readLiveSpec(cfg);
       const qBtn = document.getElementById('tspCapQuoteBtn');
+      const mBtn = document.getElementById('tspCapMobileBtn');
       const pill = document.getElementById('tspCapSpecPill');
+      const codeAlertEl = document.getElementById('tspCapCodeAlert');
 
       if (qBtn && spec.shortPrimary) {
         qBtn.textContent = `⚡ Get Firm Quotes for This ${spec.shortPrimary} →`;
+      }
+      if (mBtn && spec.shortPrimary) {
+        mBtn.textContent = `⚡ Get Quotes: ${spec.shortPrimary} →`;
+      }
+      if (codeAlertEl) {
+        if (spec.codeAlert) {
+          codeAlertEl.textContent = `⚠️ ${spec.codeAlert}`;
+          codeAlertEl.hidden = false;
+        } else {
+          codeAlertEl.hidden = true;
+        }
       }
       if (pill) {
         const parts = [];
@@ -272,24 +341,63 @@
 
     syncLiveOutput();
 
-    // Observe output nodes so CTA updates smoothly without touching existing app.js
     const observer = new MutationObserver(() => syncLiveOutput());
     const pNode = document.getElementById(cfg.primaryId);
     const sNode = document.getElementById(cfg.secondaryId);
     if (pNode) observer.observe(pNode, { childList: true, characterData: true, subtree: true });
     if (sNode) observer.observe(sNode, { childList: true, characterData: true, subtree: true });
 
-    // 4. Modal Open / Close / Interaction Logic
+    // 5. Copy Spec 1-Click Share Button
+    const copyBtn = document.getElementById('tspCapCopyBtn');
+    copyBtn?.addEventListener('click', () => {
+      const spec = readLiveSpec(cfg);
+      const summary = [
+        `TradeSpec Pro™ — ${cfg.title}`,
+        `Primary Spec: ${spec.primary || 'Calculated'}`,
+        spec.secondary ? `Secondary Metric: ${spec.secondary}` : '',
+        spec.codeAlert ? `Code Note: ${spec.codeAlert}` : '',
+        `Calculator Link: ${window.location.href}`
+      ].filter(Boolean).join('\n');
+
+      navigator.clipboard?.writeText(summary).then(() => {
+        const orig = copyBtn.textContent;
+        copyBtn.textContent = '✓ Copied!';
+        setTimeout(() => { copyBtn.textContent = orig; }, 2200);
+      });
+    });
+
+    // 6. Modal Open / Close / ZIP Coverage Micro-Confirmation
     const form = document.getElementById('tspCapForm');
     const successBox = document.getElementById('tspCapSuccess');
     const errorBox = document.getElementById('tspCapError');
+    const zipInput = document.getElementById('tspCapZip');
+    const zipOkEl = document.getElementById('tspCapZipOk');
     const phoneInput = document.getElementById('tspCapPhone');
     const optInCheck = document.getElementById('tspCapMatchOptIn');
     const modalTitle = document.getElementById('tspCapModalTitle');
     const submitBtn = document.getElementById('tspCapSubmitBtn');
 
+    function updateZipFeedback() {
+      const z = (zipInput?.value || '').trim();
+      if (/^\d{5}$/.test(z)) {
+        localStorage.setItem(SAVED_ZIP_KEY, z);
+        if (zipOkEl) {
+          zipOkEl.textContent = `✓ Commercial coverage active near ZIP ${z} • Est. response < 2 hrs`;
+          zipOkEl.hidden = false;
+        }
+      } else if (zipOkEl) {
+        zipOkEl.hidden = true;
+      }
+    }
+
+    zipInput?.addEventListener('input', () => {
+      zipInput.value = zipInput.value.replace(/\D/g, '').slice(0, 5);
+      updateZipFeedback();
+    });
+
     function openModal(mode) {
       syncLiveOutput();
+      updateZipFeedback();
       errorBox.hidden = true;
       form.hidden = false;
       successBox.hidden = true;
@@ -316,6 +424,7 @@
     }
 
     document.getElementById('tspCapQuoteBtn')?.addEventListener('click', () => openModal('quote'));
+    document.getElementById('tspCapMobileBtn')?.addEventListener('click', () => openModal('quote'));
     document.getElementById('tspCapPdfBtn')?.addEventListener('click', () => openModal('pdf'));
     document.getElementById('tspCapCloseBtn')?.addEventListener('click', closeModal);
     overlay.addEventListener('click', (e) => {
@@ -325,7 +434,6 @@
       if (e.key === 'Escape' && !overlay.hidden) closeModal();
     });
 
-    // Respectful zero-trap print escape hatch
     document.getElementById('tspCapPrintRawBtn')?.addEventListener('click', () => {
       closeModal();
       window.print();
@@ -336,7 +444,6 @@
       window.print();
     });
 
-    // Timeline pills
     overlay.querySelectorAll('.tsp-cap-time-pill').forEach((pill) => {
       pill.addEventListener('click', () => {
         selectedTimeline = pill.getAttribute('data-timeline');
@@ -344,7 +451,6 @@
       });
     });
 
-    // Live US phone formatting
     phoneInput?.addEventListener('input', (e) => {
       e.target.value = formatPhoneUS(e.target.value);
       e.target.classList.remove('invalid');
@@ -356,7 +462,7 @@
       errorBox.hidden = true;
 
       const name = (document.getElementById('tspCapName')?.value || '').trim();
-      const zip = (document.getElementById('tspCapZip')?.value || '').trim();
+      const zip = (zipInput?.value || '').trim();
       const phone = (phoneInput?.value || '').trim();
       const email = (document.getElementById('tspCapEmail')?.value || '').trim();
       const wantQuotes = !!optInCheck?.checked;
@@ -389,12 +495,13 @@
       const spec = readLiveSpec(cfg);
       const isUrgent = selectedTimeline.includes('Immediate');
       const dynamicPrice = isUrgent ? cfg.urgentPrice : cfg.basePrice;
+      const b2bDomain = extractCommercialDomain(email);
 
       const leadPayload = {
         trade: cfg.trade,
         tradeTitle: cfg.title,
         customerName: name,
-        company: name,
+        company: b2bDomain ? `${name} (${b2bDomain})` : name,
         phone,
         email,
         zip,
@@ -403,7 +510,9 @@
         specs: {
           primary_output: spec.primary || cfg.noun,
           secondary_output: spec.secondary || '',
+          code_trigger: spec.codeAlert || 'Standard Commercial',
           project_timeline: selectedTimeline,
+          commercial_domain: b2bDomain || 'direct',
           contractor_quote_opt_in: wantQuotes,
           source_tool: cfg.slug
         }
