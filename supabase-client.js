@@ -321,11 +321,15 @@
             phone: item.phone,
             email: item.email,
             zip: item.zip,
-            location: item.location,
-            cost: Number(item.price_usd),
-            status: item.status,
-            specs: item.specs || {},
-            claimedBy: item.claimed_by
+            location: `ZIP ${item.zip || ''}`,
+            cost: Number(item.lead_cost || 175),
+            status: item.status === 'new' ? 'available' : item.status,
+            specSummary: item.spec_summary || '',
+            budgetEst: item.budget_est || '',
+            specs: item.spec_details && Object.keys(item.spec_details).length > 0
+              ? item.spec_details
+              : { summary: item.spec_summary || '', budget_est: item.budget_est || '' },
+            claimedBy: item.claimed_by_contractor_id
           }));
           return { success: true, isSupabase: true, leads: mapped };
         }
@@ -340,13 +344,16 @@
     initClient();
     if (client && leadId) {
       try {
+        const updateObj = {
+          status: 'claimed',
+          claimed_at: new Date().toISOString()
+        };
+        if (contractorId && /^[0-9a-f-]{36}$/i.test(String(contractorId))) {
+          updateObj.claimed_by_contractor_id = contractorId;
+        }
         const { data, error } = await client
           .from('leads')
-          .update({
-            status: 'claimed',
-            claimed_by: contractorId,
-            claimed_at: new Date().toISOString()
-          })
+          .update(updateObj)
           .eq('id', leadId)
           .select();
 
@@ -368,9 +375,7 @@
           .from('leads')
           .update({
             status: 'disputed',
-            dispute_reason: reason,
-            dispute_notes: details,
-            disputed_at: new Date().toISOString()
+            dispute_reason: details ? `${reason} — ${details}` : reason
           })
           .eq('id', leadId);
 
@@ -419,18 +424,36 @@
 
   async function submitLead(leadData) {
     initClient();
+    const prefixMap = {
+      charge: 'EV', permit: 'TI', site: 'ST', cold: 'CL',
+      crane: 'CR', well: 'WL', racking: 'RK', foam: 'FM', grease: 'GT'
+    };
+    const prefix = prefixMap[String(leadData.trade || '').toLowerCase()] || 'TS';
+    const year = new Date().getFullYear();
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    const leadId = `${prefix}-${year}-${rand}`;
+
+    const specs = leadData.specs || {};
+    const summaryParts = [
+      specs.primary_output || '',
+      specs.secondary_output ? `(${specs.secondary_output})` : '',
+      specs.project_timeline ? `Timeline: ${specs.project_timeline}` : ''
+    ].filter(Boolean);
+
     const payload = {
+      id: leadId,
       trade: leadData.trade,
-      trade_title: leadData.tradeTitle,
+      trade_title: leadData.tradeTitle || leadData.trade,
       customer_name: leadData.customerName,
       company: leadData.company || 'Commercial Project Owner',
       phone: leadData.phone,
       email: leadData.email,
       zip: leadData.zip,
-      location: leadData.location || `ZIP ${leadData.zip}`,
-      price_usd: Number(leadData.priceUsd) || 175,
-      status: 'available',
-      specs: leadData.specs || {}
+      spec_summary: summaryParts.join(' • ') || `${leadData.tradeTitle || 'Commercial'} RFP`,
+      spec_details: specs,
+      budget_est: specs.secondary_output || 'Commercial Quote Requested',
+      lead_cost: Number(leadData.priceUsd) || 175,
+      status: 'new'
     };
 
     if (client) {
