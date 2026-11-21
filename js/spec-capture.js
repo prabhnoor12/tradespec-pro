@@ -13,6 +13,8 @@
   'use strict';
 
   const SAVED_ZIP_KEY = 'tradespec_user_zip_v1';
+  // Paste your free Cloudflare Turnstile Site Key here once your custom domain is live
+  const TURNSTILE_SITE_KEY = window.TRADESPEC_TURNSTILE_KEY || '';
   const FREE_DOMAINS = new Set([
     'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com',
     'icloud.com', 'aol.com', 'proton.me', 'protonmail.com', 'live.com', 'msn.com'
@@ -313,6 +315,15 @@
             <span><strong>Also match me with 1–2 licensed local contractors</strong> for firm pricing on this exact spec sheet (strictly capped at 2 contractors — zero spam).</span>
           </label>
 
+          <!-- Invisible Anti-Bot Honeypot (Hidden off-screen for humans; traps automated spambots) -->
+          <div class="tsp-cap-hp" aria-hidden="true">
+            <label for="tspCapWebsite">Company Website</label>
+            <input type="text" id="tspCapWebsite" name="company_website_url" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Optional Cloudflare Turnstile Invisible Widget Mount -->
+          <div id="tspCapTurnstileBox" class="tsp-cap-turnstile" hidden></div>
+
           <div id="tspCapError" class="tsp-cap-error" hidden></div>
 
           <button type="submit" class="tsp-cap-submit" id="tspCapSubmitBtn">Save Spec PDF &amp; Request Firm Quotes &rarr;</button>
@@ -426,7 +437,43 @@
       updateZipFeedback();
     });
 
+    let modalOpenedAt = 0;
+    let turnstileToken = '';
+    let turnstileLoaded = false;
+
+    function ensureTurnstile() {
+      if (!TURNSTILE_SITE_KEY) return;
+      const box = document.getElementById('tspCapTurnstileBox');
+      if (box) box.hidden = false;
+      if (turnstileLoaded) return;
+      turnstileLoaded = true;
+
+      const mountWidget = () => {
+        if (window.turnstile && box) {
+          window.turnstile.render(box, {
+            sitekey: TURNSTILE_SITE_KEY,
+            theme: 'dark',
+            callback: (tok) => { turnstileToken = tok; },
+            'expired-callback': () => { turnstileToken = ''; }
+          });
+        }
+      };
+
+      if (window.turnstile) {
+        mountWidget();
+      } else {
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        s.async = true;
+        s.defer = true;
+        s.onload = mountWidget;
+        document.head.appendChild(s);
+      }
+    }
+
     function openModal(mode) {
+      modalOpenedAt = Date.now();
+      ensureTurnstile();
       syncLiveOutput();
       updateZipFeedback();
       errorBox.hidden = true;
@@ -491,6 +538,25 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorBox.hidden = true;
+
+      // Layer 1 & 2 Anti-Bot Shield: Honeypot + Sub-1.5s Instant Bot Submission Trap
+      const honeypotVal = (document.getElementById('tspCapWebsite')?.value || '').trim();
+      const elapsedMs = Date.now() - modalOpenedAt;
+      if (honeypotVal !== '' || (modalOpenedAt > 0 && elapsedMs < 1500)) {
+        // Silently fake success so spambots stop without polluting Supabase public.leads
+        form.hidden = true;
+        successBox.hidden = false;
+        const msgEl = document.getElementById('tspCapSuccessMsg');
+        if (msgEl) msgEl.textContent = 'Your spec sheet is ready to print below.';
+        return;
+      }
+
+      // Layer 3 Anti-Bot Shield: Cloudflare Turnstile Check (active once TURNSTILE_SITE_KEY is set)
+      if (TURNSTILE_SITE_KEY && !turnstileToken) {
+        errorBox.textContent = 'Please wait a moment for the automatic security verification to complete.';
+        errorBox.hidden = false;
+        return;
+      }
 
       const name = (document.getElementById('tspCapName')?.value || '').trim();
       const zip = (zipInput?.value || '').trim();

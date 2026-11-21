@@ -182,6 +182,24 @@
   color: #94a3b8;
 }
 
+/* Invisible Honeypot Anti-Bot Field */
+.tsp-cap-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+.tsp-cap-turnstile {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+}
+
 /* Mobile-Only Slim Sticky Bottom CTA */
 .tsp-cap-mobile-sticky {
   display: none;
